@@ -1,0 +1,112 @@
+@startuml NaN Air
+hide empty members
+
+Package Main {
+  Class Location {
+    + id: number
+    + country: string
+    + airport: string
+    + phone: number
+    + openinghours: string
+  }
+  Class Employee {
+    + name: string
+    + ssn: number
+    + address: string
+    + phone: number
+    + mobile: number
+    + email: string
+    + role: Role
+  }
+  Class Contractor {
+    + id: number
+    + name: string
+    + contact: string
+    + phone: number
+    + openinghours: string
+  }
+  Class Building {
+    + id: number
+    + free: boolean
+    + description: string
+    + state: string
+  }
+  Class Accessory {
+    + id: number
+    + description: string
+    + state: string
+    + bought: Date
+    + last_maintained: Date
+  }
+  Class Project {
+    + title: string
+  }
+  Class Task {
+    + id: number
+    + type: string
+    + created: Date
+    + modified: Date
+    + finished: Date
+    + priority: Priority
+    + recurring: Recurrance
+    + state: TaskState
+    + estimate: number
+  }
+  Class Report {
+    + id: number
+    + description: string
+    + type: ReportType
+    + hours: number
+    + cost: number
+  }
+  Class EmployeeReport {
+  }
+  Class ContractorReport {
+    + rating: number
+  }
+  package Enums {
+    enum TaskState {
+      CREATED
+      ASSIGNED
+      IN_PROGRESS
+      DONE
+      ACCEPTED       
+    }
+    enum ReportType {
+      MAINTENANCE
+      EMERGENCY
+    }
+    enum Role {
+      SUPERVISOR
+      EMPLOYEE
+    }
+    enum Priority {
+      EMERGENCY
+      NOW
+      YESTERDAY
+    }
+    enum Recurrance {
+      ONCE
+      DAILY
+      WEEKLY
+      MONTHLY
+      YEARLY
+    }
+  }
+  Report <|-- EmployeeReport
+  Report <|-- ContractorReport
+  Task *-- EmployeeReport
+  EmployeeReport o-- ContractorReport
+  Employee -- EmployeeReport
+  Location "1" -- "1..*" Employee
+  Location "1" -- "1..*" Building
+  Location "1" -- "*" Contractor
+  Building -- Project
+  Building -- Task
+  Accessory o-- Task
+  Project o-- Task
+  Contractor o-- ContractorReport
+  Building *- Accessory
+}
+
+@enduml
