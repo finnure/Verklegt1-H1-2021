@@ -4,5 +4,5 @@
 
 ### Plan dagsins
 
-Finnur - Setja upp github repo
-Hittumst kl 17-ish og ræðum næstu skref
+- Setja upp github repo - Finnur ☑️
+- Hittumst kl 17-ish og ræðum næstu skref
