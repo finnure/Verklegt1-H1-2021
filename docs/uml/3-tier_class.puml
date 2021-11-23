@@ -1,0 +1,39 @@
+@startuml 3-tier
+hide empty members
+
+skinparam class {
+  BackgroundColor<<UI>> PeachPuff
+  BackgroundColor<<BL>> DarkSeaGreen
+  BackgroundColor<<DL>> LightBlue
+  BackgroundColor<<API>> LightGray
+}
+
+package UserInterface {
+  Class Test <<UI>>
+}
+
+package BusinessLogic {
+  Class BLAPI <<API>> {
+    - ALL BL CLASSES
+    + ALL EXPOSED FUNCTIONS()
+  }
+  Class Test2 <<BL>> {
+    id
+    do()
+  }
+  Class Test5 <<BL>> {
+    id
+    do()
+  }
+  Test2 -- Test5
+}
+
+package DataLogic {
+  Class DLAPI <<API>> {
+    - ALL DL CLASSES
+    + ALL EXPOSED FUNCTIONS()
+  }
+  Class Test3 <<DL>>
+}
+
+@enduml

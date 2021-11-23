@@ -34,33 +34,49 @@ Vika 3
 
 ### Plan dagsins
 
-- [x] Setja upp github repo - Finnur
+- [x] Setja upp GitHub repo - Finnur
 - [x] Hittumst kl 17-ish og ræðum næstu skref
 - [x] Notendahópagreining
 - [x] Greining á klösum
 - [x] Kröfulisti
-- [ ] Stilla upp notkunartilvikum - Lára, Kristín
-- [ ] Setja upp klasarit í VSC - Finnur
+- [x] Stilla upp notkunartilvikum - Lára, Kristín
+- [x] Setja upp klasarit í VSC - Finnur
 
 ### Framkvæmt í dag
 
 Milli kl 17-19 var í sameiningu farið yfir notendahópagreiningu ásamt greiningu á klösum og kröfulistinn settur fram.
-Unnið var að því að koma 5. meðliminum Kristni Inga inn á Github, Teams og Discord þar sem vinnan á skýrslunni fer fram.
+Unnið var að því að koma 5. meðliminum Kristni Inga inn á GitHub, Teams og Discord þar sem vinnan á skýrslunni fer fram.
 
 Lára var "kosin" verkefnastjóri og sér um að skrá dagbókarfærslur.
+Finnur tekur að sér að færa dagbókafærslur í GitHub
 
-To do listinn:
+### Samantekt
 
-- Kristín og Lára stilla upp notkunartilvikum það sem eftir er dags
-- Finnur setur upp klasarits í VSC
-- Kristinn horfir á fyrirlestur morgunsins og les yfir verkefnalýsingu til að koma sér inní verkefnið. Mætir sterkur inn á stöðufundinn á morgun.
-- Stefán fær frí í kvöld eftir að hafa lagt solid vinnu í notendahópagreiningu og greiningu á klösum.
+Öll atriði sem voru skipulögð voru kláruð
+
+- Finnur​​​​​​​: Tókst til á GitHub og setti upp þægilegri uppsetningu á dagbókafærslur (60 mín) og setti upp klasarit (3 klst).
+- Finnur​​​​​​​: vann einnig að því að koma 5. hópameðlim inn í verkefnið (30 mín)
+- Kristín: Dældi út notkunartilviku (UC) inn í Excel (3 klst)
+- Lára: Bætti við og yfirfór notkunartilvik og setti upp í sameiginlega UC töflu ásamt því að uppfæra orðalag í kröfulista (3 klst)
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 2
 
 ### Plan dagsins
 
+- [ ] Byrja að skrifa skýrslu og yfirfara klasarit - Stefán
+- [ ] Uppsetning á stöðuriti fyrir verkbeiðni - Kristinn Ingi
+- [ ] Grófhönnun á runuriti fyrir líftíma verkbeiðnar - Kristín
+- [ ] Fara yfir UC og bæta viðeigandi Actors miðað við klasarit - Finnur
+- [ ] Byrja uppsetningu á klasariti fyrir 3-tier design - Finnur
+- [ ] Byrja á wireframe í Figma - Lára
+
 ### Framkvæmt í dag
+
+Stuttur fundur í dag, 30 mín. Lára, Kristín og Finnur fóru yfir samantekt gærdagsins og settu upp plan fyrir daginn í dag.
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 3
 
@@ -68,11 +84,15 @@ To do listinn:
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 4
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 5
 
@@ -80,11 +100,15 @@ To do listinn:
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 6
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 7
 
@@ -92,11 +116,15 @@ To do listinn:
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 8
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 9
 
@@ -104,11 +132,15 @@ To do listinn:
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 10
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 11
 
@@ -116,11 +148,15 @@ To do listinn:
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 12
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 13
 
@@ -128,11 +164,15 @@ To do listinn:
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 14
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 15
 
@@ -140,11 +180,15 @@ To do listinn:
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 16
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
+
+[Heim](#efnisyfirlit)
 
 ## Dagur 17
 
@@ -152,14 +196,20 @@ To do listinn:
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 18
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
 
+[Heim](#efnisyfirlit)
+
 ## Dagur 19
 
 ### Plan dagsins
 
 ### Framkvæmt í dag
+
+[Heim](#efnisyfirlit)

@@ -2,7 +2,7 @@
 
 ## Skjölun
 
-[Vinnuskýrsla](./skjolun/vinnuskyrsla.md)
+[Vinnuskýrsla](./docs/vinnuskyrsla.md)
 
 [User Interface](./src/ui/README.md)
 
