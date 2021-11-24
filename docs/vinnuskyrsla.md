@@ -65,16 +65,28 @@ Finnur tekur að sér að færa dagbókafærslur í GitHub
 
 ### Plan dagsins
 
-- [ ] Byrja að skrifa skýrslu og yfirfara klasarit - Stefán
+- [x] Byrja að skrifa skýrslu og yfirfara klasarit - Stefán
 - [ ] Uppsetning á stöðuriti fyrir verkbeiðni - Kristinn Ingi
-- [ ] Grófhönnun á runuriti fyrir líftíma verkbeiðnar - Kristín
+- [x] Grófhönnun á runuriti fyrir líftíma verkbeiðnar - Kristín
 - [ ] Fara yfir UC og bæta viðeigandi Actors miðað við klasarit - Finnur
-- [ ] Byrja uppsetningu á klasariti fyrir 3-tier design - Finnur
-- [ ] Byrja á wireframe í Figma - Lára
+- [x] Byrja uppsetningu á klasariti fyrir 3-tier design - Finnur
+- [ ] Byrja á wireframe - Lára
 
 ### Framkvæmt í dag
 
 Stuttur fundur í dag, 30 mín. Lára, Kristín og Finnur fóru yfir samantekt gærdagsins og settu upp plan fyrir daginn í dag.
+
+Leiðbeiningar frá Gylfa varðandi uppsetningu á wireframe og útfærslu á TUI viðmóti, 30 mín. Eftir það samtal var ákveðið að geyma wireframe þangað til 3-tier klasarit er lengra komið
+
+### Samantekt
+
+Ekki náðist að yfirfara use cases. Wireframe vinna set á bið.
+
+- Finnur: Byrjaði á 3-tier klasariti (4 klst)
+- Stefán: Uppsetning á hönnunarskýrslu (3 klst)
+- Lára: Uppsetning á hönnunarskýrslu (3 klst)
+- Kristín: Grófhönnun á runuriti fyrir verkbeiðnir (3 klst)
+- Kristinn: Byrjaði á stöðuriti fyrir verkbeiðnir ?
 
 [Heim](#efnisyfirlit)
 
