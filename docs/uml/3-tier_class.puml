@@ -11,21 +11,71 @@ skinparam class {
 package UserInterface {
   Class Test <<UI>>
 }
-
+UserInterface .. BusinessLogic
+BusinessLogic .. DataLogic
 package BusinessLogic {
   Class BLAPI <<API>> {
     - ALL BL CLASSES
     + ALL EXPOSED FUNCTIONS()
   }
-  Class Test2 <<BL>> {
-    id
-    do()
+  class LocationLogic <<BL>> {
+    + new_location()
+    + update_location()
+    + get_location(id)
+    + get_all_locations()
+    + add_employee_to_location()
   }
-  Class Test5 <<BL>> {
-    id
-    do()
+  class BuildingLogic <<BL>> {
+    + new_building()
+    + update_building()
+    + get_building(id)
+    + get_all_buildings()
+    + get_filtered_buildings(filter)
+    + add_accessory_to_building()
+    + get_reports_for_building(filter)
   }
-  Test2 -- Test5
+  class AccessoryLogic <<BL>> {
+    + new_accessory()
+    + update_accessory()
+    + get_accessory(id)
+    + get_all_accessories()
+    + get_accessory_by_building(building_id)
+  }
+  class EmployeeLogic <<BL>> {
+    + new_employee()
+    + update_employee()
+    + get_employee(id)
+    + get_all_employees()
+    + get_filtered_employees(filter)
+    + get_reports_for_employee(filter)
+  }
+  class ContractorLogic <<BL>> {
+    + new_contractor()
+    + update_contractor()
+    + get_contractor(id)
+    + get_all_contractors()
+    + get_filtered_contractors(filter)
+    + get_contractor_rating(id)
+    + get_reports_for_contractor(filter)
+  }
+  class TaskLogic <<BL>> {
+    + new_task()
+    + update_task()
+    + get_task(id)
+    + get_all_tasks()
+    + get_filtered_tasks(filter)
+    + add_report_to_task()
+    + update_task_state()
+    + calculate_task_cost()
+  }
+  class ReportLogic <<BL>> {
+    + new_report()
+    + update_report()
+    + get_report(id)
+    + get_all_reports()
+    + get_filtered_reports(filter)
+    + add_contractor_to_report()
+  }
 }
 
 package DataLogic {
@@ -33,7 +83,57 @@ package DataLogic {
     - ALL DL CLASSES
     + ALL EXPOSED FUNCTIONS()
   }
-  Class Test3 <<DL>>
+  class FileHandler <<DL>> {
+    - filename
+
+    + get_all()
+    + get_one(id)
+    + add()
+    + update()
+    + delete()
+
+    - parser(data)
+    - prepare(<data_type>)
+
+    - openFile(method)
+    - readFile(file_handler)
+    - writeFile(file_handler, data)
+    - updateFile(file_handler, data)
+  }
+  note left of FileHandler::add
+    Public methods are exposed
+    as <method_name>_<data_type>
+    Example for add Employee,
+    exposed method would be add_employee()
+    and it would call
+    EmployeeFileHandler.add()
+  end note
+  note left of FileHandler::parser
+    Each child class of FileHandler must implement
+    a parser method that returns a list of
+    <data_type> instances and a prepare method
+    that returns a string object correctly formatted
+    to be written to file
+  end note
+  Class LocationFileHandler <<DL>> {
+  }
+  Class BuildingFileHandler <<DL>> {
+  }
+  Class AccessoryFileHandler <<DL>> {
+    + get_accessories_by_building(building_id) : Accessory[]
+  }
+  Class EmployeeFileHandler <<DL>> {
+    + get_employees_by_location(location_id) : Employee[]
+  }
+  Class ContractorFileHandler <<DL>> {
+    + get_contractors_by_location(location_id) : Contractor[]
+  }
+  Class ReportFileHandler <<DL>> {
+    + get_reports_by_building(building_id) : Report[]
+  }
+  Class TaskFileHandler <<DL>> {
+    + get_tasks_by_location(location_id) : Task[]
+  }
 }
 
 @enduml
