@@ -4,7 +4,7 @@
 
 Vika 1
 
-- ✅ [Dagur 1 - 22. nóv](#dagur-1)
+- [Dagur 1 - 22. nóv](#dagur-1)
 - [Dagur 2 - 23. nóv](#dagur-2)
 - [Dagur 3 - 24. nóv](#dagur-3)
 - [Dagur 4 - 25. nóv](#dagur-4)
@@ -86,7 +86,7 @@ Ekki náðist að yfirfara use cases. Wireframe vinna set á bið.
 - Stefán: Uppsetning á hönnunarskýrslu (3 klst)
 - Lára: Uppsetning á hönnunarskýrslu (3 klst)
 - Kristín: Grófhönnun á runuriti fyrir verkbeiðnir (3 klst)
-- Kristinn: Byrjaði á stöðuriti fyrir verkbeiðnir ?
+- Kristinn: Komst ekki í að byrja á stöðuriti
 
 [Heim](#efnisyfirlit)
 
@@ -94,7 +94,33 @@ Ekki náðist að yfirfara use cases. Wireframe vinna set á bið.
 
 ### Plan dagsins
 
+- [ ] Setja upp stöðurit fyrir verkbeiðnir (verkin sjálf)
+- [x] Setja upp grófhönnun á UI
+- [x] Setja upp klasarit fyrir 3-tier
+- [ ] Fínpússa runurit og færa inn í skýrslu
+
 ### Framkvæmt í dag
+
+Hópur hittist á Discord spjallrás og ákveðið var plan dagsins og dagur 2 gerður upp.
+
+Kristinn hefur ákveðið að segja sig úr áfánganum og eftir standa því 4 aðilar.
+
+17:30-19:00 hóf hópurinn í heild sinni vinnu dagsins (fundur og samantekt á verkjum kvöldsins + yfirferð gærdagsins)
+
+Ákvörðun tekin um að hafa kerfi á Ensku í stað íslensku
+
+Við sammældumst um eftifarandi orðalag:
+
+- ListView - view sem sýnir lista af eintökum (starfsmenn, bygginar ofl)
+- View - view sem sýnir upplýsingar um stakt eintak (starfsmann, byggingu ofl)
+- Form - leyfir þér að breyta upplýsingum um eintak (starfsmann, byggingu ofl)
+
+### Samantekt
+
+- Finnur: Vinna við klasarit og aðstoð við hönnun á UI (4 klst)
+- Kristín: Uppfæra UI excel skjal svo hægt sé að útfæra grófhönnun (4 klst)
+- Lára: Uppfæra UI excel skjal svo hægt sé að útfæra grófhönnun (4 klst)
+- Stefán: Aðstoð við uppfærslu á UI. Samræmir UI við notkunartilvik til að ábyrgjast að allar A kröfur og margar B kröfur séu uppfylltar (3 klst)
 
 [Heim](#efnisyfirlit)
 
