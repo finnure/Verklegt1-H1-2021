@@ -9,7 +9,55 @@ skinparam class {
 }
 
 package UserInterface {
-  Class Test <<UI>>
+  Class MainProgram {
+    - logged_in_user
+  }
+  Class ViewFrame <<UI>> {
+    - curses
+    - current_view
+    - previous_view
+    - available_inputs
+
+    + get_input()
+    + display_header()
+    + display_footer()
+  }
+  Class LocationView <<UI>> {
+    + menu()
+    + view()
+    + list_view()
+    + form()
+  }
+  Class BuildingView <<UI>> {
+    + menu()
+    + view()
+    + list_view()
+    + form()
+  }
+  Class EmployeeView <<UI>> {
+    + menu()
+    + view()
+    + list_view()
+    + form()
+  }
+  Class ContractorView <<UI>> {
+    + menu()
+    + view()
+    + list_view()
+    + form()
+  }
+  Class TaskView <<UI>> {
+    + menu()
+    + view()
+    + list_view()
+    + form()
+  }
+  Class SearchView <<UI>> {
+    + menu()
+  }
+  Class LoginView <<UI>> {
+    + form()
+  }
 }
 UserInterface .. BusinessLogic
 BusinessLogic .. DataLogic
@@ -84,55 +132,101 @@ package DataLogic {
     + ALL EXPOSED FUNCTIONS()
   }
   class FileHandler <<DL>> {
-    - filename
-
-    + get_all()
-    + get_one(id)
-    + add()
-    + update()
-    + delete()
-
-    - parser(data)
-    - prepare(<data_type>)
-
     - openFile(method)
     - readFile(file_handler)
     - writeFile(file_handler, data)
     - updateFile(file_handler, data)
   }
-  note left of FileHandler::add
-    Public methods are exposed
-    as <method_name>_<data_type>
-    Example for add Employee,
-    exposed method would be add_employee()
-    and it would call
-    EmployeeFileHandler.add()
-  end note
-  note left of FileHandler::parser
-    Each child class of FileHandler must implement
-    a parser method that returns a list of
-    <data_type> instances and a prepare method
-    that returns a string object correctly formatted
-    to be written to file
-  end note
   Class LocationFileHandler <<DL>> {
+    - filename: string
+
+    + add_location()
+    + update_location()
+    + delete_location()
+    + get_all_locations()
+    + get_one_location(id)
+    + get_filtered_locations(filter)
+
+    - prepare(data)
+    - parser()
   }
   Class BuildingFileHandler <<DL>> {
+    - filename: string
+    
+    + add_building()
+    + update_building()
+    + delete_building()
+    + get_all_buildings()
+    + get_one_building(id)
+    + get_filtered_buildings(filter)
+
+    - prepare(data)
+    - parser()
   }
   Class AccessoryFileHandler <<DL>> {
-    + get_accessories_by_building(building_id) : Accessory[]
+    - filename: string
+    
+    + add_accessory()
+    + update_accessory()
+    + delete_accessory()
+    + get_all_accessories()
+    + get_one_accessory(id)
+    + get_filtered_accessories(filter)
+
+    - prepare(data)
+    - parser()
   }
   Class EmployeeFileHandler <<DL>> {
-    + get_employees_by_location(location_id) : Employee[]
+    - filename: string
+    
+    + add_employee()
+    + update_employee()
+    + delete_employee()
+    + get_all_employees()
+    + get_one_employee(id)
+    + get_filtered_employees(filter)
+
+    - prepare(data)
+    - parser()
   }
   Class ContractorFileHandler <<DL>> {
-    + get_contractors_by_location(location_id) : Contractor[]
+    - filename: string
+    
+    + add_contractor()
+    + update_contractor()
+    + delete_contractor()
+    + get_all_contractors()
+    + get_one_contractor(id)
+    + get_filtered_contractors(filter)
+
+    - prepare(data)
+    - parser()
   }
   Class ReportFileHandler <<DL>> {
-    + get_reports_by_building(building_id) : Report[]
+    - filename: string
+    
+    + add_report()
+    + update_report()
+    + delete_report()
+    + get_all_reports()
+    + get_one_report(id)
+    + get_filtered_reports(filter)
+
+    - prepare(data)
+    - parser()
   }
   Class TaskFileHandler <<DL>> {
-    + get_tasks_by_location(location_id) : Task[]
+    - filename: string
+    
+    + add_task()
+    + update_task()
+    + delete_task()
+    + get_all_tasks()
+    + get_one_task(id)
+    + get_filtered_tasks(filter)
+
+    - prepare(data)
+    - parser()
   }
 }
 
