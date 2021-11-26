@@ -2,78 +2,134 @@
 hide empty members
 
 skinparam class {
-  BackgroundColor<<UI>> PeachPuff
-  BackgroundColor<<BL>> DarkSeaGreen
+  BackgroundColor<<VL>> PeachPuff
+  BackgroundColor<<LL>> DarkSeaGreen
   BackgroundColor<<DL>> LightBlue
   BackgroundColor<<API>> LightGray
 }
 
-package UserInterface {
+package ViewLayer {
   Class MainProgram {
     - logged_in_user
+    - llapi
   }
-  Class ViewFrame <<UI>> {
-    - curses
+  Class ViewFrame <<VL>> {
+    - screen: _CursesWindow
     - current_view
     - previous_view
     - available_inputs
 
     + get_input()
+    + display_frame()
     + display_header()
     + display_footer()
   }
-  Class LocationView <<UI>> {
-    + menu()
-    + view()
-    + list_view()
-    + form()
+  Class LocationView <<VL>> {
+    - menu
+    - form
+
+    + create_menu()
+    + create_form()
+    + display_menu()
+    + display_view()
+    + display_list_view()
+    + display_form()
   }
-  Class BuildingView <<UI>> {
-    + menu()
-    + view()
-    + list_view()
-    + form()
+  Class BuildingView <<VL>> {
+    - menu
+    - form
+
+    + create_menu()
+    + create_form()
+    + display_menu()
+    + display_view()
+    + display_list_view()
+    + display_form()
   }
-  Class EmployeeView <<UI>> {
-    + menu()
-    + view()
-    + list_view()
-    + form()
+  Class EmployeeView <<VL>> {
+    - menu
+    - form
+
+    + create_menu()
+    + create_form()
+    + display_menu()
+    + display_view()
+    + display_list_view()
+    + display_form()
   }
-  Class ContractorView <<UI>> {
-    + menu()
-    + view()
-    + list_view()
-    + form()
+  Class ContractorView <<VL>> {
+    - menu
+    - form
+
+    + create_menu()
+    + create_form()
+    + display_menu()
+    + display_view()
+    + display_list_view()
+    + display_form()
   }
-  Class TaskView <<UI>> {
-    + menu()
-    + view()
-    + list_view()
-    + form()
+  Class TaskView <<VL>> {
+    - menu
+    - form
+
+    + create_menu()
+    + create_form()
+    + display_menu()
+    + display_view()
+    + display_list_view()
+    + display_form()
   }
-  Class SearchView <<UI>> {
-    + menu()
+  Class SearchView <<VL>> {
+    - menu
+
+    + create_menu()
+    + display_menu()
   }
-  Class LoginView <<UI>> {
-    + form()
+  Class LoginView <<VL>> {
+    - form
+
+    + create_form()
+    + display_form()
   }
+  Class Menu {
+    + menu_items
+
+    + add_menu_item()
+  }
+  Class MenuItem {
+    + option
+    + text
+    + link_to
+  }
+  Class Form {
+    + form_fields
+
+    + get_longest_name()
+    + add_form_field()
+    + get_field_name_position()
+    + get_field_value_position()
+  }
+  Class FormField {
+    + name
+    + value
+    + value_type
+  }
+  Form o-- FormField
+  Menu o-- MenuItem
 }
-UserInterface .. BusinessLogic
-BusinessLogic .. DataLogic
-package BusinessLogic {
-  Class BLAPI <<API>> {
+package LogicLayer {
+  Class LLAPI <<API>> {
     - ALL BL CLASSES
     + ALL EXPOSED FUNCTIONS()
   }
-  class LocationLogic <<BL>> {
+  class LocationLogic <<LL>> {
     + new_location()
     + update_location()
     + get_location(id)
     + get_all_locations()
     + add_employee_to_location()
   }
-  class BuildingLogic <<BL>> {
+  class BuildingLogic <<LL>> {
     + new_building()
     + update_building()
     + get_building(id)
@@ -82,14 +138,14 @@ package BusinessLogic {
     + add_accessory_to_building()
     + get_reports_for_building(filter)
   }
-  class AccessoryLogic <<BL>> {
+  class AccessoryLogic <<LL>> {
     + new_accessory()
     + update_accessory()
     + get_accessory(id)
     + get_all_accessories()
     + get_accessory_by_building(building_id)
   }
-  class EmployeeLogic <<BL>> {
+  class EmployeeLogic <<LL>> {
     + new_employee()
     + update_employee()
     + get_employee(id)
@@ -97,7 +153,7 @@ package BusinessLogic {
     + get_filtered_employees(filter)
     + get_reports_for_employee(filter)
   }
-  class ContractorLogic <<BL>> {
+  class ContractorLogic <<LL>> {
     + new_contractor()
     + update_contractor()
     + get_contractor(id)
@@ -106,7 +162,7 @@ package BusinessLogic {
     + get_contractor_rating(id)
     + get_reports_for_contractor(filter)
   }
-  class TaskLogic <<BL>> {
+  class TaskLogic <<LL>> {
     + new_task()
     + update_task()
     + get_task(id)
@@ -116,7 +172,7 @@ package BusinessLogic {
     + update_task_state()
     + calculate_task_cost()
   }
-  class ReportLogic <<BL>> {
+  class ReportLogic <<LL>> {
     + new_report()
     + update_report()
     + get_report(id)
@@ -126,7 +182,7 @@ package BusinessLogic {
   }
 }
 
-package DataLogic {
+package DataLayer {
   Class DLAPI <<API>> {
     - ALL DL CLASSES
     + ALL EXPOSED FUNCTIONS()
@@ -137,7 +193,7 @@ package DataLogic {
     - writeFile(file_handler, data)
     - updateFile(file_handler, data)
   }
-  Class LocationFileHandler <<DL>> {
+  Class LocationData <<DL>> {
     - filename: string
 
     + add_location()
@@ -150,7 +206,7 @@ package DataLogic {
     - prepare(data)
     - parser()
   }
-  Class BuildingFileHandler <<DL>> {
+  Class BuildingData <<DL>> {
     - filename: string
     
     + add_building()
@@ -163,7 +219,7 @@ package DataLogic {
     - prepare(data)
     - parser()
   }
-  Class AccessoryFileHandler <<DL>> {
+  Class AccessoryData <<DL>> {
     - filename: string
     
     + add_accessory()
@@ -176,7 +232,7 @@ package DataLogic {
     - prepare(data)
     - parser()
   }
-  Class EmployeeFileHandler <<DL>> {
+  Class EmployeeData <<DL>> {
     - filename: string
     
     + add_employee()
@@ -189,7 +245,7 @@ package DataLogic {
     - prepare(data)
     - parser()
   }
-  Class ContractorFileHandler <<DL>> {
+  Class ContractorData <<DL>> {
     - filename: string
     
     + add_contractor()
@@ -202,7 +258,7 @@ package DataLogic {
     - prepare(data)
     - parser()
   }
-  Class ReportFileHandler <<DL>> {
+  Class ReportData <<DL>> {
     - filename: string
     
     + add_report()
@@ -215,7 +271,7 @@ package DataLogic {
     - prepare(data)
     - parser()
   }
-  Class TaskFileHandler <<DL>> {
+  Class TaskData <<DL>> {
     - filename: string
     
     + add_task()
