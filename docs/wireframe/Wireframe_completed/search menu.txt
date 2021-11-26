@@ -1,0 +1,23 @@
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│   SELECT NUMBER TO DEFINE YOUR SEARCH!                                                                                │
+│                                                                                                                       │
+│   1 : SEARCH FOR EMPLOYEES BY CITY                                                                                    │
+│   2 : SEARCH FOR BUILDINGS BY CITY                                                                                    │
+│   3 : SEARCH FOR EMPLOYEE BY ID                                                                                       │
+│   4 : SEARCH FOR BUILDING BY ID                                                                                       │
+│   5 : SEARCH FOR TASK BY ID                                                                                           │
+│   6 : SEARCH FOR TASK BY BUILDINGS                                                                                    │
+│   7 : SEARCH FOR TASK BY EMPLOYEE                                                                                     │
+│   8 : SEARCH FOR REPORTS BY BUILDING                                                                                  │
+│   9 : SEARCH FOR REPORT BY EMPLOYEE                                                                                   │
+│                                                                                                                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────┬─────────────┬──────────┤
+│                                                                                              │             │          │
+│                                                                                              │  Log (O)ut  │  (Q)uit  │
+│                                                                                              │             │          │
+└──────────────────────────────────────────────────────────────────────────────────────────────┴─────────────┴──────────┘

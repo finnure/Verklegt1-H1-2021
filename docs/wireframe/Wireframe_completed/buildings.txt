@@ -1,0 +1,125 @@
+BUILDING MENU
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│  + : ADD NEW BUILDING (ADMIN)                                                                                         │
+│  S : SEARCH FOR A BUILDING BY ID                                                                                      │
+│  A : VIEW ALL BUILDINGS                                                                                               │
+│  F : FILTER BULDING LIST                                                                                              │  
+│                                                                                                                       │                                                                         │
+│      IF (F) FILTER BY:                                                                                                │
+│           1 : EMPLOYEE                                                                                                │
+│           2 : COUNTRY                                                                                                 │
+│                                                                                                                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────┬─────────────┬──────────┤
+│                                                                                              │             │          │
+│                                                                                              │  Log (O)ut  │  (Q)uit  │
+│                                                                                              │             │          │
+└──────────────────────────────────────────────────────────────────────────────────────────────┴─────────────┴──────────┘
+
+BUILDIN LIST VIEW IF USER FILTERS
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│  ENTER NUMBER (#) OF BUILDING TO VIEW:                                                                                │
+│                                                                                                                       │
+│  #    BID         ADDRESS                 CITY                CONDITION       ACCESSORIES          ACTIVE TASKS       │
+│                                                                                                                       │
+│  1    456-7987    MAIN STREET, 5          90210, NUUK         VERY GOOD             Y                    2            │
+│  2    648-6345    SECOND STREET, 12       90210, NUUK         BAD                   N                    8            │
+│  3..                                                                                                                  │
+│                                                                                                                       │
+│  A : ADD NEW BUILDING (ADMIN)                                                                                         │
+│  C : CREATE TASK                                                                                                      │
+│                                                                                                                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────┬─────────────┬──────────┤
+│                                                                                              │             │          │
+│                                                                                              │  Log (O)ut  │  (Q)uit  │
+│                                                                                              │             │          │
+└──────────────────────────────────────────────────────────────────────────────────────────────┴─────────────┴──────────┘
+
+User opens specific building (BUILDNG VIEW)
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│                                              456-7987: 90210, NUUK                                                    │
+│                                                                                                                       │
+│  STREET NAME:     MAIN STREET                                            MANAGER:         KARINA M. CLOONEY           │
+│  STREET NUMBER:   5                                                      ACTIVE TASKS:    2                           │
+│  APARTMENT NUM:                                                          TOTAL REPORTS:   16                          │
+│                                                                                                                       │
+│  ACCESSORIES:     HOT TUB, SAUNA, OUTDOOR GRILL                                                                       │
+│                                                                                                                       │
+│  A : EDIT ACCESSORIES (ADD OR REMOVE)                                                                                 │
+│  T : VIEW TASKS                                                                                                       │
+│  R : VIEW REPORTS                                                                                                     │
+│  M : VIEW MANAGER INFORMATION                                                                                         │
+│                                                                                                                       │
+│  E : EDIT BUILDING (ADMIN)                                                                                            │
+│                                                                                                                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────┬─────────────┬──────────┤
+│                                                                                              │             │          │
+│                                                                                              │  Log (O)ut  │  (Q)uit  │
+│                                                                                              │             │          │
+└──────────────────────────────────────────────────────────────────────────────────────────────┴─────────────┴──────────┘
+
+User choooses to EDIT BUILDING (BUILDING FORM)
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│  TO EDIT INFORMATION FOR BUILDING 456-7987 IN 90210, NUUK, GREENLAND, SELECT NUMBER.                                  │
+│                                                                                                                       │ 
+│  1 : STREET:              MAIN STREET                                                                                 │ 
+│  2 : STREET NUMBER:       5                                                                                           │
+│  3 : APARTMENT NUMBER:                                                                                                │
+│  4 : CONDITION:           VERY GOOD                                                                                   │
+│  5 : MANAGER:             KARINA M. CLOONEY                                                                           │
+│  6 : ACCESSORIES:         HOT TUB, SAUNA, OUTDOOR GRILL ()                                                            │
+│                                                                                                                       │
+│  A : APPLY ALL CHANGES                                                                                                │
+│  D : DISCARD CHANGES                                                                                                  │
+│                                                                                                                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────┬─────────────┬──────────┤
+│                                                                                              │             │          │
+│                                                                                              │  Log (O)ut  │  (Q)uit  │
+│                                                                                              │             │          │
+└──────────────────────────────────────────────────────────────────────────────────────────────┴─────────────┴──────────┘
+
+USER CHOOSES TO ADD NEW BUILDING
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│  ENTER THE FOLLOWING INFORMATION FOR THE NEW BUILDING:                                                                │ 
+│                                                                                                                       │
+│  BUI (BUIDING ID):                                                                                                    │
+│  COUNTRY:                                                                                                             │
+│  STREET:                                                                                                              │ 
+│  STREET NUMBER:                                                                                                       │
+│  APARTMENT NUMBER:                                                                                                    │
+│  CONDITION:                                                                                                           │
+│  MANAGER:                                                                                                             │
+│  ACCESSORIES:                                                                                                         │
+│                                                                                                                       │
+│  A : APPLY NEW REGISTRATION                                                                                           |
+│  D : DISCARD CHANGES                                                                                                  │
+│                                                                                                                       │
+├──────────────────────────────────────────────────────────────────────────────────────────────┬─────────────┬──────────┤
+│                                                                                              │             │          │
+│                                                                                              │  Log (O)ut  │  (Q)uit  │
+│                                                                                              │             │          │
+└──────────────────────────────────────────────────────────────────────────────────────────────┴─────────────┴──────────┘
