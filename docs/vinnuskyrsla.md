@@ -128,7 +128,24 @@ Við sammældumst um eftifarandi orðalag:
 
 ### Plan dagsins
 
+- [x] Fara í gegnum use cases og uppfæra UI miðað við þau
+- [x] Yfirfara use cases og setja í hönnunarskýrslu
+- [x] Klára klasarit, setja þau í skýrsluna og skrifa texta um þau
+- [x] Búa til wireframe template
+- [x] Búa til wireframe með útliti UI
+- [x] Prófa curses og resize terminal window á windows og mac
+- [x] Búa til stöðurit fyrir verkbeiðnir
+
 ### Framkvæmt í dag
+
+Öll atriði á task lista dagsins voru kláruð. Skýrsla er að mestu leiti tilbúin, bara eftir að fínpússa og fara yfir.
+
+### Samantekt
+
+- Finnur: Kláraði klasarit, kom þeim fyrir í skýrslu og skrifaði texta um þau. Prófaði virkni á curses og að setja gluggastærð í windows og mac (5 klst)
+- Stefán: Útbjó stöðurit, uppfærði notendahópagreiningua (verktakar teknir út) og uppfærsla á skýrslu (4 klst)
+- Lára: Setti UC í hönnunarskýrslu og fór yfir efni sem var komið inn. Bætti við myndum og viðauka sem vantaði fyrir runurit. Bjó til wireframe. (9 klst)
+- Kristín: Fór í gegnum UC og uppfærði UI miðað við þau. Bjó til wireframe. (8 klst)
 
 [Heim](#efnisyfirlit)
 
