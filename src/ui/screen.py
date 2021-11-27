@@ -6,69 +6,58 @@ from typing import Tuple
 
 class Screen():
 
-  def __init__(self, lines: int = 42, cols: int = 122, 
-               main: bool = True, begin_y: int = 0, begin_x: int = 0):
-    ''' Creates an instance of screen that is used to display UI.
-    By default, this is the complete program view.
-    If main is set to False, a new sub-window is created and positioned
-    using supplied properties '''
+  ########### INITIALIZATION #############
+
+  def __init__(self, lines: int = 42, cols: int = 122,
+               begin_y: int = 0, begin_x: int = 0,
+               main: bool = False, border: bool = False):
+    ''' Creates an instance of screen that is used to display UI sections.
+    By default, a sub-window is created and positioned using supplied properties. 
+    If border=True, a border is drawn around window and a new derived window
+    created inside the border to make sure border is not overwritten by text.\n
+    On program start, main=True needs to be passed to create the program window correctly.
+    border, begin_y and begin_x are not used if main is True.
+     '''
     self.lines = lines
     self.cols = cols
     self.__main = main
+    self.__border = border
     self.set_default_commands()
     self.set_string_termination()
     if main:
       self.__init_main()
     else:
-      self.__init_sub_window(lines, cols, begin_y, begin_x)
+      self.__init_sub_window(lines, cols, begin_y, begin_x, border)
 
   def __init_main(self) -> None:
-    ''' Creates the main window and initializes default settings '''
+    ''' Creates the main window, initializes default settings and sets the size '''
     self.__screen = curses.initscr()
     curses.noecho()
     curses.cbreak()
+    curses.curs_set(0)
     self.__screen.keypad(True)
+    if curses.has_colors():
+      curses.start_color()
+    if not self.__resize():
+      # Window is not big enough, kill with fire
+      self.end()
+      raise RuntimeError('Unable to resize terminal window. \
+            Please switch to a supported terminal or set the \
+            size manually to at least 42 lines and 122 columns and try again')
 
-  def __init_sub_window(self, lines: int, cols: int, begin_y: int, begin_x: int) -> None:
-    ''' Creates a sub window that is inside the main window '''
-    self.__screen = curses.newwin(lines, cols, begin_y, begin_x)
+  def __init_sub_window(self, lines: int, cols: int, begin_y: int, begin_x: int, border: bool = False) -> None:
+    ''' Creates a sub window that is inside the main window. 
+    If border is True, border is drawn around the window and
+    a derived window created inside the border. Size needs to
+    be larger than 2x2 for border to be applied. '''
+    screen = curses.newwin(lines, cols, begin_y, begin_x)
+    if border and lines > 2 and cols > 2:
+      screen.border()
+      self.border_win = screen
+      screen = screen.derwin(lines - 2, cols - 2, 1, 1)
+    self.__screen = screen
 
-  def set_default_commands(self, commands: list = None) -> None:
-    ''' Sets default commands that are available anywhere. 
-    If no list is sent as parameter, hardcoded defaults are used '''
-    commands = utils.none_if_not_list(commands)
-    if commands is None:
-      self.default_commands = [
-        curses.KEY_F1,
-        curses.KEY_F2,
-        curses.KEY_F3,
-        curses.KEY_F4,
-        curses.KEY_F5,
-        curses.KEY_F6,
-        ord('q'),
-        ord('Q'),
-        ord('o'),
-        ord('O'),
-      ]
-    else:
-      self.default_commands = commands
-  
-  def set_string_termination(self, termination: list = None) -> None:
-    ''' Sets default string termination for string inputs. 
-    If no list is is sent as parameter, sane defaults are used '''
-    termination = utils.none_if_not_list(termination)
-    if termination is not None:
-      self.string_termination = [
-        ord('\t'), # TAB
-        ord('\n'), # NEW LINE
-        ord('\r'), # CARRIAGE RETURN
-        curses.KEY_UP,
-        curses.KEY_DOWN
-      ]
-    else:
-      self.string_termination = termination
-
-  def resize(self) -> bool:
+  def __resize(self) -> bool:
     ''' Tries to resize terminal window
     Detects operating system and sends the correct terminal command
     Returns True if resize was successfull, False otherwise '''
@@ -89,7 +78,42 @@ class Screen():
     ''' Checks if terminal window size is of expected size
     Returns True if it is, False if it's not '''
     terminal_size = os.get_terminal_size()
-    return terminal_size.lines == self.lines and terminal_size.columns == self.cols
+    return terminal_size.lines >= self.lines and terminal_size.columns >= self.cols
+
+  ######### PUBLIC METHODS ################
+
+  def set_default_commands(self, commands: list = None) -> None:
+    ''' Sets default commands that are available anywhere. 
+    If no list is sent as parameter, hardcoded defaults are used '''
+    commands = utils.none_if_not_list(commands)
+    if commands is None:
+      commands = [
+        curses.KEY_F1,
+        curses.KEY_F2,
+        curses.KEY_F3,
+        curses.KEY_F4,
+        curses.KEY_F5,
+        curses.KEY_F6,
+        ord('q'),
+        ord('Q'),
+        ord('o'),
+        ord('O'),
+      ]
+    self.default_commands = commands
+  
+  def set_string_termination(self, termination: list = None) -> None:
+    ''' Sets default string termination for string inputs. 
+    If no list is is sent as parameter, sane defaults are used '''
+    termination = utils.none_if_not_list(termination)
+    if termination is not None:
+      termination = [
+        ord('\t'), # TAB
+        ord('\n'), # NEW LINE
+        ord('\r'), # CARRIAGE RETURN
+        curses.KEY_UP,
+        curses.KEY_DOWN
+      ]
+    self.string_termination = termination
 
   def get_character(self, filter: list = None, default: bool = False) -> int:
     ''' Listenes to keyboard input and returns character.
@@ -111,15 +135,15 @@ class Screen():
         # Filter is set, only return key if it's in filter list
         return character
 
-  def get_string(self, filter: str = string.printable) -> str:
+  def get_string(self, cols: int = 64, filter: str = string.printable) -> str:
     ''' Collects input from keyboard and returns as string.
     Only printable characters are allowed by default.
     Terminates on Enter, Tab, Arrow up, Arrow down.
     Backspace removes character from list. 
-    Arrow left and right change index '''
+    Arrow left and right change index.'''
     # Turn on echo to make input appear in UI and curs_set True to make cursor visible
     curses.echo()
-    curses.curs_set(True)
+    curses.curs_set(1)
     accumulated_string = []
     index = 0
     while True:
@@ -127,14 +151,11 @@ class Screen():
       if character in self.string_termination:
         # break out of while loop to make sure echo is turned off again and cursor hidden
         break
-      elif character == '127': # backspace
+      elif character == curses.erasechar(): # backspace
         if index > 0:
           index -= 1
           accumulated_string.pop(index)
           self.move_cursor_by_offset(0,-1)
-        else:
-          # Trying to delete from before string starts, need to move cursor back
-          pass
       elif character == curses.KEY_LEFT and index > 0:
         index -= 1
         self.move_cursor_by_offset(0,-1)
@@ -144,64 +165,125 @@ class Screen():
       elif chr(character) in filter:
         accumulated_string.insert(index, chr(character))
         index += 1
+      if len(accumulated_string) >= cols:
+        # max string length reached, break out of while and return string
+        break
     # Reset terminal settings, hide cursor and input
     curses.noecho()
-    curses.curs_set(False)
+    curses.curs_set(0)
     # Return list as string
     return ''.join(accumulated_string)
 
-  def __is_in_bounds(self, line: int, col: int) -> bool:
-    ''' Checks if supplied coordinates are inside the screen area. 
-    Return True if they are, else False '''
-    if line < 0 or col < 0:
-      return False
-    if line > self.lines or col > self.cols:
-      return False
-    return True
+  def get_multiline_string(self, lines: int = 1, cols: int = 64, filter: string = string.printable) -> str:
+    ''' Collects multiple lines and returns as one string concatenated by \\n '''
+    first_line, first_col = self.__get_current_pos()
+    accumulated_lines = []
+    for i in range(lines):
+      self.move_cursor_to_coords(first_line + i, first_col)
+      next_line = self.get_string(cols, filter)
+      if len(next_line) == 0:
+        # Empty line treated as input termination, break out of for loop and return string
+        break
+      accumulated_lines.append(next_line)
+    return '\n'.join(accumulated_lines)
 
-  def __get_safe_coords(self, new_y: int, new_x: int, 
-                      min_y: int = 1, min_x: int = 1,
-                      max_y: int = 119, max_x: int = 119) -> Tuple[int, int] :
-    ''' Checks if new coords are in-bounds. 
-    If not, return safe coords that are inside min and max.
-    y is lines and x is cols '''
-    if not min_y <= new_y <= max_y:
-      # new_y is out of bounds
-      new_y = min_y if min_y < new_y else max_y
-    if not min_x <= new_x <= max_x:
-      new_x = min_x if min_x < new_x else max_x
-    if self.__is_in_bounds(new_y, new_x):
-      return (new_y, new_x)
+  def print(self, text: str, line: int = None, col: int = None, style: int = 0):
+    ''' Prints text to screen. If line and col are not specified, 
+    string will be printed at current cursor location.
+    Style should be a number computed by adding together color profile and effects.
+    Default style is white text on black background '''
+    if line is None or col is None:
+      # Need both to print text at location
+      self.__screen.addstr(text, style)
     else:
-      # someone fucked up, return top left corner to avoid throwing an error
-      return (0,0)
-
-  def __get_current_pos(self) -> Tuple[int,int]:
-    ''' Gets current position of cursor and returns as tuple (line, col) '''
-    return self.__screen.getyx()
+      self.__screen.addstr(line, col, text, style)
 
   def move_cursor_by_offset(self, lines: int, cols: int) -> bool:
     ''' Moves cursor by offset specified by lines and cols.
-    If movement goes out of bounds, it is set to in-bounds. '''
+    If movement goes out of bounds, no movement is made and False returned. 
+    If movement is safe, move is performed and True returned '''
     if lines == 0 and cols == 0:
       # Nothing to move
       return False
     current_line, current_col = self.__get_current_pos()
     if not self.__is_in_bounds(current_line + lines, current_col + cols):
       # New position is out of bounds, return false
-      return
+      return False
     self.__screen.move(current_line + lines, current_col + cols)
 
-  def move_cursor_to_coords(self, line: int, col: int,
-                            min_y: int = 1, min_x: int = 1,
-                            max_y: int = 119, max_x: int = 119) -> None:
+  def move_cursor_to_coords(self, line: int, col: int) -> None:
     ''' Moves cursor to new coords. If trying to move out of bounds
     coords are updated to make sure an error is not thrown. '''
-    new_line, new_col = self.__get_safe_coords(line, col, min_y, min_x, max_y, max_x)
+    new_line, new_col = self.__get_safe_coords(line, col)
     self.__screen.move(new_line, new_col)
   
+  def clear(self) -> None:
+    ''' Clears everything from the window '''
+    self.__screen.clear()
+
+  def refresh(self) -> None:
+    ''' Updates the window and redraws it '''
+    self.__screen.refresh()
+
+  def delete_character(self, line: int, col: int) -> None:
+    ''' Deletes character at specified position. 
+    Checks if position is in-bounds first'''
+    if self.__is_in_bounds(line, col):
+      self.__screen.delch(line, col)
+
+  def delete_line(self, line: int = None) -> None:
+    ''' Delete line. Deletes current line if line is None, 
+    otherwise moves to line and deletes it.
+    This method is not permitted in main window '''
+    if not self.__main:
+      if line is not None and self.__is_in_bounds(line, 0):
+        self.__screen.move(line, 0)
+        self.__screen.deleteln()
+
+  def flash(self) -> None:
+    ''' Flashes the screen, reverses video for a short time.
+    Can be used as a visible bell if user needs to be notified'''
+    curses.flash()
+
   def end(self):
-    curses.nocbreak()
-    curses.echo()
-    self.__screen.keypad(False)
-    curses.endwin()
+    ''' If called on main window, everything is set to normal. 
+    If called on a sub-window, that window is destroyed '''
+    if self.__main:
+      curses.nocbreak()
+      curses.echo()
+      curses.curs_set(True)
+      self.__screen.keypad(False)
+      curses.endwin()
+
+  ######### PRIVATE METHODS ################
+
+  def __is_in_bounds(self, line: int, col: int) -> bool:
+    ''' Checks if supplied coordinates are inside the screen area. 
+    Return True if they are, else False '''
+    min_y, min_x = self.__screen.getbegyx()
+    if line < min_y or col < min_x:
+      return False
+    if line >= self.lines or col >= self.cols:
+      return False
+    return True
+
+  def __get_safe_coords(self, new_y: int, new_x: int) -> Tuple[int, int] :
+    ''' Checks if new coords are in-bounds. 
+    If not, return safe coords that are inside min and max.
+    y is lines and x is cols '''
+    min_y, min_x = self.__screen.getbegyx()
+    if not min_y <= new_y <= self.lines:
+      # new_y is out of bounds
+      new_y = min_y if min_y < new_y else self.lines
+    if not min_x <= new_x <= self.cols:
+      new_x = min_x if min_x < new_x else self.cols
+    if self.__is_in_bounds(new_y, new_x):
+      return (new_y, new_x)
+    else:
+      # someone fucked up, return top left corner to avoid throwing an error
+      return (min_y, min_x)
+
+  def __get_current_pos(self) -> Tuple[int,int]:
+    ''' Gets current position of cursor and returns as tuple (line, col) '''
+    return self.__screen.getyx()
+
