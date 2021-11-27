@@ -3,6 +3,7 @@ import os
 import string
 import utils
 from typing import Tuple
+from time import sleep
 
 class Screen():
 
@@ -31,6 +32,9 @@ class Screen():
 
   def __init_main(self) -> None:
     ''' Creates the main window, initializes default settings and sets the size '''
+    if not self.__resize():
+      # Window is not big enough, kill with fire
+      raise RuntimeError('Wrong terminal size, needs to be at least 122x42. Please resize manually and try again')
     self.__screen = curses.initscr()
     curses.noecho()
     curses.cbreak()
@@ -42,12 +46,6 @@ class Screen():
       curses.start_color()
       self.max_color_pairs = curses.COLOR_PAIRS
       self.max_colors = curses.COLORS
-    if not self.__resize():
-      # Window is not big enough, kill with fire
-      self.end()
-      raise RuntimeError('Unable to resize terminal window. \
-            Please switch to a supported terminal or set the \
-            size manually to at least 42 lines and 122 columns and try again')
 
   def __init_sub_window(self, lines: int, cols: int, begin_y: int, begin_x: int, border: bool = False) -> None:
     ''' Creates a sub window that is inside the main window. 
@@ -75,7 +73,7 @@ class Screen():
       os.system(f'printf "\e[8;{self.lines};{self.cols}t"')
     else:
       os.system(f'mode con: cols={self.cols} lines={self.lines}"')
-    curses.resizeterm(self.lines, self.cols)
+    sleep(0.01) # Need to give OS a chance to finish resize before checking if successful
     return self.__window_size_correct()
 
   def __window_size_correct(self) -> bool:
