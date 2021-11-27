@@ -153,7 +153,20 @@ Við sammældumst um eftifarandi orðalag:
 
 ### Plan dagsins
 
+- [x] Setja stutta lýsingu á útlitshönnunarkafla í skýrslu
+- [x] Fara yfir texta í skýrslu
+- [x] Færa skýrslu í pdf form og skila henni
+- [x] Byrja að forrita klasa fyrir UI
+
 ### Framkvæmt í dag
+
+Klárað að fínpússa og fara yfir skýrslu og henni skilað.
+Byrjað á forritun, Screen klasi búinn til
+
+### Samantekt
+
+- Finnur: Bjó til litapallettu og byrjaði að forrita (6 klst)
+- Stefán: Fór yfir og fínpússaði skýrslu og skilaði (4 klst)
 
 [Heim](#efnisyfirlit)
 
