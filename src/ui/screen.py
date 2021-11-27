@@ -36,8 +36,12 @@ class Screen():
     curses.cbreak()
     curses.curs_set(0)
     self.__screen.keypad(True)
-    if curses.has_colors():
+    # Check if color is supported. Init color info if it is
+    self.color_supported = curses.has_colors()
+    if self.color_supported:
       curses.start_color()
+      self.max_color_pairs = curses.COLOR_PAIRS
+      self.max_colors = curses.COLORS
     if not self.__resize():
       # Window is not big enough, kill with fire
       self.end()
@@ -81,6 +85,42 @@ class Screen():
     return terminal_size.lines >= self.lines and terminal_size.columns >= self.cols
 
   ######### PUBLIC METHODS ################
+
+  def set_color_pair(self, pair: int, text_color: int, background_color: int = 0) -> None:
+    ''' Defines color pair if color is supported and if numbers don't exceed max allowed. 
+    Default background color is black.
+    Each color should be a number representing that color. '''
+    if not self.color_supported:
+      # Do nothing if color is not supported
+      return
+    if text_color > self.max_colors or background_color > self.max_colors:
+      # Do nothing if trying to use unsupported color
+      return
+    if pair > self.max_color_pairs:
+      # Do nothing if trying to set unsupported color pair
+      return
+    curses.init_pair(pair, text_color, background_color)
+
+  def get_color_pair(self, pair: int = 0) -> int:
+    ''' Gets color pair. Returns 0 if color is not supported or pair is not supported. '''
+    if self.color_supported and pair < self.max_color_pairs:
+      return curses.color_pair(pair)
+    else:
+      return 0
+
+  def get_style(self, style_list: list) -> int:
+    ''' Get style from list of styles. Returns 0 if color is not supported.
+    Supported styles: BOLD, UNDERLINE, REVERSE, BLINK.
+    Each style has a number. To use multiple styles, sum of all styles is used. '''
+    if not self.color_supported:
+      return 0
+    style_dict = {
+      'BOLD': curses.A_BOLD,
+      'UNDERLINE': curses.A_UNDERLINE,
+      'REVERSE': curses.A_REVERSE,
+      'BLINK': curses.A_BLINK
+    }
+    return sum([style_dict[style] for style in style_list if style in style_dict])
 
   def set_default_commands(self, commands: list = None) -> None:
     ''' Sets default commands that are available anywhere. 
