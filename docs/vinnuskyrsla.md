@@ -174,7 +174,18 @@ Byrjað á forritun, Screen klasi búinn til
 
 ### Plan dagsins
 
+- [x] Helgarfrí fyrir flesta
+- [x] Búa til screen klasa og fá hann til að virka
+
 ### Framkvæmt í dag
+
+Kláraði screen klasa sem sér um að teikna UI og taka við input frá notanda.
+Bjó til ViewFrame klasa sem teiknar ramma, header og footer.
+Bjó til grunn fyrir flesta view klasa og byrjaði á api fyrir logic layer og data layer.
+
+### Samantekt
+
+- Finnur: Forritun (8 klst)
 
 [Heim](#efnisyfirlit)
 
