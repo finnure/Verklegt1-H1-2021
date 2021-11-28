@@ -2,7 +2,7 @@ import curses
 import os
 import string
 import utils
-from typing import Tuple
+from typing import Tuple, Union
 from time import sleep
 
 class Screen():
@@ -153,11 +153,13 @@ class Screen():
       ]
     self.string_termination = termination
 
-  def get_character(self, filter: list = None, default: bool = False) -> int:
+  def get_character(self, filter: Union[list, str, None] = None, default: bool = False) -> int:
     ''' Listenes to keyboard input and returns character.
     filter should be a list of available inputs.
     If default is true, default commands will be included'''
-    filter = utils.none_if_not_list(filter)
+    if type(filter) is not None:
+      # Convert to a list of ascii numbers with both upper and lowercase
+      filter = utils.get_ascii_list(filter)
     if type(filter) is list and default:
       # Append default commands to filter
       filter.extend(self.default_commands)
@@ -225,7 +227,7 @@ class Screen():
       accumulated_lines.append(next_line)
     return '\n'.join(accumulated_lines)
 
-  def print(self, text: str, line: int = None, col: int = None, style: int = 0):
+  def print(self, text: str, line: int = None, col: int = None, style: int = 0) -> None:
     ''' Prints text to screen. If line and col are not specified, 
     string will be printed at current cursor location.
     Style should be a number computed by adding together color profile and effects.
