@@ -1,8 +1,13 @@
+from ui.screen import Screen
 from ui.viewframe import ViewFrame
 
 
+
 def main():
-  ui = ViewFrame()
+  screen = Screen(main=True)
+  # create llapi
+  # show login screen and ask for userid
+  ui = ViewFrame(screen)
   ui.display_frame()
   ui.display_header()
   ui.display_footer()

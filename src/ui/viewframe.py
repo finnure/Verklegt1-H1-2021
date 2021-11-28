@@ -1,5 +1,3 @@
-from .screen import Screen
-
 TOP_AND_BOTTOM = '\U00002500'
 SIDE = '\U00002502'
 TOP_DIVIDER = '\U0000252c'
@@ -13,8 +11,8 @@ RIGHT_DIVIDER = '\U00002524'
 
 class ViewFrame():
 
-  def __init__(self):
-    self.__screen = Screen(main=True)
+  def __init__(self, screen):
+    self.__screen = screen
     self.__screen.set_color_pair(1, 122)
     self.display_frame()
     self.display_header()

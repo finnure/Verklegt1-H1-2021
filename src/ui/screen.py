@@ -11,7 +11,7 @@ class Screen():
 
   def __init__(self, lines: int = 42, cols: int = 122,
                begin_y: int = 0, begin_x: int = 0,
-               main: bool = False, border: bool = False):
+               border: bool = False, main: bool = False):
     ''' Creates an instance of screen that is used to display UI sections.
     By default, a sub-window is created and positioned using supplied properties. 
     If border=True, a border is drawn around window and a new derived window
