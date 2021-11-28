@@ -9,17 +9,18 @@ from dl.task import TaskData
 class DlApi():
 
   def __init__(self):
+    self.data_folder = ''
     self.__init_data()
 
   def __init_data(self):
-    self.accessory_data = AccessoryData()
-    self.building_data = BuildingData()
-    self.contractor_data = ContractorData()
-    self.contractor_report_data = ContractorReportData()
-    self.employee_data = EmployeeData()
-    self.employee_report_data = EmployeeReportData()
-    self.location_data = LocationData()
-    self.task_data = TaskData()
+    self.accessory_data = AccessoryData(self.data_folder)
+    self.building_data = BuildingData(self.data_folder)
+    self.contractor_data = ContractorData(self.data_folder)
+    self.contractor_report_data = ContractorReportData(self.data_folder)
+    self.employee_data = EmployeeData(self.data_folder)
+    self.employee_report_data = EmployeeReportData(self.data_folder)
+    self.location_data = LocationData(self.data_folder)
+    self.task_data = TaskData(self.data_folder)
 
   ######## Exposed methods ############
 

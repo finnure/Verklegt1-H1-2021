@@ -3,7 +3,7 @@ from dl.filehandler import FileHandler
 
 class EmployeeReportData():
 
-  def __init__(self):
+  def __init__(self, data_folder):
     self.headers = [
       'id',
       'employee_id',
@@ -14,7 +14,8 @@ class EmployeeReportData():
       'cost',
       'contractor_reports'
     ]
-    self.__file = FileHandler('employee_reports.csv', self.headers)
+    self.data_folder = data_folder
+    self.__file = FileHandler('employee_reports.csv', self.data_folder, self.headers)
 
   def add(self):
     pass
