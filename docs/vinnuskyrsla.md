@@ -193,7 +193,21 @@ Bjó til grunn fyrir flesta view klasa og byrjaði á api fyrir logic layer og d
 
 ### Plan dagsins
 
+- [x] Skjala Screen klasa
+- [x] Laga atriði sem koma upp við skjölun á Screen klasa
+- [x] Búa til beinagrind fyrir alla klasa í Logic Layer
+- [x] Búa til beinagrind fyrir alla klasa í Data Layer
+- [x] Búa til Menu og Form klasa og útfæra virkni í þeim
+- [x] Vinna í api fyrir logic og data layer.
+- [x] Búa til struct klasa
+
 ### Framkvæmt í dag
+
+Öll atriði á todo lista dagsins kláruð.
+
+### Samantekt
+
+- Finnur: Forritun (8 klst)
 
 [Heim](#efnisyfirlit)
 
