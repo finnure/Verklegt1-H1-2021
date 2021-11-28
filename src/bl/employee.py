@@ -1,15 +1,9 @@
-  # class EmployeeLogic <<LL>> {
-  #   + new_employee()
-  #   + update_employee()
-  #   + get_employee(id)
-  #   + get_all_employees()
-  #   + get_filtered_employees(filter)
-  #   + get_reports_for_employee(filter)
-  # }
+from typing import Type
+from dlapi import DlApi
 
 class EmployeeLogic():
 
-  def __init__(self, dlapi):
+  def __init__(self, dlapi: Type[DlApi]) -> None:
     self.dlapi = dlapi
 
   def new(self):

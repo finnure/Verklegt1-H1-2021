@@ -1,14 +1,9 @@
-#  class LocationLogic <<LL>> {
-#    + new_location()
-#    + update_location()
-#    + get_location(id)
-#    + get_all_locations()
-#    + add_employee_to_location()
-#  }
+from typing import Type
+from dlapi import DlApi
 
 class LocationLogic():
 
-  def __init__(self, dlapi):
+  def __init__(self, dlapi: Type[DlApi]) -> None:
     self.dlapi = dlapi
 
   def new(self):

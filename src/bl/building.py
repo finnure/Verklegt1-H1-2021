@@ -1,16 +1,9 @@
-  # class BuildingLogic <<LL>> {
-  #   + new_building()
-  #   + update_building()
-  #   + get_building(id)
-  #   + get_all_buildings()
-  #   + get_filtered_buildings(filter)
-  #   + add_accessory_to_building()
-  #   + get_reports_for_building(filter)
-  # }
+from typing import Type
+from dlapi import DlApi
 
 class BuildingLogic():
 
-  def __init__(self, dlapi):
+  def __init__(self, dlapi: Type[DlApi]) -> None:
     self.dlapi = dlapi
 
   def new(self):

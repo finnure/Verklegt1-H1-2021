@@ -1,15 +1,9 @@
-  # class ReportLogic <<LL>> {
-  #   + new_report()
-  #   + update_report()
-  #   + get_report(id)
-  #   + get_all_reports()
-  #   + get_filtered_reports(filter)
-  #   + add_contractor_to_report()
-  # }
+from typing import Type
+from dlapi import DlApi
 
 class ReportLogic():
 
-  def __init__(self, dlapi):
+  def __init__(self, dlapi: Type[DlApi]) -> None:
     self.dlapi = dlapi
 
   def new(self):

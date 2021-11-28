@@ -1,17 +1,9 @@
-  # class TaskLogic <<LL>> {
-  #   + new_task()
-  #   + update_task()
-  #   + get_task(id)
-  #   + get_all_tasks()
-  #   + get_filtered_tasks(filter)
-  #   + add_report_to_task()
-  #   + update_task_state()
-  #   + calculate_task_cost()
-  # }
+from typing import Type
+from dlapi import DlApi
 
 class TaskLogic():
 
-  def __init__(self, dlapi):
+  def __init__(self, dlapi: Type[DlApi]):
     self.dlapi = dlapi
 
   def new(self):
