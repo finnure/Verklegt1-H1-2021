@@ -11,23 +11,15 @@ class Form():
     line and col mark the spot where form field should appear.'''
     self.form_fields.append(FormField(name, value, value_type, line, col))
 
-  def get_form_field(self, index: int):
-    ''' Returns form field at index '''
-    if len(self.form_fields) > index:
-      return self.form_fields[index]
+  def __getitem__(self, index):
+    ''' Make form subscriptable. Form fields can be accessed using form[idx] '''
+    if isinstance(index, slice):
+      return self.form_fields[index.start:index.stop:index.step]
+    return self.form_fields[index]
 
   def __iter__(self):
-    self.n = 0
-    return self
-
-  def __next__(self):
-    if self.n < len(self.form_fields):
-      field = self.form_fields[self.n]
-      self.n += 1
-      return field
-    else:
-      raise StopIteration
-
+    ''' Make form iterable, can be used in a for loop with: for field in form '''
+    return iter(self.form_fields)
 
 class FormField():
   def __init__(self, name: str, value: str, value_type: str, line: int, col: int):
@@ -36,3 +28,6 @@ class FormField():
     self.value_type = value_type
     self.line = line
     self.col = col
+
+  def __str__(self):
+    return f'<{self.value_type}>{self.name} = {self.value} at {self.col}x{self.line}'
