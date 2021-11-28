@@ -1,6 +1,5 @@
 import curses
 import os
-import string
 import utils
 from typing import Tuple, Union
 from time import sleep
@@ -175,12 +174,11 @@ class Screen():
         # Filter is set, only return key if it's in filter list
         return character
 
-  def get_string(self, cols: int = 64, filter: str = string.printable) -> str:
+  def get_string(self, cols: int = 64, filter: str = utils.ALL_PRINTABLE) -> str:
     ''' Collects input from keyboard and returns as string.
     Only printable characters are allowed by default.
     Terminates on Enter, Tab, Arrow up, Arrow down.
-    Backspace removes character from list. 
-    Arrow left and right change index.'''
+    Backspace removes character from list. '''
     # Turn on echo to make input appear in UI and curs_set True to make cursor visible
     curses.echo()
     curses.curs_set(1)
@@ -192,19 +190,21 @@ class Screen():
         # break out of while loop to make sure echo is turned off again and cursor hidden
         break
       elif character == curses.erasechar(): # backspace
-        if index > 0:
+        if index > 0: # Not possible to erase if cursor is at beginning of string
+          # Move index back and pop character from accumulated string
           index -= 1
-          accumulated_string.pop(index)
+          accumulated_string.pop()
+          # Move cursor back one space and delete character at position
           self.move_cursor_by_offset(0,-1)
-      elif character == curses.KEY_LEFT and index > 0:
-        index -= 1
-        self.move_cursor_by_offset(0,-1)
-      elif character == curses.KEY_RIGHT and index < len(accumulated_string):
-        index += 1
-        self.move_cursor_by_offset(0,1)
+          self.delete_character()
       elif chr(character) in filter:
-        accumulated_string.insert(index, chr(character))
+        # Add allowed character to string and move cursor and index
+        accumulated_string.append(chr(character))
         index += 1
+        self.move_cursor_by_offset(0, 1)
+      else:
+        # Character not allowed
+        self.flash()
       if len(accumulated_string) >= cols:
         # max string length reached, break out of while and return string
         break
@@ -214,7 +214,7 @@ class Screen():
     # Return list as string
     return ''.join(accumulated_string)
 
-  def get_multiline_string(self, lines: int = 1, cols: int = 64, filter: string = string.printable) -> str:
+  def get_multiline_string(self, lines: int = 1, cols: int = 64, filter: str = utils.ALL_PRINTABLE) -> str:
     ''' Collects multiple lines and returns as one string concatenated by \\n '''
     first_line, first_col = self.__get_current_pos()
     accumulated_lines = []
@@ -265,10 +265,24 @@ class Screen():
     ''' Updates the window and redraws it '''
     self.__screen.refresh()
 
-  def delete_character(self, line: int, col: int) -> None:
-    ''' Deletes character at specified position. 
+  def paint_character(self, style: int, line: Union[int, None] = None,
+                      col: Union[int, None] = None, num: int = 1) -> None:
+    ''' Paints characters in the style given.
+    If line and col are supplied, character at that position is painted, 
+    else current position is used.
+    Default number of characters painted is 1. If num is supplied 
+    that number of characters will be painted from position specified '''
+    if line is None or col is None:
+      self.__screen.chgat(num, style)
+    else:
+      self.__screen.chgat(line, col, num, style)
+
+  def delete_character(self, line: Union[int, None] = None, col: Union[int, None] = None) -> None:
+    ''' Deletes character at specified position, or current position if none specified
     Checks if position is in-bounds first'''
-    if self.__is_in_bounds(line, col):
+    if line is None or col is None:
+      self.__screen.delch()
+    elif self.__is_in_bounds(line, col):
       self.__screen.delch(line, col)
 
   def delete_line(self, line: int = None) -> None:

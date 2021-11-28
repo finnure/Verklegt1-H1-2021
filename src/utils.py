@@ -1,4 +1,11 @@
 from typing import Union
+import string
+
+PRINTABLE_IS = 'ÁáÐðÉéÍíÓóÚúÝýÞþÆæÖö'
+PRINTABLE = string.printable
+ALL_PRINTABLE = PRINTABLE + PRINTABLE_IS
+NUMBERS = '0123456789'
+
 
 def none_if_not_list(list) -> Union[list,None]:
   ''' Returns list if it is a list, else returns None '''
