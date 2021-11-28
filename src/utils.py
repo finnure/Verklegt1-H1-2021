@@ -23,10 +23,10 @@ def convert_ascii_to_str(prop: Union[list, int]) -> str:
       if type(item) is int:
         str_list.append(str(item))
       else:
-        raise ValueError(f'Expected list item to be of type int, got {item} of type {type(item)}')
+        raise TypeError(f'convert_ascii_to_str() expected list item to be of type int, got {item} of type {type(item)}')
     return ''.join(str_list)
   else:
-    raise ValueError(f'Expected list or int, got {prop} of type {type(prop)}')
+    raise TypeError(f'convert_ascii_to_str() expected list or int, got {prop} of type {type(prop)}')
 
 def get_ascii_list(prop: Union[list, str]) -> list:
   ''' Detects if prop is a string or list.
@@ -44,7 +44,7 @@ def get_ascii_list(prop: Union[list, str]) -> list:
     # Join upper and lower lists, add them to a set to remove duplicates and change back to list
     return list(set(upper_list + lower_list))
   else:
-    raise ValueError(f'Expected list or str, got {prop} of type {type(prop)}')
+    raise TypeError(f'get_ascii_list() expected list or str, got {prop} of type {type(prop)}')
     
 
 def validate_ascii_list(prop: Union[str, int]) -> int:
@@ -52,7 +52,7 @@ def validate_ascii_list(prop: Union[str, int]) -> int:
   Type str must be of length 1. It is converted to uppercase.
   If type int is of length 1 it is converted to string and ascii value returned.
   If type int is of length > 1, it is returned as ascii number of uppercase value '''
-  if type(prop) is str and len(prop) == 1:
+  if type(prop) is str:
     return ord(prop.upper())
   elif type(prop) is int:
     if len(str(prop)) == 1:
@@ -60,4 +60,4 @@ def validate_ascii_list(prop: Union[str, int]) -> int:
     else:
       return ord(chr(prop).upper())
   else:
-    raise ValueError(f'Expected int or str of length 1, got {prop} of type {type(prop)}')
+    raise TypeError(f'validate_ascii_list() expected int or str, got {prop} of type {type(prop)}')
