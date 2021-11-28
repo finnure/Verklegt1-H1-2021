@@ -285,13 +285,16 @@ class Screen():
     elif self.__is_in_bounds(line, col):
       self.__screen.delch(line, col)
 
-  def delete_line(self, line: int = None) -> None:
+  def delete_line(self, line: Union[int, None] = None) -> None:
     ''' Delete line. Deletes current line if line is None, 
     otherwise moves to line and deletes it.
-    This method is not permitted in main window '''
+    This method is not permitted in main screen '''
     if not self.__main:
       if line is not None and self.__is_in_bounds(line, 0):
         self.__screen.move(line, 0)
+        self.__screen.deleteln()
+      elif line is None:
+        # delete current line
         self.__screen.deleteln()
 
   def flash(self) -> None:
@@ -299,7 +302,7 @@ class Screen():
     Can be used as a visible bell if user needs to be notified'''
     curses.flash()
 
-  def end(self):
+  def end(self) -> None:
     ''' If called on main window, everything is set to normal. 
     If called on a sub-window, that window is destroyed '''
     if self.__main:
