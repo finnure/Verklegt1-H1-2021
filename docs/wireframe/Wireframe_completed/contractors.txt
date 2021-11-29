@@ -1,4 +1,3 @@
-
 CONTRACTOR MENU
 ┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
 │ NaN                         │               │              │              │            │                 │            │
@@ -10,7 +9,7 @@ CONTRACTOR MENU
 │  S : SEARCH FOR A CONTRACTOR BY ID                                                                                    │
 │  A : VIEW ALL CONTRACTORS                                                                                             │
 │  F : FILTER CONTRACTOR LIST                                                                                           │  
-│                                                                                                                       │                                                                         │
+│                                                                                                                       │
 │      IF (F) FILTER BY:                                                                                                │
 │           1 : CITY                                                                                                    │
 │           2 : SPECIALITY                                                                                              │
@@ -36,7 +35,7 @@ CONTRACTOR LIST VIEW IF USER FILTERS LIST
 │  2    DAVID ELECTRO           90210, NUUK     DAVID GREEN      +465 779 6633     11:00-19:00          ELECTRICITY     │
 │  3..                                                                                                                  │
 │                                                                                                                       │
-│  A : ADD NEW CONTRACTOR (ADMIN)                                                                                         │
+│  A : ADD NEW CONTRACTOR (ADMIN)                                                                                       │
 │                                                                                                                       │
 ├──────────────────────────────────────────────────────────────────────────────────────────────┬─────────────┬──────────┤
 │                                                                                              │             │          │

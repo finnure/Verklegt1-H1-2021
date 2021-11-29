@@ -36,7 +36,7 @@ User opens specific REPORT (REPORT VIEW)
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
 │                                              REPORT ON TASK: T765                                                     │    
-│                                                                                                                       │                                                                                                                     │
+│                                                                                                                       │
 │  BUILDING:        648-6345                       TOTAL MATERIAL COST:         $                                       │
 │  REPORT DATE:     29.11.2021                     OUTSOURCED LABOUR COST:      $                                       │
 │  STATUS:          OPEN                           EMPLOYEE:                    KRISTINTH                               │

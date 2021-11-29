@@ -9,7 +9,7 @@ BUILDING MENU
 │  S : SEARCH FOR A BUILDING BY ID                                                                                      │
 │  A : VIEW ALL BUILDINGS                                                                                               │
 │  F : FILTER BULDING LIST                                                                                              │  
-│                                                                                                                       │                                                                         │
+│                                                                                                                       │
 │      IF (F) FILTER BY:                                                                                                │
 │           1 : EMPLOYEE                                                                                                │
 │           2 : COUNTRY                                                                                                 │

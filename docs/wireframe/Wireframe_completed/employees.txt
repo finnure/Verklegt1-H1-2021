@@ -10,7 +10,7 @@ EMPLOYEE MENU
 │  S : SEARCH FOR A EMPLOYEE BY ID                                                                                      │
 │  A : VIEW ALL EMPLOYEES                                                                                               │
 │  F : FILTER EMPLOYEE LIST                                                                                             │  
-│                                                                                                                       │                                                                         │
+│                                                                                                                       │
 │      IF (F) FILTER BY:                                                                                                │
 │           1 : CITY                                                                                                    │
 │           2 : SPECIALITY                                                                                              │

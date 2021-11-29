@@ -30,7 +30,7 @@ User opens location (lOCATION VIEW)
 │                                                GREENLAND: KULUSUK                                                     │
 │                                                                                                                       │
 │  AIRPORT: XXXXXX                          MANAGER: JOHN DOE                           TOTAL BUILDINGS: 5              │
-│  OPENING HOURS: 06:00-23:00               PHONE NUMBER: +456 567 5555                 TOTAL EMPLOYEES: 10             │                                                                                                                     │
+│  OPENING HOURS: 06:00-23:00               PHONE NUMBER: +456 567 5555                 TOTAL EMPLOYEES: 10             │
 │                                                                                                                       │
 │  1 : VIEW BUILDINGS                                                                                                   │
 │  2 : VIEW EMPLOYEES                                                                                                   │

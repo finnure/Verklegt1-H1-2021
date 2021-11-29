@@ -57,7 +57,7 @@ User opens specific TASK (TASK VIEW)
 │                                                                                                                       │
 │                                                   TASK: T002                                                          │
 │  A : ASSIGN TASK TO ME                                                                                                │
-│                                                                                                                       │                                                                                                                     │
+│                                                                                                                       │
 │  START DATE:      22.11.2021                     BUILDING:    648-6345                                                │
 │  DUE DATE:        29.11.2021                     ADDRESS:     SECOND STREET, 12                                       │
 │  PRIORITY:        HIGH                           EMPLOYEE:    KRISTINTH                                               │
@@ -126,9 +126,9 @@ IF ADD NEW TASK, THE FORM IS EMPTY BY DEFAULT
 │   EMPLOYEE:                                                                                                           |
 │   CONTRACTOR:                                                                                                         │
 │   RECURRENT:                                                                                                          │
-│   REPEATS EVERY:                                                                                                      │                                                                                                  │
+│   REPEATS EVERY:                                                                                                      │
 │                                                                                                                       │
-│  A : APPLY NEW TASK TO TASK LIST                                                                                                     │
+│  A : APPLY NEW TASK TO TASK LIST                                                                                      │
 │  D : DISCARD CHANGES                                                                                                  │
 │                                                                                                                       │
 ├──────────────────────────────────────────────────────────────────────────────────────────────┬─────────────┬──────────┤
