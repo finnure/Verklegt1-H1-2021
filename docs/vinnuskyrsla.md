@@ -214,14 +214,28 @@ Bjó til grunn fyrir flesta view klasa og byrjaði á api fyrir logic layer og d
 ## Dagur 8
 
 ### Plan dagsins
+- [x] Yfirfara hönnunarskýrslu í sameiningu og athugasemdir frá kennara
+- [x] Uppfæra UC og kröfulista sbr. athugasemdir 
+- [x] Skoða og ræða þann kóða sem kominn er og skipuleggja næstu skref
+- [x] Færa inn dummy gögn í excel inn á Teams vinnusvæði) til að vinna með síðar og bæta við
+- [x] Yfirfara wireframe svo hann stemmi við dummy gögnin
+- [x] Setja upp 1 UC frá upphafi til enda til að testa núverandi kóða
+- [x] Uppfæra og breyta ritum+texta þeim tengdum í hönnunarskýrslunni
 
 ### Framkvæmt í dag
+Öll atriði á todo lista dagsins kláruð.
+
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 9
 
 ### Plan dagsins
+Fyrirfram ákveðnar umræður dagsins
+[ ] - Komast að niðurstöðu um accessories og recurennt task birtingu.
+[ ] - Ræða um mögulega stjörnumerkta reiti (t.d. við stofnun fasteignar, verktaka og verbeiðna)
+[ ] - Ræða hvort krafan sem Gylfi commentaði (Er ekki A krafa að geta auðkennt hvort notandi sé yfirmaður eða ekki?) eigi að vera með
+[ ] - samræma allar breytingar/viðbætur sem gerðar voru deginum áður til að vera 100% viss um hvaða attributes eiga að vera til staðar í skilgreindum klösum
 
 ### Framkvæmt í dag
 
