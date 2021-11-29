@@ -1,0 +1,85 @@
+### MANAGERS/EMPLOYEES #################
+########################################
+Yfirmaður á Svalbarða: 
+Nafn: 	Jan Jacobsen
+e-mail: jan.jacobsen@nanair.is
+Heim.: 	Vei 230 12, Longyearbyen, Svalbard
+Sími: 	+47 92 09 77 00
+GSM: 	+354 777 1337
+
+Starfsmenn: 
+Nafn: 	Jacob Yxa 
+e-mail: jacob.yxa@nanair.is
+Heim.: 	Vei 224 3B, Longyearbyen, Svalbard
+Sími: 	+47 92 09 77 01
+GSM: 	+354 777 1338
+
+Nafn: 	Nanna Daema 
+e-mail: nanna.daema@nanair.is
+Heim.: 	Ivan Starostin st. 109, Barantsburg, Svalbard
+Sími: 	+47 92 09 77 02
+GSM: 	+354 777 1339
+
+########################################
+Yfirmaður á Nuuk: 
+Nafn: 	Minik Wallace
+e-mail: minik.wallace@nanair.is
+Heim.: 	Isaajap Aqqutaa 1, 3900, Nuuk, Greenland
+Sími: 	+299 34 24 67
+GSM: 	+354 777 1361
+
+Starfsmenn: 
+Nafn: 	Aqqaluk Lynge
+e-mail: aqqaluk.lynge@nanair.is
+Heim.: 	Qattaaq 44, 3905, Nuuk, Greenland
+Sími: 	+299 35 24 66
+GSM: 	+354 777 1362
+
+Nafn: 	Nauja Lynge
+e-mail: nauja.lynge@nanair.is
+Heim.: 	Qunguleq 3759, 3905, Nuuk, Greenland
+Sími: 	+299 31 21 64
+GSM: 	+354 777 1363
+
+########################################
+Yfirmaður í Færeyjum: 
+Nafn: 	Annette Djurhuus
+e-mail: annette.djurhuus@nanair.is
+Heim.: 	Tjarnardeild 8, 100, Tórshavn, Faroe Islands
+Sími: 	+298 772000
+GSM: 	+354 777 1381
+
+Starfsmenn: 
+Nafn: 	Áki Knudsen
+e-mail: aki.knudsen@nanair.is
+Heim.: 	Traðartún 3, 108, Argir, Faroe Islands
+Sími: 	+298 617210
+GSM: 	+354 777 1381
+
+Nafn: 	André Hjaltalin
+e-mail: Andre.hjaltalin@nanair.is
+Heim.: 	Í Lágni 19, 100, Tórshavn, Faroe Islands
+Sími: 	+298 661441
+GSM: 	+354 777 1382
+########################################
+
+
+### RENTAL HOUSES ######################
+########################################
+Svalbarði:
+Vei 217, 150m2, 4 herbergi, Einbýlishús, Fasteinganúmer: F959594
+Longyearbyen Harbor 1, 5000m2, 80 herbergi, Kafbátur, Fasteinganúmer: AA999-1 til og með AA999-81
+########################################
+Nuuk:
+iGloo-Ville:
+	- 10 igloo, 35fm2, 1 herbergi, Snjóhús, Fasteinganúmer: 64-3900-64-3910 
+Suloraq 42, 69m2, 2 herbergi, Fjölbíli, Fasteinganúmer: 64-3875-6
+Igimaq 7, 10m2, 1 herbergi, Snjóhús, Fasteinganúmer: 64-3831
+Nuussuaq 4, 400m2, 8  herbergi, Villa, Fasteinganúmer: 64-3812
+########################################
+Færeyjar:
+Skákið 15, 100m2, 3 herbergi, Raðhús, Fasteinganúmer: ix-9331 til og með ix-9333
+Svalbarðsvegur 22, 200m2, 5 herbergi, Einbýlishús, Fasteinganúmer: ix-2239
+Nýggivegur 1, 15m2, 10 herbergi, Moldarhús, Fasteinganúmer: ix-9492 til og með ix-9502
+########################################
+
