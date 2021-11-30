@@ -70,22 +70,22 @@ class LlApi():
   ##### Employee methods ########
 
   def new_employee(self):
-    self.employee_logic.new()
+    return self.employee_logic.new()
   
   def update_employee(self):
-    self.employee_logic.update()
+    return self.employee_logic.update()
 
   def get_employee(self, id):
-    self.employee_logic.get(id)
+    return self.employee_logic.get(id)
   
   def get_all_employees(self):
-    self.employee_logic.get_all()
+    return self.employee_logic.get_all()
 
-  def get_filtered_employees(self, filter):
-    self.employee_logic.get_filtered(filter)
+  def get_employee_by_location(self, filter):
+    return self.employee_logic.get_employee_by_location(filter)
   
   def get_reports_for_employee(self, filter):
-    self.employee_logic.get_reports_for_employee(filter)
+    return self.employee_logic.get_reports_for_employee(filter)
   
   ##### Location methods ########
 

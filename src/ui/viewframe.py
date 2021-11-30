@@ -1,3 +1,6 @@
+from ui.screen import Screen
+
+
 TOP_AND_BOTTOM = '\U00002500'
 SIDE = '\U00002502'
 TOP_DIVIDER = '\U0000252c'
@@ -11,18 +14,23 @@ RIGHT_DIVIDER = '\U00002524'
 
 class ViewFrame():
 
-  def __init__(self, screen):
+  def __init__(self, screen: Screen):
     self.__screen = screen
     self.__screen.set_color_pair(1, 122)
-    self.display_frame()
-    self.display_header()
-    self.display_footer()
 
   def get_input(self):
     char = self.__screen.get_character()
     self.__screen.print(chr(char), 10,10)
 
-  def display_frame(self):
+  def print_view(self):
+    ''' Displays frame, header and footer on the screen. '''
+    self.__screen.clear()
+    self.__display_frame()
+    self.__display_header()
+    self.__display_footer()
+    self.__screen.refresh()
+
+  def __display_frame(self):
     ''' Draws the frame around the complete window '''
     max_line = self.__screen.lines - 2
     max_col = self.__screen.cols - 2
@@ -40,7 +48,7 @@ class ViewFrame():
     self.__screen.print(BOTTOM_RIGHT_CORNER, max_line, max_col)
 
 
-  def display_header(self) -> None:
+  def __display_header(self) -> None:
     ''' Displays header in window '''
     titles = ['(L)ocations', '(B)uilding', '(E)mployee', '(T)asks', '(C)ontractors', '(S)earch']
     dividers = [30, 46, 61, 76, 89, 107]
@@ -48,7 +56,7 @@ class ViewFrame():
     self.__draw_divider_line(top_line + 4)
     self.__draw_sections(dividers, titles, top_line)
 
-  def display_footer(self) -> None:
+  def __display_footer(self) -> None:
     ''' Displays footer in window '''
     titles = ['Log (O)ut', '(Q)uit']
     dividers = [95, 109]

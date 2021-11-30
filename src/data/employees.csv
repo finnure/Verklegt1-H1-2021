@@ -1,0 +1,2 @@
+id,location_id,name,ssn,address,phone,mobile,email,role
+222,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,admin
