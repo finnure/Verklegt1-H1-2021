@@ -235,14 +235,21 @@ Bjó til grunn fyrir flesta view klasa og byrjaði á api fyrir logic layer og d
 ### Plan dagsins
 
 Fyrirfram ákveðnar umræður dagsins
+- [X] Komast að niðurstöðu um accessories og recurennt task birtingu.
+- [X] Ræða um mögulega stjörnumerkta reiti (t.d. við stofnun fasteignar, verktaka og verbeiðna)
+- [X] Ræða hvort krafan sem Gylfi commentaði (Er ekki A krafa að geta auðkennt hvort notandi sé yfirmaður eða ekki?) eigi að vera með
+- [X] samræma allar breytingar/viðbætur sem gerðar voru deginum áður til að vera 100% viss um hvaða attributes eiga að vera til staðar í skilgreindum klösum
+- [X] Klára employee hluta í UI svo hægt sé að gera prófanir á UC tengdum því
 
-- [ ] Komast að niðurstöðu um accessories og recurennt task birtingu.
-- [ ] Ræða um mögulega stjörnumerkta reiti (t.d. við stofnun fasteignar, verktaka og verbeiðna)
-- [ ] Ræða hvort krafan sem Gylfi commentaði (Er ekki A krafa að geta auðkennt hvort notandi sé yfirmaður eða ekki?) eigi að vera með
-- [ ] samræma allar breytingar/viðbætur sem gerðar voru deginum áður til að vera 100% viss um hvaða attributes eiga að vera til staðar í skilgreindum klösum
-- [ ] Klára employee hluta í UI svo hægt sé að gera prófanir á UC tengdum því
+### To do í dag
+[ ] - Lára: bæta við A kröfu (innskráning), wireframe uppfærslur; buildings, contractors, employees + stofna nýtt f. accessories
+[ ] - Stefán: wireframe uppfærslur; employee, location, task og report
+[ ] - Kristín: setja upp dummy gögn (áframhald)
+[ ] - Finnur: forritun á view hluta (klára forritun og gera kerfið keyrsluhæft)
 
 ### Framkvæmt í dag
+
+- Lára: Uppsetning og samantekt á efni fyrir notendaprófanir (Inngangur, Bakgrunnsspurningar og SUS listi) Yfirferð á wireframe og smávægilegar lagfæringar gerðar
 
 [Heim](#efnisyfirlit)
 
