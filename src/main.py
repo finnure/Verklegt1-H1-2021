@@ -1,19 +1,14 @@
-from ui.screen import Screen
-from ui.viewframe import ViewFrame
-
+from uihandler import UiHandler
+import locale
 
 
 def main():
-  screen = Screen(main=True)
-  # create llapi
-  # show login screen and ask for userid
-  ui = ViewFrame(screen)
-  ui.display_frame()
-  ui.display_header()
-  ui.display_footer()
-  ui.get_input()
-  ui.get_input()
-  ui.get_input()
+  locale.setlocale(locale.LC_ALL, '')
+  ui = UiHandler()
+  ui.login_view.display_view()
+  user = ui.login_view.get_input()
+  ui.quit()
+
 
 
 

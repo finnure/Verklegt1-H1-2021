@@ -1,6 +1,6 @@
 class EmployeeView():
 
-  def __init__(self, screen):
+  def __init__(self, screen, llapi):
     self.__screen = screen
 
   def create_menu():

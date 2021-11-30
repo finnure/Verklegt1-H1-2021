@@ -1,5 +1,4 @@
 import curses
-from curses import _CursesWindow
 import os
 import utils
 from typing import Tuple, Union
@@ -52,7 +51,7 @@ class Screen():
     If border is True, border is drawn around the window and
     a derived window created inside the border. Size needs to
     be larger than 2x2 for border to be applied. '''
-    screen = self.__parent.create_sub_window(begin_y, begin_x)
+    screen = self.__parent.create_sub_window(self.lines, self.cols, begin_y, begin_x)
     if self.__border and self.lines > 2 and self.cols > 2:
       screen.border()
       self.border_win = screen
@@ -63,7 +62,7 @@ class Screen():
     ''' Tries to resize terminal window
     Detects operating system and sends the correct terminal command
     Returns True if resize was successfull, False otherwise '''
-    if not self.__main:
+    if self.__parent is not None:
       # Not allowed to resize sub-window
       return False
     if self.__window_size_correct():
@@ -143,7 +142,7 @@ class Screen():
     ''' Sets default string termination for string inputs. 
     If no list is is sent as parameter, sane defaults are used '''
     termination = utils.none_if_not_list(termination)
-    if termination is not None:
+    if termination is None:
       termination = [
         ord('\t'), # TAB
         ord('\n'), # NEW LINE
@@ -157,7 +156,7 @@ class Screen():
     ''' Listenes to keyboard input and returns character.
     filter should be a list of available inputs.
     If default is true, default commands will be included'''
-    if type(filter) is not None:
+    if filter is not None:
       # Convert to a list of ascii numbers with both upper and lowercase
       filter = utils.get_ascii_list(filter)
     if type(filter) is list and default:
@@ -175,14 +174,14 @@ class Screen():
         # Filter is set, only return key if it's in filter list
         return character
 
-  def get_string(self, cols: int = 64, filter: str = utils.ALL_PRINTABLE) -> str:
+  def get_string(self, line: int, col: int, cols: int = 64, filter: str = utils.ALL_PRINTABLE) -> str:
     ''' Collects input from keyboard and returns as string.
     Only printable characters are allowed by default.
     Terminates on Enter, Tab, Arrow up, Arrow down.
     Backspace removes character from list. '''
     # Turn on echo to make input appear in UI and curs_set True to make cursor visible
-    curses.echo()
     curses.curs_set(1)
+    self.move_cursor_to_coords(line, col)
     accumulated_string = []
     index = 0
     while True:
@@ -190,7 +189,7 @@ class Screen():
       if character in self.string_termination:
         # break out of while loop to make sure echo is turned off again and cursor hidden
         break
-      elif character == curses.erasechar(): # backspace
+      elif character in [8, 127, curses.KEY_BACKSPACE]: # backspace
         if index > 0: # Not possible to erase if cursor is at beginning of string
           # Move index back and pop character from accumulated string
           index -= 1
@@ -198,19 +197,31 @@ class Screen():
           # Move cursor back one space and delete character at position
           self.move_cursor_by_offset(0,-1)
           self.delete_character()
+        else:
+          self.flash()
       elif chr(character) in filter:
         # Add allowed character to string and move cursor and index
-        accumulated_string.append(chr(character))
+        char = chr(character)
+        accumulated_string.append(char)
         index += 1
-        self.move_cursor_by_offset(0, 1)
+        self.print(char)
+      elif character == 195:
+        # Ignore because of special characters
+        pass
+      elif utils.SPECIAL_CHARACTERS in filter and character in utils.SPECIAL_CHARACTERS_ASCII:
+        # Special case for non-english characters
+        char = utils.SPECIAL_CHARACTERS[utils.SPECIAL_CHARACTERS_ASCII.index(character)]
+        accumulated_string.append(char)
+        index += 1
+        self.print(char)
       else:
         # Character not allowed
+        # Debug used to find special characters missing from list self.print(str(character))
         self.flash()
       if len(accumulated_string) >= cols:
         # max string length reached, break out of while and return string
         break
     # Reset terminal settings, hide cursor and input
-    curses.noecho()
     curses.curs_set(0)
     # Return list as string
     return ''.join(accumulated_string)
@@ -290,7 +301,7 @@ class Screen():
     ''' Delete line. Deletes current line if line is None, 
     otherwise moves to line and deletes it.
     This method is not permitted in main screen '''
-    if not self.__main:
+    if self.__parent is not None:
       if line is not None and self.__is_in_bounds(line, 0):
         self.__screen.move(line, 0)
         self.__screen.deleteln()
@@ -303,20 +314,20 @@ class Screen():
     Can be used as a visible bell if user needs to be notified'''
     curses.flash()
 
-  def create_sub_window(self, begin_y: int, begin_x: int) -> '_CursesWindow':
+  def create_sub_window(self, lines: int, cols: int, begin_y: int, begin_x: int):
     ''' Creates a sub window starting at position begin_y x begin_x
     with the size of lines and cols. If specified size is too big
     for the parent window, sub window will range from begin_y x begin_x
     to the bottom right corner of the parent window. '''
-    if begin_y + self.lines > self.__parent.lines or begin_x + self.cols > self.__parent.cols:
+    if begin_y + lines > self.lines or begin_x + cols > self.cols:
       return self.__screen.subwin(begin_y, begin_x)
     else:
-      return self.__screen.subwin(self.lines, self.cols, begin_y, begin_x)
+      return self.__screen.subwin(lines, cols, begin_y, begin_x)
 
   def end(self) -> None:
     ''' If called on main window, everything is set to normal. 
     If called on a sub-window, that window is destroyed '''
-    if self.__main:
+    if self.__parent is None:
       curses.nocbreak()
       curses.echo()
       curses.curs_set(True)
@@ -328,8 +339,7 @@ class Screen():
   def __is_in_bounds(self, line: int, col: int) -> bool:
     ''' Checks if supplied coordinates are inside the screen area. 
     Return True if they are, else False '''
-    min_y, min_x = self.__screen.getbegyx()
-    if line < min_y or col < min_x:
+    if line < 0 or col < 0:
       return False
     if line >= self.lines or col >= self.cols:
       return False
@@ -339,17 +349,16 @@ class Screen():
     ''' Checks if new coords are in-bounds. 
     If not, return safe coords that are inside min and max.
     y is lines and x is cols '''
-    min_y, min_x = self.__screen.getbegyx()
-    if not min_y <= new_y <= self.lines:
+    if not 0 <= new_y <= self.lines:
       # new_y is out of bounds
-      new_y = min_y if min_y < new_y else self.lines
-    if not min_x <= new_x <= self.cols:
-      new_x = min_x if min_x < new_x else self.cols
+      new_y = 0 if 0 < new_y else self.lines
+    if not 0 <= new_x <= self.cols:
+      new_x = 0 if 0 < new_x else self.cols
     if self.__is_in_bounds(new_y, new_x):
       return (new_y, new_x)
     else:
       # someone fucked up, return top left corner to avoid throwing an error
-      return (min_y, min_x)
+      return (0, 0)
 
   def __get_current_pos(self) -> Tuple[int,int]:
     ''' Gets current position of cursor and returns as tuple (line, col) '''

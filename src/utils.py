@@ -1,8 +1,30 @@
 import string
 
-PRINTABLE_IS = 'ÁáÐðÉéÍíÓóÚúÝýÞþÆæÖö'
+SPECIAL_CHARACTERS = 'ÁáÐðÉéÍíÓóÚúÝýÞþÆæÖö'
+SPECIAL_CHARACTERS_ASCII = [
+  129, # Á
+  161, # á
+  144, # Ð
+  176, # ð
+  137, # É
+  169, # é
+  141, # Í
+  173, # í
+  147, # Ó
+  179, # ó
+  154, # Ú
+  186, # ú
+  157, # Ý
+  189, # ý
+  158, # Þ
+  190, # þ
+  134, # Æ
+  166, # æ
+  150, # Ö
+  182, # ö
+]
 PRINTABLE = string.printable
-ALL_PRINTABLE = PRINTABLE + PRINTABLE_IS
+ALL_PRINTABLE = PRINTABLE + SPECIAL_CHARACTERS
 NUMBERS = '0123456789'
 
 
@@ -35,6 +57,9 @@ def get_ascii_list(prop: 'list | str') -> list:
   if type(prop) is str:
     upper_list = [ord(char.upper()) for char in prop]
     lower_list = [ord(char.lower()) for char in prop]
+    if SPECIAL_CHARACTERS in prop:
+      # Fix because Icelandic characters suck!!
+      upper_list.extend(SPECIAL_CHARACTERS_ASCII)
     # Join upper and lower lists, add them to a set to remove duplicates and change back to list
     return list(set(upper_list + lower_list))
   elif type(prop) is list:
