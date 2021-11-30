@@ -1,0 +1,41 @@
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│                                                                                            + : ADD NEW BUILDING       │
+│      ENTER BUILDING NUMBER (#) TO VIEW DETAILS                                                                        │
+│                                                                                                                       │
+│      #     ID           ADDRESS                 LOCATION        TYPE                       ROOMS   STATE     TASKS    │
+│                                                                                                                       │
+│      100   F959594      VEI 17                  SVALBARD        HOUSE                      4       GOOD               │
+│      101   AA999        LONGYEARBYEN HARBOR 1   SVALBARD        SUBMARINE                  80      MEDIUM    3        │
+│      102   64-3900      IGLOO-VILLE             GREENLAND       RECEPTION AND RESTAURANT                              │
+│      103   64-3901      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      104   64-3902      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      105   64-3903      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      106   64-3904      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      107   64-3905      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      108   64-3906      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      109   64-3907      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      110   64-3908      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      111   64-3909      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      112   64-3910      IGLOO-VILLE             GREENLAND       IGLOO                      1                          │
+│      113   64-3875-6    SULORAQ 42              GREENLAND       APARTMENT BUILDING         2                          │
+│      114   64-3831      IGIMAQ 7                GREENLAND       IGLOO                      1                          │
+│      115   64-3812      NUUSUUAQ 4              GREENLAND       VILLA                      8                          │
+│      116   IX-9331      SKÁKIÐ 15               FAROE ISLANDS   HOUSE                      3                          │
+│      117   IX-2239      SVALBARÐSVEGUR 22       FAROE ISLANDS   HOUSE                      5                          │
+│      118   IX-9492      NÝGGIVEGUR 1            FAROE ISLANDS   MUD HOUSE                  1                          │
+│      119   IX-9493      NÝGGIVEGUR 1            FAROE ISLANDS   MUD HOUSE                  1                          │
+│      120   IX-9494      NÝGGIVEGUR 1            FAROE ISLANDS   MUD HOUSE                  1                          │
+│      121   IX-9495      NÝGGIVEGUR 1            FAROE ISLANDS   MUD HOUSE                  1                          │
+│                                                                                                                       │
+│      ... SEE MORE                                                                                                     │
+│                                                                                                                       │
+├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
+│ NAME:                                                                 │          │           │             │          │
+│ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:                                                                 │          │           │             │          │
+└───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘

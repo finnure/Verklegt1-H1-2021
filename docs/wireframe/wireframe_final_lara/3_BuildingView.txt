@@ -1,0 +1,42 @@
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│                                         #101 - LONGYEARBYEN HARBOR 1 - AA999                       / : EDIT BUILDING  │
+│                                                                                                    + : ADD NEW TASK   │
+│                              ----------------------------------------------------------            A : ADD ACCESSORY  │
+│                                                                                                                       │
+│      TYPE:          SUBMARINE                                    ACTIVE TASKS:           10                           │
+│      ROOMS:         80                                           UNAPPROVED REPORTS:     3                            │
+│      STATE:         MEDIUM                                                                                            │
+│      MANAGER:       JAN JACOBSSEN                                                                                     │
+│      ACCESSORIES:   Y                                                                                                 │
+│                                                                                                                       │
+│                                                                                                                       │
+│      V : VIEW ACTIVE TASKS                                                                                            │
+│      R : VIEW REPORTS                                                                                                 │
+│      M : VIEW MANAGER INFORMATION                                                                                     │
+│                                                                                                                       │
+│      ---------------------                                                                                            │
+│                                                                                                                       │
+│      ACCESSORY DESCRIPTION              STATE                 BOUGHT        MAINTANED                                 │
+│                                                                                                                       │
+│      SAUNA                              GOOD                  DD/MM/YY      DD/MM/YY                                  │
+│      OK-650VV NUCLEAR REACTOR           NEEDS REPAIR                                                                  │
+│      GYM EQUIPMENT                                                                                                    │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
+│ NAME:                                                                 │          │           │             │          │
+│ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:                                                                 │          │           │             │          │
+└───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘
+101   AA999        LONGYEARBYEN HARBOR 1   SVALBARD        SUBMARINE                  80      MEDIUM    3
