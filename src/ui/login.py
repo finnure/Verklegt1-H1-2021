@@ -7,12 +7,15 @@ class LoginView():
     self.llapi = llapi
 
   def display_view(self):
+    self.__screen.clear()
     self.__screen.print('ENTER USER ID:', 2, 6)
 
   def invalid_input_error(self):
+    self.display_view()
     self.__screen.print('Invalid input, user id should be a number. Please try again', 4, 6)
 
   def user_not_found_error(self):
+    self.display_view()
     self.__screen.print('No user found, please try again!', 4, 6)
 
   def get_input(self):
@@ -20,6 +23,7 @@ class LoginView():
       # user_id = self.__screen.get_string(2, 21, 3, '0123456789')
       user_id = self.__screen.get_string(2, 21)
       self.__screen.delete_line(4)
+      self.__screen.delete_character
       try:
         id = int(user_id)
       except ValueError:

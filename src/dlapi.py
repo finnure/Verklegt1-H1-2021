@@ -10,7 +10,7 @@ from models.employee import Employee
 class DlApi():
 
   def __init__(self):
-    self.data_folder = ''
+    self.data_folder = 'data/'
     self.__init_data()
 
   def __init_data(self):

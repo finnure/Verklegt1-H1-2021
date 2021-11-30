@@ -15,7 +15,7 @@ class Employee():
     self.role = role
 
   def __str__(self) -> str:
-    pass
+    return f'Name: {self.name}\nEmail: {self.email}\nPhone: {self.phone}'
 
   def as_dict(self) -> 'dict[str, str]':
     return {
