@@ -6,6 +6,7 @@ from dl.employee import EmployeeData
 from dl.employeereport import EmployeeReportData
 from dl.location import LocationData
 from dl.task import TaskData
+from models.employee import Employee
 class DlApi():
 
   def __init__(self):
@@ -106,23 +107,35 @@ class DlApi():
 
   ######## Employee methods ############
   
-  def add_employee(self):
-    self.employee_data.add()
+  def add_employee(self, employee: Employee) -> Employee:
+    ''' Add employee to file. Gets next available id from csv file and 
+    adds it to dict before adding to file. Returns employee if successful. '''
+    return self.employee_data.add(employee)
 
-  def update_employee(self):
-    self.employee_data.update()
+  def update_employee(self, id: int, employee: Employee) -> Employee:
+    ''' Updates employee. Gets all data from file, replaces employee
+    that matches id and writes all data back to file. '''
+    return self.employee_data.update(id, employee)
 
-  def delete_employee(self):
-    self.employee_data.delete()
+  def delete_employee(self, id: int) -> None:
+    ''' Removes employee from file. Gets all data from file, filters employee
+    that matches id from the list and writes all data back to file '''
+    self.employee_data.delete(id)
 
-  def get_all_employees(self):
-    self.employee_data.get_all()
+  def get_all_employees(self) -> 'list[Employee]':
+    ''' Get all employees from file and return as list of Employee instances. '''
+    return self.employee_data.get_all()
 
-  def get_one_employee(self, id):
-    self.employee_data.get_one(id)
+  def get_one_employee(self, id: int) -> 'Employee | None':
+    ''' Find Employee matching the id specified. If no employee is found, None is returned '''
+    return self.employee_data.get_one(id)
 
-  def get_filtered_employees(self):
-    self.employee_data.get_filtered()
+  def get_filtered_employees(self, filter: dict, partial_match: bool = False) -> 'list[Employee]':
+    ''' Get a list of Employees matching filter specified.
+    Filter should be a dict where key is the Employee field to be matched and 
+    value the value you're searching for. If filter includes more than one key, all keys
+    need to match. If partial_match is true we do a partial match. Default is full match. '''
+    return self.employee_data.get_filtered(filter, partial_match)
 
   ######## EmployeeReport methods ############
   

@@ -1,5 +1,9 @@
+import csv
+
 class FileHandler():
-  ''' Each data class creates an instance of file handler. '''
+  ''' Each data class creates an instance of file handler. 
+  It needs to pass in filename, data_folder and headers list.
+  Headers list is a list of strings containing all column names. '''
 
   def __init__(self, filename: str, data_folder: str, headers: list):
     self.filename = filename
@@ -8,31 +12,23 @@ class FileHandler():
       data_folder += '/'
     self.data_folder = data_folder
     self.headers = headers
-    try:
-      self.open('r')
-    except FileNotFoundError:
-      self.open('w')
-      self.write()
-    self.close()
-
-
-  def open(self, mode, encoding = 'utf-8'):
-    ''' Opens file using mode and optional encoding and places the handle on self '''
-    self.__file_handle = open(self.data_folder + self.filename, mode, encoding=encoding)
-
-  def close(self):
-    ''' Closes the file handle if it's open '''
-    if not self.__file_handle.closed:
-      self.__file_handle.close()
 
   def read(self):
-    ''' Reads data from file and returns as list '''
-    pass
+    ''' Reads data from file and returns as list of dicts '''
+    with open(self.data_folder + self.filename, 'r', newline='', encoding='utf-8') as csvfile:
+      reader = csv.DictReader(csvfile)
+      return [row for row in reader]
 
-  def write(self, data = None):
-    ''' Writes data to file '''
-    pass
+  def write(self, data: list):
+    ''' Writes data to file. File will be overwritten so data needs to contain all lines.
+    Any lines that are left out will be lost forever! '''
+    with open(self.data_folder + self.filename, 'w', newline='', encoding='utf-8') as csvfile:
+      writer = csv.DictWriter(csvfile, fieldnames=self.headers)
+      writer.writeheader()
+      writer.writerows(data)
 
-  def update(self):
-    ''' Updates a line in the file '''
-    pass
+  def add(self, data: dict):
+    ''' Adds one line to end of file '''
+    with open(self.data_folder + self.filename, 'a', newline='', encoding='utf-8') as csvfile:
+      writer = csv.DictWriter(csvfile, fieldnames=self.headers)
+      writer.writerow(data)

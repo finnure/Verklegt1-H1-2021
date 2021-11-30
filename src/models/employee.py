@@ -1,6 +1,4 @@
 from typing import Type
-from structs.report import EmployeeReport
-
 
 class Employee():
 
@@ -15,11 +13,19 @@ class Employee():
     self.mobile = mobile
     self.email = email
     self.role = role
-    self.reports = []
 
   def __str__(self) -> str:
     pass
 
-  def add_report(self, report: Type[EmployeeReport]) -> None:
-    self.reports.append(report)
-    
+  def as_dict(self) -> 'dict[str, str]':
+    return {
+      'id': self.id,
+      'location_id': self.location_id,
+      'name': self.name,
+      'ssn': self.ssn,
+      'address': self.address,
+      'phone': self.phone,
+      'mobile': self.mobile,
+      'email': self.email,
+      'role': self.role,
+    }

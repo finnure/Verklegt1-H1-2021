@@ -1,4 +1,3 @@
-from typing import Union
 import string
 
 PRINTABLE_IS = 'ÁáÐðÉéÍíÓóÚúÝýÞþÆæÖö'
@@ -7,11 +6,11 @@ ALL_PRINTABLE = PRINTABLE + PRINTABLE_IS
 NUMBERS = '0123456789'
 
 
-def none_if_not_list(list) -> Union[list,None]:
+def none_if_not_list(list) -> 'list | None':
   ''' Returns list if it is a list, else returns None '''
   return list if type(list) is list else None
 
-def convert_ascii_to_str(prop: Union[list, int]) -> str:
+def convert_ascii_to_str(prop: 'list | int') -> str:
   ''' Converts prop to ascii character.
   If prop is a list, a string is returned.
   If prop is an int, a string character is returned '''
@@ -28,7 +27,7 @@ def convert_ascii_to_str(prop: Union[list, int]) -> str:
   else:
     raise TypeError(f'convert_ascii_to_str() expected list or int, got {prop} of type {type(prop)}')
 
-def get_ascii_list(prop: Union[list, str]) -> list:
+def get_ascii_list(prop: 'list | str') -> list:
   ''' Detects if prop is a string or list.
   If it's a list, it converts each item to it's ascii value if needed.
   If it's a string, it converts it to a list of ascii values.
@@ -47,7 +46,7 @@ def get_ascii_list(prop: Union[list, str]) -> list:
     raise TypeError(f'get_ascii_list() expected list or str, got {prop} of type {type(prop)}')
     
 
-def validate_ascii_list(prop: Union[str, int]) -> int:
+def validate_ascii_list(prop: 'str | int') -> int:
   ''' Converts prop to ascii value if it isn't already.
   Type str must be of length 1. It is converted to uppercase.
   If type int is of length 1 it is converted to string and ascii value returned.
@@ -61,3 +60,21 @@ def validate_ascii_list(prop: Union[str, int]) -> int:
       return ord(chr(prop).upper())
   else:
     raise TypeError(f'validate_ascii_list() expected int or str, got {prop} of type {type(prop)}')
+
+
+def validate_headers(required_headers: 'list[str]', headers: 'list[str]') -> None:
+  ''' Checks if all required headers are present. Throws an error if they're not. '''
+  for header in required_headers:
+    if header not in headers:
+      raise KeyError(f'validate_headers() missing header {header}')
+
+def validate_phone(value: str) -> None:
+  ''' Checks if phone number is valid. Raises error if it's not. '''
+  for idx, digit in enumerate(value):
+    if not digit.isdigit():
+      if idx > 0 or digit != '+':
+        raise ValueError(f'{value} is not a valid phone number.')
+
+def validate_email(email: str) -> None:
+  ''' TODO '''
+
