@@ -7,7 +7,7 @@ Hér fyrir neðan kemur documentation fyrir ui
 UI klasi sem sér um öll samskipti við terminal, bæði til að birta upplýsingar
 og til að taka við innslætti frá notanda.
 
-Við ræsingu á forriti ætti að búa til tilvik af þessum klasa með main=True
+Við ræsingu á forriti ætti að búa til tilvik af þessum klasa án sérstakra stillinga
 til að forstilla terminal og setja það í rétta stærð.
 
 Sjálfgefin stærð glugga er 42 línur og 122 dálkar. 2 línur og 2 dálkar fara
@@ -19,10 +19,11 @@ ekki skilar forritið villu og hættir keyrslu. Þessi virkni hefur verið próf
 virki í öðrum forritum.
 
 Hægt er að búa til ný tilvik af Screen fyrir minni ramma sem eru notaðir í forritinu.
-Þetta er sjálfgefna hegðunin, og þá verður að taka fram hversu margar línur og
-dálka þetta tilvik á að hafa og hvar það á að vera staðsett. Staðsetningin er
-skilgreind með því að gefa upp punktinn á horninu efst til vinstri. begin_y er
-línan sem á að byrja í og begin_x dálkurinn.
+Þá verður að taka fram hversu margar línur og dálka þetta tilvik á að hafa og hvar það
+á að vera staðsett. Staðsetningin er skilgreind með því að gefa upp punktinn á horninu
+efst til vinstri. begin_y er línan sem á að byrja í og begin_x dálkurinn. Það þarf að
+skilgreina hver parent er með því að senda tilvik af þeim glugga sem nýji glugginn
+á að vera hluti af.
 
 ### Aðgerðir
 
@@ -128,6 +129,7 @@ paint_character(style: int, line: int | None = None, col: int | None = None, num
 delete_character(line: int | None = None, col: int | None = None) -> None
 delete_line(line: int | None = None) -> None
 flash() -> None
+create_sub_window(begin_y: int, begin_x: int) -> _CursesWindow
 end() -> None
 ```
 
@@ -148,6 +150,8 @@ er byrjað á því að athuga hvort sú lína sé innan viðkomandi glugga. Ef 
 ekki er aðgerðin ekki framkvæmd.  
 `flash` víxlar litum á texta og bakgrunni í sekúndu og víxlar svo aftur til baka.
 Hægt er að nota þetta sem tilkynningu til notanda.  
+`create_sub_window` Býr til nýjan glugga með begin_y línur og begin_x dálka.
+Þessi gluggi erfir stillingar frá parent glugga, eins og lita prófíla.
 `end` sér um að taka til í terminal og skila því í rétt ástand áður en forriti
 er lokað. Það verður að kalla í þetta fall við lokun á forriti.
 

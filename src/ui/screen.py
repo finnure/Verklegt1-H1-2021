@@ -1,4 +1,5 @@
 import curses
+from curses import _CursesWindow
 import os
 import utils
 from typing import Tuple, Union
@@ -10,7 +11,7 @@ class Screen():
 
   def __init__(self, lines: int = 42, cols: int = 122,
                begin_y: int = 0, begin_x: int = 0,
-               border: bool = False, main: bool = False):
+               border: bool = False, parent: 'Screen' = None):
     ''' Creates an instance of screen that is used to display UI sections.
     By default, a sub-window is created and positioned using supplied properties. 
     If border=True, a border is drawn around window and a new derived window
@@ -20,14 +21,14 @@ class Screen():
      '''
     self.lines = lines
     self.cols = cols
-    self.__main = main
+    self.__parent = parent
     self.__border = border
     self.set_default_commands()
     self.set_string_termination()
-    if main:
+    if self.__parent is None:
       self.__init_main()
     else:
-      self.__init_sub_window(lines, cols, begin_y, begin_x, border)
+      self.__init_sub_window(begin_y, begin_x)
 
   def __init_main(self) -> None:
     ''' Creates the main window, initializes default settings and sets the size '''
@@ -46,16 +47,16 @@ class Screen():
       self.max_color_pairs = curses.COLOR_PAIRS
       self.max_colors = curses.COLORS
 
-  def __init_sub_window(self, lines: int, cols: int, begin_y: int, begin_x: int, border: bool = False) -> None:
+  def __init_sub_window(self, begin_y: int, begin_x: int) -> None:
     ''' Creates a sub window that is inside the main window. 
     If border is True, border is drawn around the window and
     a derived window created inside the border. Size needs to
     be larger than 2x2 for border to be applied. '''
-    screen = curses.newwin(lines, cols, begin_y, begin_x)
-    if border and lines > 2 and cols > 2:
+    screen = self.__parent.create_sub_window(begin_y, begin_x)
+    if self.__border and self.lines > 2 and self.cols > 2:
       screen.border()
       self.border_win = screen
-      screen = screen.derwin(lines - 2, cols - 2, 1, 1)
+      screen = screen.derwin(self.lines - 2, self.cols - 2, 1, 1)
     self.__screen = screen
 
   def __resize(self) -> bool:
@@ -301,6 +302,16 @@ class Screen():
     ''' Flashes the screen, reverses video for a short time.
     Can be used as a visible bell if user needs to be notified'''
     curses.flash()
+
+  def create_sub_window(self, begin_y: int, begin_x: int) -> '_CursesWindow':
+    ''' Creates a sub window starting at position begin_y x begin_x
+    with the size of lines and cols. If specified size is too big
+    for the parent window, sub window will range from begin_y x begin_x
+    to the bottom right corner of the parent window. '''
+    if begin_y + self.lines > self.__parent.lines or begin_x + self.cols > self.__parent.cols:
+      return self.__screen.subwin(begin_y, begin_x)
+    else:
+      return self.__screen.subwin(self.lines, self.cols, begin_y, begin_x)
 
   def end(self) -> None:
     ''' If called on main window, everything is set to normal. 
