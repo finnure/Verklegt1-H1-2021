@@ -11,7 +11,7 @@
 │           FILTER CONTRACTORS BY:                                                                                      │
 │                  1 : RATING                                                                                           │
 │                  2 : SPECIALITY                                                                                       │
-│                                                                                                                       │
+│                  3 : LOCATION                                                                                         │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
