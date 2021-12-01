@@ -1,0 +1,41 @@
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│                                  #101 - LONGYEARBYEN HARBOR 1 - AA999 -ACCESSORIES              + :    ADD ACCESSORY  │
+│                                                                                                                       │
+│                              ----------------------------------------------------------                               │                                                                                                                     │
+│      ENTER ACCESSORY NUMBER (#) TO VIEW DETAILS                                                                       │
+│                                                                                                                       │                                                                                                                       │
+│      #       ACCESSORY DESCRIPTION           STATE               BOUGTH           LAST MAINTAINED        ACTIVE       │
+│                                                                                                                       │
+│      100     SAUNA                           NEEDS REPAIR        01.02.2021       06.12.2021              N           │
+│      101     OK-650VV NUCLEAR REACTOR        GOOD                10.01.2021                               Y           │
+│      102     GYM EQUIPMENT                   GOOD                24.02.2021                               Y           │
+│      103     POOL TABLE                      GOOD                15.02.2021                               Y           │
+│      104     MASSAGE TABLE                   POOR                03.02.2021                               Y           │
+│      105     HOT TUB                         GOOD                22.02.2021                               Y           │
+│      106     GAMING EQUIPMENT                GOOD                15.04.2021                               Y           │
+│      107     ELECTRICITY PANEL 1             GOOD                                 03.10.2021              Y           │
+│      108     ELECTRICITY PANEL 2             GOOD                                 03.10.2021              Y           │
+│      109     ELECTRICITY PANEL 3             GOOD                                 03.10.2021              Y           │
+│      110     ENGINE ROOM 1                   GOOD                                                         Y           │
+│      111     ENGINE ROOM 2                   GOOD                                                         Y           │
+│      112     ENGINE ROOM 3                   POOR                                                         Y           │
+│      113     STORAGE ROOM 1                  GOOD                                                         Y           │
+│      114     STORAGE ROOM 2                  GOOD                                                         Y           │
+│      115     BOAT 1                          GOOD                21.01.2021                               Y           │
+│      116     BOAT 2                          GOOD                17.03.2021                               Y           │
+│      117     FISHING EQUIPMENT               NEEDS REPAIR        29.01.2021                               N           │
+│      118     DIVING EQUIPMENT                GOOD                13.04.2021                               Y           │
+│      119     SNOWMOBILE 1                    GOOD                07.03.2021                               Y           │
+│      120     SNOWMOBILE 2                    NEEDS REPAIR        01.09.2021                               Y           │
+│                                                                                                                       │
+
+├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
+│ NAME:        |                                                        │          │           │             │          │
+│ LOCATION:    |                                                        │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:        |                                                        │          │           │             │          │
+└───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘
