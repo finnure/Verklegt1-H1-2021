@@ -4,28 +4,29 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                        A : ADD LOCATION (IF CHUCK)    │
-│      SELECT NUMBER (#) FOR INFORMATION                                                                                │
+│                                                                                        E : EDIT TASK                  │
+│                                                      TASK: T100                                                       │
+│                                              ------------------------                                                 │
+│      A : ASSIGN TASK TO ME                                                                                            │
 │                                                                                                                       │
-│      #    ID      AIRPORT             COUNTRY             CITY                MANAGER             PHONER NUMBER       │
-│                                                                                                                       │
-│      1    100     NUUK AIRPORT        GREENLAND           KULUSUK             MINIK WALLACE       +299 98 66 98       │
-│      2    101     VÁGAR AIRPORT       FAROE ISLANDS       THORSHAVN           ANNETTE DJURHUUS    +298 254400         │
-│      3    102     SVALBARD AIRPORT    SVALBARD            LONGYEARBYEN        JAN JACOVSEN        +47 67 03 54 000    │
-│                                                                                                                       │
-│                                                                                                                       │
+│      TITLE: SPREAD BORON INTO NUCLEAR FURNACE                                                                         │
+│      SHORT DESCRIPTION: EVERY WEEK BORON MUST BE SPREAD INTO THE NUCLEAR FURNACE. NECESSARY EQUIPMENT IS A            │
+│                         PROTECTIVE RUBBER SUIT.                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
+│      START DATE:      30.11.2021                     BUILDING:        AA9999                                          │
+│      DUE DATE:        05.12.2021                     EST. COST:       50.000 ISK                                      │
+│      LAST MODIFIED:   01.12.2021                     EMPLOYEE:        ADDALUK LYNGE                                   │
+│      PRIORITY:        HIGH                           CONTRACTOR:      NUUK HANDYMAND                                  │
+│      TASK TYPE:       MAINTAINANCE                   STATUS:          COMPLETED                                       │
 │                                                                                                                       │
+│      RECURRENT:       Y                                                                                               │
+│      REPEATS EVERY:   MONTH                                                                                           │
 │                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
+│      C : ADD CONTRACTOR                                                                                               │
+│      R : VIEW REPORTS                                                                                                 │
+│      + : CREATE REPORT                                                                                                │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

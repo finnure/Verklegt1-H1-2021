@@ -4,20 +4,20 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                        |  manger functions            │
-│      | margin                                                                                                         │
+│                                                                                        E : EDIT LOCATION              │
+│                                              #100  KULUSUK, GREENLAND                                                 │
 │                                                                                                                       │
+│                                         ------------------------------------                                          │
 │                                                                                                                       │
+│      AIRPORT: KULUSUK AIRPORT                 MANAGER: MINIK WALLACE              TOTAL BUILDINGS: 5                  │
+│      OPENING HOURS: 06:00-20:00               PHONE: +299 98 66 98                TOTAL EMPLOYEES: 10                 │
+│      ADDRESS: HVF8+R25, KULUSUK, GREENLAND                                        TOTAL CONTRACTORS: 3                │
 │                                                                                                                       │
+│      ----------------------------------------------------------------------------------------------------------       │
 │                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
+│      1 : VIEW ALL BUILDINGS                                                                                           │
+│      2 : VIEW ALL EMPLOYEES                                                                                           │
+│      3 : VIEW ALL AVAILABLE CONTRACTORS                                                                               │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
