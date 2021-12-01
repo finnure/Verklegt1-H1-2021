@@ -1,0 +1,41 @@
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│                                                                                        A : ADD NEW EMPLOYEE (ADMIN)   │
+│      ENTER NUMBER (#) OF EMPLOYEE TO VIEW:                                                                            │
+│                                                                                                                       │
+│      #    ID      NAME                        CITY            MOBILE               EMAIL                              │
+│                                                                                                                       │
+│      1    100     JAN JOCOBSEN                SVALBARD        +354 777 1337        JAN.JACOBSEN@NANAIR.IS             │
+│      2    101     JACOB YXA                   SVALBARD        +354 777 1338        JACOB.YXA@NANAIR.IS                │
+│      3    102     NANNA DAEMA                 SVALBARD        +354 777 1339        NANNA.DAEMA@NANAIR.IS              │
+│      4    103     MINIK WALLACE               NUUK            +354 777 1361        MINIK.WALLACE@NANAIR.IS            │
+│      5    104     AQQALUK LYNGE               NUUK            +354 777 1362        AQQALUK.LYNGE@NANAIR.IS            │
+│      6    105     ANNETTE DJURHUUS            NUUK            +354 777 1363        ANNETTE.DJURHUUS@NANAIR.IS         │
+│      7    106     ÁKI KNUDSEN                 TÓRHAVN         +354 777 1381        ÁKI.KNUDSEN@NANAIR.IS              │
+│      8    107     ANDRÉ HJALTALIN             TÓRHAVN         +354 777 1382        ANDRÉ.HJALTALIN@NANAIR.IS          │
+│      9    108     BJORK BRIMNES               ARGIR           +354 777 1383        BJORK.BRIMNES@NANAIR.IS            │
+│      10   109     FILIP I LIDA                TÓRHAVN         +354 777 1383        FILIP.I.LIDA@NANAIR.IS             │
+│      11   110     AUDUN BÅRDSETH              TÓRHAVN         +354 777 1377        AUDUN.BÅRDSETH@NANAIR.IS           │
+│      12   111     SIRI WIERSEN                LONGYEARBYEN    +354 777 1371        SIRI.WIERSEN@NANAIR.IS             │
+│      13   112     KASPER MONDRUP              NUUK            +354 777 1341        KASPER.MONDRUP@NANAIR.IS           │ 
+│      14   113     LINE BRUUN JENSEN           NUUK            +354 777 1365        LINE.BRUUN.JENSEN@NANAIR.IS        │
+│                                                                                                                       │
+│      ... SEE MORE                                                                                                     │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
+│ NAME:        |                                                        │          │           │             │          │
+│ LOCATION:    |                                                        │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:        |                                                        │          │           │             │          │
+└───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘
