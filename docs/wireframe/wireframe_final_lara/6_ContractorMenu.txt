@@ -4,14 +4,14 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                                + : ADD NEW BUILDING   │
-│      I : SEARCH FOR BUILDING BY ID                                                                                    │
-│      V : VEIW ALL BUILDINGS                                                                                           │
-│      F : FILTER BUILDINGS LIST                                                                                        │
+│                                                                                              + : ADD NEW CONTRACTOR   │
+│      V : VIEW ALL CONTRACTORS                                                                                         │
+│      F : FILTER CONTRACTORS LIST                                                                                      │
 │                                                                                                                       │
-│           FILTER BUILDINGS BY:                                                                                        │
-│                  1 : LOCATION                                                                                         │
-│                  2 : BULDING ID                                                                                       │
+│           FILTER CONTRACTORS BY:                                                                                      │
+│                  1 : RATING                                                                                           │
+│                  2 : SPECIALITY                                                                                       │
+│                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
@@ -35,7 +35,7 @@
 │                                                                                                                       │
 │                                                                                                                       │
 ├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
-│ NAME:                                                                 │          │           │             │          │
-│ LOCATION:                                                             │  (H)OME  │  (-)BACK  │  Log (O)ut  │  (Q)uit  │
-│ ROLE:                                                                 │          │           │             │          │
+│ NAME:        |                                                        │          │           │             │          │
+│ LOCATION:    |                                                        │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:        |                                                        │          │           │             │          │
 └───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘

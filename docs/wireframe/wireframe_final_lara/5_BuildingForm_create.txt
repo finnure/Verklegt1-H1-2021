@@ -4,23 +4,23 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                                + : ADD NEW BUILDING   │
-│      I : SEARCH FOR BUILDING BY ID                                                                                    │
-│      V : VEIW ALL BUILDINGS                                                                                           │
-│      F : FILTER BUILDINGS LIST                                                                                        │
+│                                                    UNKNOWN BUILDING                                                   │
 │                                                                                                                       │
-│           FILTER BUILDINGS BY:                                                                                        │
-│                  1 : LOCATION                                                                                         │
-│                  2 : BULDING ID                                                                                       │
+│                              ----------------------------------------------------------                               │
 │                                                                                                                       │
+│      INPUT THE FOLLOWING INFORMATION FOR THE NEW BUILDING AND PRESS ENTER                                             │
 │                                                                                                                       │
+│      BUILDING ID  :                                                                                                   │
+│      LOCATION     :                                                                                                   │
+│      ADDRESS      :                                                                                                   │
+│      TYPE         :                                                                                                   │
+│      ROOMS        :                                                                                                   │
+│      STATE        :                                                                                                   │
+│      MANAGER      :                                                                                                   │
+│      ACCESSORIES  :                                                                                                   │
 │                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
+│      A : APPLY ALL CHANGES                                                                                            │
+│      D : DISCARD CHANGES                                                                                              │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
@@ -36,6 +36,6 @@
 │                                                                                                                       │
 ├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
 │ NAME:                                                                 │          │           │             │          │
-│ LOCATION:                                                             │  (H)OME  │  (-)BACK  │  Log (O)ut  │  (Q)uit  │
+│ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
 │ ROLE:                                                                 │          │           │             │          │
 └───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘
