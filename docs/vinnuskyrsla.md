@@ -251,6 +251,11 @@ Fyrirfram ákveðnar umræður dagsins
 
 - Lára: Uppsetning og samantekt á efni fyrir notendaprófanir (Inngangur, Bakgrunnsspurningar og SUS listi) Yfirferð á wireframe og smávægilegar lagfæringar gerðar
 
+### Samantekt
+Lára og Stefán náðu að klára að uppfæra hvort um sig að mestu öll view fyrir klasana building og employee (rest verður kláruð á morgun)
+Kristin er enn að vinna í að setja inn dummy gögn
+Finnur náði að klára kóða fyrir innskráningarferlið
+
 [Heim](#efnisyfirlit)
 
 ## Dagur 10
