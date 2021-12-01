@@ -271,18 +271,29 @@ Fyrirfram ákveðnar umræður dagsins
 
 ### Plan dagsins
 Enn er unnið að sama lista og daginn áður
-- [ ] - Lára: Uppfæra wireframe;  contractors, employees + stofna nýtt f. accessories
-- [ ] - Stefán : Uppfæra wireframe ; location, task og report
-- [ ] - Kristín: Klárar að setja upp dummy gögn (áframhald) og færir sig svo yfir í að aðstoða með wireframe
-- [ ] - Finnur: forritun á view hluta (klára forritun og gera kerfið keyrsluhæft)
+- [x] - Lára: Uppfæra wireframe;  contractors, employees + stofna nýtt f. accessories
+- [x] - Stefán : Uppfæra wireframe ; location, task og report
+- [x] - Kristín: Klárar að setja upp dummy gögn (áframhald) og færir sig svo yfir í að aðstoða með wireframe
+- [x] - Finnur: forritun á view hluta (klára forritun og gera kerfið keyrsluhæft)
 
 ### Framkvæmt í dag
+Allt á to do lista var framkvæmt í dag
+
+### Samantekt
+- Allir: unnu að settum markmiðum dagsins
+- Lára: uppfærði wireframes fyrir rest af buildings, contractors og hluta af reports (6 klst)
+- Stefán: Kláraði wireframe fyrir location og task. (3 klst)
+- Kristín: kláraði að setja in dummy gögn og hluti af reports wireframe (
+- Finnur: forritun á view hluta með meiru (5 klst)​​​​​​​
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 11
 
 ### Plan dagsins
+- [ ] - skipuleggja notendaprófanir og taka sama UC, finna fólk og ákveða tímasetningar
+- [ ] - Lára: færir skjáskot af wireframe-inu sem komið er og notað verður í notendaprófunum 
+- [ ] - byrja að afrita þá virkni sem komin er í employee virkni og afrita kóða í aðra klasa
 
 ### Framkvæmt í dag
 
