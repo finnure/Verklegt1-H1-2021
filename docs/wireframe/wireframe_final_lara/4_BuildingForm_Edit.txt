@@ -8,15 +8,15 @@
 │                                                                                                                       │
 │                              ----------------------------------------------------------                               │
 │                                                                                                                       │
-│      TO EDIT INFORMATION FOR BUILDING, SELECT NUMBER:                                                                 │
+│      TO EDIT INFORMATION FOR CHOSEN BUILDING, SELECT NUMBER:                                                          │
 │                                                                                                                       │
-│      1 : LOCATION                                                                                                     │
-│      2 : ADDRESS                                                                                                      │
-│      3 : TYPE                                                                                                         │
-│      4 : ROOMS                                                                                                        │
-│      5 : MANAGER                                                                                                      │
-│      6 : ACCESSORY                                                                                                    │
-│                                                                                                                       │
+│      1 : LOCATION            SVALBARD                                                                                 │
+│      2 : ADDRESS             LONGYEARBYEN HARBOR 1                                                                    │
+│      3 : TYPE                SUBMARINE                                                                                │
+│      4 : ROOMS               80                                                                                       │
+│      5 : STATE               MEDIUM                                                                                   │
+│      6 : MANAGER             JAN JACOBSSEN                                                                            │
+│      7 : ACCESSORIES         Y                                                                                        │
 │                                                                                                                       │
 │      A : APPLY ALL CHANGES                                                                                            │
 │      D : DISCARD CHANGES                                                                                              │
@@ -39,4 +39,3 @@
 │ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
 │ ROLE:                                                                 │          │           │             │          │
 └───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘
-101   AA999        LONGYEARBYEN HARBOR 1   SVALBARD        SUBMARINE                  80      MEDIUM    3

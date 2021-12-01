@@ -4,7 +4,7 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                            + : ADD NEW BUILDING       │
+│                                                                                                + : ADD NEW BUILDING   │
 │      ENTER BUILDING NUMBER (#) TO VIEW DETAILS                                                                        │
 │                                                                                                                       │
 │      #     ID           ADDRESS                 LOCATION        TYPE                       ROOMS   STATE     TASKS    │

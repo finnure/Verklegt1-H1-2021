@@ -4,19 +4,19 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                                + : ADD NEW BUILDING   │
-│      I : SEARCH FOR BUILDING BY ID                                                                                    │
-│      V : VEIW ALL BUILDINGS                                                                                           │
-│      F : FILTER BUILDINGS LIST                                                                                        │
+│                                                                                              + : ADD NEW CONTRACTOR   │
+│      ENTER CONTRACTOR NUMBER (#) TO VIEW DETAILS                                                                      │
 │                                                                                                                       │
-│           FILTER BUILDINGS BY:                                                                                        │
-│                  1 : LOCATION                                                                                         │
-│                  2 : BULDING ID                                                                                       │
+│      #     LOCATION        NAME                                 SPECIALITY      OPENING HRS     RATING   REPORTS      │
 │                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
+│      100   GREENLAND       GR-EK / GREENLAND ELECTRICITY APS    ELECTRICITY     09:00-17:00     4                     │
+│      101   GREENLAND       MT HØJGAARD                          CARPENTRY       08:00-19:00     3,5                   │
+│      102   GREENLAND       NUUK HANDYMAN                        HANDYMAN        07:00-15:00     4                     │
+│      103   FAROE ISLANDS   MT HØJCARD                           CARPENTRY       08:00-19:00     4                     │
+│      104   FAROE ISLANDS   DEMICH                               PLUMBER         08:00-17:00     4,5                   │
+│      105   FAROE ISLANDS   JMT HANDVERK                         CONSTRUCTIONS   09:00-18:00     3,5                   │
+│      106   SVALBARD        LUND'S SMEDE & MEKANISKE             CARPENTRY       07:00-15:00     5                     │
+│      107   SVALBARD        SVALBARD BYGG AS                     CONSTRUCTIONS   08:00-16:00     4,5                   │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
@@ -36,6 +36,6 @@
 │                                                                                                                       │
 ├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
 │ NAME:                                                                 │          │           │             │          │
-│ LOCATION:                                                             │  (H)OME  │  (-)BACK  │  Log (O)ut  │  (Q)uit  │
+│ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
 │ ROLE:                                                                 │          │           │             │          │
 └───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘

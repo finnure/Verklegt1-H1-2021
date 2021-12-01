@@ -4,9 +4,9 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                         #101 - LONGYEARBYEN HARBOR 1 - AA999                       / : EDIT BUILDING  │
-│                                                                                                    + : ADD NEW TASK   │
-│                              ----------------------------------------------------------            A : ADD ACCESSORY  │
+│                                         #101 - LONGYEARBYEN HARBOR 1 - AA999                      / : EDIT BUILDING   │
+│                                                                                                   + :  ADD NEW TASK   │
+│                              ----------------------------------------------------------           A : ADD ACCESSORY   │
 │                                                                                                                       │
 │      TYPE:          SUBMARINE                                    ACTIVE TASKS:           10                           │
 │      ROOMS:         80                                           UNAPPROVED REPORTS:     3                            │
@@ -39,4 +39,3 @@
 │ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
 │ ROLE:                                                                 │          │           │             │          │
 └───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘
-101   AA999        LONGYEARBYEN HARBOR 1   SVALBARD        SUBMARINE                  80      MEDIUM    3
