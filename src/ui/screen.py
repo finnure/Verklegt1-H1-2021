@@ -152,6 +152,7 @@ class Screen():
       ]
     self.string_termination = termination
 
+  # TODO Breyta filter í streng eftir breytingu í get_wch()
   def get_character(self, filter: Union[list, str, None] = None, default: bool = False) -> int:
     ''' Listenes to keyboard input and returns character.
     filter should be a list of available inputs.
@@ -163,7 +164,7 @@ class Screen():
       # Append default commands to filter
       filter.extend(self.default_commands)
     while True:
-      character = self.__screen.getch()
+      character = self.__screen.get_wch()
       if filter is None and not default:
         # No filters specified, return any key
         return character
@@ -186,10 +187,10 @@ class Screen():
     index = 0
     while True:
       character = self.get_character()
-      if character in self.string_termination:
+      if ord(character) in self.string_termination:
         # break out of while loop to make sure echo is turned off again and cursor hidden
         break
-      elif character in [8, 127, curses.KEY_BACKSPACE]: # backspace
+      elif ord(character) in [8, 127, curses.KEY_BACKSPACE]: # backspace
         if index > 0: # Not possible to erase if cursor is at beginning of string
           # Move index back and pop character from accumulated string
           index -= 1
@@ -199,21 +200,11 @@ class Screen():
           self.delete_character()
         else:
           self.flash()
-      elif chr(character) in filter:
+      elif character in filter:
         # Add allowed character to string and move cursor and index
-        char = chr(character)
-        accumulated_string.append(char)
+        accumulated_string.append(character)
         index += 1
-        self.print(char)
-      elif character == 195:
-        # Ignore because of special characters
-        pass
-      elif utils.SPECIAL_CHARACTERS in filter and character in utils.SPECIAL_CHARACTERS_ASCII:
-        # Special case for non-english characters
-        char = utils.SPECIAL_CHARACTERS[utils.SPECIAL_CHARACTERS_ASCII.index(character)]
-        accumulated_string.append(char)
-        index += 1
-        self.print(char)
+        self.print(character)
       else:
         # Character not allowed
         # Debug used to find special characters missing from list self.print(str(character))
