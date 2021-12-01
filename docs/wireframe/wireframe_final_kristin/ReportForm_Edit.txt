@@ -1,0 +1,41 @@
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│                                       #106 - F959594 - BUILD A NEW FENCE                                              │
+│                                                                                                                       │
+│                              ----------------------------------------------------------                               │
+│                                                                                                                       │
+│      TO EDIT INFORMATION FOR CHOSEN REPORT, SELECT NUMBER                                                             │
+│                                                                                                                       │
+│      1 : REPORT DATE:         15.10.2021                                                                              │
+│      2 : APPROVED:            Y                                                                                       │
+│      3 : TASK TYPE:           REPAIR                                                                                  │
+│      4 : EMPLOYEE:            JACOB YXA                                                                               │
+│      5 : CONTRACTOR:          SVALBARD BYGG AS                                                                        │
+│      6 : CONTRACTOR FEE:      1.000.000                                                                               │
+│      7 : CONTRACTOR RATING:   4                                                                                       │
+│      8 : HOURS:                                                                                                       │
+│      9 : MATERIAL COST:                                                                                               │
+│      10: LABOR COST:                                                                                                  │                                                                                                                      │
+│      11: DESCRIPTION:         BUILD A NEW FENCE                                                                       │
+│      12: NOTES                                                                                                        │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│      A : APPLY ALL CHANGE                                                                                             │
+│      D : DISCARD ALL CHANGES                                                                                          │
+│                                                                                                                       │                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
+│ NAME:                                                                 │          │           │             │          │
+│ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:                                                                 │          │           │             │          │
+└───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘
