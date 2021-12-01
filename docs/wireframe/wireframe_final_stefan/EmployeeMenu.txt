@@ -10,7 +10,7 @@
 │      F : FILTER EMPLOYEE LIST                                                                                         │
 │                                                                                                                       │
 │          IF (F) FILTER BY:                                                                                            │
-│               1 : CITY                                                                                                │
+│               1 : LOCATION                                                                                            │
 │               2 : SPECIALITY                                                                                          │
 │                                                                                                                       │
 │                                                                                                                       │
