@@ -228,6 +228,13 @@ Bjó til grunn fyrir flesta view klasa og byrjaði á api fyrir logic layer og d
 Öll atriði á todo lista dagsins kláruð nema að setja upp 1 UC frá upphafi til enda í kóða.  
 Öll data layer virkni fyrir Employee kláruð og meiri hlutinn af logic layer virkninni.
 
+### Samantekt
+Allir: yfirferð á hönnunarskýrslu og næstu skref (1 klst)
+Finnur: forritun (5 klst)
+Lára: uppfærsla á kröfulista og UC sbr athugasemdir á hönnunarskýrslu (5 klst)
+Stefán: Fór yfir villur í skýrslu og lagfærði. Fór yfir missamræmi í þeim attributes sem klasar eru með í wirefram, kóða og gögn frá Modules (5 klst)
+Kristín: Setti dummy gögn frá kennara inn í excel skjöl og bætti við gögnum þar sem þörf var á. Bar saman uppsetningu á kóða, wireframe og dummy gögn og merkti við þar sem var misræmi (5 klst)
+
 [Heim](#efnisyfirlit)
 
 ## Dagur 9
@@ -242,25 +249,32 @@ Fyrirfram ákveðnar umræður dagsins
 - [X] Klára employee hluta í UI svo hægt sé að gera prófanir á UC tengdum því
 
 ### To do í dag
-[ ] - Lára: bæta við A kröfu (innskráning), wireframe uppfærslur; buildings, contractors, employees + stofna nýtt f. accessories
-[ ] - Stefán: wireframe uppfærslur; employee, location, task og report
-[ ] - Kristín: setja upp dummy gögn (áframhald)
-[ ] - Finnur: forritun á view hluta (klára forritun og gera kerfið keyrsluhæft)
+[/] - Lára: bæta við A kröfu (innskráning), wireframe uppfærslur; buildings, contractors, employees + stofna nýtt f. accessories
+[/] - Stefán: wireframe uppfærslur; employee, location, task og report
+[/] - Kristín: setja upp dummy gögn (áframhald)
+[/] - Finnur: forritun á view hluta (klára forritun og gera kerfið keyrsluhæft)
 
 ### Framkvæmt í dag
 
 - Lára: Uppsetning og samantekt á efni fyrir notendaprófanir (Inngangur, Bakgrunnsspurningar og SUS listi) Yfirferð á wireframe og smávægilegar lagfæringar gerðar
 
 ### Samantekt
-Lára og Stefán náðu að klára að uppfæra hvort um sig að mestu öll view fyrir klasana building og employee (rest verður kláruð á morgun)
-Kristin er enn að vinna í að setja inn dummy gögn
-Finnur náði að klára kóða fyrir innskráningarferlið
+Allir: umræður dagsins (2 klst)
+Lára: Samantekt á gögnum fyrir notendaprófanir (fyrr um daginn) + wireframe uppfærslur ( 4 klst)
+Stefán: uppfærsla á wirefram (3,5 klst)
+Kristin:  gerð dummý gagna (3,5 klst)
+Finnur náði að klára kóða fyrir innskráningarferlið (3,5 klst)
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 10
 
 ### Plan dagsins
+Enn er unnið að sama lista og daginn áður
+[ ] - Lára: Uppfæra wireframe;  contractors, employees + stofna nýtt f. accessories
+[ ] - Stefán : Uppfæra wireframe ; location, task og report
+[ ] - Kristín: Klárar að setja upp dummy gögn (áframhald) og færir sig svo yfir í að aðstoða með wireframe
+[ ] - Finnur: forritun á view hluta (klára forritun og gera kerfið keyrsluhæft)
 
 ### Framkvæmt í dag
 
