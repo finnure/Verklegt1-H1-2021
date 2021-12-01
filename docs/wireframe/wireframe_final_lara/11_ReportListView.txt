@@ -1,0 +1,41 @@
+┌─────────────────────────────┬───────────────┬──────────────┬──────────────┬────────────┬─────────────────┬────────────┐
+│ NaN                         │               │              │              │            │                 │            │
+│      We divide by zero      │  (L)ocations  │  (B)uilding  │  (E)mployee  │  (T)asks   │  (C)ontractors  │  (S)earch  │
+│                         NaN │               │              │              │            │                 │            │
+├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
+│                                                                                                                       │
+│                                                    ALL REPORTS                                                        │
+│                                                                                                                       │
+│                             -----------------------------------------------------------                               │
+│                                                                                                                       │
+│     M : MY ACTIVE REPORTS                                                                                             │
+│     F : FILTER REPORTS                                                                                                │
+│                                                                                                                       │
+│         FILTER BY:                                                                                                    │
+│            1 : BUILDING ID                                                                                            │
+│            2 : EMPLOYEE                                                                                               │
+│                                                                                                                       │
+│      #     TASK   REPORT DATE  APPROVED  TASK TYPE      EMPLOYEE           CONTRACTOR           BUILDING              │
+│                                                                                                                       │
+│      100   100    05.12.2021      N      MAINTAINANCE   AQQALUK LYNGE      NUUK HANDYMAN        AA999                 │
+│      101   105    15.11.2021      N      MAINTAINANCE   LINE BRUUN JENSEN                       AAA99                 │
+│      102   120    01.10.2021      Y      MAINTIANANCE   BJØRK BRIMNES                           IX-9492 - IX-9502     │
+│      103   125    25.04.2021      Y      MAINTAINANCE   ÁKI KNUDSEN                             IX-9492 - IX-9502     │
+│      104   143    10.11.2021      Y      REPAIR         ANDRÉ HJALTALIN    DEMICH               IX-2239               │
+│      105   146    05.11.2021      N      MAINAINANCE    NAUJA LYNGE                             64-3875-6             │
+│      106   145    15.10.2021      Y      REPAIR         JACOB YXA          SVALBARD BYGG AS     F959594               │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
+├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
+│ NAME:        |                                                        │          │           │             │          │
+│ LOCATION:    |                                                        │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:        |                                                        │          │           │             │          │
+└───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘
