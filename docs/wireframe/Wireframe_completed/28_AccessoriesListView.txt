@@ -4,7 +4,7 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                  #101 - LONGYEARBYEN HARBOR 1 - AA999 -ACCESSORIES              + :    ADD ACCESSORY  │
+│                                  #101 - LONGYEARBYEN HARBOR 1 - AA999 -ACCESSORIES                 + : ADD ACCESSORY  │
 │                                                                                                                       │
 │                              ----------------------------------------------------------                               │
 │      ENTER ACCESSORY NUMBER (#) TO VIEW DETAILS                                                                       │

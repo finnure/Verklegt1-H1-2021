@@ -4,24 +4,22 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                           #100 - JAN JACOBSSEN - MANAGER                                              │
+│                                                  UNKNOWN LOCATION                                                     │
 │                                                                                                                       │
 │                              ----------------------------------------------------------                               │
 │                                                                                                                       │
-│      SELECT NUMBER TO EDIT ATTRIBUTE                                                                                  │
+│      INPUT THE FOLLOWING INFORMATION FOR THE NEW LOCATION                                                             │
 │                                                                                                                       │
-│      1 : ID:         100                                                                                              │
-│      2 : NAME:       JAN JACOBSEN                                                                                     │
-│      3 : SSN:        108399-2942                                                                                      │
-│      4 : PHONE:      +47 92 09 77 00                                                                                  │
-│      5 : MOBILE:     +354 777 1337                                                                                    │
-│      6 : E-MAIL:     JAN.JACOBSEN@NANAIR.IS                                                                           │
-│      7 : COUNTRY:    SVALBARD                                                                                         │
-│      8 : ADDRESS:    VEI 230 12, LONGYEARBYEN, SVALBARD                                                               │
-│      9 : ROLE:       MANAGER                                                                                          │
+│      COUNTRY         :                                                                                                │
+│      COTY            :                                                                                                │
+│      AIRPORT         :                                                                                                │
+│      ADDRESS:        :                                                                                                │
+│      PHONE NUMBER    :                                                                                                │
+│      OPENING HOURS   :                                                                                                │
+│      MANAGER         :                                                                                                │
 │                                                                                                                       │
-│      A : APPLY CHANGES                                                                                                │
-│      D : DISCARD CHANGES                                                                                              │
+│      A : APPLY ALL CHANGES                                                                                            │
+│      D : DISCARD ALL CHANGES                                                                                          │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
@@ -37,7 +35,7 @@
 │                                                                                                                       │
 │                                                                                                                       │
 ├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
-│ NAME:        |                                                        │          │           │             │          │
-│ LOCATION:    |                                                        │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
-│ ROLE:        |                                                        │          │           │             │          │
+│ NAME:                                                                 │          │           │             │          │
+│ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:                                                                 │          │           │             │          │
 └───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘

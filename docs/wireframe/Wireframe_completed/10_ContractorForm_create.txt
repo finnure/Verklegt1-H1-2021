@@ -8,7 +8,7 @@
 │                                                                                                                       │
 │                              ----------------------------------------------------------                               │
 │                                                                                                                       │
-│      INPUT THE FOLLOWING INFORMATION FOR THE NEW CONTRACTOR AND PRESS ENTER                                           │
+│      INPUT THE FOLLOWING INFORMATION FOR THE NEW CONTRACTOR                                                           │
 │                                                                                                                       │
 │      LOCATION        :                                                                                                │
 │      NAME            :                                                                                                │
