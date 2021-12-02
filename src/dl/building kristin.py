@@ -36,16 +36,16 @@ class BuildingData():
     that matches id and writes all data back to file. '''
     buildings = self.get_all()
     # Ternary with list comprehension. This replaces building in list if build.id matches id
-    buildings = [building.as_dict() if build.id == id else build.as_dict() for build in buildings]
-    self.__file.write(buildlings)
-    
+    updated_buildings = [building.as_dict() if build.id == id else build.as_dict() for build in buildings]
+    self.__file.write(updated_buildlings)
+    return self.get_one(id)
 
   def delete(self, id: int) -> None:
     ''' Removes building from file. Gets all data from file, filters building
     that matches id from the list and writes all data back to file '''
     buildings = self.get_all()
-    buildings = [build.as_dict() for build in buildings if build.id == id]
-    self.__file.write(buildings)
+    filtered_buildings = [build.as_dict() for build in buildings if build.id != id]
+    self.__file.write(filtered_buildings)
     
     
   def get_all(self) -> 'list[Buildings]':
@@ -72,14 +72,14 @@ class BuildingData():
       if key in self.headers:
         if partial_match:
           # Check if value is in field
-          buildings = [build for build in buildings if val in build[key]]
+          filtered_buildings = [build for build in buildings if val in build[key]]
         else:
           # Full match, check if value equals field
-          buildings = [build for build in buildings if val == build[key]]
+          filtered_buildings = [build for build in buildings if val == build[key]]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for Building: {key}')
-    return buildings
+    return filtered_buildings
   
 
   def parse(self, building: 'dict[str,str]') -> Building:
