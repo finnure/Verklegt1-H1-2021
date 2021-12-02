@@ -31,15 +31,16 @@ class EmployeeData():
     that matches id and writes all data back to file. '''
     employees = self.get_all()
     # Ternary with list comprehension. This replaces employee in list if emp.id matches id
-    employees = [employee.as_dict() if emp.id == id else emp.as_dict() for emp in employees]
-    self.__file.write(employees)
+    updated_employees = [employee.as_dict() if emp.id == id else emp.as_dict() for emp in employees]
+    self.__file.write(updated_employees)
+    return self.get_one(id)
 
   def delete(self, id: int) -> None:
     ''' Removes employee from file. Gets all data from file, filters employee
     that matches id from the list and writes all data back to file '''
     employees = self.get_all()
-    employees = [emp.as_dict() for emp in employees if emp.id == id]
-    self.__file.write(employees)
+    filtered_employees = [emp.as_dict() for emp in employees if emp.id != id]
+    self.__file.write(filtered_employees)
 
   def get_all(self) -> 'list[Employee]':
     ''' Get all employees from file and return as list of Employee instances. '''
@@ -63,14 +64,14 @@ class EmployeeData():
       if key in self.headers:
         if partial_match:
           # Check if value is in field
-          employees = [emp for emp in employees if val in emp[key]]
+          filtered_employees = [emp for emp in employees if val in emp[key]]
         else:
           # Full match, check if value equals field
-          employees = [emp for emp in employees if val == emp[key]]
+          filtered_employees = [emp for emp in employees if val == emp[key]]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for Employee: {key}')
-    return employees
+    return filtered_employees
 
   def __parse(self, employee: 'dict[str,str]') -> Employee:
     ''' Creates and returns an instance of Employee '''
