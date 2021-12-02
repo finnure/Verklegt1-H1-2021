@@ -1,9 +1,7 @@
-from typing import Type
-
 class Employee():
 
-  def __init__(self, id: int, location_id: int, name: str, ssn: int,
-                address: str, phone: int, mobile: int, email: str, role: str) -> None:
+  def __init__(self, id: int, location_id: int, name: str, ssn: str,
+                address: str, phone: str, mobile: str, email: str, role: str) -> None:
     self.id = id
     self.location_id = location_id
     self.name = name
@@ -17,7 +15,7 @@ class Employee():
   def __str__(self) -> str:
     return f'Name: {self.name}\nEmail: {self.email}\nPhone: {self.phone}'
 
-  def as_dict(self) -> 'dict[str, str]':
+  def as_dict(self) -> 'dict[str, str | int]':
     return {
       'id': self.id,
       'location_id': self.location_id,
