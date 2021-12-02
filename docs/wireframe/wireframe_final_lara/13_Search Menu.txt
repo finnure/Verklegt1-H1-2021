@@ -4,29 +4,28 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                        E : EDIT TASK                  │
-│                                                      TASK: T100                                                       │
-│                                              ------------------------                                                 │
-│      A : ASSIGN TASK TO ME                                                                                            │
+│                                                     SYSTEM SEARCH                                                     │
+│                             -----------------------------------------------------------                               │
 │                                                                                                                       │
-│      TITLE: SPREAD BORON INTO NUCLEAR FURNACE                                                                         │
-│      SHORT DESCRIPTION: EVERY WEEK BORON MUST BE SPREAD INTO THE NUCLEAR FURNACE. NECESSARY EQUIPMENT IS A            │
-│                         PROTECTIVE RUBBER SUIT.                                                                       │
+│      SELECT NUMBER TO DEFINE YOUR SEARCH:                                                                             │
+│                                                                                                                       │
+│      1 : SEARCH FOR EMPLOYEES BY CITY                                                                                 │
+│      2 : SEARCH FOR BUILDINGS BY CITY                                                                                 │
+│      3 : SEARCH FOR EMPLOYEE BY ID                                                                                    │
+│      4 : SEARCH FOR BUILDING BY ID                                                                                    │
+│      5 : SEARCH FOR TASK BY ID                                                                                        │
+│      6 : SEARCH FOR TASK BY BUILDINGS                                                                                 │
+│      7 : SEARCH FOR TASK BY EMPLOYEE                                                                                  │
+│      8 : SEARCH FOR REPORTS BY BUILDING                                                                               │
+│      9 : SEARCH FOR REPORT BY EMPLOYEE                                                                                │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
-│      START DATE:      30.11.2021                     BUILDING:        AA9999                                          │
-│      DUE DATE:        05.12.2021                     EST. COST:       50.000 ISK                                      │
-│      LAST MODIFIED:   01.12.2021                     EMPLOYEE:        ADDALUK LYNGE                                   │
-│      PRIORITY:        HIGH                           CONTRACTOR:      NUUK HANDYMAND                                  │
-│      TASK TYPE:       MAINTAINANCE                   STATUS:          COMPLETED                                       │
 │                                                                                                                       │
-│      RECURRENT:       Y                                                                                               │
-│      REPEATS EVERY:   MONTH                                                                                           │
 │                                                                                                                       │
-│      C : ADD CONTRACTOR                                                                                               │
-│      R : VIEW REPORTS                                                                                                 │
-│      + : CREATE REPORT                                                                                                │
+│                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

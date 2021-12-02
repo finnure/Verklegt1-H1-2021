@@ -4,18 +4,18 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                        + : ADD NEW TASK               │
-│      S : SEARCH FOR A TASK BY ID                                                                                      │
-│      A : VIEW ALL TASKS                                                                                               │
-│      M : VIEW MY ACTIVE TASKS                                                                                         │
-│      F : FILTER TASK LIST                                                                                             │
+│                                                                                           / : EDIT EMPLOYEE (ADMIN)   │
+│      NAME:    JAN JACOBSEN                    ID: 100                                                                 │
+│      PHONE:   +47 92 09 77 00                 SSN: 108399-2942                                                        │
+│      MOBILE:  +354 777 1337                   COUNTRY: SVALBARD                                                       │
+│      EMAIL:   JAN.JACOBSEN@NANAIR.IS          ADDRESS: VEI 230 12, LONGYEARBYEN, SVALBARD                             │
 │                                                                                                                       │
-│          IF (F) FILTER BY:                                                                                            │
-│               1 : BUILDING                                                                                            │
-│               2 : EMPLOYEE                                                                                            │
-│               3 : LOCATION                                                                                            │
-│               4 : CONTRACTOR                                                                                          │
+│      ROLE: MANAGER                                                                                                    │
 │                                                                                                                       │
+│      NUMBER OF ACTIVE TASKS: 3                                                                                        │
+│                                                                                                                       │
+│      V : VIEW USER TASKS                                                                                              │
+│      R : VIEW USER REPORTS                                                                                            │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

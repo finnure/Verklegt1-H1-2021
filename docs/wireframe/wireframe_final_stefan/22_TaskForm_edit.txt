@@ -4,38 +4,38 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                       #106 - F959594 - BUILD A NEW FENCE                                              │
+│                                                      TASK: T100                                                       │
+│                                              ------------------------                                                 │
 │                                                                                                                       │
-│                              ----------------------------------------------------------                               │
+│      SELECT NUMBER TO EDIT ATTRIBUTE                                                                                  │
 │                                                                                                                       │
-│      TO EDIT INFORMATION FOR CHOSEN REPORT, SELECT NUMBER                                                             │
+│      1  : START DATE          30.11.2021                                                                              │
+│      2  : DUE DATE            05.12.2021                                                                              │
+│      3  : LAST MODIFIED       01.12.2021                                                                              │
+│      4  : PRIORITY            HIGH                                                                                    │
+│      5  : TASK TYPE           MAINTAINANCE                                                                            │
+│      6  : BUILDING            AA9999                                                                                  │
+│      7  : ESTIMATED COST      50.000 ISK                                                                              │
+│      8  : EMPLOYEE            ADDALUK LYNGE                                                                           │
+│      9  : CONTRACTOR          NUUK HANDYMAND                                                                          │
+│      10 : STATUS              COMPLETED                                                                               │
+│      11 : TITLE               SPREAD BORON INTO NUCLEAR FURNACE                                                       │
+│      12 : DESCRIPTION         EVERY WEEK BORON MUST BE SPREAD INTO THE NUCLEAR FURNACE. NECESSARY EQUIPMENT IS A      │
+│                               PROTECTIVE RUBBER SUIT.                                                                 │
 │                                                                                                                       │
-│      1 : REPORT DATE:         15.10.2021                                                                              │
-│      2 : APPROVED:            Y                                                                                       │
-│      3 : TASK TYPE:           REPAIR                                                                                  │
-│      4 : EMPLOYEE:            JACOB YXA                                                                               │
-│      5 : CONTRACTOR:          SVALBARD BYGG AS                                                                        │
-│      6 : CONTRACTOR FEE:      1.000.000                                                                               │
-│      7 : CONTRACTOR RATING:   4                                                                                       │
-│      8 : HOURS:                                                                                                       │
-│      9 : MATERIAL COST:                                                                                               │
-│      10: LABOR COST:                                                                                                  │
-│      11: DESCRIPTION:         BUILD A NEW FENCE                                                                       │
-│      12: NOTES                                                                                                        │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│      A : APPLY ALL CHANGE                                                                                             │
-│      D : DISCARD ALL CHANGES                                                                                          │
+│       R : RECURRENT (Y/N)     Y                                                                                       │
+│       p : REPEATS EVERY       MONTH                                                                                   │
 │                                                                                                                       │
 │                                                                                                                       │
+│       A : APPLY ALL CHANGES                                                                                           │
+│       D : DISCARD CHANGES                                                                                             │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 ├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
-│ NAME:                                                                 │          │           │             │          │
-│ LOCATION:                                                             │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
-│ ROLE:                                                                 │          │           │             │          │
+│ NAME:        |                                                        │          │           │             │          │
+│ LOCATION:    |                                                        │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │
+│ ROLE:        |                                                        │          │           │             │          │
 └───────────────────────────────────────────────────────────────────────┴──────────┴───────────┴─────────────┴──────────┘

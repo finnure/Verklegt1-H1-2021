@@ -19,7 +19,7 @@
 │      7 : CONTRACTOR RATING:                                                                                           │
 │      8 : HOURS:                                                                                                       │
 │      9 : MATERIAL COST:                                                                                               │
-│      10: LABOR COST:                                                                                                  │                                                                                                                      │
+│      10: LABOR COST:                                                                                                  │
 │      11: DESCRIPTION:                                                                                                 │
 │      12: NOTES                                                                                                        │
 │                                                                                                                       │
@@ -27,10 +27,10 @@
 │                                                                                                                       │
 │      A : APPLY ALL CHANGE                                                                                             │
 │      D : DISCARD ALL CHANGES                                                                                          │
-│                                                                                                                       │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
-│                                                                                                                       │                                                                                                                       │
+│                                                                                                                       │
+│                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

@@ -4,17 +4,19 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                  #101 - LONGYEARBYEN HARBOR 1 - AA999 -ACCESSORIES              + :    ADD ACCESSORY  │
-│                                                                                                 / :  DEACTIVATE ACCE  │
-│                              ----------------------------------------------------------                               │
 │                                                                                                                       │
+│      SELECT NUMBER TO EDIT ATTRIBUTE                                                                                  │
 │                                                                                                                       │
-│      #       ACCESSORY DESCRIPTION           STATE               BOUGTH           LAST MAINTAINED        ACTIVE       │
+│      1 : COUNTRY          GREENLAND                                                                                   │
+│      2 : CITY             NUUK                                                                                        │
+│      3 : AIRPORT          NUUK AIRPORT                                                                                │
+│      4 : ADDRESS:         HVF8+R25                                                                                    │ 
+│      5 : PHONE NUMBER:    +465 567 5555                                                                               │
+│      6 : OPENING HOURS:   06:00-23:00                                                                                 │
+│      7 : MANAGER:         JOHN DOE                                                                                    │
 │                                                                                                                       │
-│      101     OK-650VV NUCLEAR REACTOR        GOOD                10.01.2021                               Y           │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
+│      A : APPLY CHANGES                                                                                                │
+│      D : DISCARD CHANGES                                                                                              │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

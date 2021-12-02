@@ -4,19 +4,16 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
+│                                                                                        + : ADD LOCATION (IF CHUCK)    │
+│      SELECT NUMBER (#) FOR INFORMATION                                                                                │
 │                                                                                                                       │
-│      SELECT NUMBER TO EDIT ATTRIBUTE                                                                                  │
+│      #    ID      AIRPORT             COUNTRY             CITY                MANAGER             PHONER NUMBER       │
 │                                                                                                                       │
-│      1    COUNTRY          GREENLAND                                                                                  │
-│      2    CITY             NUUK                                                                                       │
-│      3    AIRPORT          NUUK AIRPORT                                                                               │
-│      4    ADDRESS:         HVF8+R25                                                                                   │ 
-│      5    PHONE NUMBER:    +465 567 5555                                                                              │
-│      6    OPENING HOURS:   06:00-23:00                                                                                │
-│      7    MANAGER:         JOHN DOE                                                                                   │
+│      1    100     NUUK AIRPORT        GREENLAND           KULUSUK             MINIK WALLACE       +299 98 66 98       │
+│      2    101     VÁGAR AIRPORT       FAROE ISLANDS       THORSHAVN           ANNETTE DJURHUUS    +298 254400         │
+│      3    102     SVALBARD AIRPORT    SVALBARD            LONGYEARBYEN        JAN JACOVSEN        +47 67 03 54 000    │
 │                                                                                                                       │
-│      A : APPLY CHANGES                                                                                                │
-│      D : DISCARD CHANGES                                                                                              │
+│                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

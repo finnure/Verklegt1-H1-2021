@@ -4,8 +4,8 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                        |  manger functions            │
-│     ENTER NUMBER (#) OF TASK TO VIEW:                                                                                 │
+│                                                                                                    + : ADD NEW TASK   │
+│     INPUT NUMBER (#) OF TASK TO VIEW:                                                                                 │
 │                                                                                                                       │
 │     #    ID        STATUS       PRIORITY    START DATE      DUE DATE       BUILDING       EMPLOYEE                    │
 │                                                                                                                       │

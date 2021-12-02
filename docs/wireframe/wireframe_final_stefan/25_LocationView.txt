@@ -4,21 +4,20 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                  #101 - LONGYEARBYEN HARBOR 1 - AA999 -ACCESSORIES              + :    ADD ACCESSORY  │
-│                                                                                                 / :  DEACTIVATE ACCE  │
-│                              ----------------------------------------------------------                               │
+│                                                                                                   / : EDIT LOCATION   │
+│                                              #100  KULUSUK, GREENLAND                                                 │
 │                                                                                                                       │
+│                                         ------------------------------------                                          │
 │                                                                                                                       │
-│      #       ACCESSORY DESCRIPTION           STATE               BOUGTH           LAST MAINTAINED        ACTIVE       │
+│      AIRPORT: KULUSUK AIRPORT                 MANAGER: MINIK WALLACE              TOTAL BUILDINGS: 5                  │
+│      OPENING HOURS: 06:00-20:00               PHONE: +299 98 66 98                TOTAL EMPLOYEES: 10                 │
+│      ADDRESS: HVF8+R25, KULUSUK, GREENLAND                                        TOTAL CONTRACTORS: 3                │
 │                                                                                                                       │
-│      101     OK-650VV NUCLEAR REACTOR        GOOD                10.01.2021                               Y           │
+│      ----------------------------------------------------------------------------------------------------------       │
 │                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
+│      1 : VIEW ALL BUILDINGS                                                                                           │
+│      2 : VIEW ALL EMPLOYEES                                                                                           │
+│      3 : VIEW ALL AVAILABLE CONTRACTORS                                                                               │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

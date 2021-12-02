@@ -6,9 +6,9 @@
 │                                                                                                                       │
 │                                  #101 - LONGYEARBYEN HARBOR 1 - AA999 -ACCESSORIES              + :    ADD ACCESSORY  │
 │                                                                                                                       │
-│                              ----------------------------------------------------------                               │                                                                                                                     │
+│                              ----------------------------------------------------------                               │
 │      ENTER ACCESSORY NUMBER (#) TO VIEW DETAILS                                                                       │
-│                                                                                                                       │                                                                                                                       │
+│                                                                                                                       │
 │      #       ACCESSORY DESCRIPTION           STATE               BOUGTH           LAST MAINTAINED        ACTIVE       │
 │                                                                                                                       │
 │      100     SAUNA                           NEEDS REPAIR        01.02.2021       06.12.2021              N           │
@@ -33,7 +33,7 @@
 │      119     SNOWMOBILE 1                    GOOD                07.03.2021                               Y           │
 │      120     SNOWMOBILE 2                    NEEDS REPAIR        01.09.2021                               Y           │
 │                                                                                                                       │
-
+│                                                                                                                       │
 ├───────────────────────────────────────────────────────────────────────┬──────────┬───────────┬─────────────┬──────────┤
 │ NAME:        |                                                        │          │           │             │          │
 │ LOCATION:    |                                                        │  (H)ome  │  (-)Back  │  Log (O)ut  │  (Q)uit  │

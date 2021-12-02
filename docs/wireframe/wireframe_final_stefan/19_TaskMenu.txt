@@ -4,17 +4,17 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                        A : ADD LOCATION (IF CHUCK)    │
-│      SELECT NUMBER (#) FOR INFORMATION                                                                                │
+│                                                                                                    + : ADD NEW TASK   │
+│      S : SEARCH FOR A TASK BY ID                                                                                      │
+│      A : VIEW ALL TASKS                                                                                               │
+│      M : VIEW MY ACTIVE TASKS                                                                                         │
+│      F : FILTER TASK LIST                                                                                             │
 │                                                                                                                       │
-│      #    ID      AIRPORT             COUNTRY             CITY                MANAGER             PHONER NUMBER       │
-│                                                                                                                       │
-│      1    100     NUUK AIRPORT        GREENLAND           KULUSUK             MINIK WALLACE       +299 98 66 98       │
-│      2    101     VÁGAR AIRPORT       FAROE ISLANDS       THORSHAVN           ANNETTE DJURHUUS    +298 254400         │
-│      3    102     SVALBARD AIRPORT    SVALBARD            LONGYEARBYEN        JAN JACOVSEN        +47 67 03 54 000    │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
+│          IF (F) FILTER BY:                                                                                            │
+│               1 : BUILDING                                                                                            │
+│               2 : EMPLOYEE                                                                                            │
+│               3 : LOCATION                                                                                            │
+│               4 : CONTRACTOR                                                                                          │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

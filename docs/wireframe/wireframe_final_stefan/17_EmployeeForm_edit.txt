@@ -4,30 +4,26 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
-│                                                                                        |  manger functions            │
+│                                           #100 - JAN JACOBSSEN - MANAGER                                              │
+│                                                                                                                       │
+│                              ----------------------------------------------------------                               │
+│                                                                                                                       │
 │      SELECT NUMBER TO EDIT ATTRIBUTE                                                                                  │
 │                                                                                                                       │
-│      1    START DATE          30.11.2021                                                                              │
-│      2    DUE DATE            05.12.2021                                                                              │
-│      3    LAST MODIFIED       01.12.2021                                                                              │
-│      4    PRIORITY            HIGH                                                                                    │
-│      5    TASK TYPE           MAINTAINANCE                                                                            │
-│      6    BUILDING            AA9999                                                                                  │
-│      7    ESTIMATED COST      50.000 ISK                                                                              │
-│      8    EMPLOYEE            ADDALUK LYNGE                                                                           │
-│      9    CONTRACTOR          NUUK HANDYMAND                                                                          │
-│      10   STATUS              COMPLETED                                                                               │
-│      11   TITLE               SPREAD BORON INTO NUCLEAR FURNACE                                                       │
-│      12   DESCRIPTION         EVERY WEEK BORON MUST BE SPREAD INTO THE NUCLEAR FURNACE. NECESSARY EQUIPMENT IS A      │
-│                               PROTECTIVE RUBBER SUIT.                                                                 │
+│      1    ID:         100                                                                                             │
+│      2    NAME:       JAN JACOBSEN                                                                                    │
+│      3    SSN:        108399-2942                                                                                     │
+│      4    PHONE:      +47 92 09 77 00                                                                                 │
+│      5    MOBILE:     +354 777 1337                                                                                   │
+│      6    E-MAIL:     JAN.JACOBSEN@NANAIR.IS                                                                          │
+│      7    COUNTRY:    SVALBARD                                                                                        │
+│      8    ADDRESS:    VEI 230 12, LONGYEARBYEN, SVALBARD                                                              │
+│      9    ROLE:       MANAGER                                                                                         │
 │                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
-│      13   RECURRENT (Y/N)     Y                                                                                       │
-│      14   REPEATS EVERY       MONTH                                                                                   │
-│                                                                                                                       │
-│      A : APPLY ALL CHANGES                                                                                            │
+│      A : APPLY CHANGES                                                                                                │
 │      D : DISCARD CHANGES                                                                                              │
+│                                                                                                                       │
+│                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
