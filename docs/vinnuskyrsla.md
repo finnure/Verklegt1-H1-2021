@@ -291,9 +291,19 @@ Allt á to do lista var framkvæmt í dag
 ## Dagur 11
 
 ### Plan dagsins
-- [ ] - skipuleggja notendaprófanir og taka sama UC, finna fólk og ákveða tímasetningar
-- [ ] - Lára: færir skjáskot af wireframe-inu sem komið er og notað verður í notendaprófunum 
-- [ ] - byrja að afrita þá virkni sem komin er í employee virkni og afrita kóða í aðra klasa
+To-do
+- [ ] - Lára: færir skjáskot af wireframe-inu sem komið er og notað verður í notendaprófunum
+- [ ] - Lára: færa wireframe myndir inn í Figma sem notaðar verða í notendaprófunum
+- [ ] - Kristín: byrja að afrita þá virkni sem komin er í employee virkni og afrita kóða í aðra klasa Stefán aðstoðar
+- [ ] - Finnur: heldur áfram að góða virknina
+
+- Ef tími gefst
+- [ ] - ÁKveða UC
+- [ ] - Ákveða daga í notendaprófanir --> helgina 4-5 des.
+
+Notendaprófanir - virkni
+- Búa til task fyrir flæðið (skeyta saman)
+- Dæmi: Finna task til að finna report og samþykkja skýrsluna og gefa rating (reynir á flæði yfirmanns gegnum task og opin reports)
 
 ### Framkvæmt í dag
 
