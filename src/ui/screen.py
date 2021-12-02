@@ -153,7 +153,7 @@ class Screen():
     self.string_termination = termination
 
   # TODO Breyta filter í streng eftir breytingu í get_wch()
-  def get_character(self, filter: Union[list, str, None] = None, default: bool = False) -> int:
+  def get_character(self, filter: Union[list, str, None] = None, default: bool = False) -> str:
     ''' Listenes to keyboard input and returns character.
     filter should be a list of available inputs.
     If default is true, default commands will be included'''
@@ -304,6 +304,10 @@ class Screen():
     ''' Flashes the screen, reverses video for a short time.
     Can be used as a visible bell if user needs to be notified'''
     curses.flash()
+
+  def flush_input(self) -> None:
+    ''' Clears the input buffer if any keyboard input is waiting in buffer. '''
+    curses.flushinp()
 
   def create_sub_window(self, lines: int, cols: int, begin_y: int, begin_x: int):
     ''' Creates a sub window starting at position begin_y x begin_x

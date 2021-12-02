@@ -2,6 +2,7 @@ from dlapi import DlApi
 from bl.building import BuildingLogic
 from bl.contractor import ContractorLogic
 from bl.employee import EmployeeLogic
+from models.employee import Employee
 from bl.location import LocationLogic
 from bl.report import ReportLogic
 from bl.task import TaskLogic
@@ -9,6 +10,7 @@ from bl.task import TaskLogic
 class LlApi():
   def __init__(self):
     self.dlapi = DlApi()
+    self.user: 'Employee | None' = None
     self.__init_logic()
 
   def __init_logic(self):
@@ -20,6 +22,12 @@ class LlApi():
     self.task_logic = TaskLogic(self.dlapi)
 
   ##### Exposed methods ########
+
+  def set_logged_in_user(self, user: Employee) -> None:
+    self.user = user
+
+  def clear_logged_in_user(self) -> None:
+    self.user = None
 
   ##### Building methods ########
 
@@ -86,6 +94,9 @@ class LlApi():
   
   def get_reports_for_employee(self, filter):
     return self.employee_logic.get_reports_for_employee(filter)
+
+  def get_active_tasks_for_user(self, id: int):
+    return self.task_logic.get_filtered({'employee_id': id})
   
   ##### Location methods ########
 
