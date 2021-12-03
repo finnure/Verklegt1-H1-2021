@@ -21,8 +21,8 @@ class UiHandler():
     self.__init_colors()
     self.__init_menu()
     self.__init_views()
-    self.current_view = None
-    self.breadcrumb = []
+    self.current_view: str = None
+    self.breadcrumb: 'list[str]' = []
     self.current_user = None
 
   def __init_views(self):
@@ -46,8 +46,7 @@ class UiHandler():
       'REPORT': self.report_view,
       'CONTRACTOR': self.contractor_view,
       'SEARCH': self.search_view,
-      'MENU': self.main_menu_view,
-      'SELF': self
+      'MENU': self.main_menu_view
     }
 
   def __init_colors(self):
@@ -90,29 +89,63 @@ class UiHandler():
     else:
       self.llapi.set_logged_in_user(user)
       self.view_frame.print_view()
-      options: dict = self.employee_view.find_handler('MENU')
+      self.current_view = 'EMPLOYEE:MENU' # Debugging
+      options: dict = self.employee_view.find_handler('MENU') # Debugging, replace with main menu
       while True:
+        # Get input from user
         self.__screen.flush_input()
         selection = self.__screen.get_character()
         key = selection.upper()
+
+        # Check if selection is in global options
         if key in self.global_options:
-          self.breadcrumb = []
-          self.current_view = self.global_options[key]
+          connection = self.global_options[key]
+          view_key, handler_key = connection.split(':')
+          if view_key == 'SELF':
+            if handler_key == 'QUIT':
+              # Returning False from start will quit
+              return False
+            elif handler_key == 'LOGOUT':
+              # Clear screen and logged in user and return True to run start() again
+              self.__screen.clear()
+              self.__screen.refresh()
+              self.llapi.clear_logged_in_user()
+              self.breadcrumb = []
+              return True
+            elif handler_key == 'BACK':
+              if len(self.breadcrumb) <= 0:
+                # Nothing to go back to, flash and continue
+                self.__screen.flash()
+                continue
+              else:
+                # set current view to last view in breadcrumb
+                self.current_view = self.breadcrumb.pop()
+                # next execution should use current view to find handler
+            else:
+              raise ValueError(f'Invalid handler key for self: {handler_key}')
+          else:
+            # Global menu option selected. Set it as current view and clear breadcrumbs
+            self.breadcrumb = []
+            self.current_view = connection
+            # next execution should use current view to find handler
+
+        # selection is not in globacl options, check current view options
         elif key in options:
-          self.breadcrumb.append(self.current_view)
+          if self.current_view is not None: # Don't add None to breadcrumbs
+            self.breadcrumb.append(self.current_view)
           self.current_view = options[key]
+
+        # Invalid option selected, flash and try again
         else:
-          # Invalid option selected, flash and try again
           self.__screen.flash()
           continue
+
+        # Find and call handler for selected view
         view_key, handler_key = self.current_view.split(':')
         if view_key not in self.view_map:
           raise KeyError(f'View not available for {view_key}')
         view = self.view_map[view_key]
         options = view.find_handler(handler_key)
-
-  def find_handler(self, input: str):
-    pass
         
   def quit(self):
     self.__screen.end()
