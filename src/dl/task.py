@@ -79,7 +79,7 @@ class TaskData():
         raise KeyError(f'Invalid filter key for Employee: {key}')
     return filtered_tasks
 
-  def parse(self, task: 'dict[str,str]') -> Task:
+  def __parse(self, task: 'dict[str,str]') -> Task:
     ''' Creates and returns an instance of Task '''
     return Task(
         int(task['id']), 

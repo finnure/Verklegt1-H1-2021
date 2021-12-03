@@ -80,7 +80,7 @@ class ContractorData():
     return filtered_contractors
   
 
-  def parse(self, contractor: 'dict[str,str]') -> Contractor:
+  def __parse(self, contractor: 'dict[str,str]') -> Contractor:
     ''' Creates and returns an instance of Contractor '''
     return Contractor(
         int(contractor['id']), 

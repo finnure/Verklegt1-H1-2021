@@ -53,7 +53,7 @@ class AccessoryData():
       if accessory.id == id:
         return accessory
 
-  def get_filtered(self, filter: dict, partial_match: bool = False) -> 'list[Accessory}':
+  def get_filtered(self, filter: dict, partial_match: bool = False) -> 'list[Accessory]':
     ''' Get a list of Accessories matching filter specified.
     Filter should be a dict where key is the Accessory field to be matched and 
     value the value you're searching for. If filter includes more than one key, all keys
@@ -72,7 +72,7 @@ class AccessoryData():
         raise KeyError(f'Invalid filter key for Accessory: {key}')
     return filtered_accessories
 
-  def parse(self, accessory: 'dict[str,str]') -> Accessory:
+  def __parse(self, accessory: 'dict[str,str]') -> Accessory:
     ''' Creates and returns an instance of Accessory '''
     return Accessory(
         int(accessory['id']), 
@@ -91,6 +91,3 @@ class AccessoryData():
     all_ids = [acc.id for acc in accessories]
     return max(all_ids) + 1
 
-
-  def prepare(self, data):
-    ''' Converts data to a format that file expects '''
