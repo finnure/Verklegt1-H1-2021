@@ -1,12 +1,12 @@
 class Menu():
 
-  def __init__(self, line: int = 3, col: int = 5, spacing: int = 4):
+  def __init__(self, line: int = 3, col: int = 6, spacing: int = 3):
     self.start_line = line
     self.start_col = col
     self.spacing = spacing
     self.menu_items: 'list[MenuItem]' = []
 
-  def add_menu_item(self, option: str, name: str, connection) -> None:
+  def add_menu_item(self, option: str, name: str, connection: str = None) -> None:
     ''' Adds a new menu item to the menu.
     Name is what is displayed after the menu option.
     Option is the character that selects this menu item.
@@ -30,7 +30,7 @@ class Menu():
     return iter(self.menu_items)
 
 class MenuItem():
-  def __init__(self, option: str, name: str, connection:str = None):
+  def __init__(self, option: str, name: str, connection:str):
     self.name = name
     self.option = option
     self.connection = connection

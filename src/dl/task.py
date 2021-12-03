@@ -84,7 +84,7 @@ class TaskData():
     return Task(
         int(task['id']), 
         int(task['building_id']),
-        int(task['accessory_id'],
+        int(task['accessory_id']),
         task['short_description'],
         task['type'],
         task['start_date'],
@@ -98,7 +98,7 @@ class TaskData():
         task['modified']
       )
 
-   def __get_next_id(self) -> int:
+  def __get_next_id(self) -> int:
     ''' Finds max id and returns id+1 '''
     tasks = self.get_all()
     all_ids = [tas.id for tas in tasks]

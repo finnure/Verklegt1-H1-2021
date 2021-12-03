@@ -1,5 +1,7 @@
 import curses
 import os
+from models.employee import Employee
+from ui.menu import Menu
 import utils
 from typing import Tuple, Union
 from time import sleep
@@ -22,7 +24,6 @@ class Screen():
     self.cols = cols
     self.__parent = parent
     self.__border = border
-    self.set_default_commands()
     self.set_string_termination()
     if self.__parent is None:
       self.__init_main()
@@ -56,6 +57,9 @@ class Screen():
       screen.border()
       self.border_win = screen
       screen = screen.derwin(self.lines - 2, self.cols - 2, 1, 1)
+    self.color_supported = self.__parent.color_supported
+    self.max_color_pairs = self.__parent.max_color_pairs
+    self.max_colors = self.__parent.max_colors
     self.__screen = screen
 
   def __resize(self) -> bool:
@@ -119,25 +123,47 @@ class Screen():
     }
     return sum([style_dict[style] for style in style_list if style in style_dict])
 
-  def set_default_commands(self, commands: list = None) -> None:
-    ''' Sets default commands that are available anywhere. 
-    If no list is sent as parameter, hardcoded defaults are used '''
-    commands = utils.none_if_not_list(commands)
-    if commands is None:
-      commands = [
-        curses.KEY_F1,
-        curses.KEY_F2,
-        curses.KEY_F3,
-        curses.KEY_F4,
-        curses.KEY_F5,
-        curses.KEY_F6,
-        ord('q'),
-        ord('Q'),
-        ord('o'),
-        ord('O'),
-      ]
-    self.default_commands = commands
-  
+  def get_css_class(self, name: str) -> int:
+    ''' Returns a pre-defined "css class" for it to be applied to text in the view.
+    Available css classes:\n
+    ERROR, FRAME_TEXT, OPTION, LOGO_NAME, LOGO_TEXT, TABLE_HEADER, PAGE_HEADER, DATA_KEY
+    '''
+    css_classes: 'dict[str,tuple[int,list[str]]]' = {
+      'ERROR': (1,['REVERSE']),
+      'FRAME_TEXT': (2,['BOLD']),
+      'OPTION': (3,['BOLD', 'UNDERLINE']),
+      'LOGO_NAME': (4,['BLINK']),
+      'LOGO_TEXT': (5,['BOLD']),
+      'TABLE_HEADER': (6,['UNDERLINE']),
+      'PAGE_HEADER': (7,['BOLD']),
+      'DATA_KEY': (8,['BOLD']),
+    }
+    if name not in css_classes:
+      return 0
+    color, style = css_classes[name]
+    return self.get_color_pair(color) + self.get_style(style)
+
+  def display_admin_menu(self, menu: Menu, role: str) -> dict:
+    ''' Displays a menu on the right side of the window if logged in user is manager. 
+    Menu option is left justified and menu name is right justified. 
+    Returns menu options if user is manager, else an empty dict. '''
+    if role == 'MANAGER':
+      max_col = self.cols
+      for line, item in enumerate(menu):
+        self.print(item.option, menu.start_line + line, max_col - menu.start_col, self.get_css_class('OPTION'))
+        self.print(item.name, menu.start_line + line, max_col - len(item.name) - 2)
+      return menu.get_options()
+    else:
+      return {}
+
+  def display_menu(self, menu: Menu, css_class: str = 'OPTION'):
+    ''' Displays a menu on the right side of the window. 
+    Menu option is left justified and menu name is right justified. '''
+    for line, item in enumerate(menu):
+      self.print(item.option, menu.start_line + line, menu.start_col, self.get_css_class(css_class))
+      self.print(item.name, menu.start_line + line, menu.start_col + menu.spacing)
+
+
   def set_string_termination(self, termination: list = None) -> None:
     ''' Sets default string termination for string inputs. 
     If no list is is sent as parameter, sane defaults are used '''
@@ -152,28 +178,9 @@ class Screen():
       ]
     self.string_termination = termination
 
-  # TODO Breyta filter í streng eftir breytingu í get_wch()
-  def get_character(self, filter: Union[list, str, None] = None, default: bool = False) -> str:
-    ''' Listenes to keyboard input and returns character.
-    filter should be a list of available inputs.
-    If default is true, default commands will be included'''
-    if filter is not None:
-      # Convert to a list of ascii numbers with both upper and lowercase
-      filter = utils.get_ascii_list(filter)
-    if type(filter) is list and default:
-      # Append default commands to filter
-      filter.extend(self.default_commands)
-    while True:
-      character = self.__screen.get_wch()
-      if filter is None and not default:
-        # No filters specified, return any key
-        return character
-      elif filter is None and character in self.default_commands:
-        # Only default commands are returned
-        return character
-      elif filter is not None and character in filter:
-        # Filter is set, only return key if it's in filter list
-        return character
+  def get_character(self) -> str:
+    ''' Listenes to keyboard input and returns character. '''
+    return self.__screen.get_wch()
 
   def get_string(self, line: int, col: int, cols: int = 64, filter: str = utils.ALL_PRINTABLE) -> str:
     ''' Collects input from keyboard and returns as string.
@@ -207,10 +214,9 @@ class Screen():
         self.print(character)
       else:
         # Character not allowed
-        # Debug used to find special characters missing from list self.print(str(character))
         self.flash()
       if len(accumulated_string) >= cols:
-        # max string length reached, break out of while and return string
+        # max string length reached, break out of while and return string        
         break
     # Reset terminal settings, hide cursor and input
     curses.curs_set(0)
@@ -218,17 +224,21 @@ class Screen():
     return ''.join(accumulated_string)
 
   def get_multiline_string(self, lines: int = 1, cols: int = 64, filter: str = utils.ALL_PRINTABLE) -> str:
-    ''' Collects multiple lines and returns as one string concatenated by \\n '''
+    ''' Collects multiple lines and returns as one string. '''
     first_line, first_col = self.__get_current_pos()
     accumulated_lines = []
     for i in range(lines):
       self.move_cursor_to_coords(first_line + i, first_col)
-      next_line = self.get_string(cols, filter)
-      if len(next_line) == 0:
+      new_line = self.get_string(cols, filter)
+      if len(new_line) == 0:
         # Empty line treated as input termination, break out of for loop and return string
         break
-      accumulated_lines.append(next_line)
-    return '\n'.join(accumulated_lines)
+      elif len(new_line) != cols:
+        # Enter key pressed, add newline character to string
+        new_line += '\n'
+      # Possible feature: move last part of new line to next line and replace with newline character.
+      accumulated_lines.append(new_line)
+    return ''.join(accumulated_lines)
 
   def print(self, text: str, line: int = None, col: int = None, style: int = 0) -> None:
     ''' Prints text to screen. If line and col are not specified, 

@@ -19,15 +19,15 @@ class UiHandler():
     self.__window = Screen(30, 118, 5, 1, parent=self.__screen)
     self.llapi = LlApi()
     self.__init_colors()
-    self.__init_views()
     self.__init_menu()
+    self.__init_views()
     self.current_view = None
     self.breadcrumb = []
     self.current_user = None
 
   def __init_views(self):
     self.login_view = LoginView(self.__window, self.llapi)
-    self.view_frame = ViewFrame(self.__screen)
+    self.view_frame = ViewFrame(self.__screen, self.llapi, self.header_menu, self.footer_menu)
     self.main_menu_view = MainMenuView(self.__window)
     self.location_view = LocationView(self.__window)
     self.employee_view = EmployeeView(self.__window, self.llapi)
@@ -38,7 +38,7 @@ class UiHandler():
     self.contractor_view = ContractorView(self.__window)
     self.search_view = SearchView(self.__window)
 
-    self.view_map: 'LocationView | EmployeeView | BuildingView | TaskView | ReportView | ContractorView | SearchView | MainMenuView' = {
+    self.view_map = {
       'LOCATION': self.location_view,
       'EMPLOYEE': self.employee_view,
       'BUILDING': self.building_view,
@@ -47,37 +47,40 @@ class UiHandler():
       'CONTRACTOR': self.contractor_view,
       'SEARCH': self.search_view,
       'MENU': self.main_menu_view,
+      'SELF': self
     }
 
   def __init_colors(self):
-    ''' TODO '''
-    self.__screen.set_color_pair(1, 147) # Option
-    self.__screen.set_color_pair(2, 160) # Error
-    self.__screen.set_color_pair(3, 165) # Logo
-    self.__screen.set_color_pair(4, 145) # Table header
+    ''' Setup color pairs for css classes. Available classes are:
+    ERROR, FRAME_TEXT, OPTION, LOGO_NAME, LOGO_TEXT, TABLE_HEADER, PAGE_HEADER, DATA_KEY '''
+    self.__screen.set_color_pair(1, 160, 254) # ERROR Rautt/Hvítt
+    self.__screen.set_color_pair(2, 75) # FRAME_TEXT Blátt
+    self.__screen.set_color_pair(3, 123) # OPTION Gult
+    self.__screen.set_color_pair(4, 165) # LOGO_NAME Bleikt
+    self.__screen.set_color_pair(5, 147) # LOGO_TEXT Cyan
+    self.__screen.set_color_pair(6, 75) # TABLE_HEADER 
+    self.__screen.set_color_pair(7, 75) # PAGE_HEADER
+    self.__screen.set_color_pair(8, 75) # DATA_KEY
 
   def __init_menu(self):
     header_menu = Menu()
-    header_menu.add_menu_item('L', '(L)ocations', 'LOCATION:MENU')
-    header_menu.add_menu_item('B', '(B)uilding', 'BUILDING:MENU')
-    header_menu.add_menu_item('E', '(E)mployee', 'EMPLOYEE:MENU')
-    header_menu.add_menu_item('T', '(T)asks', 'TASK:MENU')
-    header_menu.add_menu_item('C', '(C)ontractors', 'CONTRACTOR:MENU')
-    header_menu.add_menu_item('S', '(S)earch', 'SEARCH:MENU')
+    header_menu.add_menu_item('L', '(L)OCATIONS', 'LOCATION:MENU')
+    header_menu.add_menu_item('B', '(B)UILDING', 'BUILDING:MENU')
+    header_menu.add_menu_item('E', '(E)MPLOYEE', 'EMPLOYEE:MENU')
+    header_menu.add_menu_item('T', '(T)ASKS', 'TASK:MENU')
+    header_menu.add_menu_item('C', '(C)ONTRACTORS', 'CONTRACTOR:MENU')
+    header_menu.add_menu_item('S', '(S)EARCH', 'SEARCH:MENU')
     global_options = header_menu.get_options()
     self.header_menu = header_menu
 
     footer_menu = Menu()
-    footer_menu.add_menu_item('H', '(H)ome', 'MENU:MENU')
-    footer_menu.add_menu_item('-', '(-)Back', 'SELF:BACK')
-    footer_menu.add_menu_item('O', 'Log (O)ut', 'SELF:LOGOUT')
-    footer_menu.add_menu_item('Q', '(Q)uit', 'SELF:QUIT')
+    footer_menu.add_menu_item('H', '(H)OME', 'MENU:MENU')
+    footer_menu.add_menu_item('-', '(-) BACK', 'SELF:BACK')
+    footer_menu.add_menu_item('Z', '(Z) LOG OUT', 'SELF:LOGOUT')
+    footer_menu.add_menu_item('Q', '(Q)UIT', 'SELF:QUIT')
     global_options.update(footer_menu.get_options())
     self.footer_menu = footer_menu
     self.global_options = global_options
-
-
-
 
   def start(self):
     ''' All the magic starts here! '''
@@ -85,8 +88,8 @@ class UiHandler():
     if user is None:
       return
     else:
-      self.view_frame.print_view()
       self.llapi.set_logged_in_user(user)
+      self.view_frame.print_view()
       options: dict = self.employee_view.find_handler('MENU')
       while True:
         self.__screen.flush_input()
@@ -108,25 +111,8 @@ class UiHandler():
         view = self.view_map[view_key]
         options = view.find_handler(handler_key)
 
+  def find_handler(self, input: str):
+    pass
         
-
-
-
   def quit(self):
     self.__screen.end()
-
-  def option_style(self):
-    ''' TODO '''
-    return self.__screen.get_color_pair(1) + self.__screen.get_style(['BOLD'])
-
-  def error_style(self):
-    ''' TODO '''
-    return self.__screen.get_color_pair(2) + self.__screen.get_style(['REVERSE'])
-
-  def logo_style(self):
-    ''' TODO '''
-    return self.__screen.get_color_pair(3) + self.__screen.get_style(['BOLD'])
-  
-  def table_header_style(self):
-    ''' TODO '''
-    return self.__screen.get_color_pair(4)

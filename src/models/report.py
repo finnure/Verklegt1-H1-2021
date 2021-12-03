@@ -1,6 +1,3 @@
-from typing import Type
-
-
 class Report():
 
   def __init__(self, id: int, description: str, type: str, hours: int, cost: int) -> None:
@@ -31,5 +28,5 @@ class EmployeeReport(Report):
     self.task_id = task_id
     self.contractor_reports = []
 
-  def add_contractor_report(self, report: Type[ContractorReport]):
+  def add_contractor_report(self, report: ContractorReport):
     self.contractor_reports.append(report)

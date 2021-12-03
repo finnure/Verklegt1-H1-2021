@@ -1,3 +1,5 @@
+from llapi import LlApi
+from ui.menu import Menu
 from ui.screen import Screen
 
 
@@ -14,20 +16,20 @@ RIGHT_DIVIDER = '\U00002524'
 
 class ViewFrame():
 
-  def __init__(self, screen: Screen):
+  def __init__(self, screen: Screen, llapi: LlApi, header_menu: Menu, footer_menu: Menu):
     self.__screen = screen
-    self.__screen.set_color_pair(1, 122)
-
-  def get_input(self):
-    char = self.__screen.get_character()
-    self.__screen.print(chr(char), 10,10)
+    self.llapi = llapi
+    self.header_menu = header_menu
+    self.footer_menu = footer_menu
 
   def print_view(self):
     ''' Displays frame, header and footer on the screen. '''
     self.__screen.clear()
     self.__display_frame()
+    self.__display_logo()
     self.__display_header()
     self.__display_footer()
+    self.__display_logged_in_user()
     self.__screen.refresh()
 
   def __display_frame(self):
@@ -47,41 +49,60 @@ class ViewFrame():
     self.__screen.print(BOTTOM_LEFT_CORNER, max_line, 0)
     self.__screen.print(BOTTOM_RIGHT_CORNER, max_line, max_col)
 
+  def __display_logo(self) -> None:
+    ''' Displays logo in window. '''
+    self.__screen.print('NaN', 1, 2, self.__screen.get_css_class('LOGO_NAME'))
+    self.__screen.print('NaN', 3, 26, self.__screen.get_css_class('LOGO_NAME'))
+    self.__screen.print('We divide by zero', 2, 7, self.__screen.get_css_class('LOGO_TEXT'))
 
   def __display_header(self) -> None:
-    ''' Displays header in window '''
-    titles = ['(L)ocations', '(B)uilding', '(E)mployee', '(T)asks', '(C)ontractors', '(S)earch']
-    dividers = [30, 46, 61, 76, 89, 107]
+    ''' Displays header in window. '''
+    titles = [item.name for item in self.header_menu]
+    dividers = self.__get_dividers(titles)
     top_line = 0
     self.__draw_divider_line(top_line + 4)
     self.__draw_sections(dividers, titles, top_line)
 
   def __display_footer(self) -> None:
     ''' Displays footer in window '''
-    titles = ['Log (O)ut', '(Q)uit']
-    dividers = [95, 109]
+    titles = [item.name for item in self.footer_menu]
+    dividers = self.__get_dividers(titles)
     top_line = 36
     self.__draw_divider_line(top_line)
     self.__draw_sections(dividers, titles, top_line)
 
+  def __display_logged_in_user(self) -> None:
+    ''' Displays information about logged in user in bottom left corner. '''
+    menu = Menu(37, 2, 11)
+    menu.add_menu_item('NAME', self.llapi.user.name)
+    menu.add_menu_item('LOCATION', str(self.llapi.user.location_id))
+    menu.add_menu_item('ROLE', self.llapi.user.role)
+    self.__screen.display_menu(menu, 'DATA_KEY')
+
 
   def __draw_divider_line(self, line: int) -> None:
-    ''' Draws a line across the complete window and replaces sides with side dividers '''
+    ''' Draws a line across the complete window and replaces sides with side dividers. '''
     max_col = self.__screen.cols - 2
     self.__screen.print(TOP_AND_BOTTOM * (max_col - 1), line, 1)
     self.__screen.print(LEFT_DIVIDER, line, 0)
     self.__screen.print(RIGHT_DIVIDER, line, max_col)
 
   def __draw_sections(self, start_list: list, title_list: list, from_line: int) -> None:
-    ''' Divides header and footer into sections and displays on screen '''
+    ''' Divides header and footer into sections and displays on screen. '''
     for i, col in enumerate(start_list):
       self.__screen.print(TOP_DIVIDER, from_line, col)
       self.__screen.print(BOTTOM_DIVIDER, from_line + 4, col)
-      self.__screen.print(title_list[i], from_line + 2, col + 3, self.__header_style())
+      self.__screen.print(title_list[i], from_line + 2, col + 3, self.__screen.get_css_class('FRAME_TEXT'))
+      self.__screen.paint_character(self.__screen.get_css_class('OPTION'), from_line + 2, col + 4)
       for line in [from_line + 1, from_line + 2, from_line + 3]:
         self.__screen.print(SIDE, line, col)
 
-
-  def __header_style(self) -> int:
-    ''' Style of header text is defined here '''
-    return self.__screen.get_style(['BOLD']) + self.__screen.get_color_pair(1)
+  def __get_dividers(self, titles: 'list[str]') -> 'list[int]':
+    ''' Creates a list with spacing for dividers in header and footer. '''
+    widths = [len(title) + 5 for title in titles]
+    next_div = self.__screen.cols - sum(widths) - 2
+    divs = []
+    for w in widths:
+      divs.append(next_div)
+      next_div += w
+    return divs

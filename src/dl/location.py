@@ -1,7 +1,5 @@
 from dl.filehandler import FileHandler
-from models.employee import Employee
 from models.location import Location
-
 
 class LocationData():
 
@@ -52,13 +50,13 @@ class LocationData():
     return [self.__parse(location) for location in locations]
 
   def get_one(self, id):
-     ''' Find Location matching the id specified. If no location is found, None is returned '''
+    ''' Find Location matching the id specified. If no location is found, None is returned '''
     locations = self.get_all()
     for location in locations:
       if location.id == id:
         return location
 
-  def get_filtered(self, filter: dict, partial_match: bool = False) -> 'list[Employee]':
+  def get_filtered(self, filter: dict, partial_match: bool = False) -> 'list[Location]':
     ''' Get a list of Locations matching filter specified.
     Filter should be a dict where key is the Location field to be matched and 
     value the value you're searching for. If filter includes more than one key, all keys
@@ -77,7 +75,7 @@ class LocationData():
         raise KeyError(f'Invalid filter key for Location: {key}')
     return filtered_locations
 
-  def parse(self, data: list):
+  def __parse(self, location: list):
     ''' Creates and returns an instance of Location '''
     return Location(
         int(location['id']), 
@@ -92,7 +90,3 @@ class LocationData():
         location['buildings'],
         location['contractors']
       )
-
-
-  def prepare(self, data):
-    ''' Converts data to a format that file expects '''

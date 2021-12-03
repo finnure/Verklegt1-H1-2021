@@ -44,6 +44,7 @@ nota par þarf að byrja á því að skilgreina hvaða tvo liti viðkomandi par
 set_color_pair(pair: int, text_color: int, background_color: int) -> None
 get_color_pair(pair: int) -> int
 get_style(style_list: list) -> int
+get_css_class(name: str) -> int
 ```
 
 Eftirfarandi stílar eru í boði
@@ -52,6 +53,17 @@ Eftirfarandi stílar eru í boði
 - UNDERLINE
 - REVERSE - Lit á texta og bakgrunni víxlað
 - BLINK
+
+Eftirfarandi css klasar eru í boði
+
+- ERROR
+- FRAME_TEXT
+- OPTION
+- LOGO_NAME
+- LOGO_TEXT
+- TABLE_HEADER
+- PAGE_HEADER
+- DATA_KEY
 
 Hver stíll og hvert color pair hefur tölugildi. Til að blanda saman mörgum
 stílum og nota color pair líka eru tölugildin lögð saman til að fá út
@@ -63,31 +75,18 @@ Eftirfarandi aðgerðir eru í boði til að sækja inntak frá notanda og til a
 prenta texta á skjáinn.
 
 ```python
-set_default_commands(commands: list = None) -> None
 set_string_termination(termination: list = None) -> None
-get_character(filter: list = None, default: bool = False) -> int
+get_character() -> str
 get_string(cols: int, filter: str = printable) -> str
 get_multiline_string(lines: int = 1, cols: int = 64, filter: str = printable) -> str
 print(text: str, line: int = None, col: int = None, style: int = 0) -> None
 ```
 
-Default commands eru valmöguleikar sem eru alltaf í boði að velja hvar sem er í
-viðmótinu. Til að breyta þessum lista er hægt að kalla í set_default_commands með
-nýjum lista. Default commands eru F1, F2, F3, F4, F5, F6, q, Q, o, O
-
 Termination er listi af tökkum sem ljúka innslætti á streng. Hægt er að breyta
 sjálfgefnum lista með því að kalla í `set_string_termination` með nýjum lista.
 Sjálfgefnir takkar eru Tab, Enter, Ör upp og Ör niður.
 
-`get_character` bíður eftir innslætti frá notanda og skilar ascii númeri á
-staf sem sleginn var inn. Ef engin breyta er send með er næsti takki sem notandi
-ýtir á sendur til baka. Til að takmarka innslátt er hægt að skilgreina filter
-eða default.  
-Filter getur verið strengur, listi af stöfum eða listi af ascii númerum.
-Ef sértákn eins og tab eða new line er hluti af filter þarf filter að vera listi
-af stöfum. Filter er breytt í lista af ascii númerum. Öllum bókstöfum er bætt við
-sem bæði hástaf og lágstaf.  
-Ef default er True þá er default commands bætt við filter lista.
+`get_character` bíður eftir innslætti frá notanda og skilar til baka sem streng.
 
 `get_string` safnar saman innslegnum texta og skilar sem streng.  
 Cols segir til um hversu marga stafi má taka við, sjálfgefinn fjöldi er 64.
@@ -129,6 +128,7 @@ paint_character(style: int, line: int | None = None, col: int | None = None, num
 delete_character(line: int | None = None, col: int | None = None) -> None
 delete_line(line: int | None = None) -> None
 flash() -> None
+flush_input() -> None
 create_sub_window(begin_y: int, begin_x: int) -> _CursesWindow
 end() -> None
 ```
@@ -150,6 +150,10 @@ er byrjað á því að athuga hvort sú lína sé innan viðkomandi glugga. Ef 
 ekki er aðgerðin ekki framkvæmd.  
 `flash` víxlar litum á texta og bakgrunni í sekúndu og víxlar svo aftur til baka.
 Hægt er að nota þetta sem tilkynningu til notanda.  
+`flush_input` tæmir input buffer frá lyklaborði. Ef notandi var búinn að ýta á
+einhverja takka þegar kallað er í `get_character()` þá man tölvan eftir þeim og
+notar þá. Með því að kalla í `flush_input` er þetta minni hreinsað þannig að næsti
+takki sem notandinn potar í er tekinn gildur.
 `create_sub_window` Býr til nýjan glugga með begin_y línur og begin_x dálka.
 Þessi gluggi erfir stillingar frá parent glugga, eins og lita prófíla.
 `end` sér um að taka til í terminal og skila því í rétt ástand áður en forriti

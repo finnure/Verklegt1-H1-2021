@@ -1,13 +1,18 @@
+import sys
 from uihandler import UiHandler
 
 
 def main():
   ui = UiHandler()
+  error = None
   try:
     ui.start()
-  except:
-    pass
-  ui.quit()
+  except Exception as err:
+    error = err
+  finally:
+    ui.quit()
+  if error is not None:
+    print(error)
 
 
 

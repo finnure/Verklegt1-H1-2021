@@ -1,7 +1,3 @@
-from typing import Type
-from structs.report import EmployeeReport
-
-
 class Task():
 
   def __init__(self, id: int, building_id: int, accessory_id: int, short_description: str,  type: str, start_date: str,
@@ -24,9 +20,6 @@ class Task():
 
   def __str__(self) -> str:
     pass
-
-  def add_report(self, report: Type[EmployeeReport]) -> None:
-    self.reports.append(report)
 
   def as_dict(self) -> 'dict[str, str | int]':
     return {

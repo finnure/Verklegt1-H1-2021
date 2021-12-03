@@ -30,10 +30,10 @@ class ContractorData():
     return self.__parse(con)
 
   def update(self, id: int, contractor: Contractor) -> Contractor:
-    ''' Updates contractor. Gets all data from file, replaces employee
+    ''' Updates contractor. Gets all data from file, replaces contractor
     that matches id and writes all data back to file. '''
     contractors = self.get_all()
-    # Ternary with list comprehension. This replaces employee in list if emp.id matches id
+    # Ternary with list comprehension. This replaces contractor in list if emp.id matches id
     updated_contractors = [contractor.as_dict() if con.id == id else con.as_dict() for con in contractors]
     self.__file.write(updated_contractors)
     return self.get_one(id)
@@ -43,7 +43,7 @@ class ContractorData():
     ''' Updates contractor. Gets all data from file, replaces contractor
     that matches id and writes all data back to file. '''
     contractors = self.get_all()
-    # Ternary with list comprehension. This replaces employee in list if emp.id matches id
+    # Ternary with list comprehension. This replaces contractor in list if emp.id matches id
     filtered_contractors = [con.as_dict() for con in contractors if con.id != id]
     self.__file.write(filtered_contractors)
     
@@ -62,7 +62,7 @@ class ContractorData():
         return contractor
     
 
-  def get_filtered(self, filter: dict, partial_match: bool = False) -> 'list[Employee]':
+  def get_filtered(self, filter: dict, partial_match: bool = False) -> 'list[Contractor]':
     ''' Get a list of Contractors matching filter specified.
     Filter should be a dict where key is the Contractor field to be matched and 
     value the value you're searching for. If filter includes more than one key, all keys
@@ -76,7 +76,7 @@ class ContractorData():
           filtered_contractors = [con for con in contractors if val == con[key]]
       else:
         # Wrong key in filter. Raise error
-        raise KeyError(f'Invalid filter key for Employee: {key}')
+        raise KeyError(f'Invalid filter key for Contractor: {key}')
     return filtered_contractors
   
 
@@ -95,11 +95,8 @@ class ContractorData():
         contractor['speciality]'],
       )
     
-   def __get_next_id(self) -> int:
+  def __get_next_id(self) -> int:
     ''' Finds max id and returns id+1 '''
     contractors = self.get_all()
     all_ids = [con.id for con in contractors]
     return max(all_ids) + 1
-
-  def prepare(self, data):
-    ''' Converts data to a format that file expects '''
