@@ -292,27 +292,36 @@ Allt á to do lista var framkvæmt í dag
 
 ### Plan dagsins
 To-do
-- [ ] - Lára: færir skjáskot af wireframe-inu sem komið er og notað verður í notendaprófunum
+- [x] - Lára: færir skjáskot af wireframe-inu sem komið er og notað verður í notendaprófunum
 - [ ] - Lára: færa wireframe myndir inn í Figma sem notaðar verða í notendaprófunum
-- [ ] - Kristín: byrja að afrita þá virkni sem komin er í employee virkni og afrita kóða í aðra klasa Stefán aðstoðar
-- [ ] - Finnur: heldur áfram að góða virknina
+- [x] - Kristín: byrja að afrita þá virkni sem komin er í employee virkni og afrita kóða í aðra klasa Stefán aðstoðar
+- [x] - Finnur: heldur áfram að góða virknina
 
 - Ef tími gefst
 - [ ] - ÁKveða UC
-- [ ] - Ákveða daga í notendaprófanir --> helgina 4-5 des.
+- [x] - Ákveða daga í notendaprófanir --> helgina 4-5 des.
 
 Notendaprófanir - virkni
 - Búa til task fyrir flæðið (skeyta saman)
 - Dæmi: Finna task til að finna report og samþykkja skýrsluna og gefa rating (reynir á flæði yfirmanns gegnum task og opin reports)
 
 ### Framkvæmt í dag
+- Ekki náðist að setja upp wireframe í Figma, það verður gert á morgun
+- Lára : uppfærði wireframe (öll 30+ view) fínpússaði, lagfærði villur, bætti við því sem vantaði (5 klst) 
+- Finnur: forritun (6 klst)
+- Kristín: forritun (6 klst)
+- Stefán​​​​​​​: tilfallandi verkefni (3 klst)
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 12
 
 ### Plan dagsins
-
+To do
+- [ ] - Lára: færa wireframe myndir inn í Figma sem notaðar verða í notendaprófunum
+- [ ] - Finnur: forritun
+- [ ] - Stefán: Taka saman UC fyrir notendaprófanir þessa helgi
+- [x] - Finna fórnarlömb í prófanir (Kristtín er komin 2 og Lára 2)
 ### Framkvæmt í dag
 
 [Heim](#efnisyfirlit)
