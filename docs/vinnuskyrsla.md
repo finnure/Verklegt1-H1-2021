@@ -318,11 +318,14 @@ Notendaprófanir - virkni
 
 ### Plan dagsins
 To do
-- [ ] - Lára: færa wireframe myndir inn í Figma sem notaðar verða í notendaprófunum
-- [ ] - Finnur: forritun
-- [ ] - Stefán: Taka saman UC fyrir notendaprófanir þessa helgi
-- [x] - Finna fórnarlömb í prófanir (Kristtín er komin 2 og Lára 2)
+- [x] - Lára: færa wireframe myndir inn í Figma sem notaðar verða í notendaprófunum
+- [] - Finnur: forritun
+- [] - Stefán: Taka saman UC fyrir notendaprófanir þessa helgi
+- [x] - Finna fórnarlömb í prófanir (Kristín er komin 2 og Lára 2)
 ### Framkvæmt í dag
+- Lára: Wireframe og Figma vinna (5 klst)
+- Finnur: Forritun
+- Stefán: UC
 
 [Heim](#efnisyfirlit)
 
