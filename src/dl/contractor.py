@@ -92,8 +92,9 @@ class ContractorData():
         contractor['reports'],
         contractor['email'],
         contractor['rating'],
-        contractor['speciality]'],
+        contractor['speciality'],
       )
+      
     
   def __get_next_id(self) -> int:
     ''' Finds max id and returns id+1 '''
