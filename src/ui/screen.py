@@ -2,6 +2,7 @@ import curses
 import os
 from models.employee import Employee
 from ui.menu import Menu
+from ui.table import Table
 import utils
 from typing import Tuple, Union
 from time import sleep
@@ -137,6 +138,7 @@ class Screen():
       'TABLE_HEADER': (6,['UNDERLINE']),
       'PAGE_HEADER': (7,['BOLD']),
       'DATA_KEY': (8,['BOLD']),
+      'DISABLED': (9,['NORMAL']),
     }
     if name not in css_classes:
       return 0
@@ -156,12 +158,70 @@ class Screen():
     else:
       return {}
 
-  def display_menu(self, menu: Menu, css_class: str = 'OPTION'):
-    ''' Displays a menu on the right side of the window. 
-    Menu option is left justified and menu name is right justified. '''
+  def display_menu(self, menu: Menu, css_class: str = 'OPTION') -> None:
+    ''' Displays a menu on the window positioned with settings on the class. '''
     for line, item in enumerate(menu):
       self.print(item.option, menu.start_line + line, menu.start_col, self.get_css_class(css_class))
       self.print(item.name, menu.start_line + line, menu.start_col + menu.spacing)
+
+  def display_table(self, table: Table, paging: bool = True) -> str:
+    ''' Creates a new window for table and displays it. If paging is true, paging footer is also displayed.
+    Returns paging options as a string. '''
+    filter = ''
+    lines = table.max_lines + 5 if paging else table.max_lines + 3
+    window = Screen(lines, 110, table.begin_line + 5, table.begin_col + 2, False, self.__parent)
+    window.clear()
+    col = 0
+    for column in table:
+      window.print(column.name, 0, col, window.get_css_class('TABLE_HEADER'))
+      for line, row in enumerate(column):
+        window.print(str(row), line + 2, col)
+      col += column.get_width()
+    if paging and table.pages > 0:
+      filter = window.display_table_footer(table, table.max_lines + 3)
+    window.refresh()
+    return filter
+
+  def display_table_footer(self, table: Table, line: int = 22) -> str:
+    ''' Prints paging info for table and returns paging options as string. '''
+    filter = ''
+    total_rows = len(table.data)
+    style = self.get_css_class('DATA_KEY')
+    option_style = self.get_css_class('OPTION')
+    disabled_style = self.get_css_class('DISABLED')
+
+    self.print('TOTAL ROWS ', line, 0, style)
+    self.print(str(total_rows))
+    self.move_cursor_by_offset(0, 2)
+    self.print('PAGE ', style=style)
+    self.print(str(table.current_page + 1) + '/' + str(table.pages + 1))
+    self.move_cursor_by_offset(0, 2)
+    # First
+    if table.current_page > 0:
+      filter += 'FfPp'
+      self.print('F', line, 35, option_style)
+      self.print('IRST ', style=style)
+      # Previous
+      self.print('P', line, 43, option_style)
+      self.print('REVIOUS ', style=style)
+    # disabled First and Previous
+    if table.current_page == 0:
+      self.print('FIRST', line, 35, disabled_style)
+      self.print('PREVIOUS', line, 43, disabled_style)
+    # disabled Next and Last
+    if table.current_page == table.pages:
+      self.print('NEXT', line, 55, disabled_style)
+      self.print('LAST', line, 63, disabled_style)
+    # Next
+    if table.current_page < table.pages:
+      filter += 'NnLl'
+      self.print('N', line, 55, option_style)
+      self.print('EXT ', style=style)
+      # Last
+      self.print('L', line, 63, option_style)
+      self.print('AST ', style=style)
+    return filter
+
 
 
   def set_string_termination(self, termination: list = None) -> None:

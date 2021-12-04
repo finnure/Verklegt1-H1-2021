@@ -1,4 +1,5 @@
 from models.employee import Employee
+from ui.table import Table
 import utils
 from llapi import LlApi
 from ui.screen import Screen
@@ -81,7 +82,34 @@ class EmployeeView():
     self.__view_employee_handler(emp)
 
   def __list_all_handler(self):
-    pass
+    emps = self.llapi.get_all_employees()
+    self.__screen.print('ENTER NUMBER (#) OF EMPLOYEE TO VIEW', 3, 6, self.__screen.get_css_class('DATA_KEY'))
+    table = self.__create_table(emps)
+    while True:
+      filter = utils.NUMBERS
+      filter += self.__screen.display_table(table)
+      selection = self.__screen.get_string(3, 43, 2, filter)
+      [self.__screen.delete_character(3, x + 43) for x in range(40)]
+      try:
+        row = int(selection)
+        emp = emps[row - 1]
+        self.__screen.clear()
+        return self.__view_employee_handler(emp)
+      except IndexError:
+        self.__screen.print('INVALID NUMBER', 3, 60, self.__screen.get_css_class('ERROR'))
+      except ValueError:
+        key = selection.upper()
+        if key == 'F':
+          table.first_page()
+        elif key == 'P':
+          table.previous_page()
+        elif key == 'N':
+          table.next_page()
+        elif key == 'L':
+          table.last_page()
+        else:
+          self.__screen.flash()
+
 
   def __new_employee_handler(self):
     pass
@@ -124,4 +152,14 @@ class EmployeeView():
     self.__screen.print(emp.role, 8, 16)
     self.__screen.print('NUMBER OF ACTIVE TASKS: ', 10, 6, self.__screen.get_css_class('DATA_KEY'))
     self.__screen.print(str(self.llapi.get_active_tasks_for_user(emp.id)))
+
+  def __create_table(self, emps: Table, begin_line: int = 5) -> Table:
+    headers = {
+      'id': 'ID',
+      'name': 'NAME',
+      'phone': 'CITY',
+      'mobile': 'MOBILE',
+      'email': 'EMAIL'
+    }
+    return Table(emps, headers, begin_line)
 

@@ -51,7 +51,7 @@ class UiHandler():
 
   def __init_colors(self):
     ''' Setup color pairs for css classes. Available classes are:
-    ERROR, FRAME_TEXT, OPTION, LOGO_NAME, LOGO_TEXT, TABLE_HEADER, PAGE_HEADER, DATA_KEY '''
+    ERROR, FRAME_TEXT, OPTION, LOGO_NAME, LOGO_TEXT, TABLE_HEADER, PAGE_HEADER, DATA_KEY, DISABLED '''
     self.__screen.set_color_pair(1, 160, 254) # ERROR Rautt/Hvítt
     self.__screen.set_color_pair(2, 75) # FRAME_TEXT Blátt
     self.__screen.set_color_pair(3, 123) # OPTION Gult
@@ -60,6 +60,7 @@ class UiHandler():
     self.__screen.set_color_pair(6, 75) # TABLE_HEADER 
     self.__screen.set_color_pair(7, 75) # PAGE_HEADER
     self.__screen.set_color_pair(8, 75) # DATA_KEY
+    self.__screen.set_color_pair(9, 8) # DISABLED
 
   def __init_menu(self):
     header_menu = Menu()
