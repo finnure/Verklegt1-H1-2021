@@ -10,15 +10,15 @@
 │                                                                                                                       │
 │      INPUT THE FOLLOWING INFORMATION FOR THE NEW EMPLOYEE                                                             │
 │                                                                                                                       │
-│      ID         :                                                                                                     │
-│      NAME       :                                                                                                     │
-│      SSN        :                                                                                                     │
-│      PHONE      :                                                                                                     │
-│      MOBILE     :                                                                                                     │
-│      E-MAIL     :                                                                                                     │
-│      COUNTRY    :                                                                                                     │
-│      AQDDRESS   :                                                                                                     │
-│      ROLE       :                                                                                                     │
+│      1  ID:                                                                                                           │
+│      2  NAME:                                                                                                         │
+│      3  SSN:                                                                                                          │
+│      4  PHONE:                                                                                                        │
+│      5  MOBILE:                                                                                                       │
+│      6  E-MAIL:                                                                                                       │
+│      7  COUNTRY:                                                                                                      │
+│      8  ADDRESS:                                                                                                      │
+│      9  ROLE:                                                                                                         │
 │                                                                                                                       │
 │      A : APPLY CHANGES                                                                                                │
 │      D : DISCARD CHANGES                                                                                              │

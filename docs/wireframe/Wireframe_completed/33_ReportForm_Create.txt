@@ -10,23 +10,23 @@
 │                                                                                                                       │
 │      INPUT THE FOLLOWING INFORMATION FOR THE NEW REPORT AND PRESS ENTER                                               │
 │                                                                                                                       │
-│      1 : REPORT DATE:                                                                                                 │
-│      2 : APPROVED:                                                                                                    │
-│      3 : TASK TYPE:                                                                                                   │
-│      4 : EMPLOYEE:                                                                                                    │
-│      5 : CONTRACTOR:                                                                                                  │
-│      6 : CONTRACTOR FEE:                                                                                              │
-│      7 : CONTRACTOR RATING:                                                                                           │
-│      8 : HOURS:                                                                                                       │
-│      9 : MATERIAL COST:                                                                                               │
-│      10: LABOR COST:                                                                                                  │
-│      11: DESCRIPTION:                                                                                                 │
-│      12: NOTES                                                                                                        │
+│      1  REPORT DATE:                                                                                                  │
+│      2  APPROVED:                                                                                                     │
+│      3  TASK TYPE:                                                                                                    │
+│      4  EMPLOYEE:                                                                                                     │
+│      5  CONTRACTOR:                                                                                                   │
+│      6  CONTRACTOR FEE:                                                                                               │
+│      7  CONTRACTOR RATING:                                                                                            │
+│      8  HOURS:                                                                                                        │
+│      9  MATERIAL COST:                                                                                                │
+│      10 LABOR COST:                                                                                                   │
+│      11 DESCRIPTION:                                                                                                  │
+│      12 NOTES                                                                                                         │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
-│      A : APPLY ALL CHANGE                                                                                             │
-│      D : DISCARD ALL CHANGES                                                                                          │
+│      A : APPLY CHANGES                                                                                                │
+│      D : DISCARD CHANGES                                                                                              │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

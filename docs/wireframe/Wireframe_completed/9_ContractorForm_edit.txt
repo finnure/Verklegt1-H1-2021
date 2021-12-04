@@ -19,8 +19,8 @@
 │      7  CONTACT E-MAIL:       RL@HANDYMAN.GL                                                                          │
 │      8  RATING:               4                                                                                       │
 │                                                                                                                       │
-│      A : APPLY ALL CHANGES                                                                                            │
-│      D : DISCARD ALL CHANGES                                                                                          │
+│      A : APPLY CHANGES                                                                                                │
+│      D : DISCARD CHANGES                                                                                              │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

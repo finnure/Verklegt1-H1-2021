@@ -10,16 +10,16 @@
 │                                                                                                                       │
 │      INPUT THE FOLLOWING INFORMATION FOR THE NEW LOCATION                                                             │
 │                                                                                                                       │
-│      COUNTRY         :                                                                                                │
-│      COTY            :                                                                                                │
-│      AIRPORT         :                                                                                                │
-│      ADDRESS:        :                                                                                                │
-│      PHONE NUMBER    :                                                                                                │
-│      OPENING HOURS   :                                                                                                │
-│      MANAGER         :                                                                                                │
+│      1  COUNTRY:                                                                                                      │
+│      2  CITY:                                                                                                         │
+│      3  AIRPORT:                                                                                                      │
+│      4  ADDRESS:                                                                                                      │
+│      5  PHONE NUMBER:                                                                                                 │
+│      6  OPENING HOURS:                                                                                                │
+│      7  MANAGER:                                                                                                      │
 │                                                                                                                       │
-│      A : APPLY ALL CHANGES                                                                                            │
-│      D : DISCARD ALL CHANGES                                                                                          │
+│      A : APPLY CHANGES                                                                                                │
+│      D : DISCARD CHANGES                                                                                              │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

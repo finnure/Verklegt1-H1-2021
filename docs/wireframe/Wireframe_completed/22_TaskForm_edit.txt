@@ -28,7 +28,7 @@
 │      P : REPEATS EVERY       MONTH                                                                                    │
 │                                                                                                                       │
 │                                                                                                                       │
-│      A : APPLY ALL CHANGES                                                                                            │
+│      A : APPLY CHANGES                                                                                                │
 │      D : DISCARD CHANGES                                                                                              │
 │                                                                                                                       │
 │                                                                                                                       │

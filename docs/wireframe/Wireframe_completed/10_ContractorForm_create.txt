@@ -10,17 +10,17 @@
 │                                                                                                                       │
 │      INPUT THE FOLLOWING INFORMATION FOR THE NEW CONTRACTOR                                                           │
 │                                                                                                                       │
-│      LOCATION        :                                                                                                │
-│      NAME            :                                                                                                │
-│      OPENING HOURS   :                                                                                                │
-│      SPECIALITY      :                                                                                                │
-│      CONTACT NAME    :                                                                                                │
-│      CONTACT PHONE   :                                                                                                │
-│      CONTACT E-MAIL  :                                                                                                │
-│      RATING          :                                                                                                │
+│      1  LOCATION:                                                                                                     │
+│      2  NAME:                                                                                                         │
+│      3  OPENING HOURS:                                                                                                │
+│      4  SPECIALITY:                                                                                                   │
+│      5  CONTACT NAME:                                                                                                 │
+│      6  CONTACT PHONE:                                                                                                │
+│      7  CONTACT E-MAIL:                                                                                               │
+│      8  RATING:                                                                                                       │
 │                                                                                                                       │
-│      A : APPLY ALL CHANGES                                                                                            │
-│      D : DISCARD ALL CHANGES                                                                                          │
+│      A : APPLY CHANGES                                                                                                │
+│      D : DISCARD CHANGES                                                                                              │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

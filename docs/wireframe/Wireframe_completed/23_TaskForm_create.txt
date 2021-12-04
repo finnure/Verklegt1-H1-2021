@@ -27,7 +27,7 @@
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
-│       A : APPLY ALL CHANGES                                                                                           │
+│       A : APPLY CHANGES                                                                                               │
 │       D : DISCARD CHANGES                                                                                             │
 │                                                                                                                       │
 │                                                                                                                       │

@@ -10,16 +10,16 @@
 │                                                                                                                       │
 │      INPUT THE FOLLOWING INFORMATION FOR THE NEW BUILDING AND PRESS ENTER                                             │
 │                                                                                                                       │
-│      BUILDING ID  :                                                                                                   │
-│      LOCATION     :                                                                                                   │
-│      ADDRESS      :                                                                                                   │
-│      TYPE         :                                                                                                   │
-│      ROOMS        :                                                                                                   │
-│      STATE        :                                                                                                   │
-│      MANAGER      :                                                                                                   │
-│      ACCESSORIES  :                                                                                                   │
+│      1  BUILDING ID:                                                                                                  │
+│      2  LOCATION:                                                                                                     │
+│      3  ADDRESS:                                                                                                      │
+│      4  TYPE:                                                                                                         │
+│      5  ROOMS:                                                                                                        │
+│      6  STATE:                                                                                                        │
+│      7  MANAGER:                                                                                                      │
+│      8  ACCESSORIES:                                                                                                  │
 │                                                                                                                       │
-│      A : APPLY ALL CHANGES                                                                                            │
+│      A : APPLY CHANGEScccc                                                                                            │
 │      D : DISCARD CHANGES                                                                                              │
 │                                                                                                                       │
 │                                                                                                                       │
