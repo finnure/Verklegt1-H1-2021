@@ -172,11 +172,11 @@ class Screen():
       self.print(item.option, menu.start_line + line, menu.start_col, self.get_css_class(css_class))
       self.print(item.name, menu.start_line + line, menu.start_col + menu.spacing)
 
-  def display_table(self, table: Table, paging: bool = True) -> str:
+  def display_table(self, table: Table) -> str:
     ''' Creates a new window for table and displays it. If paging is true, paging footer is also displayed.
     Returns paging options as a string. '''
     filter = ''
-    lines = table.max_lines + 5 if paging else table.max_lines + 3
+    lines = table.max_lines + 5
     window = Screen(lines, self.cols - table.begin_col - 2, table.begin_line, table.begin_col, False, self)
     window.clear()
     col = 0
@@ -185,7 +185,7 @@ class Screen():
       for line, row in enumerate(column):
         window.print(str(row), line + 2, col)
       col += column.get_width()
-    if paging and table.pages > 0:
+    if table.pages > 0:
       filter = window.display_table_footer(table, table.max_lines + 3)
     window.refresh()
     return filter
@@ -204,30 +204,22 @@ class Screen():
     self.print('PAGE ', style=style)
     self.print(str(table.current_page + 1) + '/' + str(table.pages + 1))
     self.move_cursor_by_offset(0, 2)
-    # First
     if table.current_page > 0:
-      filter += 'FfPp'
-      self.print('F', line, 35, option_style)
-      self.print('IRST ', style=style)
       # Previous
-      self.print('P', line, 43, option_style)
-      self.print('REVIOUS ', style=style)
-    # disabled First and Previous
+      filter += 'Pp'
+      self.print('P', line, 35, option_style)
+      self.print('REVIOUS', style=style)
+    # disabled Previous
     if table.current_page == 0:
-      self.print('FIRST', line, 35, disabled_style)
-      self.print('PREVIOUS', line, 43, disabled_style)
-    # disabled Next and Last
+      self.print('PREVIOUS', line, 35, disabled_style)
+    # disabled Next
     if table.current_page == table.pages:
-      self.print('NEXT', line, 55, disabled_style)
-      self.print('LAST', line, 63, disabled_style)
+      self.print('NEXT', line, 50, disabled_style)
     # Next
     if table.current_page < table.pages:
-      filter += 'NnLl'
-      self.print('N', line, 55, option_style)
+      filter += 'Nn'
+      self.print('N', line, 50, option_style)
       self.print('EXT ', style=style)
-      # Last
-      self.print('L', line, 63, option_style)
-      self.print('AST ', style=style)
     return filter
 
   def display_form(self, form: Form, begin_line: int = 10, begin_col: int = 5):

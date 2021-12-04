@@ -21,6 +21,8 @@ class EmployeeView():
       'ADD_NEW': self.__new_employee_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
       'LIST_ALL': self.__list_all_handler,
+      'LIST_ALL_NEXT': self.__list_all_paging_next_handler,
+      'LIST_ALL_PREV': self.__list_all_paging_prev_handler,
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_employee_handler,
       'EDIT': self.__edit_employee_handler,
@@ -83,48 +85,87 @@ class EmployeeView():
     self.__screen.clear()
     self.__view_employee_handler(emp)
 
-  def __list_all_handler(self):
-    emps = self.llapi.get_all_employees()
-    table = self.__create_table(emps)
+  def __list_all_paging_next_handler(self):
+    ''' Go to next page of employee list '''
+    try:
+      table: Table = self.llapi.get_param('TABLE')
+      table.next_page()
+      return self.__list_all_handler(table)
+    except KeyError:
+      return self.__list_all_handler()
+
+  def __list_all_paging_prev_handler(self):
+    ''' Go to previous page of employee list '''
+    try:
+      table: Table = self.llapi.get_param('TABLE')
+      table.previous_page()
+      return self.__list_all_handler(table)
+    except KeyError:
+      return self.__list_all_handler()
+
+  def __list_all_handler(self, table: Table = None):
+    if table is None:
+      # First call to list. If table is not None, paging is being used
+      emps = self.llapi.get_all_employees()
+      table = self.__create_table(emps)
+
+    # Create and display menu option that allows user to select an item from the list
     menu = Menu()
     menu.add_menu_item('V', 'SELECT AN EMPLOYEE TO VIEW', 'EMPLOYEE:SELECT_FROM_LIST')
-    options = menu.get_options()
     self.__screen.display_menu(menu)
 
-    admin_menu = Menu()
+    # Display the table and get paging options
+    paging_options = self.__screen.display_table(table)
+    if 'N' in paging_options:
+      menu.add_menu_item('N', 'NEXT', 'EMPLOYEE:LIST_ALL_NEXT')
+    if 'P' in paging_options:
+      menu.add_menu_item('P', 'PREVIOUS', 'EMPLOYEE:LIST_ALL_PREV')
+    options = menu.get_options()
+
+    admin_menu = Menu(2, 13, 10)
     admin_menu.add_menu_item('+', 'ADD NEW', 'EMPLOYEE:ADD_NEW')
     options.update(self.__screen.display_admin_menu(admin_menu,self.llapi.user.role))
     
-    self.__screen.display_table(table)
+    if table.pages > 0:
+      # Store table so paging handlers can use paging
+      self.llapi.set_param('TABLE', table)
+
     return options
 
   def __select_from_list_handler(self):
-    emps = self.llapi.get_all_employees()
+    try:
+      # Get table from params if available
+      table: Table = self.llapi.get_param('TABLE')
+    except KeyError:
+      # Else create a new table
+      emps = self.llapi.get_all_employees()
+      table = self.__create_table(emps)
+    
     self.__screen.print('ENTER NUMBER (#) OF EMPLOYEE TO VIEW', 3, 6, self.__screen.get_css_class('DATA_KEY'))
-    table = self.__create_table(emps)
-    while True:
+    while True: # Ask user to select Employee
       filter = utils.NUMBERS
       filter += self.__screen.display_table(table)
       selection = self.__screen.get_string(3, 43, 2, filter)
+      # Clear error and previous input if exists
       [self.__screen.delete_character(3, x + 43) for x in range(40)]
       try:
+        # Get selected Employee and send it to View handler
         row = int(selection)
-        emp = emps[row - 1]
-        self.__screen.clear()
+        emp: Employee = table.data[row - 1]
+        self.__screen.clear() # Clears screen so view gets a clean canvas
         return self.__view_employee_handler(emp)
       except IndexError:
+        # User should select a correct number, display error and try again
         self.__screen.print('INVALID NUMBER', 3, 60, self.__screen.get_css_class('ERROR'))
       except ValueError:
+        # Switching pages
         key = selection.upper()
-        if key == 'F':
-          table.first_page()
-        elif key == 'P':
+        if key == 'P':
           table.previous_page()
         elif key == 'N':
           table.next_page()
-        elif key == 'L':
-          table.last_page()
         else:
+          # Fat fingers, should only press either P or N and then Enter
           self.__screen.flash()
 
   def __new_employee_handler(self):

@@ -11,6 +11,7 @@ class LlApi():
   def __init__(self):
     self.dlapi = DlApi()
     self.user: 'Employee | None' = None
+    self.params = {}
     self.__init_logic()
 
   def __init_logic(self):
@@ -24,11 +25,24 @@ class LlApi():
   ##### Exposed methods ########
 
   def set_logged_in_user(self, user: Employee) -> None:
+    ''' Store logged in Employee object here so view classes can access it. '''
     self.user = user
 
   def clear_logged_in_user(self) -> None:
+    ''' Logged in Employee set to none on logout. '''
     self.user = None
 
+  def set_param(self, key: str, value) -> None:
+    ''' Store params that other views might need to use. '''
+    self.params.update({key: value})
+
+  def get_param(self, key: str):
+    ''' Get stored param and delete it from params. 
+    Raises an error if no param is available for given key. '''
+    if key not in self.params:
+      raise KeyError(f'No data available for key {key}')
+    return self.params.pop(key)
+  
   ##### Building methods ########
 
   def new_building(self):
