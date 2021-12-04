@@ -1,7 +1,12 @@
 class Report():
 
-  def __init__(self, id: int,  report_date: str, approved: bool, task_type: str,\
-    description: str, note: str, hours: float) -> None:
+  def __init__(self, id: int,
+              report_date: str,
+              approved: bool,
+              task_type: str,
+              description: str,
+              note: str,
+              hours: float) -> None:
     self.id = id
     self.report_date = report_date
     self.approved = approved
@@ -10,9 +15,17 @@ class Report():
     self.note = note
     self.hours = hours
 
-  def __str__(self) -> str:
-    pass
-
+  def as_dict(self) -> 'dict[str, str | int]':
+    return {
+      'id': self.id,
+      'report_date': self.report_date, 
+      'approved': self.approved, 
+      'task_type': self.task_type,
+      'description': self.description,
+      'note': self.note,
+      'hours': self.hours,
+    }
+    
 class ContractorReport(Report):
 
   def __init__(self, id: int, 
@@ -32,6 +45,15 @@ class ContractorReport(Report):
     self.contractor_fee = contractor_fee
     self.contractor_rating = contractor_rating
   
+  def as_dict(self) -> 'dict[str, str | int]':
+    report = super().as_dict()
+    return report.update({
+      'contractor_id': self.contractor_id,
+      'employee_report_id': self.employee_report_id,
+      'contractor_fee': self.contractor_fee,
+      'contractor_rating': self.contractor_rating,
+    })
+
 class EmployeeReport(Report):
 
   def __init__(self, id: int,
@@ -52,27 +74,13 @@ class EmployeeReport(Report):
     self.material_cost = material_cost
     self.labor_cost = labor_cost
     self.total_cost = total_cost
-    self.contractor_reports = []
 
-  def add_contractor_report(self, report: ContractorReport):
-    self.contractor_reports.append(report)
-
-def as_dict(self) -> 'dict[str, str | int]':
-    return {
-      'id': self.id,
-      'report_date': self.report_date, 
-      'approved': self.approved, 
-      'task_type': self.task_type,
-      'description': self.description,
-      'note': self.note,
-      'hours': self.hours,
-      'contractor_id': self.contractor_id,
-      'employee_report_id': self.employee_report_id,
-      'contractor_fee': self.contractor_fee,
-      'contractor_rating': self.contractor_rating,
+  def as_dict(self) -> 'dict[str, str | int]':
+    report = super().as_dict()
+    return report.update({
       'employee_id': self.employee_id, 
       'task_id': self.task_id, 
       'material_cost': self.material_cost, 
       'labor_cost': self.labor_cost, 
-      'contractor_reports': self.contractor_reports
-    }
+      'total_cost': self.total_cost
+    })
