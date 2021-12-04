@@ -4,22 +4,22 @@
 │                         NaN │               │              │              │            │                 │            │
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
+│                                               #100  KULUSUK, GREENLAND                                                │
 │                                                                                                                       │
-│      SELECT NUMBER TO EDIT ATTRIBUTE                                                                                  │
+│                              ----------------------------------------------------------                               │
 │                                                                                                                       │
-│      1 : COUNTRY          GREENLAND                                                                                   │
-│      2 : CITY             NUUK                                                                                        │
-│      3 : AIRPORT          NUUK AIRPORT                                                                                │
-│      4 : ADDRESS:         HVF8+R25                                                                                    │ 
-│      5 : PHONE NUMBER:    +465 567 5555                                                                               │
-│      6 : OPENING HOURS:   06:00-23:00                                                                                 │
-│      7 : MANAGER:         JOHN DOE                                                                                    │
+│      TO EDIT INFORMATION FOR CHOSEN LOCATION, SELECT NUMBER                                                           │
+│                                                                                                                       │
+│      1  COUNTRY:           GREENLAND                                                                                  │
+│      2  CITY:              NUUK                                                                                       │
+│      3  AIRPORT:           NUUK AIRPORT                                                                               │
+│      4  ADDRESS:           HVF8+R25                                                                                   │ 
+│      5  PHONE NUMBER:      +465 567 5555                                                                              │
+│      6  OPENING HOURS:     06:00-23:00                                                                                │
+│      7  MANAGER:           JOHN DOE                                                                                   │
 │                                                                                                                       │
 │      A : APPLY CHANGES                                                                                                │
 │      D : DISCARD CHANGES                                                                                              │
-│                                                                                                                       │
-│                                                                                                                       │
-│                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │

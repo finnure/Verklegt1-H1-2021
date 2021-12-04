@@ -10,13 +10,13 @@
 │                                                                                                                       │
 │      TO EDIT INFORMATION FOR CHOSEN BUILDING, SELECT NUMBER:                                                          │
 │                                                                                                                       │
-│      1 : LOCATION            SVALBARD                                                                                 │
-│      2 : ADDRESS             LONGYEARBYEN HARBOR 1                                                                    │
-│      3 : TYPE                SUBMARINE                                                                                │
-│      4 : ROOMS               80                                                                                       │
-│      5 : STATE               MEDIUM                                                                                   │
-│      6 : MANAGER             JAN JACOBSSEN                                                                            │
-│      7 : ACCESSORIES         Y                                                                                        │
+│      1  LOCATION:             SVALBARD                                                                                │
+│      2  ADDRESS:              LONGYEARBYEN HARBOR 1                                                                   │
+│      3  TYPE:                 SUBMARINE                                                                               │
+│      4  ROOMS:                80                                                                                      │
+│      5  STATE:                MEDIUM                                                                                  │
+│      6  MANAGER:              JAN JACOBSSEN                                                                           │
+│      7  ACCESSORIES:          Y                                                                                       │
 │                                                                                                                       │
 │      A : APPLY ALL CHANGES                                                                                            │
 │      D : DISCARD CHANGES                                                                                              │

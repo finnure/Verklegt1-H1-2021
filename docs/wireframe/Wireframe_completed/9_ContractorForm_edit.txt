@@ -10,14 +10,14 @@
 │                                                                                                                       │
 │      TO EDIT INFORMATION FOR CHOSEN CONTRACTOR, SELECT NUMBER                                                         │
 │                                                                                                                       │
-│      1 : LOCATION:         GREENLAND                                                                                  │
-│      2 : NAME:             NUUK HANDYMAN                                                                              │
-│      3 : OPENING HOURS:    07:00-15:00                                                                                │
-│      4 : SPECIALITY:       HANDYMAN                                                                                   │
-│      5 : CONTACT NAME:     RALF JOHANSEN                                                                              │
-│      6 : CONTACT PHONE:    +299 55 54 53                                                                              │
-│      7 : CONTACT E-MAIL:   RL@HANDYMAN.GL                                                                             │
-│      8 : RATING:           4                                                                                          │
+│      1  LOCATION:             GREENLAND                                                                               │
+│      2  NAME:                 NUUK HANDYMAN                                                                           │
+│      3  OPENING HOURS:        07:00-15:00                                                                             │
+│      4  SPECIALITY:           HANDYMAN                                                                                │
+│      5  CONTACT NAME:         RALF JOHANSEN                                                                           │
+│      6  CONTACT PHONE:        +299 55 54 53                                                                           │
+│      7  CONTACT E-MAIL:       RL@HANDYMAN.GL                                                                          │
+│      8  RATING:               4                                                                                       │
 │                                                                                                                       │
 │      A : APPLY ALL CHANGES                                                                                            │
 │      D : DISCARD ALL CHANGES                                                                                          │
