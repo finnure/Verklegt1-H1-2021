@@ -1,6 +1,7 @@
 import curses
 import os
 from models.employee import Employee
+from ui.form import Form, FormField
 from ui.menu import Menu
 from ui.table import Table
 import utils
@@ -23,6 +24,8 @@ class Screen():
      '''
     self.lines = lines
     self.cols = cols
+    self.begin_y = begin_y
+    self.begin_x = begin_x
     self.__parent = parent
     self.__border = border
     self.set_string_termination()
@@ -88,6 +91,8 @@ class Screen():
 
   ######### PUBLIC METHODS ################
 
+  ######### Color and style methods ############
+
   def set_color_pair(self, pair: int, text_color: int, background_color: int = 0) -> None:
     ''' Defines color pair if color is supported and if numbers don't exceed max allowed. 
     Default background color is black.
@@ -127,7 +132,7 @@ class Screen():
   def get_css_class(self, name: str) -> int:
     ''' Returns a pre-defined "css class" for it to be applied to text in the view.
     Available css classes:\n
-    ERROR, FRAME_TEXT, OPTION, LOGO_NAME, LOGO_TEXT, TABLE_HEADER, PAGE_HEADER, DATA_KEY
+    ERROR, FRAME_TEXT, OPTION, LOGO_NAME, LOGO_TEXT, TABLE_HEADER, PAGE_HEADER, DATA_KEY, DISABLED, EDITING
     '''
     css_classes: 'dict[str,tuple[int,list[str]]]' = {
       'ERROR': (1,['REVERSE']),
@@ -139,11 +144,14 @@ class Screen():
       'PAGE_HEADER': (7,['BOLD']),
       'DATA_KEY': (8,['BOLD']),
       'DISABLED': (9,['NORMAL']),
+      'EDITING': (10, ['NORMAL'])
     }
     if name not in css_classes:
       return 0
     color, style = css_classes[name]
     return self.get_color_pair(color) + self.get_style(style)
+
+  ################ UI display methods ####################
 
   def display_admin_menu(self, menu: Menu, role: str) -> dict:
     ''' Displays a menu on the right side of the window if logged in user is manager. 
@@ -169,7 +177,7 @@ class Screen():
     Returns paging options as a string. '''
     filter = ''
     lines = table.max_lines + 5 if paging else table.max_lines + 3
-    window = Screen(lines, 110, table.begin_line + 5, table.begin_col + 2, False, self.__parent)
+    window = Screen(lines, self.cols - table.begin_col - 2, table.begin_line, table.begin_col, False, self)
     window.clear()
     col = 0
     for column in table:
@@ -222,7 +230,48 @@ class Screen():
       self.print('AST ', style=style)
     return filter
 
+  def display_form(self, form: Form, begin_line: int = 10, begin_col: int = 5):
+    ''' Creates a new window and displays the form on it. 
+    Returns the new window to enable editing. '''
+    lines = form.lines
+    if self.lines < begin_line + lines:
+      # Too many lines for parent window, fill to the bottom.
+      lines = self.lines - begin_line
+    if lines < 0:
+      raise RuntimeError(f'Not enough lines in parent window. Parent lines: {self.lines}, required lines: {begin_line}')
+    cols = self.cols - begin_col - 2 # use all available-2 columns in parent from begin_col
+    
+    window = Screen(lines, cols, begin_line, begin_col, False, self)
+    window.clear()
+    line = 0
+    for field in form: # iterate over each form field and print on screen
+      window.print(field.name, line, 0, window.get_css_class('DATA_KEY'))
+      if field.value is not None:
+        # Editing an already existing object. Display current values
+        window.print(str(field.value), line, form.spacing)
+      # Set starting position of field value for editing
+      field.set_position(line, form.spacing)
+      line += field.get_lines() # Supports multiline fields
+    window.refresh() # Make all the stuff appear on screen
+    return window
 
+  def edit_form_field(self, field: FormField) -> str:
+    ''' Allows user to edit field, returns new value. '''
+    # Need to add extra column to sub window to make sure cursor doesn't go out of bounds on last char
+    window = Screen(field.lines, field.cols + 1, field.line, field.col, parent=self)
+    
+    # Clear previous value from screen so get_string() gets a clear canvas.
+    window.clear()
+    window.refresh()
+    value = window.get_string(0, 0, field.cols, field.filter, field.value, True)
+    
+    # Remove EDITING formatting 
+    window.paint_character(0,0,0,field.cols)
+    window.refresh()
+    
+    return value
+
+  ############### Input/output #####################
 
   def set_string_termination(self, termination: list = None) -> None:
     ''' Sets default string termination for string inputs. 
@@ -242,16 +291,24 @@ class Screen():
     ''' Listenes to keyboard input and returns character. '''
     return self.__screen.get_wch()
 
-  def get_string(self, line: int, col: int, cols: int = 64, filter: str = utils.ALL_PRINTABLE) -> str:
+  def get_string(self, line: int, col: int, cols: int = 64, filter: str = utils.ALL_PRINTABLE, value: str = None, editing: bool = False) -> str:
     ''' Collects input from keyboard and returns as string.
     Only printable characters are allowed by default.
     Terminates on Enter, Tab, Arrow up, Arrow down.
     Backspace removes character from list. '''
-    # Turn on echo to make input appear in UI and curs_set True to make cursor visible
+    # Make cursor visible and move it to start of line
     curses.curs_set(1)
     self.move_cursor_to_coords(line, col)
     accumulated_string = []
     index = 0
+    if value is not None:
+      # Editing a form field that already has value. Prepare values accordingly and display current value
+      accumulated_string = list(value)
+      index = len(accumulated_string)
+      self.print(value)
+    if editing:
+      # Do fancy visual stuff to make the text we're editing stand out
+      self.paint_character(self.get_css_class('EDITING'), 0, 0, cols)
     while True:
       character = self.get_character()
       if ord(character) in self.string_termination:
@@ -275,10 +332,15 @@ class Screen():
       else:
         # Character not allowed
         self.flash()
+      if editing:
+        # Re-apply fancy visual stuff to keep looks consistent and move cursor to correct position
+        self.paint_character(self.get_css_class('EDITING'), 0, 0, cols)
+        self.move_cursor_by_offset(0, index)
+        self.refresh()
       if len(accumulated_string) >= cols:
         # max string length reached, break out of while and return string        
         break
-    # Reset terminal settings, hide cursor and input
+    # Reset terminal settings, hide cursor
     curses.curs_set(0)
     # Return list as string
     return ''.join(accumulated_string)
@@ -310,6 +372,8 @@ class Screen():
       self.__screen.addstr(text, style)
     else:
       self.__screen.addstr(line, col, text, style)
+
+  #################### Utility methods #######################
 
   def move_cursor_by_offset(self, lines: int, cols: int) -> bool:
     ''' Moves cursor by offset specified by lines and cols.
@@ -385,9 +449,9 @@ class Screen():
     for the parent window, sub window will range from begin_y x begin_x
     to the bottom right corner of the parent window. '''
     if begin_y + lines > self.lines or begin_x + cols > self.cols:
-      return self.__screen.subwin(begin_y, begin_x)
+      return self.__screen.derwin(begin_y, begin_x)
     else:
-      return self.__screen.subwin(lines, cols, begin_y, begin_x)
+      return self.__screen.derwin(lines, cols, begin_y, begin_x)
 
   def end(self) -> None:
     ''' If called on main window, everything is set to normal. 

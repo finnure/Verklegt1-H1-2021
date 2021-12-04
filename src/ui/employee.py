@@ -1,4 +1,5 @@
 from models.employee import Employee
+from ui.form import Form
 from ui.table import Table
 import utils
 from llapi import LlApi
@@ -127,7 +128,12 @@ class EmployeeView():
           self.__screen.flash()
 
   def __new_employee_handler(self):
-    pass
+    self.__screen.refresh()
+    form = Form(Employee.get_new_fields())
+    form_window = self.__screen.display_form(form)
+    for field in form:
+      form_window.edit_form_field(field)
+    return ''
 
   def __edit_employee_handler(self, id: int):
     pass

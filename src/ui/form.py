@@ -1,15 +1,13 @@
+import utils
+
 class Form():
 
-  def __init__(self):
-    self.form_fields = []
+  def __init__(self, fields: 'list[FormField]', instance = None):
+    self.instance = instance
+    self.form_fields = fields
+    self.lines = sum([field.get_lines() for field in fields])
+    self.spacing = max([len(field.name) for field in fields]) + 2
 
-  def add_form_field(self, name: str, value: str, value_type: str, line: int, col: int) -> None:
-    ''' Adds a new form field to the form.
-    Name is the property name for the field.
-    Value holds current value if it exists.
-    value_type can be one of: string, number, multiline, boolean, dropdown.
-    line and col mark the spot where form field should appear.'''
-    self.form_fields.append(FormField(name, value, value_type, line, col))
 
   def __getitem__(self, index):
     ''' Make form subscriptable. Form fields can be accessed using form[idx] '''
@@ -22,12 +20,32 @@ class Form():
     return iter(self.form_fields)
 
 class FormField():
-  def __init__(self, name: str, value: str, value_type: str, line: int, col: int):
+  def __init__(self, 
+                key: str, 
+                name: str, 
+                value: str,
+                lines: int,
+                cols: int,
+                filter: str = utils.ALL_PRINTABLE,
+                editable: bool = True,
+                validator = None,
+                options: str = None,
+                border: bool = False):
+    self.key = key
     self.name = name
     self.value = value
-    self.value_type = value_type
-    self.line = line
-    self.col = col
+    self.lines = lines
+    self.cols = cols
+    self.filter = filter
+    self.editable = editable
+    self.validator = validator
+    self.options = options
+    self.border = border
 
-  def __str__(self):
-    return f'<{self.value_type}>{self.name} = {self.value} at {self.col}x{self.line}'
+  def get_lines(self):
+    return self.lines + (2 if self.border else 0)
+
+  def set_position(self, line: int, col: int):
+    ''' Set postition where value begins. '''
+    self.line = line + (1 if self.border else 0)
+    self.col = col + (1 if self.border else 0)

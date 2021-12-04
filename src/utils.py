@@ -11,7 +11,7 @@ def none_if_not_list(list) -> 'list | None':
   ''' Returns list if it is a list, else returns None '''
   return list if type(list) is list else None
 
-########### Validation #################
+########### Validators #################
 
 def validate_headers(required_headers: 'list[str]', headers: 'list[str]') -> None:
   ''' Checks if all required headers are present. Throws an error if they're not. '''
@@ -29,3 +29,5 @@ def validate_phone(value: str) -> None:
 def validate_email(email: str) -> None:
   ''' TODO '''
 
+def validate_ssn(ssn: str) -> None:
+  ''' TODO '''
