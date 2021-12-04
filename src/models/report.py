@@ -15,19 +15,38 @@ class Report():
 
 class ContractorReport(Report):
 
-  def __init__(self, id: int, contractor_id: int, employee_report_id: int,
-                description: str,  hours: int, contractor_fee: float, contractor_rating: float) -> None:
-    super().__init__(id, approved, description, hours)
+  def __init__(self, id: int, 
+               report_date: str,
+               approved: bool,
+               task_type: str,
+               description: str,
+               note: str,
+               hours: float,
+               contractor_id: int, 
+               employee_report_id: int, 
+               contractor_fee: float, 
+               contractor_rating: float) -> None:
+    super().__init__(id, report_date, approved,task_type, description, note, hours)
     self.contractor_id = contractor_id
     self.employee_report_id = employee_report_id
     self.contractor_fee = contractor_fee
     self.contractor_rating = contractor_rating
-    
+  
 class EmployeeReport(Report):
 
-  def __init__(self, id: int, employee_id: int, task_id: int, description: str, note: str,
-              hours: int, material_cost: float, labor_cost: float, total_cost: float) -> None:
-    super().__init__(id, description, report_date, approved, task_type, hours)
+  def __init__(self, id: int,
+               report_date: str,
+               approved: bool,
+               task_type: str,
+               description: str,
+               note: str,
+               hours: float,
+               employee_id: int,
+               task_id: int,
+               material_cost: float,
+               labor_cost: float,
+               total_cost: float) -> None:
+    super().__init__(id, report_date, approved, task_type, description, note, hours)
     self.employee_id = employee_id
     self.task_id = task_id
     self.material_cost = material_cost

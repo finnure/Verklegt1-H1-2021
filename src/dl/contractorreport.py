@@ -9,11 +9,11 @@ class ContractorReportData():
       'contractor_id',
       'employee_report_id',
       'description',
-      'status',
-      'type',
+      'approved',
+      'task_type',
       'hours',
-      'cost',
-      'rating'
+      'contractor_fee',
+      'contractor_rating'
     ]
     self.data_folder = data_folder
     self.__file = FileHandler('contractor_reports.csv', self.data_folder, self.headers)
@@ -30,18 +30,17 @@ class ContractorReportData():
     ''' Updates contractor reports. Gets all data from file, replaces contractor report
     that matches id and writes all data back to file. '''
     contractorreports = self.get_all()
-    # Ternary with list comprehension. This replaces employee in list if emp.id matches id
+    # Ternary with list comprehension. This replaces contractor report in list if con_rep.id matches id
     updated_contractorreport = [contractorreport.as_dict() if con_rep.id == id else con_rep.as_dict() for con_rep in contractorreports]
     self.__file.write(updated_contractorreport)
     return self.get_one(id)
 
   def delete(self, id: int) -> None:
-    ''' Updates contractor report. Gets all data from file, replaces contractor report
-    that matches id and writes all data back to file. '''
-    contractor_reports = self.get_all()
-    # Ternary with list comprehension. This replaces contractor in list if emp.id matches id
-    filtered_con_reps = [con_rep.as_dict() for con_rep in contractor_reports if con_rep.id != id]
-    self.__file.write(filtered_con_reps)
+    ''' Removes contractor report from file. Gets all data from file, filters contractor report
+    that matches id from the list and writes all data back to file '''
+    contractorreports = self.get_all()
+    filtered_contractorreports = [con_rep.as_dict() for con_rep in contractorreports if con_rep.id != id]
+    self.__file.write(filtered_contractorreports)
 
   def get_all(self) -> 'list[ContractorReport]':
     ''' Get all contractor reports from file and return as list of ContractorReport instances. '''
@@ -72,22 +71,18 @@ class ContractorReportData():
         raise KeyError(f'Invalid filter key for ContractorReport: {key}')
     return filtered_contractor_reports
 
-  def parse(self, data: list):
+  def __parse(self, contractor_report: 'dict[str,str]') -> ContractorReport:
     ''' Converts data to either a dict or an instance of ContractorReport '''
-    pass
-
-  def prepare(self, contractor_report: 'dict[str,str]') -> ContractorReport:
-    ''' Converts data to a format that file expects '''
     return ContractorReport(
       int(contractor_report['id']), 
       int(contractor_report['contractor_id']),
       int(contractor_report['employee_report_id']),
       contractor_report['description'],
-      contractor_report['status'],
-      contractor_report['type'],
+      contractor_report['approved'],
+      contractor_report['task_type'],
       float(contractor_report['hours']),
-      int(contractor_report['cost']),
-      float(contractor_report['rating']),
+      int(contractor_report['contractor_fee']),
+      float(contractor_report['contractor_rating']),
     )
 
 
