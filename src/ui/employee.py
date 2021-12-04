@@ -20,6 +20,7 @@ class EmployeeView():
       'ADD_NEW': self.__new_employee_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
       'LIST_ALL': self.__list_all_handler,
+      'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_employee_handler,
       'EDIT': self.__edit_employee_handler,
       'GET_ID': self.__get_id_handler
@@ -83,6 +84,21 @@ class EmployeeView():
 
   def __list_all_handler(self):
     emps = self.llapi.get_all_employees()
+    table = self.__create_table(emps)
+    menu = Menu()
+    menu.add_menu_item('V', 'SELECT AN EMPLOYEE TO VIEW', 'EMPLOYEE:SELECT_FROM_LIST')
+    options = menu.get_options()
+    self.__screen.display_menu(menu)
+
+    admin_menu = Menu()
+    admin_menu.add_menu_item('+', 'ADD NEW', 'EMPLOYEE:ADD_NEW')
+    options.update(self.__screen.display_admin_menu(admin_menu,self.llapi.user.role))
+    
+    self.__screen.display_table(table)
+    return options
+
+  def __select_from_list_handler(self):
+    emps = self.llapi.get_all_employees()
     self.__screen.print('ENTER NUMBER (#) OF EMPLOYEE TO VIEW', 3, 6, self.__screen.get_css_class('DATA_KEY'))
     table = self.__create_table(emps)
     while True:
@@ -109,7 +125,6 @@ class EmployeeView():
           table.last_page()
         else:
           self.__screen.flash()
-
 
   def __new_employee_handler(self):
     pass
