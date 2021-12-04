@@ -1,0 +1,47 @@
+﻿ID,Short Desription,Type,Estimated cost,Start date,Due date,Modified,Priority,Building_ID,Employee,Contractor,Recurrent,Repets every,Title,Status
+T100,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-11-30,2021-12-05,2021-12-04,High,AA999,Aqqaluk Lynge,Nuuk Handymand,Y,Week,Spread boron into nuclear furnace,Completed
+T101,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-06,2021-06-12,,High,AA999,Aqqaluk Lynge,Nuuk Handymand,Y,Week,Spread boron into nuclear furnace,Assigned
+T102,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-13,2021-12-19,,High,AA999,Aqqaluk Lynge,Nuuk Handymand,Y,Week,Spread boron into nuclear furnace,Assigned
+T103,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-20,2021-12-26,,High,AA999,Aqqaluk Lynge,Nuuk Handymand,Y,Week,Spread boron into nuclear furnace,Assigned
+T104,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-27,2022-01-02,,High,AA999,Aqqaluk Lynge,Nuuk Handymand,Y,Week,Spread boron into nuclear furnace,Assigned
+T105,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2021-11-01,2021-11-15,2021-11-18,Low,AA999,Line Bruun Jensen,,Y,Year,Put up christmas decorations,Completed
+T106,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2022-11-01,2022-11-15,,Low,AA999,,,Y,Year,Put up christmas decorations,Available
+T107,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2023-11-01,2023-11-15,,Low,AA999,,,Y,Year,Put up christmas decorations,Available
+T108,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2024-11-01,2024-11-15,,Low,AA999,,,Y,Year,Put up christmas decorations,Available
+T109,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2025-11-01,2025-11-15,,Low,AA999,,,Y,Year,Put up christmas decorations,Available
+T110,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2022-01-10,2022-01-24,,Low,AA999,Line Bruun Jensen,,Y,Year,Take down christmas decorations,Assigned
+T111,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2023-01-10,2023-01-24,,Low,AA999,,,Y,Year,Take down christmas decorations,Available
+T112,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2024-01-10,2024-01-24,,Low,AA999,,,Y,Year,Take down christmas decorations,Available
+T113,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2025-01-10,2025-01-24,,Low,AA999,,,Y,Year,Take down christmas decorations,Available
+T114,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2026-01-10,2026-01-24,,Low,AA999,,,Y,Year,Take down christmas decorations,Available
+T115,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,64-3900 - 64-3910,,,Y,Year,Cool down the Iglo and fill up holes,Available
+T116,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,64-3900 - 64-3910,,,Y,Year,Cool down the Iglo and fill up holes,Available
+T117,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2024-07-15,2024-08-25,,Medium,64-3900 - 64-3910,,,Y,Year,Cool down the Iglo and fill up holes,Available
+T118,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2025-07-15,2025-08-25,,Medium,64-3900 - 64-3910,,,Y,Year,Cool down the Iglo and fill up holes,Available
+T119,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2026-07-15,2026-08-25,,Medium,64-3900 - 64-3910,,,Y,Year,Cool down the Iglo and fill up holes,Available
+T120,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2021-09-25,2021-10-01,2021-11-10,Low,ix-9492 - ix-9502 ,Bjørk Brimnes,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Approved
+T121,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-07,,Low,ix-9492 - ix-9502 ,,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
+T122,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-14,,Low,ix-9492 - ix-9502 ,,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
+T123,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-15,2022-05-21,,Low,ix-9492 - ix-9502 ,,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
+T124,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-22,2022-05-28,,Low,ix-9492 - ix-9502 ,,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
+T125,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2021-04-01,2021-04-25,2021-05-20,Low,ix-9492 - ix-9502 ,Áki Knudsen,,Y,Year,Plan lawn mowing and maintainance of mud houses,Approved
+T126,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,Low,ix-9492 - ix-9502 ,,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
+T127,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2023-04-01,2023-04-25,,Low,ix-9492 - ix-9502 ,,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
+T128,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2024-04-01,2024-04-25,,Low,ix-9492 - ix-9502 ,,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
+T129,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2025-04-01,2025-04-25,,Low,ix-9492 - ix-9502 ,,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
+T130,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-01,2022-01-04,,Medium,F959594,,,Y,Week,Window cleaning,Available
+T131,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-08,2022-01-11,,Medium,F959595,,,Y,Week,Window cleaning,Available
+T132,All windows of all buildings must be cleaned once a week,Maintainance,15000,2022-01-01,2022-01-04,,Medium,64-3875-6,,,Y,Week,Window cleaning,Available
+T133,All windows of all buildings must be cleaned once a week,Maintainance,15000,2022-01-08,2022-01-11,,Medium,64-3875-6,,,Y,Week,Window cleaning,Available
+T134,All windows of all buildings must be cleaned once a week,Maintainance,40000,2022-01-01,2022-01-04,,Medium,64-3812,,,Y,Week,Window cleaning,Available
+T135,All windows of all buildings must be cleaned once a week,Maintainance,40000,2022-01-08,2022-01-11,,Medium,64-3812,,,Y,Week,Window cleaning,Available
+T136,All windows of all buildings must be cleaned once a week,Maintainance,20000,2022-01-01,2022-01-04,,Medium,ix-9331,,,Y,Week,Window cleaning,Available
+T137,All windows of all buildings must be cleaned once a week,Maintainance,20000,2022-01-08,2022-01-11,,Medium,ix-9331,,,Y,Week,Window cleaning,Available
+T138,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-01,2022-01-04,,Medium,ix-2239,,,Y,Week,Window cleaning,Available
+T139,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-08,2022-01-11,,Medium,ix-2239,,,Y,Week,Window cleaning,Available
+T140,A window in the kitchen is broken and needs to be fixed asap,Repair,45000,2021-12-10,2021-12-10,,High,F959594,,,N,,Fix broken window,Available
+T141,The front door needs to be removed and a new one installed in place,Repair,210000,2021-12-13,2021-12-13,,High,ix-9331,Filip í Lida,MT Højgaard,N,,Replace front door,Assigned
+T142,Check over the electrical panel,Repair,50000,2022-02-01,2022-02-10,,High,64-3812,,,N,,Check over the electrical panel,Available
+T143,"Toilet is overflooding, needs to be fixed asap",Repair,180000,2021-11-10,2021-11-10,2021-11-25,High,ix-2239,André Hjaltalin,Demich,N,,Fix toilet,Approved
+T144,All rooms in the apartment need to be painted ,Maintainance,800000,2021-11-20,2021-11-05,2021-11-21,High,64-3875-6,Nauja Lynge,,N,,Paint the apartment,Completed
+T145,A new fence needs to be built around the house,Repair,1200000,2021-09-15,2021-10-15,2021-10-20,Medium,F959594,Jacob Yxa,Svalbard Bygg AS,N,,Build a new fence,Approved

@@ -1,0 +1,16 @@
+﻿ID,Location ID,Name,SSN,Address,Phone,Mobile,Email,Role,Assigned tasks
+100,102,Jan Jacobsen,1083992942,"Vei 230 12, Longyearbyen, Svalbard",+47 92 09 77 00,+354 777 1337,jan.jacobsen@nanair.is,Manager,5
+101,102,Jacob Yxa,2403759199,"Vei 224 3B, Longyearbyen, Svalbard",+47 92 09 77 01,+354 777 1338,jacob.yxa@nanair.is,Employee,2
+102,102,Nanna Daema,1401784269,"Ivan Starostin st. 109, Barantsburg, Svalbard",+47 92 09 77 02,+354 777 1339,nanna.daema@nanair.is,Employee,9
+103,100,Minik Wallace,1906522433,"Isaajap Aqqutaa 1, 3900, Nuuk, Greenland",+299 34 24 67,+354 777 1361,minik.wallace@nanair.is,Manager,2
+104,100,Aqqaluk Lynge,1411811349,"Qattaaq 44, 3905, Nuuk, Greenland",+299 35 24 66,+354 777 1362,aqqaluk.lynge@nanair.is,Employee,4
+105,100,Nauja Lynge,1006706344,"Qunguleq 3759, 3905, Nuuk, Greenland",+299 31 21 64,+354 777 1363,nauja.lynge@nanair.is,Employee,5
+106,101,Annette Djurhuus,0602898679,"Tjarnardeild 8, 100, Tórshavn, Faroe Islands",+298 772000,+354 777 1381,annette.djurhuus@nanair.is,Manager,4
+107,101,Áki Knudsen,0408644389,"Traðartún 3, 108, Argir, Faroe Islands",+298 617210,+354 777 1381,aki.knudsen@nanair.is,Employee,4
+108,101,André Hjaltalin,0708526993,"Í Lágni 19, 100, Tórshavn, Faroe Islands",+298 661441,+354 777 1382,Andre.hjaltalin@nanair.is,Employee,0
+109,101,Bjørk Brimnes,1707617674,"Torfinsgøta 4, Tórshavn, Faroe Islands",+298 546512,+354 777 1386,bjork.brimnes@nanair.is,Employee,5
+110,101,Filip í Lida,1712587809,"Áarrás 11, Tórshavn, Faroe Islands",+298 819854,+354 777 1377,filip.i.lida@nanair.is,Employee,6
+111,102,Audun Bårdseth,3107795209,"Vei 509.2 H0102, Longyearbyen, Svalbard",+47 23 33 91 00,+354 777 1371,audun.bardseth@nanair.is,Employee,1
+112,102,Siri Wiersen,0604654937,"Sjøområdet, 9170 Longyearbyen",+47 79 02 47 00,+354 777 1370,siri.wiersen@nanair.is,Employee,5
+113,100,Kaspar Mondrup,3007716933,"Issortarfimmut 3, 3900 Nuuk, Greenland",+299 34 95 00,+354 777 1341,kaspar.mondrup@nanair.is,Employee,8
+114,100,Line Bruun Jensen,1604741366,"Tuapannguit 11B, 3905 Nuuk, Greenland",+299 34 96 60,+354 777 1365,line.brun.jensen@nanair.is,Employee,9
