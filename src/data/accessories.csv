@@ -1,0 +1,41 @@
+﻿ID,Building ID,Name,Description,State,Bought,Last maintained
+100,101,Sauna,Sauna room for guests,Good,2017-04-20,2019-03-18
+101,101,OK-650VV Nuclear furnace,Heating equipment for chilly days,Good,2021-08-18,2021-10-07
+102,101,Gym equipment,Barbells and bumper plates,Bad,2020-04-06,2020-08-21
+103,101,Pool table,"Table, ball, and two ques",Good,2021-02-28,2021-04-03
+104,101,Massage table,Portable massage table,Bad,2017-09-21,2019-12-26
+105,101,Hot tub,Electric hot tub,Good,2017-01-23,2018-01-18
+106,101,Gaming equipment,PCs for gaming,Good,2017-10-24,2018-08-19
+107,101,Electricity panel,Panel 1001,Good,2019-08-18,2020-09-17
+108,101,Electricity panel,Panel 1002,Good,2019-10-23,2019-10-25
+109,101,Electricity panel,Panel 1003,Good,2019-09-26,2019-12-31
+110,101,Engine room,Engine 1,Good,2017-02-27,2021-04-10
+111,101,Engine room,Engine 2,Good,2017-10-09,2020-03-23
+112,101,Engine room,Engine 3,Good,2016-06-01,2021-10-18
+113,101,Storage room,Storage room 1,Good,2016-12-13,2020-04-07
+114,101,Storage room,Storage room 2,Good,2019-09-24,2021-04-21
+115,101,Boat,Lifeboat 1,Good,2021-11-28,2021-12-01
+116,101,Boat,Lifeboat 2,Bad,2016-06-11,2017-12-05
+117,101,Fishing equipment,Two fishing rods and bait,Bad,2017-08-09,2020-11-10
+118,101,Diving equipment,Two fully equipped scuba diving equipment,Good,2019-03-13,2020-05-29
+119,101,Snowmobile,Artic cat blast xr 4000 touring,New,2018-10-30,2019-08-19
+120,101,Snowmobile,Artic cat norseman,Good,2020-04-18,2020-09-28
+121,100,TV,65 inch Samsung TV,New,2020-01-22,2020-05-26
+122,100,TV,65 inch Samsung TV,New,2017-11-10,2018-11-19
+123,100,Snowmobile,Polaris RMK 600,Good,2016-11-10,2020-05-26
+124,113,Outdoor grill,Webber grill,New,2021-10-07,2021-10-16
+125,113,Skiing eqipment,10 set of skiis and 5 set of snwoboards,Good,2016-07-05,2018-08-15
+126,113,TV,55 inch Samsung TV,Bad,2019-08-02,2020-10-16
+127,115,Hut tub,Electric hot tub,New,2018-07-31,2020-11-06
+128,115,Sauna,Sauna room for guests,Good,2016-04-15,2018-05-24
+129,115,Indoor pool,50m swimming pool for activities,Good,2019-12-14,2021-01-05
+130,115,TV,55 inch Samsung TV,Good,2020-11-09,2021-09-02
+131,115,TV,55 inch Samsung TV,Good,2020-09-05,2021-07-14
+132,115,TV,55 inch Samsung TV,Good,2017-09-21,2021-01-30
+133,116,Bicycle ,Touring bicycle,New,2018-06-25,2020-11-23
+134,116,Bicycle ,Touring bicycle,New,2017-10-30,2020-03-08
+135,116,Outdoor grill,Webber grill,New,2020-02-13,2020-09-27
+136,116,TV,75 inch Samsung TV,New,2017-07-30,2019-09-24
+137,117,PlayStation 5,PlayStation 5 console and 2 joysticks,New,2017-08-22,2019-08-11
+138,117,Xbox One,Xbox One console and 2 joysticks,New,2016-12-18,2019-04-13
+139,117,Nintendo Wii,Nintendo Wii console and 2 joysticks,New,2016-11-02,2017-10-18
