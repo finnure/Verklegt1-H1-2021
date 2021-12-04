@@ -5,13 +5,13 @@
 ├─────────────────────────────┴───────────────┴──────────────┴──────────────┴────────────┴─────────────────┴────────────┤
 │                                                                                                                       │
 │                                                                                        + : ADD NEW EMPLOYEE (ADMIN)   │
-│      S : SEARCH FOR A EMPLOYEE BY ID                                                                                  │
+│      I : SEARCH FOR A EMPLOYEE BY ID                                                                                  │
 │      A : VIEW ALL EMPLOYEES                                                                                           │
 │      F : FILTER EMPLOYEE LIST                                                                                         │
 │                                                                                                                       │
 │          IF (F) FILTER BY:                                                                                            │
 │               1 : LOCATION                                                                                            │
-│               2 : SPECIALITY                                                                                          │
+│                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
 │                                                                                                                       │
