@@ -324,8 +324,8 @@ To do
 - [x] - Finna fórnarlömb í prófanir (Kristín er komin 2 og Lára 2)
 ### Framkvæmt í dag
 - Lára: Wireframe og Figma vinna (5 klst)
-- Finnur: Forritun
-- Stefán: UC
+- Finnur: Forritun (6 klst)
+- UC út frá kröfum og flæði innan karfisins (3 klst)
 
 [Heim](#efnisyfirlit)
 
@@ -340,8 +340,14 @@ To do
 ## Dagur 14
 
 ### Plan dagsins
+- [] - klára UC
+- [x] - Klára Figma map
+- [] - halda áfram með að forrita virkni kerfins fyrir A og B kröfur
 
 ### Framkvæmt í dag
+Stefán og Kristín: kláruðu UC fyrir notendaprófanir
+Lára: kláraði Figma kortlagningu til að nota í prófunum
+Finnur: klárar að fínpússa og bæta við þeim virknum sem skilgreindar eru í A og B kröfum
 
 [Heim](#efnisyfirlit)
 
