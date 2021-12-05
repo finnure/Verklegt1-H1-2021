@@ -7,6 +7,7 @@ from dl.employeereport import EmployeeReportData
 from dl.location import LocationData
 from dl.task import TaskData
 from models.employee import Employee
+from models.location import Location
 class DlApi():
 
   def __init__(self):
@@ -168,7 +169,7 @@ class DlApi():
   def delete_location(self):
     self.location_data.delete()
 
-  def get_all_locations(self):
+  def get_all_locations(self) -> 'list[Location]':
     self.location_data.get_all()
 
   def get_one_location(self, id):

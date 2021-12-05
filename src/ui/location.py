@@ -1,5 +1,6 @@
 from models.location import Location
 from ui.form import Form
+from ui.login import LoginView
 from ui.table import Table
 from utils import Filters
 from llapi import LlApi
@@ -26,14 +27,12 @@ class LocationView():
       'LIST_BUILDINGS': self.__list_buildings_handler,
       'LIST_EMPLOYEES': self.__list_emmployees_handler,
       'LIST_CONSTRACTORS': self.__list_contractors_handler,
-      'LIST_TASKS': self.__list_tasks_handler,
-      'LIST_REPORTS': self.__list_reports_handler,
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_location_handler,
       'ADD_NEW': self.__new_location_handler,
       'SAVE': self.__save_location_handler,
       'EDIT': self.__edit_location_handler,
-      'GET_ID': self.__get_id_handler
+      #'GET_ID': self.__get_id_handler Þetta þarf ekki?
     } 
 
   ################## Handler methods #########################
@@ -156,23 +155,103 @@ class LocationView():
     except StopIteration:
       # No id present, adding new employee
       loc = self.llapi.new_employee(form)
-    return self.__view_employee_handler(loc)
+    return self.__view_location_handler(loc)
 
-  def create_menu():
+  def __edit_location_handler(self):
+    ''' Handler to display a form to edit Employee. '''
+    try:
+      loc: Location = self.llapi.get_param(LocConst.LOCATION_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err), 6, 6, Styles.ERROR)
+      return {}
+    
+    self.__screen.print(str(loc), 2, 50, Styles.PAGE_HEADER)
+    self.__screen.print('PLEASE EDIT EACH FIELD IN THE FORM', 5, 6, Styles.DATA_KEY)
+    self.__screen.refresh()
+
+    form = Form(loc.get_edit_fields())
+    form_window = self.__screen.display_form(form)
+    for field in form:
+      if field.options is not None:
+        # TODO Display options list
+        pass
+      if field.editable:
+        form_window.edit_form_field(field)
+    
+    # Save form in params so the save handler can pick it up and save data to disk
+    self.llapi.set_param(LocConst.FORM_PARAM, form)
+
+    # Delete outdated message and display menu options
+    self.__screen.delete_character(5, 6, 50)
+    menu = Menu(18)
+    menu.add_menu_item('A', 'APPLY CHANGES', LocConst.SAVE)
+    menu.add_menu_item('D', 'DISCARD CHANGES', LocConst.MENU)
+    self.__screen.display_menu(menu)
+    return menu.get_options()
+
+  def find_handler(self, input: str):
+    ''' This method is called by ui handler when an Employee view is requested.
+    The screen is cleared before calling the requested handler and refreshed
+    before returning back to ui handler to make sure everything is displayed correctly. '''
+    if input not in self.__input_map:
+      raise KeyError(f'Employee does not have a handler for {input}')
+    handler: function = self.__input_map[input]
+    self.__screen.clear()
+    options = handler()
+    self.__screen.refresh()
+    return options
+
+  def __select_from_list_handler(self):
+    ''' Handler that allows user to select an Employee from a list.
+    Available input is either a row number or an available paging option.
+    If wrong row number is selected, an error is displayed and user asked
+    to try again. '''
+    try:
+      # Get table from params if available
+      table: Table = self.llapi.get_param(LocConst.TABLE_PARAM)
+    except KeyError:
+      # Else create a new table
+      locs = self.llapi.get_all_employees()
+      table = self.__create_table(locs)
+    
+    self.__screen.print('ENTER NUMBER (#) OF EMPLOYEE TO VIEW', 3, 6, Styles.DATA_KEY)
+    while True: # Ask user to select Employee
+      filter = Filters.NUMBERS
+      filter += self.__screen.display_table(table)
+      selection = self.__screen.get_string(3, 43, 2, filter)
+      # Clear error and previous input if exists
+      [self.__screen.delete_character(3, x + 43) for x in range(40)]
+      try:
+        # Get selected Employee and send it to View handler
+        row = int(selection)
+        loc: LoginView = table.data[row - 1]
+        self.__screen.clear() # Clears screen so view gets a clean canvas
+        return self.__view_employee_handler(loc)
+      except IndexError:
+        # User should select a correct number, display error and try again
+        self.__screen.print('INVALID NUMBER', 3, 60, Styles.ERROR)
+      except ValueError:
+        # Switching pages
+        key = selection.upper()
+        if key == 'P':
+          table.previous_page()
+        elif key == 'N':
+          table.next_page()
+        else:
+          # Fat fingers, should only press either P or N and then Enter
+          self.__screen.flash()
+
+  def __list_buildings_handler(self):
     pass
-  def create_form():
+
+  def __list_emmployees_handler(self):
     pass
-  def display_menu():
-    pass
-  def display_view():
-    pass
-  def display_list_view():
-    pass
-  def display_form():
+  
+  def __list_contractors_handler(self):
     pass
 
   def __create_table(self, locs: 'list[Location]', begin_line: int = 5) -> Table:
-    ''' Create a Table object from a list of Employees. Table class takes in
+    ''' Create a Table object from a list of Locations. Table class takes in
     a list of employee instances and list of headers to create a table. '''
     headers = {
       'id': 'ID',
@@ -208,4 +287,14 @@ class LocationView():
     header_text = '#{}  {}, {}'.format(str(loc.id),loc.city,loc.country)
     self.__screen.print(header_text,3,59-(len(header_text) // 2))
 
-#line 5 og 11
+  def find_handler(self, input: str):
+    ''' This method is called by ui handler when an Location view is requested.
+    The screen is cleared before calling the requested handler and refreshed
+    before returning back to ui handler to make sure everything is displayed correctly. '''
+    if input not in self.__input_map:
+      raise KeyError(f'Location does not have a handler for {input}')
+    handler: function = self.__input_map[input]
+    self.__screen.clear()
+    options = handler()
+    self.__screen.refresh()
+    return options

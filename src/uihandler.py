@@ -30,7 +30,7 @@ class UiHandler():
     self.login_view = LoginView(self.__window, self.llapi)
     self.view_frame = ViewFrame(self.__screen, self.llapi, self.header_menu, self.footer_menu)
     self.main_menu_view = MainMenuView(self.__window)
-    self.location_view = LocationView(self.__window)
+    self.location_view = LocationView(self.__window, self.llapi)
     self.employee_view = EmployeeView(self.__window, self.llapi)
     self.building_view = BuildingView(self.__window)
     # self.accessory_view = AccessoryView(self.__window)
@@ -67,7 +67,7 @@ class UiHandler():
 
   def __init_menu(self):
     header_menu = Menu()
-    header_menu.add_menu_item('L', '(L)OCATIONS', 'LOCATION:MENU')
+    header_menu.add_menu_item('L', '(L)OCATIONS', 'LOCATION:LIST_ALL')
     header_menu.add_menu_item('B', '(B)UILDING', 'BUILDING:MENU')
     header_menu.add_menu_item('E', '(E)MPLOYEE', 'EMPLOYEE:MENU')
     header_menu.add_menu_item('T', '(T)ASKS', 'TASK:MENU')
