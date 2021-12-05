@@ -42,7 +42,6 @@ class Building():
   def get_new_fields():
     return [
       FormField('registration', 'REGISTRATION ID', None, 1, 10, validators=[Validate.required]),
-      FormField('location_id', 'LOCATION', None, 1, 3, validators=[Validate.options], options='LOCATION'),
       FormField('description', 'DESCRIPTION', None, 1, 64),
       FormField('state', 'STATE', None, 1, 64),
       FormField('address', 'ADDRESS', None, 1, 32),
@@ -55,7 +54,7 @@ class Building():
     return [
       FormField('id', 'ID', self.id, 1, 3, editable=False),
       FormField('registration', 'REGISTRATION ID', self.registration, 1, 10, validators=[Validate.required]),
-      FormField('location_id', 'LOCATION', self.location_id, 1, 3, validators=[Validate.options], options='LOCATION'),
+      FormField('location_id', 'LOCATION', self.location_id, 1, 3, editable=False),
       FormField('description', 'DESCRIPTION', self.description, 1, 64),
       FormField('state', 'STATE', self.state, 1, 64),
       FormField('address', 'ADDRESS', self.address, 1, 32),

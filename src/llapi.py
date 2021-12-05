@@ -47,10 +47,10 @@ class LlApi():
   ##### Building methods ########
 
   def new_building(self, form: Form):
-    return self.building_logic.new()
+    return self.building_logic.new(form, self.user.location_id)
   
   def update_building(self, form: Form):
-    return self.building_logic.update()
+    return self.building_logic.update(form)
 
   def get_building(self, id: int):
     return self.building_logic.get(id)
@@ -70,7 +70,7 @@ class LlApi():
   ##### Contractor methods ########
 
   def new_contractor(self, form: Form):
-    return self.contractor_logic.new(form)
+    return self.contractor_logic.new(form, self.user.location_id)
   
   def update_contractor(self, form: Form):
     return self.contractor_logic.update(form)
@@ -93,7 +93,7 @@ class LlApi():
   ##### Employee methods ########
 
   def new_employee(self, form: Form):
-    return self.employee_logic.new(form)
+    return self.employee_logic.new(form, self.user.location_id)
   
   def update_employee(self, form: Form):
     return self.employee_logic.update(form)

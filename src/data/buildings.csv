@@ -1,29 +1,30 @@
-﻿ID,Building_ID,Location_ID,Free,Description,State,Accessories,Tasks,Address,Manager,Reports,Size(m2),Rooms,Type
-100,F959594,102,No,Rental house,Good,11,4,Vei 217,Jan Jacobsen,6,150,4,House
-101,AA999,102,No,Submarine hotel,Good,5,1,Longyearbyen Harbor 1,Jan Jacobsen,3,5000,80,Submarine
-102,64-3900,100,Yes,Reception and restaurants,Good,9,3,iGloo-Ville,Minik Wallace,9,500,1,Reception
-103,64-3901,100,No,Igloo,Good,10,4,iGloo-Ville,Minik Wallace,10,35,1,Igloo
-104,64-3902,100,No,Igloo,Good,17,4,iGloo-Ville,Minik Wallace,2,35,1,Igloo
-105,64-3903,100,No,Igloo,Good,18,4,iGloo-Ville,Minik Wallace,8,35,1,Igloo
-106,64-3904,100,Yes,Igloo,Good,5,2,iGloo-Ville,Minik Wallace,9,35,1,Igloo
-107,64-3905,100,Yes,Igloo,Good,5,4,iGloo-Ville,Minik Wallace,7,35,1,Igloo
-108,64-3906,100,Yes,Igloo,Good,14,4,iGloo-Ville,Minik Wallace,7,35,1,Igloo
-109,64-3907,100,Yes,Igloo,Good,10,3,iGloo-Ville,Minik Wallace,9,35,1,Igloo
-110,64-3908,100,No,Igloo,Good,18,2,iGloo-Ville,Minik Wallace,2,35,1,Igloo
-111,64-3909,100,Yes,Igloo,Good,8,3,iGloo-Ville,Minik Wallace,2,35,1,Igloo
-112,64-3910,100,No,Igloo,Good,10,0,iGloo-Ville,Minik Wallace,9,35,1,Igloo
-113,64-3875-6,100,No,2 room apartment,Good,13,1,Suloraq 42,Minik Wallace,5,69,2,Apartment building
-114,64-3831,100,Yes,,Good,15,5,Igimaq 7,Minik Wallace,6,10,1,Igloo
-115,64-3812,100,No,,Good,15,5,Nuussuaq 4,Minik Wallace,9,400,8,Villa
-116,ix-9331,101,No,,Good,5,4,Skákið 15,Annette Djurhuus,2,100,3,Row house
-117,ix-2239,101,No,,Good,19,0,Svalbarðsvegur 22,Annette Djurhuus,6,200,5,House
-118,ix-9492,101,Yes,,Good,20,3,Nýggivegur 1,Annette Djurhuus,2,15,1,Mud house
-119,ix-9493,101,No,,Good,17,5,Nýggivegur 1,Annette Djurhuus,8,15,1,Mud house
-120,ix-9494,101,No,,Good,5,4,Nýggivegur 1,Annette Djurhuus,9,15,1,Mud house
-121,ix-9495,101,Yes,,Good,13,5,Nýggivegur 1,Annette Djurhuus,7,15,1,Mud house
-122,ix-9496,101,No,,Good,15,0,Nýggivegur 1,Annette Djurhuus,6,15,1,Mud house
-123,ix-9497,101,Yes,,Good,17,2,Nýggivegur 1,Annette Djurhuus,8,15,1,Mud house
-124,ix-9498,101,Yes,,Good,9,0,Nýggivegur 1,Annette Djurhuus,5,15,1,Mud house
-125,ix-9499,101,No,,Good,11,2,Nýggivegur 1,Annette Djurhuus,2,15,1,Mud house
-126,ix-9500,101,No,,Good,11,4,Nýggivegur 1,Annette Djurhuus,3,15,1,Mud house
-127,ix-9501,101,Yes,,Good,14,4,Nýggivegur 1,Annette Djurhuus,10,15,1,Mud house
+id,registration,location_id,description,state,address,size,rooms,type
+100,F959594,102,Rental house,Good,Vei 217,151,4,House
+101,AA999,102,Submarine hotel,Good,Longyearbyen Harbor 1,5000,80,Submarine
+102,64-3900,100,Reception and restaurants,Good,iGloo-Ville,500,1,Reception
+103,64-3901,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+104,64-3902,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+105,64-3903,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+106,64-3904,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+107,64-3905,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+108,64-3906,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+109,64-3907,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+110,64-3908,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+111,64-3909,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+112,64-3910,100,Igloo,Good,iGloo-Ville,35,1,Igloo
+113,64-3875-6,100,2 room apartment,Good,Suloraq 42,69,2,Apartment building
+114,64-3831,100,,Good,Igimaq 7,10,1,Igloo
+115,64-3812,100,,Good,Nuussuaq 4,400,8,Villa
+116,ix-9331,101,,Good,Skákið 15,100,3,Row house
+117,ix-2239,101,,Good,Svalbarðsvegur 22,200,5,House
+118,ix-9492,101,,Good,Nýggivegur 1,15,1,Mud house
+119,ix-9493,101,,Good,Nýggivegur 1,15,1,Mud house
+120,ix-9494,101,,Good,Nýggivegur 1,15,1,Mud house
+121,ix-9495,101,,Good,Nýggivegur 1,15,1,Mud house
+122,ix-9496,101,,Good,Nýggivegur 1,15,1,Mud house
+123,ix-9497,101,,Good,Nýggivegur 1,15,1,Mud house
+124,ix-9498,101,,Good,Nýggivegur 1,15,1,Mud house
+125,ix-9499,101,,Good,Nýggivegur 1,15,1,Mud house
+126,ix-9500,101,,Good,Nýggivegur 1,15,1,Mud house
+127,ix-9501,101,,Good,Nýggivegur 1,15,1,Mud house
+128,202-142,100,Þvottahús með baði,Poor,Norðurogniðurrassgat 12,3,5,Line

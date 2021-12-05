@@ -169,11 +169,11 @@ class BuildingView():
     headers = {
       'id': 'ID',
       'address': 'ADDRESS',
-      'location': 'LOCATION',
+      'location_id': 'LOCATION',
       'type': 'TYPE',
       'rooms': 'ROOMS',
       'state': 'STATE',
-      'tasks': 'TASKS'
+      'size': 'TASKS'
     }
     return Table(buildings, headers, begin_line)
 
@@ -205,7 +205,7 @@ class BuildingView():
     menu.add_menu_item('2', 'VIEW LOCATION INFORMATION', LocConst.VIEW)
     options = menu.get_options()
 
-    admin_menu = Menu(2, 16)
+    admin_menu = Menu(2, 18)
     admin_menu.add_menu_item('/', 'EDIT BUILDING', BuildConst.ADMIN_EDIT)
     admin_menu.add_menu_item('+', 'ADD BUILDING', BuildConst.ADMIN_NEW)
     admin_menu.add_menu_item('W', 'ADD TASK', TaskConst.ADMIN_NEW)
@@ -220,20 +220,25 @@ class BuildingView():
 
   def __display_one_building(self, building: Building) -> None:
     ''' Displays information about an employee on the screen. '''
-    left_column = Menu(spacing=10)
+
+    # display header info
+    text = str(building)
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+
+    left_column = Menu(5, spacing=10)
     left_column.add_menu_item('TYPE', building.type)
     left_column.add_menu_item('STATE', building.state)
-    left_column.add_menu_item('LOCATION', building.location_id)
+    left_column.add_menu_item('LOCATION', str(building.location_id))
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
-    right_column = Menu(3, 46, 10)
+    right_column = Menu(5, 46, 14)
     right_column.add_menu_item('ROOMS', building.rooms)
     right_column.add_menu_item('SIZE', building.size)
-    right_column.add_menu_item('ACTIVE TASKS', 10)
+    right_column.add_menu_item('ACTIVE TASKS', '10')
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
-    self.__screen.print('DESCRIPTION', 8, 6, Styles.DATA_KEY)
-    self.__screen.print(building.description, 8, 16)
+    self.__screen.print('DESCRIPTION', 10, 6, Styles.DATA_KEY)
+    self.__screen.print(building.description, 10, 20)
 
   def __add_new_handler(self):
     ''' Handler to display a form to enter data for new Building. '''

@@ -8,7 +8,7 @@ class Filters():
   ALL_PRINTABLE = PRINTABLE + SPECIAL_CHARACTERS
   NUMBERS = '0123456789'
   FLOATS = '.0123456789'
-  PHONE = '+0123456789'
+  PHONE = '+0123456789 '
   USER_ID = 'Qq0123456789'
 
 def none_if_not_list(list) -> 'list | None':

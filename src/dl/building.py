@@ -83,14 +83,14 @@ class BuildingData():
     ''' Creates and returns an instance of Employee '''
     return Building(
         int(building['id']), 
-        int(building['registration']),
+        building['registration'],
         int(building['location_id']),
         building['description'],
         building['state'],
         building['address'],
         building['size'],
         building['rooms'],
-        building['type]']
+        building['type']
       )
   
   
