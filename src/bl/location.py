@@ -31,7 +31,7 @@ class LocationLogic():
     ''' TODO '''
     return self.dlapi.get_one_location(id)
 
-  def get_all(self):
+  def get_all(self) -> 'list[Location]':
     ''' TODO '''
     return self.dlapi.get_all_locations()
 
