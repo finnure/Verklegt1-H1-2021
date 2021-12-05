@@ -1,7 +1,7 @@
 id,location_id,name,ssn,address,phone,mobile,email,role
 1,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 2,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-3,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
+3,1,Finnur Eiríks,2202785149,Leiðhamrar,58855,84219,klauvi@gmail.co,MANAGER
 4,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 5,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 6,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
@@ -29,3 +29,4 @@ id,location_id,name,ssn,address,phone,mobile,email,role
 28,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 29,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 222,1,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
+223,123,Stefán Óli,adh,fewa,3463,4574,s@nan.is,EMPLOYEE

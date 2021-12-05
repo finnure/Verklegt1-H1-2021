@@ -22,9 +22,9 @@ class EmployeeLogic():
     emp = self.__parse_form(form)
     return self.dlapi.add_employee(emp)
 
-  def update(self, employee: 'dict[str,str]') -> Employee:
+  def update(self, form: Form) -> Employee:
     ''' TODO '''
-    emp = self.__parse_form(employee, employee['location_id'])
+    emp = self.__parse_form(form)
     return self.dlapi.update_employee(emp.id, emp)
 
   def get(self, id: int) -> Employee:

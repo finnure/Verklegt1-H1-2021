@@ -258,7 +258,9 @@ class Screen():
       # Clear previous value from screen so get_string() gets a clear canvas.
       window.clear()
       window.refresh()
-      value = window.get_string(0, 0, field.cols, field.filter, field.value, True)
+      # Make sure value is string or None before sending to get_string
+      field_value = str(field.value) if field.value is not None else None
+      value = window.get_string(0, 0, field.cols, field.filter, field_value, True)
       try:
         [validate(value) for validate in field.validators]
         self.delete_character(field.line, field.col + field.cols + 5, error_length)
@@ -316,6 +318,8 @@ class Screen():
     if editing:
       # Do fancy visual stuff to make the text we're editing stand out
       self.paint_character(self.get_css_class('EDITING'), 0, 0, cols)
+      self.move_cursor_by_offset(0, index)
+      self.refresh()
     while True:
       character = self.get_character()
       if ord(character) in self.string_termination:

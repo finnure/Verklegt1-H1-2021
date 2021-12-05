@@ -24,7 +24,7 @@ class Employee():
     self.role = role
 
   def __str__(self) -> str:
-    return f'Name: {self.name}\nEmail: {self.email}\nPhone: {self.phone}'
+    return f'#{self.id} - {self.name} - {self.role}'
 
   def as_dict(self) -> 'dict[str, str | int]':
     return {

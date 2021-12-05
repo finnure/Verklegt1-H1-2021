@@ -222,17 +222,46 @@ class EmployeeView():
       # This really shouldn't happen. We'll put this here anyways.
       self.__screen.print(str(err), 6, 6, Styles.ERROR)
       return {}
-    emp = self.llapi.new_employee(form)
+    try:
+      # Check if form has an id field. If it does, it's an edit operation
+      id = form['id']
+      emp = self.llapi.update_employee(form)
+    except StopIteration:
+      # No id present, adding new employee
+      emp = self.llapi.new_employee(form)
     return self.__view_employee_handler(emp)
 
   def __edit_employee_handler(self):
     ''' Handler to display a form to edit Employee. '''
     try:
-      emp = self.llapi.get_param(EmpConst.EMPLOYEE_PARAM)
+      emp: Employee = self.llapi.get_param(EmpConst.EMPLOYEE_PARAM)
     except KeyError as err:
       self.__screen.print(str(err), 6, 6, Styles.ERROR)
-    return {}
+      return {}
+    
+    self.__screen.print(str(emp), 2, 50, Styles.PAGE_HEADER)
+    self.__screen.print('PLEASE EDIT EACH FIELD IN THE FORM', 5, 6, Styles.DATA_KEY)
+    self.__screen.refresh()
 
+    form = Form(emp.get_edit_fields())
+    form_window = self.__screen.display_form(form)
+    for field in form:
+      if field.options is not None:
+        # TODO Display options list
+        pass
+      if field.editable:
+        form_window.edit_form_field(field)
+    
+    # Save form in params so the save handler can pick it up and save data to disk
+    self.llapi.set_param(EmpConst.FORM_PARAM, form)
+
+    # Delete outdated message and display menu options
+    self.__screen.delete_character(5, 6, 50)
+    menu = Menu(18)
+    menu.add_menu_item('A', 'APPLY CHANGES', EmpConst.SAVE)
+    menu.add_menu_item('D', 'DISCARD CHANGES', EmpConst.MENU)
+    self.__screen.display_menu(menu)
+    return menu.get_options()
 
   def find_handler(self, input: str):
     ''' This method is called by ui handler when an Employee view is requested.
