@@ -5,7 +5,7 @@ from utils import Filters
 from llapi import LlApi
 from ui.screen import Screen
 from ui.menu import Menu
-from ui.constants import EmpConst, GlobalConst, Styles
+from ui.constants import EmpConst, Styles
 
 class EmployeeView():
 

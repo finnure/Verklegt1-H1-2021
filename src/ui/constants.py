@@ -3,8 +3,11 @@ class GlobalConst():
   # Constants
 
   # Connections
-  BACK = 'GLOBAL:BACK'
+  VIEW_BACK = 'GLOBAL:BACK'
   MAIN_MENU = 'MENU:MENU'
+  LOGOUT = 'SELF:LOGOUT'
+  QUIT = 'SELF:QUIT'
+  BACK = 'SELF:BACK'
 
 class Styles():
   ''' Constants for style names available. '''
@@ -55,7 +58,9 @@ class TaskConst():
   # Constants
 
   # Connections
+  ADMIN_NEW = 'TASK:ADD_NEW'
   MENU = 'TASK:MENU'
+
 
 class BuildConst():
   ''' Constants and connections for BuildingView. '''
@@ -76,6 +81,7 @@ class ReportConst():
   # Constants
 
   # Connections
+  ADMIN_ACTIVE = 'REPORT:LIST_ACTIVE'
   MENU = 'REPORT:MENU'
 
 class AccConst():
@@ -85,3 +91,9 @@ class AccConst():
   # Connections
   MENU = 'ACCESSORY:MENU'
 
+class SearchConst():
+  ''' Constants and connections for SearchView. '''
+  # Constants
+
+  # Connections
+  MENU = 'SEARCH:MENU'
