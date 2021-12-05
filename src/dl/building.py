@@ -7,15 +7,11 @@ class BuildingData():
   def __init__(self, data_folder):
     self.headers = [
       'id',
-      'bulding_id',
+      'registration',
       'location_id',
       'description',
       'state',
-      'tasks',
-      'accessories',
       'address',
-      'manager',
-      'reports',
       'size',
       'rooms',
       'type'
@@ -45,7 +41,7 @@ class BuildingData():
     ''' Removes building from file. Gets all data from file, filters building
     that matches id from the list and writes all data back to file '''
     buildings = self.get_all()
-    filtered_buildings = [build.as_dict() for build in buildings if build.id == id]
+    filtered_buildings = [build.as_dict() for build in buildings if build.id != id]
     self.__file.write(filtered_buildings)
     
     
@@ -87,15 +83,11 @@ class BuildingData():
     ''' Creates and returns an instance of Employee '''
     return Building(
         int(building['id']), 
-        int(building['building_id']),
+        int(building['registration']),
         int(building['location_id']),
         building['description'],
         building['state'],
-        building['tasks'],
-        building['accessories'],
         building['address'],
-        building['manager'],
-        building['reports'],
         building['size'],
         building['rooms'],
         building['type]']

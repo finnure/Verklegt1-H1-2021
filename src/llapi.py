@@ -46,49 +46,49 @@ class LlApi():
   
   ##### Building methods ########
 
-  def new_building(self):
-    self.building_logic.new()
+  def new_building(self, form: Form):
+    return self.building_logic.new()
   
-  def update_building(self):
-    self.building_logic.update()
+  def update_building(self, form: Form):
+    return self.building_logic.update()
 
-  def get_building(self, id):
-    self.building_logic.get(id)
+  def get_building(self, id: int):
+    return self.building_logic.get(id)
   
   def get_all_buildings(self):
-    self.building_logic.get_all()
+    return self.building_logic.get_all()
 
   def get_filtered_buildings(self, filter):
-    self.building_logic.get_filtered(filter)
+    return self.building_logic.get_filtered(filter)
   
-  def add_accessory_to_building(self):
-    self.building_logic.add_accessory_to_building()
+  def add_accessory_to_building(self, form: Form, building_id):
+    return self.building_logic.add_accessory_to_building(form, building_id)
 
-  def get_reports_for_building(self, filter):
-    self.building_logic.get_reports_for_building(filter)
+  def get_reports_for_building(self, id: int):
+    return self.report_logic.get_filtered({'building_id': id})
 
   ##### Contractor methods ########
 
-  def new_contractor(self):
-    self.contractor_logic.new()
+  def new_contractor(self, form: Form):
+    return self.contractor_logic.new(form)
   
-  def update_contractor(self):
-    self.contractor_logic.update()
+  def update_contractor(self, form: Form):
+    return self.contractor_logic.update(form)
 
-  def get_contractor(self, id):
-    self.contractor_logic.get(id)
+  def get_contractor(self, id: int):
+    return self.contractor_logic.get(id)
   
   def get_all_contractors(self):
-    self.contractor_logic.get_all()
+    return self.contractor_logic.get_all()
 
   def get_filtered_contractors(self, filter):
-    self.contractor_logic.get_filtered(filter)
+    return self.contractor_logic.get_filtered(filter)
 
-  def get_contractor_rating(self, id):
-    self.contractor_logic.get_contractor_rating(id)
+  def get_contractor_rating(self, id: int):
+    return self.contractor_logic.get_contractor_rating(id)
   
-  def get_reports_for_contractor(self, filter):
-    self.contractor_logic.get_reports_for_contractor(filter)
+  def get_reports_for_contractor(self, id: int):
+    return self.report_logic.get_filtered({'contractor_id': id})
 
   ##### Employee methods ########
 
@@ -115,64 +115,61 @@ class LlApi():
   
   ##### Location methods ########
 
-  def new_location(self):
-    self.location_logic.new()
+  def new_location(self, form: Form):
+    return self.location_logic.new(form)
   
-  def update_location(self):
-    self.location_logic.update()
+  def update_location(self, form: Form):
+    return self.location_logic.update(form)
 
-  def get_location(self, id):
-    self.location_logic.get(id)
+  def get_location(self, id: int):
+    return self.location_logic.get(id)
   
   def get_all_locations(self):
-    self.location_logic.get_all()
-
-  def add_employee_to_location(self):
-    self.location_logic.add_employee_to_location()
+    return self.location_logic.get_all()
 
   ##### Report methods ########
 
-  def new_report(self):
-    self.report_logic.new()
+  def new_report(self, form: Form):
+    return self.report_logic.new(form)
   
-  def update_report(self):
-    self.report_logic.update()
+  def update_report(self, form: Form):
+    return self.report_logic.update(form)
 
-  def get_report(self, id):
-    self.report_logic.get(id)
+  def get_report(self, id: int):
+    return self.report_logic.get(id)
   
   def get_all_reports(self):
-    self.report_logic.get_all()
+    return self.report_logic.get_all()
 
   def get_filtered_reports(self, filter):
-    self.report_logic.get_filtered(filter)
+    return self.report_logic.get_filtered(filter)
   
   def add_contractor_to_report(self):
-    self.report_logic.add_contractor_to_report()
+    return self.report_logic.add_contractor_to_report()
   
   ##### Task methods ########
 
-  def new_task(self):
-    self.task_logic.new()
+  def new_task(self, form: Form):
+    return self.task_logic.new(form)
   
-  def update_task(self):
-    self.task_logic.update()
+  def update_task(self, form: Form):
+    return self.task_logic.update(form)
 
-  def get_task(self, id):
-    self.task_logic.get(id)
+  def get_task(self, id: int):
+    return self.task_logic.get(id)
   
   def get_all_tasks(self):
-    self.task_logic.get_all()
+    return self.task_logic.get_all()
 
   def get_filtered_tasks(self, filter):
-    self.task_logic.get_filtered(filter)
+    return self.task_logic.get_filtered(filter)
   
   def add_report_to_task(self):
-    self.task_logic.add_report_to_task()
+    return self.task_logic.add_report_to_task()
 
   def update_task_state(self):
-    self.task_logic.update_task_state()
+    return self.task_logic.update_task_state()
 
   def calculate_task_cost(self):
-    self.task_logic.calculate_task_cost()
+    return self.task_logic.calculate_task_cost()
 

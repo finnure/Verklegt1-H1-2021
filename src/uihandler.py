@@ -32,7 +32,7 @@ class UiHandler():
     self.main_menu_view = MainMenuView(self.__window, self.llapi)
     self.location_view = LocationView(self.__window)
     self.employee_view = EmployeeView(self.__window, self.llapi)
-    self.building_view = BuildingView(self.__window)
+    self.building_view = BuildingView(self.__window, self.llapi)
     # self.accessory_view = AccessoryView(self.__window)
     self.task_view = TaskView(self.__window)
     self.report_view = ReportView(self.__window)
