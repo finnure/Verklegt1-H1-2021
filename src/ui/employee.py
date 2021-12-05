@@ -275,8 +275,6 @@ class EmployeeView():
     self.__screen.refresh()
     return options
 
-
-
   def __display_one_employee(self, emp: Employee) -> None:
     ''' Displays information about an employee on the screen. '''
     left_column = Menu(spacing=10)
@@ -304,7 +302,7 @@ class EmployeeView():
     headers = {
       'id': 'ID',
       'name': 'NAME',
-      'phone': 'CITY',
+      'phone': 'PHONE',
       'mobile': 'MOBILE',
       'email': 'EMAIL'
     }
