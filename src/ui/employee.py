@@ -78,9 +78,9 @@ class EmployeeView():
     employee_id = self.__screen.get_string(8, 28, 3, utils.NUMBERS)
     emp = self.llapi.get_employee(int(employee_id))
     if emp is None:
-      self.__screen.print(f'NO EMPLOYEE FOUND WITH ID {employee_id}', 10, 10, self.__screen.get_css_class('ERROR'))
+      self.__screen.print(f'NO EMPLOYEE FOUND WITH ID {employee_id}', 10, 10, 'ERROR')
       self.__screen.print('PRESS I TO SEARCH AGAIN', 11, 10)
-      self.__screen.paint_character(self.__screen.get_css_class('OPTION'), 11, 16)
+      self.__screen.paint_character('OPTION', 11, 16)
       return options
     # Employee found, clear screen and display info
     self.__screen.clear()
@@ -142,7 +142,7 @@ class EmployeeView():
       emps = self.llapi.get_all_employees()
       table = self.__create_table(emps)
     
-    self.__screen.print('ENTER NUMBER (#) OF EMPLOYEE TO VIEW', 3, 6, self.__screen.get_css_class('DATA_KEY'))
+    self.__screen.print('ENTER NUMBER (#) OF EMPLOYEE TO VIEW', 3, 6, 'DATA_KEY')
     while True: # Ask user to select Employee
       filter = utils.NUMBERS
       filter += self.__screen.display_table(table)
@@ -157,7 +157,7 @@ class EmployeeView():
         return self.__view_employee_handler(emp)
       except IndexError:
         # User should select a correct number, display error and try again
-        self.__screen.print('INVALID NUMBER', 3, 60, self.__screen.get_css_class('ERROR'))
+        self.__screen.print('INVALID NUMBER', 3, 60, 'ERROR')
       except ValueError:
         # Switching pages
         key = selection.upper()
@@ -170,8 +170,8 @@ class EmployeeView():
           self.__screen.flash()
 
   def __new_employee_handler(self):
-    self.__screen.print('CREATE NEW EMPLOYEE', 2, 50, self.__screen.get_css_class('PAGE_HEADER'))
-    self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW EMPLOYEE', 5, 6, self.__screen.get_css_class('DATA_KEY'))
+    self.__screen.print('CREATE NEW EMPLOYEE', 2, 50, 'PAGE_HEADER')
+    self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW EMPLOYEE', 5, 6, 'DATA_KEY')
     self.__screen.refresh()
     form = Form(Employee.get_new_fields())
     form_window = self.__screen.display_form(form)
@@ -198,7 +198,7 @@ class EmployeeView():
       form: Form = self.llapi.get_param('FORM')
     except KeyError as err:
       # This really shouldn't happen. We'll put this here anyways.
-      self.__screen.print(str(err), 6, 6, self.__screen.get_css_class('ERROR'))
+      self.__screen.print(str(err), 6, 6, 'ERROR')
       return {}
     emp = self.llapi.new_employee(form)
     return self.__view_employee_handler(emp)
@@ -234,9 +234,9 @@ class EmployeeView():
     right_column.add_menu_item('ADDRESS', emp.address)
     self.__screen.display_menu(right_column, 'DATA_KEY')
 
-    self.__screen.print('ROLE', 8, 6, self.__screen.get_css_class('DATA_KEY'))
+    self.__screen.print('ROLE', 8, 6, 'DATA_KEY')
     self.__screen.print(emp.role, 8, 16)
-    self.__screen.print('NUMBER OF ACTIVE TASKS: ', 10, 6, self.__screen.get_css_class('DATA_KEY'))
+    self.__screen.print('NUMBER OF ACTIVE TASKS: ', 10, 6, 'DATA_KEY')
     self.__screen.print(str(self.llapi.get_active_tasks_for_user(emp.id)))
 
   def __create_table(self, emps: Table, begin_line: int = 5) -> Table:

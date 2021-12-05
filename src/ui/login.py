@@ -13,11 +13,11 @@ class LoginView():
 
   def invalid_input_error(self):
     self.display_view()
-    self.__screen.print('Invalid input, user id should be a number. Please try again', 5, 6, self.__screen.get_css_class('ERROR'))
+    self.__screen.print('Invalid input, user id should be a number. Please try again', 5, 6, 'ERROR')
 
   def user_not_found_error(self):
     self.display_view()
-    self.__screen.print('User not found, please try again!', 5, 6, self.__screen.get_css_class('ERROR'))
+    self.__screen.print('User not found, please try again!', 5, 6, 'ERROR')
 
   def get_input(self):
     self.display_view()

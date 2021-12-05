@@ -373,13 +373,17 @@ class Screen():
       accumulated_lines.append(new_line)
     return ''.join(accumulated_lines)
 
-  def print(self, text: str, line: int = None, col: int = None, style: int = 0) -> None:
+  def print(self, text: str, line: int = None, col: int = None, style: 'int | str' = 0) -> None:
     ''' Prints text to screen. If line and col are not specified, 
     string will be printed at current cursor location.
-    Style should be a number computed by adding together color profile and effects.
-    Default style is white text on black background '''
+    Style can be a number or the name of a css class. Available css classes are:
+    ERROR, FRAME_TEXT, OPTION, LOGO_NAME, LOGO_TEXT, TABLE_HEADER, PAGE_HEADER, DATA_KEY, DISABLED, EDITING.
+    Default style is white text on black background.  '''
+    # Convert style to a number if it's a string, getting css class
+    if type(style) is str:
+      style = self.get_css_class(style)
     if line is None or col is None:
-      # Need both to print text at location
+      # Need both to print text at location, using current location
       self.__screen.addstr(text, style)
     else:
       self.__screen.addstr(line, col, text, style)
@@ -413,13 +417,17 @@ class Screen():
     ''' Updates the window and redraws it '''
     self.__screen.refresh()
 
-  def paint_character(self, style: int, line: Union[int, None] = None,
-                      col: Union[int, None] = None, num: int = 1) -> None:
+  def paint_character(self, style: 'int | str', line: int = None,
+                      col: int = None, num: int = 1) -> None:
     ''' Paints characters in the style given.
     If line and col are supplied, character at that position is painted, 
     else current position is used.
     Default number of characters painted is 1. If num is supplied 
-    that number of characters will be painted from position specified '''
+    that number of characters will be painted from position specified 
+    Style can be a number or the name of a css class. Available css classes are:
+    ERROR, FRAME_TEXT, OPTION, LOGO_NAME, LOGO_TEXT, TABLE_HEADER, PAGE_HEADER, DATA_KEY, DISABLED, EDITING. '''
+    if type(style) is str:
+      style = self.get_css_class(style)
     if line is None or col is None:
       self.__screen.chgat(num, style)
     else:

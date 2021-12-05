@@ -51,9 +51,9 @@ class ViewFrame():
 
   def __display_logo(self) -> None:
     ''' Displays logo in window. '''
-    self.__screen.print('NaN', 1, 2, self.__screen.get_css_class('LOGO_NAME'))
-    self.__screen.print('NaN', 3, 26, self.__screen.get_css_class('LOGO_NAME'))
-    self.__screen.print('We divide by zero', 2, 7, self.__screen.get_css_class('LOGO_TEXT'))
+    self.__screen.print('NaN', 1, 2, 'LOGO_NAME')
+    self.__screen.print('NaN', 3, 26, 'LOGO_NAME')
+    self.__screen.print('We divide by zero', 2, 7, 'LOGO_TEXT')
 
   def __display_header(self) -> None:
     ''' Displays header in window. '''
@@ -92,8 +92,8 @@ class ViewFrame():
     for i, col in enumerate(start_list):
       self.__screen.print(TOP_DIVIDER, from_line, col)
       self.__screen.print(BOTTOM_DIVIDER, from_line + 4, col)
-      self.__screen.print(title_list[i], from_line + 2, col + 3, self.__screen.get_css_class('FRAME_TEXT'))
-      self.__screen.paint_character(self.__screen.get_css_class('OPTION'), from_line + 2, col + 4)
+      self.__screen.print(title_list[i], from_line + 2, col + 3, 'FRAME_TEXT')
+      self.__screen.paint_character('OPTION', from_line + 2, col + 4)
       for line in [from_line + 1, from_line + 2, from_line + 3]:
         self.__screen.print(SIDE, line, col)
 
