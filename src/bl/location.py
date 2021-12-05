@@ -13,7 +13,7 @@ class LocationLogic():
       'airport',
       'address',
       'phone',
-      'openinghours',
+      'opening_hours',
       'manager'
     ]
 
@@ -49,6 +49,6 @@ class LocationLogic():
         form['airport'],
         form['address'],
         form['phone'],
-        form['openinghours'],
+        form['opening_hours'],
         form['manager']
       )
