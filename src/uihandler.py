@@ -37,7 +37,7 @@ class UiHandler():
     self.task_view = TaskView(self.__window)
     self.report_view = ReportView(self.__window)
     self.contractor_view = ContractorView(self.__window)
-    self.search_view = SearchView(self.__window)
+    self.search_view = SearchView(self.__window, self.llapi)
 
     self.view_map = {
       'LOCATION': self.location_view,

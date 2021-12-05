@@ -35,14 +35,14 @@ class SearchView():
       # Create the main menu and get options as dict
       menu = Menu(9) # Menu starts in line 9
       menu.add_menu_item('1', 'SEARCH FOR EMPLOYEES BY CITY', EmpConst.FILTER_LOCATION)
-      menu.add_menu_item('2', 'SEARCH FOR BUILDINGS BY CITY', BuildConst)
+      menu.add_menu_item('2', 'SEARCH FOR BUILDINGS BY CITY', BuildConst.FILTER_LOCATION)
       menu.add_menu_item('3', 'SEARCH FOR EMPLOYEE BY ID', EmpConst.GET_ID)
-      menu.add_menu_item('4', 'SEARCH FOR BUILDING BY ID ', BuildConst)
-      menu.add_menu_item('5', 'SEARCH FOR TASK BY ID', TaskConst)
-      menu.add_menu_item('6', 'SEARCH FOR TASK BY BUILDINGS', TaskConst)
-      menu.add_menu_item('7', 'SEARCH FOR TASK BY EMPLOYEE', TaskConst)
-      menu.add_menu_item('8', 'SEARCH FOR REPORTS BY BUILDING', ReportConst)
-      menu.add_menu_item('9', 'SEARCH FOR REPORT BY EMPLOYEE', ReportConst)
+      menu.add_menu_item('4', 'SEARCH FOR BUILDING BY ID ', BuildConst.GET_ID)
+      menu.add_menu_item('5', 'SEARCH FOR TASK BY ID', TaskConst.GET_ID)
+      menu.add_menu_item('6', 'SEARCH FOR TASK BY BUILDINGS', TaskConst.FILTER_BUILDING)
+      menu.add_menu_item('7', 'SEARCH FOR TASK BY EMPLOYEE', TaskConst.FILTER_EMPLOYEE)
+      menu.add_menu_item('8', 'SEARCH FOR REPORTS BY CONTRACTOR', ReportConst.FILTER_CONTRACTOR)
+      menu.add_menu_item('9', 'SEARCH FOR REPORT BY EMPLOYEE', ReportConst.FILTER_EMPLOYEE)
       options = menu.get_options()
       self.__screen.display_menu(menu)
 
