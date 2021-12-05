@@ -4,21 +4,21 @@ from ui.form import FormField
 
 class Location():
 
-  def __init__(self, id: int, country: str, city: str, airport: str, address: str, phone: int, openinghours: str, manager: str) -> None:
+  def __init__(self, id: int, country: str, city: str, airport: str, address: str, phone: int, opening_hours: str, manager: str) -> None:
     self.id = id
     self.country = country
     self.city = city
     self.airport = airport
     self.address = address
     self.phone = phone
-    self.openinghours = openinghours
+    self.opening_hours = opening_hours
     self.manager = manager
     self.employees = []
     self.buildings = []
     self.contractors = []
 
   def __str__(self) -> str:
-    pass
+    return '#{}  {}, {}'.format(str(self.id),self.city,self.country)
 
   def as_dict(self) -> 'dict[str, str | int]':
     return {
@@ -28,7 +28,7 @@ class Location():
       'airport': self.airport,
       'address': self.address,
       'phone': self.phone,
-      'openinghours': self.openinghours,
+      'opening_hours': self.opening_hours,
       'manager': self.manager,
       'employees': self.employees,
       'buildings': self.buildings,
@@ -43,7 +43,7 @@ class Location():
       FormField('airport', 'AIRPORT', None, 1, 10),
       FormField('address', 'ADDRESS', None, 1, 10),
       FormField('phone', 'PHONE NUMBER', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
-      FormField('openinghours', 'OPENING HOURS', None, 1, 32),
+      FormField('opening_hours', 'OPENING HOURS', None, 1, 32),
       FormField('manager', 'MANAGER', None, 1, 32, validators=[Validate.min_length(5)])
     ]
   
@@ -55,6 +55,6 @@ class Location():
       FormField('airport', 'AIRPORT', self.airport, 1, 10),
       FormField('address', 'ADDRESS', self.address, 1, 10),
       FormField('phone', 'PHONE NUMBER', self.phone, 1, 32, Filters.PHONE, validators=[Validate.phone]),
-      FormField('openinghours', 'OPENING HOURS', self.openinghours, 1, 32),
+      FormField('opening_hours', 'OPENING HOURS', self.opening_hours, 1, 32),
       FormField('manager', 'MANAGER', self.manager, 1, 32, validators=[Validate.min_length(5)])
     ]

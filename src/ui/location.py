@@ -25,7 +25,7 @@ class LocationView():
       'LIST_ALL_NEXT': self.__list_all_paging_next_handler,
       'LIST_ALL_PREV': self.__list_all_paging_prev_handler,
       'LIST_BUILDINGS': self.__list_buildings_handler,
-      'LIST_EMPLOYEES': self.__list_emmployees_handler,
+      'LIST_EMPLOYEES': self.__list_employees_handler,
       'LIST_CONSTRACTORS': self.__list_contractors_handler,
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_location_handler,
@@ -42,9 +42,9 @@ class LocationView():
   def __view_location_handler(self, loc: Location):
     ''' Displays information about an location. '''
     menu = Menu(13)
-    menu.add_menu_item('1', 'VIEW ALL BUILDINGS', LocConst.LIST_TASKS)
-    menu.add_menu_item('2', 'VIEW ALL EMPLOYEES', LocConst.LIST_REPORTS)
-    menu.add_menu_item('3', 'VIEW ALL CONTRACTORS', LocConst.LIST_TASKS)
+    menu.add_menu_item('1', 'VIEW ALL BUILDINGS', LocConst.LIST_BUILDINGS)
+    menu.add_menu_item('2', 'VIEW ALL EMPLOYEES', LocConst.LIST_EMPLOYEES)
+    menu.add_menu_item('3', 'VIEW ALL CONTRACTORS', LocConst.LIST_CONTRACTORS)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
@@ -58,7 +58,7 @@ class LocationView():
     return options
 
   def __list_all_handler(self, table: Table = None):
-    ''' Handler that gets a list of all Employees and displays as a table.
+    ''' Handler that gets a list of all Locations and displays as a table.
     If too many rows are to be displayed, paging is applied.'''
     if table is None:
       # First call to list. If table is not None, paging is being used
@@ -89,7 +89,7 @@ class LocationView():
     return options
 
   def __list_all_paging_next_handler(self):
-    ''' Go to next page of employee list. If table is not available
+    ''' Go to next page of location list. If table is not available
     in params, list all handler will be called and whole list from page 
     one will be displayed. '''
     try:
@@ -103,7 +103,7 @@ class LocationView():
   def __list_all_paging_prev_handler(self):
 
 
-    ''' Go to previous page of employee list. If table is not available
+    ''' Go to previous page of location list. If table is not available
     in params, list all handler will be called and whole list from page 
     one will be displayed. '''
     try:
@@ -115,7 +115,7 @@ class LocationView():
       return self.__list_all_handler()
 
   def __new_location_handler(self):
-    ''' Handler to display a form to enter data for new Employee. '''
+    ''' Handler to display a form to enter data for new Location. '''
     self.__screen.print('CREATE NEW LOCATION', 2, 50, Styles.PAGE_HEADER)
     self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW lOCATION', 5, 6, Styles.DATA_KEY)
     self.__screen.refresh()
@@ -151,14 +151,14 @@ class LocationView():
     try:
       # Check if form has an id field. If it does, it's an edit operation
       id = form['id']
-      loc = self.llapi.update_employee(form)
+      loc = self.llapi.update_location(form)
     except StopIteration:
-      # No id present, adding new employee
-      loc = self.llapi.new_employee(form)
+      # No id present, adding new location
+      loc = self.llapi.new_location(form)
     return self.__view_location_handler(loc)
 
   def __edit_location_handler(self):
-    ''' Handler to display a form to edit Employee. '''
+    ''' Handler to display a form to edit Location. '''
     try:
       loc: Location = self.llapi.get_param(LocConst.LOCATION_PARAM)
     except KeyError as err:
@@ -185,16 +185,16 @@ class LocationView():
     self.__screen.delete_character(5, 6, 50)
     menu = Menu(18)
     menu.add_menu_item('A', 'APPLY CHANGES', LocConst.SAVE)
-    menu.add_menu_item('D', 'DISCARD CHANGES', LocConst.MENU)
+    menu.add_menu_item('D', 'DISCARD CHANGES', LocConst.LIST_ALL)
     self.__screen.display_menu(menu)
     return menu.get_options()
 
   def find_handler(self, input: str):
-    ''' This method is called by ui handler when an Employee view is requested.
+    ''' This method is called by ui handler when an Location view is requested.
     The screen is cleared before calling the requested handler and refreshed
     before returning back to ui handler to make sure everything is displayed correctly. '''
     if input not in self.__input_map:
-      raise KeyError(f'Employee does not have a handler for {input}')
+      raise KeyError(f'Location does not have a handler for {input}')
     handler: function = self.__input_map[input]
     self.__screen.clear()
     options = handler()
@@ -202,7 +202,7 @@ class LocationView():
     return options
 
   def __select_from_list_handler(self):
-    ''' Handler that allows user to select an Employee from a list.
+    ''' Handler that allows user to select an location from a list.
     Available input is either a row number or an available paging option.
     If wrong row number is selected, an error is displayed and user asked
     to try again. '''
@@ -211,10 +211,10 @@ class LocationView():
       table: Table = self.llapi.get_param(LocConst.TABLE_PARAM)
     except KeyError:
       # Else create a new table
-      locs = self.llapi.get_all_employees()
+      locs = self.llapi.get_all_locations()
       table = self.__create_table(locs)
     
-    self.__screen.print('ENTER NUMBER (#) OF EMPLOYEE TO VIEW', 3, 6, Styles.DATA_KEY)
+    self.__screen.print('ENTER NUMBER (#) OF LOCATION TO VIEW', 3, 6, Styles.DATA_KEY)
     while True: # Ask user to select Employee
       filter = Filters.NUMBERS
       filter += self.__screen.display_table(table)
@@ -222,11 +222,11 @@ class LocationView():
       # Clear error and previous input if exists
       [self.__screen.delete_character(3, x + 43) for x in range(40)]
       try:
-        # Get selected Employee and send it to View handler
+        # Get selected Location and send it to View handler
         row = int(selection)
         loc: LoginView = table.data[row - 1]
         self.__screen.clear() # Clears screen so view gets a clean canvas
-        return self.__view_employee_handler(loc)
+        return self.__view_location_handler(loc)
       except IndexError:
         # User should select a correct number, display error and try again
         self.__screen.print('INVALID NUMBER', 3, 60, Styles.ERROR)
@@ -244,7 +244,7 @@ class LocationView():
   def __list_buildings_handler(self):
     pass
 
-  def __list_emmployees_handler(self):
+  def __list_employees_handler(self):
     pass
   
   def __list_contractors_handler(self):
@@ -255,19 +255,19 @@ class LocationView():
     a list of employee instances and list of headers to create a table. '''
     headers = {
       'id': 'ID',
-      'Airport': 'AIRPORT',
-      'Country': 'COUNTRY',
-      'City': 'CITY',
-      'Manager': 'MANAGER',
-      'Phone': 'PHONE MUMBER'
+      'airport': 'AIRPORT',
+      'country': 'COUNTRY',
+      'city': 'CITY',
+      'manager': 'MANAGER',
+      'phone': 'PHONE MUMBER'
     }
     return Table(locs, headers, begin_line)
 
   def __display_one_location(self, loc: Location) -> None:
     ''' Displays information about an location on the screen. '''
-    left_column = Menu(7,6,10)
+    left_column = Menu(7,6,15)
     left_column.add_menu_item('AIRPORT', loc.airport)
-    left_column.add_menu_item('OPENING HOURS', loc.openinghours)
+    left_column.add_menu_item('OPENING HOURS', loc.opening_hours)
     left_column.add_menu_item('ADDRESS', loc.address)
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
@@ -276,11 +276,11 @@ class LocationView():
     middle_column.add_menu_item('PHONE', str(loc.phone))
     self.__screen.display_menu(middle_column, Styles.DATA_KEY)
 
-    left_column = Menu(7, 86, 10)
-    left_column.add_menu_item('TOTAL BUILDINGS', str(len(loc.buildings)))
-    left_column.add_menu_item('TOTAL EMPLOYEES', str(len(loc.employees)))
-    left_column.add_menu_item('TOTAL CONTRACTORS', str(len(loc.contractors)))
-    self.__screen.display_menu(middle_column, Styles.DATA_KEY)
+    right_column = Menu(7, 86, 20)
+    right_column.add_menu_item('TOTAL BUILDINGS', str(len(loc.buildings)))
+    right_column.add_menu_item('TOTAL EMPLOYEES', str(len(loc.employees)))
+    right_column.add_menu_item('TOTAL CONTRACTORS', str(len(loc.contractors)))
+    self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
     self.__screen.print('-----------------------------------------------------------------------------------------------------------',11,6)
     self.__screen.print('-----------------------------------------------------------------------------------------------------------',5,6)

@@ -85,8 +85,5 @@ class LocationData():
         location['address'],
         location['phone'],
         location['openinghours'],
-        location['manager'],
-        location['employees'],
-        location['buildings'],
-        location['contractors']
+        location['manager']
       )

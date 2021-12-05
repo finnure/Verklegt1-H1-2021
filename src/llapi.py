@@ -115,20 +115,20 @@ class LlApi():
   
   ##### Location methods ########
 
-  def new_location(self):
-    self.location_logic.new()
+  def new_location(self, form: Form):
+    return self.location_logic.new()
   
   def update_location(self):
-    self.location_logic.update()
+    return self.location_logic.update()
 
   def get_location(self, id):
-    self.location_logic.get(id)
+    return self.location_logic.get(id)
   
   def get_all_locations(self):
-    self.location_logic.get_all()
+    return self.location_logic.get_all()
 
   def add_employee_to_location(self):
-    self.location_logic.add_employee_to_location()
+    return self.location_logic.add_employee_to_location()
 
   ##### Report methods ########
 

@@ -160,23 +160,23 @@ class DlApi():
 
   ######## Location methods ############
   
-  def add_location(self):
-    self.location_data.add()
+  def add_location(self, location: Location) -> Location:
+    return self.location_data.add(location)
 
-  def update_location(self):
-    self.location_data.update()
+  def update_location(self, id: int, location: Location) -> Location:
+    return self.location_data.update(id, location)
 
-  def delete_location(self):
-    self.location_data.delete()
+  def delete_location(self,id: int) -> None:
+    self.location_data.delete(id)
 
   def get_all_locations(self) -> 'list[Location]':
-    self.location_data.get_all()
+    return self.location_data.get_all()
 
-  def get_one_location(self, id):
-    self.location_data.get_one(id)
+  def get_one_location(self, id: int) -> 'Location | None':
+    return self.location_data.get_one(id)
 
-  def get_filtered_locations(self):
-    self.location_data.get_filtered()
+  def get_filtered_locations(self, filter: dict, partial_match: bool = False) -> 'list[Employee]':
+    return self.location_data.get_filtered(filter, partial_match)
 
   ######## Task methods ############
   
