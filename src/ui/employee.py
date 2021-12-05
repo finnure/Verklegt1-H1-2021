@@ -47,12 +47,8 @@ class EmployeeView():
     self.__screen.display_menu(menu)
     return options
 
-  def __view_employee_handler(self, emp: 'int | Employee'):
-    ''' Displays information about an employee with given id. '''
-    if type(emp) is int:
-      emp = self.llapi.get_employee(input)
-      # taka þetta út ef verður ekki notað, annars klára villumeðhöndlun
-
+  def __view_employee_handler(self, emp: Employee):
+    ''' Displays information about an employee. '''
     menu = Menu(12)
     menu.add_menu_item('T', 'VIEW USER TASKS', 'TASK:VIEW_FOR_EMPLOYEE')
     menu.add_menu_item('R', 'VIEW USER REPORTS', 'REPORT:VIEW_FOR_EMPLOYEE')
@@ -65,6 +61,8 @@ class EmployeeView():
     
     self.__display_one_employee(emp)
     self.__screen.display_menu(menu)
+    # Store emp in params so edit handler can pick it up and handle editing
+    self.llapi.set_param('EMPLOYEE', emp)
     return options
 
   def __filter_location_handler(self):
@@ -82,13 +80,16 @@ class EmployeeView():
       self.__screen.print('PRESS I TO SEARCH AGAIN', 11, 10)
       self.__screen.paint_character('OPTION', 11, 16)
       return options
-    # Employee found, clear screen and display info
+    # Employee found, clear screen and call view handler to display info
     self.__screen.clear()
     self.__view_employee_handler(emp)
 
   def __list_all_paging_next_handler(self):
-    ''' Go to next page of employee list '''
+    ''' Go to next page of employee list. If table is not available
+    in params, list all handler will be called and whole list from page 
+    one will be displayed. '''
     try:
+      # pop table from params, go to next page and call list all handler with table
       table: Table = self.llapi.get_param('TABLE')
       table.next_page()
       return self.__list_all_handler(table)
@@ -96,8 +97,11 @@ class EmployeeView():
       return self.__list_all_handler()
 
   def __list_all_paging_prev_handler(self):
-    ''' Go to previous page of employee list '''
+    ''' Go to previous page of employee list. If table is not available
+    in params, list all handler will be called and whole list from page 
+    one will be displayed. '''
     try:
+      # pop table from params, go to previous page and call list all handler with table
       table: Table = self.llapi.get_param('TABLE')
       table.previous_page()
       return self.__list_all_handler(table)
@@ -105,6 +109,8 @@ class EmployeeView():
       return self.__list_all_handler()
 
   def __list_all_handler(self, table: Table = None):
+    ''' Handler that gets a list of all Employees and displays as a table.
+    If too many rows are to be displayed, paging is applied.'''
     if table is None:
       # First call to list. If table is not None, paging is being used
       emps = self.llapi.get_all_employees()
@@ -134,6 +140,10 @@ class EmployeeView():
     return options
 
   def __select_from_list_handler(self):
+    ''' Handler that allows user to select an Employee from a list.
+    Available input is either a row number or an available paging option.
+    If wrong row number is selected, an error is displayed and user asked
+    to try again. '''
     try:
       # Get table from params if available
       table: Table = self.llapi.get_param('TABLE')
@@ -170,6 +180,7 @@ class EmployeeView():
           self.__screen.flash()
 
   def __new_employee_handler(self):
+    ''' Handler to display a form to enter data for new Employee. '''
     self.__screen.print('CREATE NEW EMPLOYEE', 2, 50, 'PAGE_HEADER')
     self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW EMPLOYEE', 5, 6, 'DATA_KEY')
     self.__screen.refresh()
@@ -177,7 +188,7 @@ class EmployeeView():
     form_window = self.__screen.display_form(form)
     for field in form:
       if field.options is not None:
-        # Display options list
+        # TODO Display options list
         pass
       if field.editable:
         form_window.edit_form_field(field)
@@ -194,6 +205,8 @@ class EmployeeView():
     return menu.get_options()
 
   def __save_employee_handler(self):
+    ''' After adding new or editing an employee, this handler will save to disk
+    if user chooses to apply changes. '''
     try:
       form: Form = self.llapi.get_param('FORM')
     except KeyError as err:
@@ -206,7 +219,11 @@ class EmployeeView():
   def __edit_employee_handler(self):
     pass
 
+
   def find_handler(self, input: str):
+    ''' This method is called by ui handler when an Employee view is requested.
+    The screen is cleared before calling the requested handler and refreshed
+    before returning back to ui handler to make sure everything is displayed correctly. '''
     if input not in self.__input_map:
       raise KeyError(f'Employee does not have a handler for {input}')
     handler: function = self.__input_map[input]
@@ -216,10 +233,9 @@ class EmployeeView():
     return options
 
 
-  ########## Display data methods ##################
-
 
   def __display_one_employee(self, emp: Employee) -> None:
+    ''' Displays information about an employee on the screen. '''
     left_column = Menu(spacing=10)
     left_column.add_menu_item('NAME', emp.name)
     left_column.add_menu_item('PHONE', emp.phone)
@@ -239,7 +255,9 @@ class EmployeeView():
     self.__screen.print('NUMBER OF ACTIVE TASKS: ', 10, 6, 'DATA_KEY')
     self.__screen.print(str(self.llapi.get_active_tasks_for_user(emp.id)))
 
-  def __create_table(self, emps: Table, begin_line: int = 5) -> Table:
+  def __create_table(self, emps: 'list[Employee]', begin_line: int = 5) -> Table:
+    ''' Create a Table object from a list of Employees. Table class takes in
+    a list of employee instances and list of headers to create a table. '''
     headers = {
       'id': 'ID',
       'name': 'NAME',
