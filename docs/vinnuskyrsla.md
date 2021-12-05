@@ -319,8 +319,8 @@ Notendaprófanir - virkni
 ### Plan dagsins
 To do
 - [x] - Lára: færa wireframe myndir inn í Figma sem notaðar verða í notendaprófunum
-- [] - Finnur: forritun
-- [] - Stefán: Taka saman UC fyrir notendaprófanir þessa helgi
+- [x] - Finnur: forritun
+- [x] - Stefán: Taka saman UC fyrir notendaprófanir þessa helgi
 - [x] - Finna fórnarlömb í prófanir (Kristín er komin 2 og Lára 2)
 ### Framkvæmt í dag
 - Lára: Wireframe og Figma vinna (5 klst)
@@ -332,22 +332,36 @@ To do
 ## Dagur 13
 
 ### Plan dagsins
+- [x] - klára UC
+- [x] - Framkvæma notendaprófanir
+- [x] - Klára Figma map
+- [x] - halda áfram með að forrita virkni kerfins fyrir A og B kröfur
+- [x] - Setja gögn á csv format sem forritið getur lesið
 
 ### Framkvæmt í dag
+Öll verkefni á lista kláruð
+- Stefán: Gerði drög að UC, forritaði hluta á dl og bjó til gögn á csv formi fyrir forritið (6 klst)
+- Kristín: kláruðu UC fyrir notendaprófanir (7 klst)
+- Lára: kláraði Figma kortlagningu til að nota í prófunum og lagði lokahönd á UC (5 klst)
+- Finnur: klárar að fínpússa og bæta við þeim virknum sem skilgreindar eru í A og B kröfum (10 klst)
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 14
 
 ### Plan dagsins
-- [] - klára UC
-- [x] - Klára Figma map
-- [] - halda áfram með að forrita virkni kerfins fyrir A og B kröfur
+- [x] - Framkvæma notendaprófanir og taka þær saman
+- [x] - Færa niðurstöður UC inn í skýrslu
+- [x] - Taka saman kröfulista úr prófunum 
+- [x] - halda áfram með að forrita virkni kerfins fyrir A og B kröfur
+- [x] - Færa upplýsingar um notendaprófanir inn í skýrslu í viðeigandi kafla með skjáskotum og upplýsingum
+- [x] - Uppfæra csv gögn eftir breytingar
 
 ### Framkvæmt í dag
-Stefán og Kristín: kláruðu UC fyrir notendaprófanir
-Lára: kláraði Figma kortlagningu til að nota í prófunum
-Finnur: klárar að fínpússa og bæta við þeim virknum sem skilgreindar eru í A og B kröfum
+- Kristín og Stefán framkvæmdu notendaprófanir og forrituðu
+- Finnur: Forritunarvinna (viðbætur á skilgreindum aðgerðum og virknum ásamt því að fínpússa kóða)
+- Lára: Tók saman öll UC, færði inn skjáskot og leiðbeiningar inn í hönnunarskýrslu. Tók einnig saman niðurstöður prófana, setti upp í kröfulista viðmóts + SUS skýrslu
+
 
 [Heim](#efnisyfirlit)
 
