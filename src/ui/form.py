@@ -1,4 +1,4 @@
-import utils
+from utils import Filters
 
 class Form():
 
@@ -26,7 +26,7 @@ class FormField():
                 value: str,
                 lines: int,
                 cols: int,
-                filter: str = utils.ALL_PRINTABLE,
+                filter: str = Filters.ALL_PRINTABLE,
                 editable: bool = True,
                 validators: list = None,
                 options: str = None,

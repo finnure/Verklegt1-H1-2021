@@ -5,6 +5,7 @@ from ui.form import Form, FormField
 from ui.menu import Menu
 from ui.table import Table
 import utils
+from utils import Filters
 from typing import Tuple, Union
 from time import sleep
 
@@ -296,7 +297,7 @@ class Screen():
     ''' Listenes to keyboard input and returns character. '''
     return self.__screen.get_wch()
 
-  def get_string(self, line: int, col: int, cols: int = 64, filter: str = utils.ALL_PRINTABLE, value: str = None, editing: bool = False) -> str:
+  def get_string(self, line: int, col: int, cols: int = 64, filter: str = Filters.ALL_PRINTABLE, value: str = None, editing: bool = False) -> str:
     ''' Collects input from keyboard and returns as string.
     Only printable characters are allowed by default.
     Terminates on Enter, Tab, Arrow up, Arrow down.
@@ -356,7 +357,7 @@ class Screen():
     # Return list as string
     return ''.join(accumulated_string)
 
-  def get_multiline_string(self, lines: int = 1, cols: int = 64, filter: str = utils.ALL_PRINTABLE) -> str:
+  def get_multiline_string(self, lines: int = 1, cols: int = 64, filter: str = Filters.ALL_PRINTABLE) -> str:
     ''' Collects multiple lines and returns as one string. '''
     first_line, first_col = self.__get_current_pos()
     accumulated_lines = []

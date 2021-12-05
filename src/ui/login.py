@@ -1,5 +1,7 @@
 from llapi import LlApi
 from ui.screen import Screen
+from ui.constants import Styles
+from utils import Filters
 class LoginView():
 
   def __init__(self, screen: Screen, llapi: LlApi):
@@ -13,16 +15,16 @@ class LoginView():
 
   def invalid_input_error(self):
     self.display_view()
-    self.__screen.print('Invalid input, user id should be a number. Please try again', 5, 6, 'ERROR')
+    self.__screen.print('INVALID INPUT, USER ID SHOULD BE A NUMBER. PLEASE TRY AGAIN', 5, 6, Styles.ERROR)
 
   def user_not_found_error(self):
     self.display_view()
-    self.__screen.print('User not found, please try again!', 5, 6, 'ERROR')
+    self.__screen.print('USER NOT FOUND, PLEASE TRY AGAIN', 5, 6, Styles.ERROR)
 
   def get_input(self):
     self.display_view()
     while True:
-      user_id = self.__screen.get_string(2, 21, 3, 'Qq0123456789')
+      user_id = self.__screen.get_string(2, 21, 3, Filters.USER_ID)
       if 'Q' in user_id.upper():
         return
       try:

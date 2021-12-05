@@ -1,7 +1,7 @@
 from llapi import LlApi
 from ui.menu import Menu
 from ui.screen import Screen
-
+from ui.constants import Styles
 
 TOP_AND_BOTTOM = '\U00002500'
 SIDE = '\U00002502'
@@ -51,9 +51,9 @@ class ViewFrame():
 
   def __display_logo(self) -> None:
     ''' Displays logo in window. '''
-    self.__screen.print('NaN', 1, 2, 'LOGO_NAME')
-    self.__screen.print('NaN', 3, 26, 'LOGO_NAME')
-    self.__screen.print('We divide by zero', 2, 7, 'LOGO_TEXT')
+    self.__screen.print('NaN', 1, 2, Styles.LOGO_NAME)
+    self.__screen.print('NaN', 3, 26, Styles.LOGO_NAME)
+    self.__screen.print('We divide by zero', 2, 7, Styles.LOGO_TEXT)
 
   def __display_header(self) -> None:
     ''' Displays header in window. '''
@@ -75,9 +75,9 @@ class ViewFrame():
     ''' Displays information about logged in user in bottom left corner. '''
     menu = Menu(37, 2, 11)
     menu.add_menu_item('NAME', self.llapi.user.name)
-    menu.add_menu_item('LOCATION', str(self.llapi.user.location_id))
+    menu.add_menu_item('LOCATION', str(self.llapi.user.location_id)) # TODO breyta í location
     menu.add_menu_item('ROLE', self.llapi.user.role)
-    self.__screen.display_menu(menu, 'DATA_KEY')
+    self.__screen.display_menu(menu, Styles.DATA_KEY)
 
 
   def __draw_divider_line(self, line: int) -> None:
@@ -92,8 +92,8 @@ class ViewFrame():
     for i, col in enumerate(start_list):
       self.__screen.print(TOP_DIVIDER, from_line, col)
       self.__screen.print(BOTTOM_DIVIDER, from_line + 4, col)
-      self.__screen.print(title_list[i], from_line + 2, col + 3, 'FRAME_TEXT')
-      self.__screen.paint_character('OPTION', from_line + 2, col + 4)
+      self.__screen.print(title_list[i], from_line + 2, col + 3, Styles.FRAME_TEXT)
+      self.__screen.paint_character(Styles.OPTION, from_line + 2, col + 4)
       for line in [from_line + 1, from_line + 2, from_line + 3]:
         self.__screen.print(SIDE, line, col)
 
