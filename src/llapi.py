@@ -6,6 +6,7 @@ from models.employee import Employee
 from bl.location import LocationLogic
 from bl.report import ReportLogic
 from bl.task import TaskLogic
+from ui.form import Form
 
 class LlApi():
   def __init__(self):
@@ -91,11 +92,11 @@ class LlApi():
 
   ##### Employee methods ########
 
-  def new_employee(self):
-    return self.employee_logic.new()
+  def new_employee(self, form: Form):
+    return self.employee_logic.new(form)
   
-  def update_employee(self):
-    return self.employee_logic.update()
+  def update_employee(self, form: Form):
+    return self.employee_logic.update(form)
 
   def get_employee(self, id):
     return self.employee_logic.get(id)

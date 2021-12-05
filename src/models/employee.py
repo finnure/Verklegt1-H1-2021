@@ -42,25 +42,24 @@ class Employee():
   @staticmethod
   def get_new_fields():
     return [
-      FormField('name', 'NAME', None, 1, 32),
-      FormField('ssn', 'SSN', None, 1, 15, validator=utils.validate_ssn),
-      FormField('phone', 'PHONE', None, 1, 10, utils.PHONE, validator=utils.validate_phone),
-      FormField('mobile', 'MOBILE', None, 1, 10, utils.PHONE, validator=utils.validate_phone),
-      FormField('email', 'E-MAIL', None, 1, 32, validator=utils.validate_phone),
+      FormField('name', 'NAME', None, 1, 32, validators=[utils.validate_min_length(5)]),
+      FormField('ssn', 'SSN', None, 1, 15, validators=[utils.validate_ssn]),
+      FormField('phone', 'PHONE', None, 1, 10, utils.PHONE, validators=[utils.validate_phone]),
+      FormField('mobile', 'MOBILE', None, 1, 10, utils.PHONE, validators=[utils.validate_phone]),
+      FormField('email', 'E-MAIL', None, 1, 32, validators=[utils.validate_email]),
       FormField('address', 'ADDRESS', None, 1, 32),
-      FormField('location_id', 'COUNTRY', None, 1, 1, options='LOCATION'),
-      FormField('role', 'ROLE', None, 1, 1, options='ROLE')
+      FormField('location_id', 'COUNTRY', None, 1, 3, validators=[utils.validate_options], options='LOCATION'),
     ]
 
   def get_edit_fields(self):
     return [
       FormField('id', 'ID', self.id, 1, 3, editable=False),
-      FormField('name', 'NAME', self.name, 1, 32),
+      FormField('name', 'NAME', self.name, 1, 32, validators=[utils.validate_min_length(5)]),
       FormField('ssn', 'SSN', self.ssn, 1, 15, editable=False),
-      FormField('phone', 'PHONE', self.phone, 1, 10, utils.PHONE, validator=utils.validate_phone),
-      FormField('mobile', 'MOBILE', self.mobile, 1, 10, utils.PHONE, validator=utils.validate_phone),
-      FormField('email', 'E-MAIL', self.email, 1, 32, validator=utils.validate_phone),
+      FormField('phone', 'PHONE', self.phone, 1, 10, utils.PHONE, validators=[utils.validate_phone]),
+      FormField('mobile', 'MOBILE', self.mobile, 1, 10, utils.PHONE, validators=[utils.validate_phone]),
+      FormField('email', 'E-MAIL', self.email, 1, 32, validators=[utils.validate_email]),
       FormField('address', 'ADDRESS', self.address, 1, 32),
-      FormField('location_id', 'COUNTRY', self.location_id, 1, 1, options='LOCATION'),
-      FormField('role', 'ROLE', self.role, 1, 1, options='ROLE')
+      FormField('location_id', 'COUNTRY', self.location_id, 1, 3, validators=[utils.validate_options], options='LOCATION'),
+      FormField('role', 'ROLE', self.role, 1, 10, editable=False),
     ]

@@ -1,3 +1,4 @@
+from typing import Callable
 from llapi import LlApi
 from ui.screen import Screen
 from ui.viewframe import ViewFrame
@@ -46,7 +47,8 @@ class UiHandler():
       'REPORT': self.report_view,
       'CONTRACTOR': self.contractor_view,
       'SEARCH': self.search_view,
-      'MENU': self.main_menu_view
+      'MENU': self.main_menu_view,
+      'GLOBAL': self
     }
 
   def __init_colors(self):
@@ -149,5 +151,23 @@ class UiHandler():
         view = self.view_map[view_key]
         options = view.find_handler(handler_key)
         
+  def find_handler(self, handler_key):
+    ''' Generic handler for global options if view_key is GLOBAL. '''
+    if handler_key == 'BACK':
+      if len(self.breadcrumb) <= 0:
+        # Nothing to go back to, flash and continue
+        self.__screen.flash()
+        return ''
+      else:
+        # set current view to last view in breadcrumb
+        self.current_view = self.breadcrumb.pop()
+        view_key, handler_key = self.current_view.split(':')
+        if view_key not in self.view_map:
+          raise KeyError(f'View not available for {view_key}')
+        view = self.view_map[view_key]
+        return view.find_handler(handler_key)
+
+
+
   def quit(self):
     self.__screen.end()

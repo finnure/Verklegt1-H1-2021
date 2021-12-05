@@ -141,7 +141,7 @@ class Screen():
       'LOGO_NAME': (4,['BLINK']),
       'LOGO_TEXT': (5,['BOLD']),
       'TABLE_HEADER': (6,['UNDERLINE']),
-      'PAGE_HEADER': (7,['BOLD']),
+      'PAGE_HEADER': (7,['BOLD', 'UNDERLINE']),
       'DATA_KEY': (8,['BOLD']),
       'DISABLED': (9,['NORMAL']),
       'EDITING': (10, ['NORMAL'])
@@ -222,7 +222,7 @@ class Screen():
       self.print('EXT ', style=style)
     return filter
 
-  def display_form(self, form: Form, begin_line: int = 10, begin_col: int = 5):
+  def display_form(self, form: Form, begin_line: int = 8, begin_col: int = 6):
     ''' Creates a new window and displays the form on it. 
     Returns the new window to enable editing. '''
     lines = form.lines
@@ -248,20 +248,33 @@ class Screen():
     return window
 
   def edit_form_field(self, field: FormField) -> str:
-    ''' Allows user to edit field, returns new value. '''
+    ''' Allows user to edit field, mutates value. '''
     # Need to add extra column to sub window to make sure cursor doesn't go out of bounds on last char
     window = Screen(field.lines, field.cols + 1, field.line, field.col, parent=self)
-    
-    # Clear previous value from screen so get_string() gets a clear canvas.
-    window.clear()
-    window.refresh()
-    value = window.get_string(0, 0, field.cols, field.filter, field.value, True)
+    error_length = 0
+    # Try until value is of correct format  
+    while True:
+      # Clear previous value from screen so get_string() gets a clear canvas.
+      window.clear()
+      window.refresh()
+      value = window.get_string(0, 0, field.cols, field.filter, field.value, True)
+      try:
+        [validate(value) for validate in field.validators]
+        self.delete_character(field.line, field.col + field.cols + 5, error_length)
+        self.refresh()
+        field.value = value
+        break
+      except ValueError as err:
+        error_length = len(str(err))
+        self.print(str(err), field.line, field.col + field.cols + 5, self.get_css_class('ERROR'))
+        self.refresh()
+      except TypeError:
+        # Validator is not a function
+        pass
     
     # Remove EDITING formatting 
     window.paint_character(0,0,0,field.cols)
     window.refresh()
-    
-    return value
 
   ############### Input/output #####################
 
@@ -289,6 +302,7 @@ class Screen():
     Terminates on Enter, Tab, Arrow up, Arrow down.
     Backspace removes character from list. '''
     # Make cursor visible and move it to start of line
+    started_editing = False
     curses.curs_set(1)
     self.move_cursor_to_coords(line, col)
     accumulated_string = []
@@ -324,11 +338,16 @@ class Screen():
       else:
         # Character not allowed
         self.flash()
+        continue
       if editing:
         # Re-apply fancy visual stuff to keep looks consistent and move cursor to correct position
         self.paint_character(self.get_css_class('EDITING'), 0, 0, cols)
         self.move_cursor_by_offset(0, index)
         self.refresh()
+        if not started_editing:
+          # Give user a chance to delete from a string that is of max length
+          started_editing = True
+          continue
       if len(accumulated_string) >= cols:
         # max string length reached, break out of while and return string        
         break
@@ -406,13 +425,20 @@ class Screen():
     else:
       self.__screen.chgat(line, col, num, style)
 
-  def delete_character(self, line: Union[int, None] = None, col: Union[int, None] = None) -> None:
+  def delete_character(self, line: int = None, col: int = None, num: int = 1) -> None:
     ''' Deletes character at specified position, or current position if none specified
     Checks if position is in-bounds first'''
-    if line is None or col is None:
-      self.__screen.delch()
-    elif self.__is_in_bounds(line, col):
-      self.__screen.delch(line, col)
+    # Delete one or more characters
+    for _ in range(num):
+      try:
+        if line is None or col is None:
+          # Delete characters from current position
+          self.__screen.delch()
+        else: 
+          self.__screen.delch(line, col)
+      except:
+        # Ignore errors, most likely because position is out of bounds
+        return
 
   def delete_line(self, line: Union[int, None] = None) -> None:
     ''' Delete line. Deletes current line if line is None, 

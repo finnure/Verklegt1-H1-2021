@@ -13,7 +13,7 @@ class Form():
     ''' Make form subscriptable. Form fields can be accessed using form[idx] '''
     if isinstance(index, slice):
       return self.form_fields[index.start:index.stop:index.step]
-    return self.form_fields[index]
+    return next(field.value for field in self.form_fields if field.key == index)
 
   def __iter__(self):
     ''' Make form iterable, can be used in a for loop with: for field in form '''
@@ -28,7 +28,7 @@ class FormField():
                 cols: int,
                 filter: str = utils.ALL_PRINTABLE,
                 editable: bool = True,
-                validator = None,
+                validators: list = None,
                 options: str = None,
                 border: bool = False):
     self.key = key
@@ -38,7 +38,7 @@ class FormField():
     self.cols = cols
     self.filter = filter
     self.editable = editable
-    self.validator = validator
+    self.validators = [] if validators is None else validators
     self.options = options
     self.border = border
 

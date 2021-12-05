@@ -18,13 +18,14 @@ class EmployeeView():
     handler method for that selection as value. '''
     self.__input_map = {
       'MENU': self.__menu_handler,
-      'ADD_NEW': self.__new_employee_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
       'LIST_ALL': self.__list_all_handler,
       'LIST_ALL_NEXT': self.__list_all_paging_next_handler,
       'LIST_ALL_PREV': self.__list_all_paging_prev_handler,
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_employee_handler,
+      'ADD_NEW': self.__new_employee_handler,
+      'SAVE': self.__save_employee_handler,
       'EDIT': self.__edit_employee_handler,
       'GET_ID': self.__get_id_handler
     }
@@ -58,8 +59,8 @@ class EmployeeView():
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
-    admin_menu.add_menu_item('/', 'EDIT', 'EMPLOYEES:EDIT')
-    admin_menu.add_menu_item('+', 'ADD NEW', 'EMPLOYEES:ADD')
+    admin_menu.add_menu_item('/', 'EDIT', 'EMPLOYEE:EDIT')
+    admin_menu.add_menu_item('+', 'ADD NEW', 'EMPLOYEE:ADD')
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
     
     self.__display_one_employee(emp)
@@ -169,25 +170,48 @@ class EmployeeView():
           self.__screen.flash()
 
   def __new_employee_handler(self):
+    self.__screen.print('CREATE NEW EMPLOYEE', 2, 50, self.__screen.get_css_class('PAGE_HEADER'))
+    self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW EMPLOYEE', 5, 6, self.__screen.get_css_class('DATA_KEY'))
     self.__screen.refresh()
     form = Form(Employee.get_new_fields())
     form_window = self.__screen.display_form(form)
     for field in form:
-      form_window.edit_form_field(field)
-    return ''
+      if field.options is not None:
+        # Display options list
+        pass
+      if field.editable:
+        form_window.edit_form_field(field)
+    
+    # Save form in params so the save handler can pick it up and save data to disk
+    self.llapi.set_param('FORM', form)
 
-  def __edit_employee_handler(self, id: int):
+    # Delete outdated message and display menu options
+    self.__screen.delete_character(5, 6, 50)
+    menu = Menu(18)
+    menu.add_menu_item('A', 'APPLY CHANGES', 'EMPLOYEE:SAVE')
+    menu.add_menu_item('D', 'DISCARD CHANGES', 'GLOBAL:BACK')
+    self.__screen.display_menu(menu)
+    return menu.get_options()
+
+  def __save_employee_handler(self):
+    try:
+      form: Form = self.llapi.get_param('FORM')
+    except KeyError as err:
+      # This really shouldn't happen. We'll put this here anyways.
+      self.__screen.print(str(err), 6, 6, self.__screen.get_css_class('ERROR'))
+      return {}
+    emp = self.llapi.new_employee(form)
+    return self.__view_employee_handler(emp)
+
+  def __edit_employee_handler(self):
     pass
 
-  def __not_found_handler(self):
-    pass
-
-  def find_handler(self, input: str, params = None):
+  def find_handler(self, input: str):
     if input not in self.__input_map:
       raise KeyError(f'Employee does not have a handler for {input}')
     handler: function = self.__input_map[input]
     self.__screen.clear()
-    options = handler(params) if params is not None else handler()
+    options = handler()
     self.__screen.refresh()
     return options
 

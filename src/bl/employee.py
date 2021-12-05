@@ -1,3 +1,4 @@
+from ui.form import Form
 import utils
 from dlapi import DlApi
 from models.employee import Employee
@@ -17,14 +18,14 @@ class EmployeeLogic():
       'role'
     ]
 
-  def new(self, employee: 'dict[str,str]') -> Employee:
+  def new(self, form: Form) -> Employee:
     ''' TODO '''
-    emp = self.__validate(employee, 1)
+    emp = self.__parse_form(form)
     return self.dlapi.add_employee(emp)
 
   def update(self, employee: 'dict[str,str]') -> Employee:
     ''' TODO '''
-    emp = self.__validate(employee, employee['location_id'])
+    emp = self.__parse_form(employee, employee['location_id'])
     return self.dlapi.update_employee(emp.id, emp)
 
   def get(self, id: int) -> Employee:
@@ -44,24 +45,23 @@ class EmployeeLogic():
     ''' TODO '''
     pass
 
-  def __validate(self, employee: 'dict[str,str]', location_id: int) -> Employee:
-    ''' Validates that data is correct. Throws error if it's not.
-    Returns instance of Employee if everything is ok. '''
-    utils.validate_headers(self.required_headers, employee.keys())
-    utils.validate_phone(employee['mobile'])
-    utils.validate_phone(employee['phone'])
-    utils.validate_email(employee['email'])
-    if not 'id' in employee:
-      employee['id'] = 0
+  def __parse_form(self, form: Form) -> Employee:
+    ''' Returns instance of Employee if everything is ok. '''
+    try:
+      id = form['id']
+      role = form['role']
+    except StopIteration:
+      id = 0
+      role = 'EMPLOYEE'
 
     return Employee(
-        employee['id'], 
-        location_id,
-        employee['name'],
-        employee['ssn'],
-        employee['address'],
-        employee['phone'],
-        employee['mobile'],
-        employee['email'],
-        employee['role'],
+        id, 
+        form['location_id'],
+        form['name'],
+        form['ssn'],
+        form['address'],
+        form['phone'],
+        form['mobile'],
+        form['email'],
+        role,
       )
