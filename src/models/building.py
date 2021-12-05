@@ -1,37 +1,64 @@
+from utils import Validate, Filters
+from ui.form import FormField
+
 class Building():
 
-  def __init__(self, id: int, building_id: int, location_id: int,  description: str, state: str, task: list,
-            accessories: list, address: str, manager: str, reports: int, size: float, rooms: int, type: str) -> None:
+  def __init__(self, id: int, 
+              registration: int, 
+              location_id: int,  
+              description: str, 
+              state: str,
+              address: str, 
+              size: float, 
+              rooms: int, 
+              type: str) -> None:
     self.id = id
-    self.building_id = building_id
+    self.registration = registration
     self.location_id = location_id
     self.description = description
     self.state = state
-    self.task = []
-    self.accessories = []
     self.address = address
-    self.manager = manager
-    self.reports = reports
     self.size = size
     self.rooms = rooms
     self.type = type
     
   def __str__(self) -> str:
-    pass
+    return f'#{self.id} - {self.address} - {self.registration}'
 
   def as_dict(self) -> 'dict[str, str | int]':
     return {
       'id' : self.id,
-      'building_id' : self.building_id,
+      'registration' : self.registration,
       'location_id' : self.location_id,
       'description' : self.description,
       'state' : self.state,
-      'task' : self.task, 
-      'accessories' : self.accessories, 
       'address' : self.address, 
-      'manager' : self.manager,
-      'reports' : self.reports, 
       'size' : self.size, 
       'rooms' : self.rooms, 
       'type' : self.type
     }
+
+  @staticmethod
+  def get_new_fields():
+    return [
+      FormField('registration', 'REGISTRATION ID', None, 1, 10, validators=[Validate.required]),
+      FormField('description', 'DESCRIPTION', None, 1, 64),
+      FormField('state', 'STATE', None, 1, 64),
+      FormField('address', 'ADDRESS', None, 1, 32),
+      FormField('size', 'SIZE', None, 1, 10, Filters.FLOATS),
+      FormField('rooms', 'ROOMS', None, 1, 5, Filters.NUMBERS),
+      FormField('type', 'TYPE', None, 1, 15),
+    ]
+
+  def get_edit_fields(self):
+    return [
+      FormField('id', 'ID', self.id, 1, 3, editable=False),
+      FormField('registration', 'REGISTRATION ID', self.registration, 1, 10, validators=[Validate.required]),
+      FormField('location_id', 'LOCATION', self.location_id, 1, 3, editable=False),
+      FormField('description', 'DESCRIPTION', self.description, 1, 64),
+      FormField('state', 'STATE', self.state, 1, 64),
+      FormField('address', 'ADDRESS', self.address, 1, 32),
+      FormField('size', 'SIZE', self.size, 1, 10, Filters.FLOATS),
+      FormField('rooms', 'ROOMS', self.rooms, 1, 5, Filters.NUMBERS),
+      FormField('type', 'TYPE', self.type, 1, 15),
+    ]

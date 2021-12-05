@@ -1,4 +1,3 @@
-from typing import Callable
 from llapi import LlApi
 from ui.screen import Screen
 from ui.viewframe import ViewFrame
@@ -12,6 +11,7 @@ from ui.login import LoginView
 from ui.mainmenu import MainMenuView
 from ui.search import SearchView
 from ui.menu import Menu
+from ui.constants import BuildConst, ContrConst, EmpConst, LocConst, SearchConst, TaskConst, GlobalConst
 
 class UiHandler():
 
@@ -29,15 +29,15 @@ class UiHandler():
   def __init_views(self):
     self.login_view = LoginView(self.__window, self.llapi)
     self.view_frame = ViewFrame(self.__screen, self.llapi, self.header_menu, self.footer_menu)
-    self.main_menu_view = MainMenuView(self.__window)
     self.location_view = LocationView(self.__window, self.llapi)
+    self.main_menu_view = MainMenuView(self.__window, self.llapi)
     self.employee_view = EmployeeView(self.__window, self.llapi)
-    self.building_view = BuildingView(self.__window)
+    self.building_view = BuildingView(self.__window, self.llapi)
     # self.accessory_view = AccessoryView(self.__window)
     self.task_view = TaskView(self.__window)
     self.report_view = ReportView(self.__window)
     self.contractor_view = ContractorView(self.__window)
-    self.search_view = SearchView(self.__window)
+    self.search_view = SearchView(self.__window, self.llapi)
 
     self.view_map = {
       'LOCATION': self.location_view,
@@ -67,20 +67,20 @@ class UiHandler():
 
   def __init_menu(self):
     header_menu = Menu()
-    header_menu.add_menu_item('L', '(L)OCATIONS', 'LOCATION:LIST_ALL')
-    header_menu.add_menu_item('B', '(B)UILDING', 'BUILDING:MENU')
-    header_menu.add_menu_item('E', '(E)MPLOYEE', 'EMPLOYEE:MENU')
-    header_menu.add_menu_item('T', '(T)ASKS', 'TASK:MENU')
-    header_menu.add_menu_item('C', '(C)ONTRACTORS', 'CONTRACTOR:MENU')
-    header_menu.add_menu_item('S', '(S)EARCH', 'SEARCH:MENU')
+    header_menu.add_menu_item('L', '(L)OCATIONS', LocConst.LIST_ALL)
+    header_menu.add_menu_item('B', '(B)UILDING', BuildConst.MENU)
+    header_menu.add_menu_item('E', '(E)MPLOYEE', EmpConst.MENU)
+    header_menu.add_menu_item('T', '(T)ASKS', TaskConst.MENU)
+    header_menu.add_menu_item('C', '(C)ONTRACTORS', ContrConst.MENU)
+    header_menu.add_menu_item('S', '(S)EARCH', SearchConst.MENU)
     global_options = header_menu.get_options()
     self.header_menu = header_menu
 
     footer_menu = Menu()
-    footer_menu.add_menu_item('H', '(H)OME', 'MENU:MENU')
-    footer_menu.add_menu_item('-', '(-) BACK', 'SELF:BACK')
-    footer_menu.add_menu_item('Z', '(Z) LOG OUT', 'SELF:LOGOUT')
-    footer_menu.add_menu_item('Q', '(Q)UIT', 'SELF:QUIT')
+    footer_menu.add_menu_item('H', '(H)OME', GlobalConst.MAIN_MENU)
+    footer_menu.add_menu_item('-', '(-) BACK', GlobalConst.BACK)
+    footer_menu.add_menu_item('Z', '(Z) LOG OUT', GlobalConst.LOGOUT)
+    footer_menu.add_menu_item('Q', '(Q)UIT', GlobalConst.QUIT)
     global_options.update(footer_menu.get_options())
     self.footer_menu = footer_menu
     self.global_options = global_options
@@ -93,8 +93,8 @@ class UiHandler():
     else:
       self.llapi.set_logged_in_user(user)
       self.view_frame.print_view()
-      self.current_view = 'EMPLOYEE:MENU' # Debugging
-      options: dict = self.employee_view.find_handler('MENU') # Debugging, replace with main menu
+      self.current_view = 'MENU:MENU'
+      options: dict = self.main_menu_view.find_handler('MENU')
       while True:
         # Get input from user
         self.__screen.flush_input()
@@ -128,8 +128,8 @@ class UiHandler():
             else:
               raise ValueError(f'Invalid handler key for self: {handler_key}')
           else:
-            # Global menu option selected. Set it as current view and clear breadcrumbs
-            self.breadcrumb = []
+            # Global menu option selected. Set it as current view and set home as breadcrumb
+            self.breadcrumb = ['MENU:MENU']
             self.current_view = connection
             # next execution should use current view to find handler
 

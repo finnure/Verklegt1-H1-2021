@@ -7,7 +7,8 @@ class Filters():
   PRINTABLE = string.printable
   ALL_PRINTABLE = PRINTABLE + SPECIAL_CHARACTERS
   NUMBERS = '0123456789'
-  PHONE = '+0123456789'
+  FLOATS = '.0123456789'
+  PHONE = '+0123456789 '
   USER_ID = 'Qq0123456789'
 
 def none_if_not_list(list) -> 'list | None':
@@ -35,6 +36,12 @@ class Validate():
       if len(value) < min_length:
         raise ValueError(f'MINIMUM LENGTH OF {min_length} REQUIRED')
     return apply_validation
+
+  @staticmethod
+  def required(value) -> None:
+    ''' Raises an error if value is an empty string. '''
+    if value == '':
+      raise ValueError('THIS FIELD IS REQUIRED')
 
   @staticmethod
   def options(options: 'list | dict') -> 'Callable[[str], None]':
