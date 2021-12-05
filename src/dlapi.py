@@ -8,6 +8,7 @@ from dl.location import LocationData
 from dl.task import TaskData
 from models.building import Building
 from models.employee import Employee
+from models.location import Location
 class DlApi():
 
   def __init__(self):
@@ -160,23 +161,23 @@ class DlApi():
 
   ######## Location methods ############
   
-  def add_location(self):
-    return self.location_data.add()
+  def add_location(self, location: Location) -> Location:
+    return self.location_data.add(location)
 
-  def update_location(self):
-    return self.location_data.update()
+  def update_location(self, id: int, location: Location) -> Location:
+    return self.location_data.update(id, location)
 
-  def delete_location(self):
-    return self.location_data.delete()
+  def delete_location(self,id: int) -> None:
+    self.location_data.delete(id)
 
-  def get_all_locations(self):
+  def get_all_locations(self) -> 'list[Location]':
     return self.location_data.get_all()
 
-  def get_one_location(self, id):
+  def get_one_location(self, id: int) -> 'Location | None':
     return self.location_data.get_one(id)
 
-  def get_filtered_locations(self):
-    return self.location_data.get_filtered()
+  def get_filtered_locations(self, filter: dict, partial_match: bool = False) -> 'list[Employee]':
+    return self.location_data.get_filtered(filter, partial_match)
 
   ######## Task methods ############
   

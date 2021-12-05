@@ -75,7 +75,7 @@ class LocationData():
         raise KeyError(f'Invalid filter key for Location: {key}')
     return filtered_locations
 
-  def __parse(self, location: list):
+  def __parse(self,  location: 'dict[str,str]') -> Location:
     ''' Creates and returns an instance of Location '''
     return Location(
         int(location['id']), 
@@ -85,8 +85,5 @@ class LocationData():
         location['address'],
         location['phone'],
         location['openinghours'],
-        location['manager'],
-        location['employees'],
-        location['buildings'],
-        location['contractors']
+        location['manager']
       )
