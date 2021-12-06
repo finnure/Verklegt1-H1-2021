@@ -80,7 +80,7 @@ class BuildingData():
   
 
   def __parse(self, building: 'dict[str,str]') -> Building:
-    ''' Creates and returns an instance of Employee '''
+    ''' Creates and returns an instance of Building '''
     return Building(
         int(building['id']), 
         building['registration'],
