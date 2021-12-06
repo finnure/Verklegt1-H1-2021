@@ -368,6 +368,11 @@ To do
 ## Dagur 15
 
 ### Plan dagsins
+[] - Yfirfara öll UC í excel og bera saman við skýrslu (samræma)
+[] - Setja inn 'Viðbætur'' á UC
+[] - Byrja á handriti fyrir leiðbeiningamyndband
+[] - fínstilla útlit og laga tengingar yfir á önnur view
+[] - klára kóða fyrir Task, EmployeeReport og Contractor Report
 
 ### Framkvæmt í dag
 
