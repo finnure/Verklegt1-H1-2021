@@ -358,9 +358,10 @@ To do
 - [x] - Uppfæra csv gögn eftir breytingar
 
 ### Framkvæmt í dag
-- Kristín og Stefán framkvæmdu notendaprófanir og forrituðu
-- Finnur: Forritunarvinna (viðbætur á skilgreindum aðgerðum og virknum ásamt því að fínpússa kóða)
-- Lára: Tók saman öll UC, færði inn skjáskot og leiðbeiningar inn í hönnunarskýrslu. Tók einnig saman niðurstöður prófana, setti upp í kröfulista viðmóts + SUS skýrslu
+- Kristín: framkvæmdi notendaprófanir, breyting á gögnum og forritunarvinnu  - (8 klst)
+- Stefán: framkvæmdi notendaprófanir og forritaði location hluta - (8 klst)
+- Finnur: Forritunarvinna (viðbætur á skilgreindum aðgerðum og virknum ásamt því að fínpússa kóða) - (10 klst)
+- Lára: Tók saman öll UC, færði inn skjáskot og leiðbeiningar inn í hönnunarskýrslu. Tók einnig saman niðurstöður prófana, setti upp í kröfulista viðmóts + SUS skýrslu - (8 klst)
 
 
 [Heim](#efnisyfirlit)
