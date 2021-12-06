@@ -9,17 +9,18 @@ class TaskData():
       'id',
       'building_id',
       'accessory_id',
-      'short_description'
+      'employee_id',
+      'short_description',
       'type',
       'start_date',
       'due_date',
       'estimated_cost',
       'priority',
       'recurring',
-      'repeats_every'
+      'repeats_every',
       'status',
       'title',
-      'modified'
+      'modified',
     ]
     self.data_folder = data_folder
     self.__file = FileHandler('tasks.csv', self.data_folder, self.headers)
@@ -70,13 +71,13 @@ class TaskData():
       if key in self.headers:
         if partial_match:
           # Check if value is in field
-          filtered_tasks = [tas for tas in tasks if val in tas[key]]
+          filtered_tasks = [task for task in tasks if str(val).lower() in str(task[key]).lower()]
         else:
           # Full match, check if value equals field
-          filtered_tasks = [tas for tas in tasks if val == tas[key]]
+          filtered_tasks = [task for task in tasks if str(val).lower() == str(task[key]).lower()]
       else:
         # Wrong key in filter. Raise error
-        raise KeyError(f'Invalid filter key for Employee: {key}')
+        raise KeyError(f'Invalid filter key for Task: {key}')
     return filtered_tasks
 
   def __parse(self, task: 'dict[str,str]') -> Task:

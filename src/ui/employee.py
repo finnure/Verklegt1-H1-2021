@@ -5,7 +5,7 @@ from utils import Filters
 from llapi import LlApi
 from ui.screen import Screen
 from ui.menu import Menu
-from ui.constants import EmpConst, Styles
+from ui.constants import EmpConst, ReportConst, Styles, TaskConst
 
 class EmployeeView():
 
@@ -53,8 +53,8 @@ class EmployeeView():
   def __view_employee_handler(self, emp: Employee):
     ''' Displays information about an employee. '''
     menu = Menu(12)
-    menu.add_menu_item('T', 'VIEW USER TASKS', EmpConst.LIST_TASKS)
-    menu.add_menu_item('R', 'VIEW USER REPORTS', EmpConst.LIST_REPORTS)
+    menu.add_menu_item('1', 'VIEW USER TASKS', TaskConst.FILTER_EMPLOYEE)
+    menu.add_menu_item('2', 'VIEW USER REPORTS', ReportConst.FILTER_EMPLOYEE)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
@@ -287,7 +287,7 @@ class EmployeeView():
     right_column = Menu(3, 46, 10)
     right_column.add_menu_item('ID', str(emp.id))
     right_column.add_menu_item('SSN', emp.ssn)
-    right_column.add_menu_item('COUNTRY', str(emp.location_id))
+    right_column.add_menu_item('COUNTRY', emp.location.country)
     right_column.add_menu_item('ADDRESS', emp.address)
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
@@ -302,7 +302,7 @@ class EmployeeView():
     headers = {
       'id': 'ID',
       'name': 'NAME',
-      'phone': 'PHONE',
+      'location_city': 'CITY',
       'mobile': 'MOBILE',
       'email': 'EMAIL'
     }

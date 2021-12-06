@@ -20,29 +20,41 @@ class EmployeeLogic():
   def new(self, form: Form) -> Employee:
     ''' TODO '''
     emp = self.__parse_form(form)
-    return self.dlapi.add_employee(emp)
+    employee = self.dlapi.add_employee(emp)
+    return self.add_extras(employee)
 
   def update(self, form: Form) -> Employee:
     ''' TODO '''
     emp = self.__parse_form(form)
-    return self.dlapi.update_employee(emp.id, emp)
+    employee = self.dlapi.update_employee(emp.id, emp)
+    return self.add_extras(employee)
 
   def get(self, id: int) -> Employee:
     ''' TODO '''
-    return self.dlapi.get_one_employee(id)
+    employee = self.dlapi.get_one_employee(id)
+    return self.add_extras(employee)
 
   def get_all(self) -> 'list[Employee]':
     ''' TODO '''
-    return self.dlapi.get_all_employees()
+    employees = self.dlapi.get_all_employees()
+    return [self.add_extras(emp) for emp in employees]
 
   def get_employee_by_location(self, location_id: int) -> 'list[Employee]':
     ''' TODO '''
     filter = {'location_id': location_id}
-    return self.dlapi.get_filtered_employees(filter)
+    employees = self.dlapi.get_filtered_employees(filter)
+    return [self.add_extras(emp) for emp in employees]
 
-  def get_reports_for_employee(self, id: int) -> 'list[EmployeeReport]':
-    ''' TODO '''
-    pass
+
+  def add_extras(self, employee: Employee) -> Employee:
+    ''' Adds extra properties to employee and returns it. '''
+    location = self.dlapi.get_one_location(employee.location_id)
+    #reports = self.dlapi.get_filtered_employee_reports({'employee_id': employee.id})
+    #tasks = self.dlapi.get_filtered_tasks({'employee_id': employee.id})
+    employee.set_location(location)
+    #employee.set_reports(reports)
+    #employee.set_tasks(tasks)
+    return employee
 
   def __parse_form(self, form: Form) -> Employee:
     ''' Returns instance of Employee if everything is ok. '''

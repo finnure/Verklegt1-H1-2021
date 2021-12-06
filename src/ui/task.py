@@ -1,11 +1,12 @@
 from llapi import LlApi
+from models.employee import Employee
 from ui.screen import Screen
 from models.task import Task
 from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters, Helpers
-from ui.constants import AccConst, BuildConst, TaskConst, LocConst, Styles, TaskConst
+from ui.constants import AccConst, BuildConst, EmpConst, TaskConst, LocConst, Styles, TaskConst
 
 
 class TaskView():
@@ -33,6 +34,7 @@ class TaskView():
       'EDIT': self.__edit_handler,
       'GET_ID': self.__get_id_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
+      'FILTER_EMPLOYEE': self.__filter_employee_handler,
     }
 
   def find_handler(self, input: str):
@@ -320,3 +322,14 @@ class TaskView():
   def __filter_location_handler(self):
     options = self.__menu_handler()
     return options
+
+  def __filter_employee_handler(self):
+    try:
+      emp: Employee = self.llapi.get_param(EmpConst.EMPLOYEE_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err), 6, 6, Styles.ERROR)
+      return {}
+    tasks = self.llapi.get_active_tasks_for_user(emp.id)
+    table = self.__create_table(tasks)
+    self.__screen.display_table(table)
+    return {}

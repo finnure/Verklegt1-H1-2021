@@ -24,6 +24,13 @@ class TaskLogic():
   def get_filtered(self, filter):
     return self.dlapi.get_filtered_tasks(filter)
 
+  def get_active_tasks_for_employee(self, id: int):
+    filter = {
+      'employee_id': id,
+      'status': 'ASSIGNED'
+    }
+    return self.dlapi.get_filtered_tasks(filter)
+
   def add_report_to_task(self):
     pass
   

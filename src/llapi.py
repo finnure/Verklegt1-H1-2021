@@ -111,7 +111,7 @@ class LlApi():
     return self.employee_logic.get_reports_for_employee(filter)
 
   def get_active_tasks_for_user(self, id: int):
-    return self.task_logic.get_filtered({'employee_id': id})
+    return self.task_logic.get_active_tasks_for_employee(id)
   
   ##### Location methods ########
 

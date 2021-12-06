@@ -4,7 +4,7 @@ from ui.form import FormField
 
 class Location():
 
-  def __init__(self, id: int, country: str, city: str, airport: str, address: str, phone: int, opening_hours: str, manager: str) -> None:
+  def __init__(self, id: int, country: str, city: str, airport: str, address: str, phone: int, opening_hours: str) -> None:
     self.id = id
     self.country = country
     self.city = city
@@ -12,10 +12,6 @@ class Location():
     self.address = address
     self.phone = phone
     self.opening_hours = opening_hours
-    self.manager = manager
-    self.employees = []
-    self.buildings = []
-    self.contractors = []
 
   def __str__(self) -> str:
     return '#{}  {}, {}'.format(str(self.id),self.city,self.country)
@@ -29,10 +25,6 @@ class Location():
       'address': self.address,
       'phone': self.phone,
       'opening_hours': self.opening_hours,
-      'manager': self.manager,
-      'employees': self.employees,
-      'buildings': self.buildings,
-      'contractors': self.contractors
     }
 
   @staticmethod
@@ -44,7 +36,6 @@ class Location():
       FormField('address', 'ADDRESS', None, 1, 20),
       FormField('phone', 'PHONE NUMBER', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('opening_hours', 'OPENING HOURS', None, 1, 32),
-      FormField('manager', 'MANAGER', None, 1, 32, validators=[Validate.min_length(5)])
     ]
   
   def get_edit_fields(self):
@@ -56,5 +47,4 @@ class Location():
       FormField('address', 'ADDRESS', self.address, 1, 40),
       FormField('phone', 'PHONE NUMBER', self.phone, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('opening_hours', 'OPENING HOURS', self.opening_hours, 1, 32),
-      FormField('manager', 'MANAGER', self.manager, 1, 32, validators=[Validate.min_length(5)])
     ]

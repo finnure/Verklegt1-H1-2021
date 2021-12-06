@@ -258,7 +258,6 @@ class LocationView():
       'airport': 'AIRPORT',
       'country': 'COUNTRY',
       'city': 'CITY',
-      'manager': 'MANAGER',
       'phone': 'PHONE MUMBER'
     }
     return Table(locs, headers, begin_line)
@@ -272,14 +271,14 @@ class LocationView():
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
     middle_column = Menu(7, 46, 10)
-    middle_column.add_menu_item('MANAGER', loc.manager)
+    middle_column.add_menu_item('AIRPORT', loc.airport)
     middle_column.add_menu_item('PHONE', str(loc.phone))
     self.__screen.display_menu(middle_column, Styles.DATA_KEY)
 
     right_column = Menu(7, 86, 20)
-    right_column.add_menu_item('TOTAL BUILDINGS', str(len(loc.buildings)))
-    right_column.add_menu_item('TOTAL EMPLOYEES', str(len(loc.employees)))
-    right_column.add_menu_item('TOTAL CONTRACTORS', str(len(loc.contractors)))
+    right_column.add_menu_item('TOTAL BUILDINGS', str(10))
+    right_column.add_menu_item('TOTAL EMPLOYEES', str(8))
+    right_column.add_menu_item('TOTAL CONTRACTORS', str(13))
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
     self.__screen.print('-----------------------------------------------------------------------------------------------------------',11,6)

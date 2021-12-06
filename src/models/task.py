@@ -37,6 +37,9 @@ class Task():
   def __str__(self) -> str:
     return f'#{self.id} - {self.type} - {self.status}'
 
+  def __getitem__(self, name: str):
+    return self.as_dict()[name]
+
   def as_dict(self) -> 'dict[str, str | int]':
     return {
       'id': self.id,

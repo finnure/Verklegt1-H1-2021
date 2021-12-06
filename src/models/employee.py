@@ -1,3 +1,6 @@
+from models.location import Location
+from models.report import EmployeeReport
+from models.task import Task
 from utils import Validate, Filters
 from ui.form import FormField
 
@@ -26,6 +29,16 @@ class Employee():
   def __str__(self) -> str:
     return f'#{self.id} - {self.name} - {self.role}'
 
+  def set_location(self, location: Location) -> None:
+    self.location = location
+    self.location_city = location.city
+    
+  def set_reports(self, reports: 'list[EmployeeReport]') -> None:
+    self.reports = reports
+
+  def set_tasks(self, tasks: 'list[Task]') -> None:
+    self.tasks = tasks
+
   def as_dict(self) -> 'dict[str, str | int]':
     return {
       'id': self.id,
@@ -37,6 +50,7 @@ class Employee():
       'mobile': self.mobile,
       'email': self.email,
       'role': self.role,
+      'location_city': self.location_city,
     }
 
   @staticmethod
