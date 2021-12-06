@@ -98,7 +98,7 @@ class LlApi():
   def update_employee(self, form: Form):
     return self.employee_logic.update(form)
 
-  def get_employee(self, id):
+  def get_employee(self, id: int):
     return self.employee_logic.get(id)
   
   def get_all_employees(self):

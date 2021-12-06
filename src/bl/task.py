@@ -1,25 +1,28 @@
-from typing import Type
 from dlapi import DlApi
+from models.task import Task
+from ui.form import Form
 
 class TaskLogic():
 
-  def __init__(self, dlapi: Type[DlApi]):
+  def __init__(self, dlapi: DlApi):
     self.dlapi = dlapi
 
-  def new(self):
-    pass
+  def new(self, form: Form, building_id: int):
+    task = self.__parse_form(form, building_id)
+    return self.dlapi.add_task(task)
 
-  def update(self):
-    pass
+  def update(self, form: Form):
+    task = self.__parse_form(form)
+    return self.dlapi.update_task(task.id, task)
 
-  def get(self, id):
-    pass
+  def get(self, id: int):
+    return self.dlapi.get_one_task(id)
 
   def get_all(self):
-    pass
+    return self.dlapi.get_all_tasks()
 
   def get_filtered(self, filter):
-    pass
+    return self.dlapi.get_filtered_tasks(filter)
 
   def add_report_to_task(self):
     pass
@@ -29,3 +32,27 @@ class TaskLogic():
 
   def calculate_task_cost(self):
     pass
+
+  def __parse_form(self, form: Form, building_id: int = None) -> Task:
+    ''' Returns instance of Task if everything is ok. '''
+    try:
+      id = form['id']
+    except StopIteration:
+      id = 0
+    if building_id is None:
+      building_id = int(form['building_id'])
+    return Task(
+        id, 
+        building_id,
+        form['short_description'],
+        form['type'],
+        form['start_date'],
+        form['due_date'],
+        form['priority'],
+        form['recurring'],
+        form['repeats_every'],
+        form['status'],
+        form['estimated_cost'],
+        form['title'],
+        form['modified'],
+      )
