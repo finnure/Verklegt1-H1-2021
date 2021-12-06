@@ -12,10 +12,8 @@ class ContractorData():
       'name',
       'contact',
       'phone',
-      'opening_hours',
-      'reports'
+      'openinghours',
       'email',
-      'rating',
       'speciality'
     ]
     self.data_folder = data_folder
@@ -88,10 +86,8 @@ class ContractorData():
         contractor['name'],
         contractor['contact'],
         contractor['phone'],
-        contractor['opening_hours'],
-        contractor['reports'],
+        contractor['openinghours'],
         contractor['email'],
-        contractor['rating'],
         contractor['speciality'],
       )
       

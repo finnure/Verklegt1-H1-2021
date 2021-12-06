@@ -1,9 +1,9 @@
-﻿ID,Location,Name,Contact,Phone,Opening Hours,Reports,E-mail,Rating,Speciality
-100,100,GR-EL / Greenland Electricity Aps,Peter J. Andersen,+299 32 29 90,09:00-17:00,12,pja@grel.gl,4,Electricity
-101,100,MT Højgaard,Mia Hansen,+299 31 17 17,08:00-19:00,15,mia.hansen@mth.gl,3.5,Carpentry
-102,100,Nuuk Handymand,Ralf Johansen,+299 55 54 35,07:00-15:00,11,rj@handyman.gl,4,Handyman
-103,101,MT Højgaard,Rune Vik,+298 206300,08:00-19:00,6,rune.vik@mth.fo,4,Carpentry
-104,101,Demich,Rói Kalsø,+298 350300,08:00-17:00,10,roi@demich.fo,4.5,Plumber
-105,101,JMT Handverk,Jón Dahl,+298 213360,09:00-18:00,12,jond@jmt.fo,3.5,Constructions
-106,102,Lund's Smede & Mekaniske,Ketil Bergvik,+47 456 87 101,07:00-15:00,6,kb@lsm.no,5,Carpentry
-107,102,Svalbard Bygg AS,Hanna Lund,+47 906 10 199,08:00-16:00,20,hanna.lund@svalbardbygg.no,4.5,Constructions
+id,location_id,name,contact,phone,openinghours,email,speciality
+100,100,GR-EL / Greenland Electricity Aps,Peter J. Andersen,+299 32 29 90,09:00-17:00,pja@grel.gl,Electricity
+101,100,MT Højgaard,Mia Hansen,+299 31 17 17,08:00-19:00,mia.hansen@mth.gl,Carpentry
+102,100,Nuuk Handymand,Ralf Johansen,+299 55 54 35,07:00-15:00,rj@handyman.gl,Handyman
+103,101,MT Højgaard,Rune Vik,+298 206300,08:00-19:00,rune.vik@mth.fo,Carpentry
+104,101,Demich,Rói Kalsø,+298 350300,08:00-17:00,roi@demich.fo,Plumber
+105,101,JMT Handverk,Jón Dahl,+298 213360,09:00-18:00,jond@jmt.fo,Constructions
+106,102,Lund's Smede & Mekaniske,Ketil Bergvik,+47 456 87 101,07:00-15:00,kb@lsm.no,Carpentry
+107,102,Svalbard Bygg AS,Hanna Lund,+47 906 10 199,08:00-16:00,hanna.lund@svalbardbygg.no,Constructions

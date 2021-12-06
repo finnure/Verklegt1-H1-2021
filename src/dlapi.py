@@ -6,9 +6,13 @@ from dl.employee import EmployeeData
 from dl.employeereport import EmployeeReportData
 from dl.location import LocationData
 from dl.task import TaskData
+from models.accessory import Accessory
 from models.building import Building
+from models.contractor import Contractor
 from models.employee import Employee
 from models.location import Location
+from models.report import ContractorReport, EmployeeReport
+from models.task import Task
 class DlApi():
 
   def __init__(self):
@@ -29,23 +33,23 @@ class DlApi():
 
   ######## Accessory methods ############
   
-  def add_accessory(self):
-    return self.accessory_data.add()
+  def add_accessory(self, accessory: Accessory):
+    return self.accessory_data.add(accessory)
 
-  def update_accessory(self):
-    return self.accessory_data.update()
+  def update_accessory(self, id: int, accessory: Accessory):
+    return self.accessory_data.update(id, accessory)
 
-  def delete_accessory(self):
-    return self.accessory_data.delete()
+  def delete_accessory(self, id: int):
+    return self.accessory_data.delete(id)
 
   def get_all_accessories(self):
     return self.accessory_data.get_all()
 
-  def get_one_accessory(self, id):
+  def get_one_accessory(self, id: int):
     return self.accessory_data.get_one(id)
 
-  def get_filtered_accessories(self):
-    return self.accessory_data.get_filtered()
+  def get_filtered_accessories(self, filter):
+    return self.accessory_data.get_filtered(filter)
 
   ######## Building methods ############
 
@@ -69,43 +73,43 @@ class DlApi():
 
   ######## Contractor methods ############
   
-  def add_contractor(self):
-    return self.contractor_data.add()
+  def add_contractor(self, contractor: Contractor):
+    return self.contractor_data.add(contractor)
 
-  def update_contractor(self):
-    return self.contractor_data.update()
+  def update_contractor(self, id: int, contractor: Contractor):
+    return self.contractor_data.update(id, contractor)
 
-  def delete_contractor(self):
-    return self.contractor_data.delete()
+  def delete_contractor(self, id: int):
+    return self.contractor_data.delete(id)
 
   def get_all_contractors(self):
     return self.contractor_data.get_all()
 
-  def get_one_contractor(self, id):
+  def get_one_contractor(self, id: int):
     return self.contractor_data.get_one(id)
 
-  def get_filtered_contractors(self):
-    return self.contractor_data.get_filtered()
+  def get_filtered_contractors(self, filter):
+    return self.contractor_data.get_filtered(filter)
 
   ######## ContractorReport methods ############
   
-  def add_contractor_report(self):
-    return self.contractor_report_data.add()
+  def add_contractor_report(self, contractor_report: ContractorReport):
+    return self.contractor_report_data.add(contractor_report)
 
-  def update_contractor_report(self):
-    return self.contractor_report_data.update()
+  def update_contractor_report(self, id: int, contractor_report: ContractorReport):
+    return self.contractor_report_data.update(id, contractor_report)
 
-  def delete_contractor_report(self):
-    return self.contractor_report_data.delete()
+  def delete_contractor_report(self, id: int):
+    return self.contractor_report_data.delete(id)
 
   def get_all_contractor_reports(self):
     return self.contractor_report_data.get_all()
 
-  def get_one_contractor_report(self, id):
+  def get_one_contractor_report(self, id: int):
     return self.contractor_report_data.get_one(id)
 
-  def get_filtered_contractor_reports(self):
-    return self.contractor_report_data.get_filtered()
+  def get_filtered_contractor_reports(self, filter):
+    return self.contractor_report_data.get_filtered(filter)
 
   ######## Employee methods ############
   
@@ -141,23 +145,23 @@ class DlApi():
 
   ######## EmployeeReport methods ############
   
-  def add_employee_report(self):
-    return self.employee_report_data.add()
+  def add_employee_report(self, employee_report: EmployeeReport):
+    return self.employee_report_data.add(employee_report)
 
-  def update_employee_report(self):
-    return self.employee_report_data.update()
+  def update_employee_report(self, id: int, employee_report: EmployeeReport):
+    return self.employee_report_data.update(id, employee_report)
 
-  def delete_employee_report(self):
-    return self.employee_report_data.delete()
+  def delete_employee_report(self, id: int):
+    return self.employee_report_data.delete(id)
 
   def get_all_employee_reports(self):
     return self.employee_report_data.get_all()
 
-  def get_one_employee_report(self, id):
+  def get_one_employee_report(self, id: int):
     return self.employee_report_data.get_one(id)
 
-  def get_filtered_employee_reports(self):
-    return self.employee_report_data.get_filtered()
+  def get_filtered_employee_reports(self, filter):
+    return self.employee_report_data.get_filtered(filter)
 
   ######## Location methods ############
   
@@ -176,25 +180,25 @@ class DlApi():
   def get_one_location(self, id: int) -> 'Location | None':
     return self.location_data.get_one(id)
 
-  def get_filtered_locations(self, filter: dict, partial_match: bool = False) -> 'list[Employee]':
+  def get_filtered_locations(self, filter: dict, partial_match: bool = False) -> 'list[Location]':
     return self.location_data.get_filtered(filter, partial_match)
 
   ######## Task methods ############
   
-  def add_task(self):
-    return self.task_data.add()
+  def add_task(self, task: Task):
+    return self.task_data.add(task)
 
-  def update_task(self):
-    return self.task_data.update()
+  def update_task(self, id: int, task: Task):
+    return self.task_data.update(id, task)
 
-  def delete_task(self):
-    return self.task_data.delete()
+  def delete_task(self, id: int):
+    return self.task_data.delete(id)
 
   def get_all_tasks(self):
     return self.task_data.get_all()
 
-  def get_one_task(self, id):
+  def get_one_task(self, id: int):
     return self.task_data.get_one(id)
 
-  def get_filtered_tasks(self):
-    return self.task_data.get_filtered()
+  def get_filtered_tasks(self, filter):
+    return self.task_data.get_filtered(filter)
