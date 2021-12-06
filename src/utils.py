@@ -15,6 +15,24 @@ def none_if_not_list(list) -> 'list | None':
   ''' Returns list if it is a list, else returns None '''
   return list if type(list) is list else None
 
+class Helpers():
+  ''' Helper functions. '''
+
+  @staticmethod
+  def get_multiline_string(text: str, cols: int) -> 'list[str]':
+    ''' Splits a string into multiple lines, each of cols length. '''
+    start_i = 0
+    lines = []
+    while True:
+      if len(text[start_i:]) <= cols:
+        lines.append(text[start_i:])
+        break
+      next_i = text.rindex(' ', start_i, start_i + cols)
+      lines.append(text[start_i:next_i])
+      start_i = next_i + 1
+    return lines
+
+
 ########### Validators #################
 class Validate():
   ''' Input validation methods. '''

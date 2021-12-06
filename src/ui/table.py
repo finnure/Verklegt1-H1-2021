@@ -62,7 +62,7 @@ class TableColumn():
     
   def get_width(self) -> int:
     ''' Returns length of longest word in rows + 4. '''
-    return max([len(str(row)) for row in self.rows]) + 4
+    return max([len(str(row)) for row in self.rows] + [len(self.name)]) + 4
 
   def __getitem__(self, index):
     ''' Make column subscriptable. Column row can be accessed using column[idx]. '''

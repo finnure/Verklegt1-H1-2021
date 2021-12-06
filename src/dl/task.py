@@ -81,20 +81,25 @@ class TaskData():
 
   def __parse(self, task: 'dict[str,str]') -> Task:
     ''' Creates and returns an instance of Task '''
+    try:
+      employee_id = int(task['employee_id'])
+    except ValueError:
+      employee_id = None
     return Task(
         int(task['id']), 
+        int(task['location_id']),
         int(task['building_id']),
-        int(task['accessory_id']),
         task['short_description'],
         task['type'],
         task['start_date'],
         task['due_date'],
-        task['estimated_cost'],
         task['priority'],
         task['recurring'],
-        task['repeats_every'],
         task['status'],
+        task['estimated_cost'],
         task['title'],
+        task['repeats_every'],
+        employee_id,
         task['modified']
       )
 

@@ -4,7 +4,7 @@ from models.task import Task
 from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
-from utils import Filters
+from utils import Filters, Helpers
 from ui.constants import AccConst, BuildConst, TaskConst, LocConst, Styles, TaskConst
 
 
@@ -168,12 +168,12 @@ class TaskView():
     a list of task instances and list of headers to create a table. '''
     headers = {
       'id': 'ID',
-      'address': 'ADDRESS',
-      'location_id': 'LOCATION',
-      'type': 'TYPE',
-      'rooms': 'ROOMS',
-      'state': 'STATE',
-      'size': 'TASKS'
+      'status': 'STATUS',
+      'priority': 'PRIORITY',
+      'start_date': 'START DATE',
+      'due_date': 'DUE DATE',
+      'building_id': 'BUILDING',
+      'employee_id': 'EMPLOYEE'
     }
     return Table(tasks, headers, begin_line)
 
@@ -238,7 +238,9 @@ class TaskView():
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
     self.__screen.print('DESCRIPTION', 10, 6, Styles.DATA_KEY)
-    self.__screen.print(task.short_description, 10, 20)
+    lines = Helpers.get_multiline_string(task.short_description, 50)
+    for line, text in enumerate(lines):
+      self.__screen.print(text, 10 + line, 20)
 
   def __add_new_handler(self):
     ''' Handler to display a form to enter data for new Task. '''
@@ -308,7 +310,7 @@ class TaskView():
       return {}
     try:
       # Check if form has an id field. If it does, it's an edit operation
-      id = form['id']
+      _ = form['id']
       task = self.llapi.update_task(form)
     except StopIteration:
       # No id present, adding new task
