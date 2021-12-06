@@ -6,7 +6,7 @@ from utils import Filters
 from llapi import LlApi
 from ui.screen import Screen
 from ui.menu import Menu
-from ui.constants import LocConst, GlobalConst, Styles
+from ui.constants import LocConst,EmpConst, ContrConst, BuildConst, GlobalConst, Styles
 
 class LocationView():
 
@@ -42,9 +42,9 @@ class LocationView():
   def __view_location_handler(self, loc: Location):
     ''' Displays information about an location. '''
     menu = Menu(13)
-    menu.add_menu_item('1', 'VIEW ALL BUILDINGS', LocConst.LIST_BUILDINGS)
-    menu.add_menu_item('2', 'VIEW ALL EMPLOYEES', LocConst.LIST_EMPLOYEES)
-    menu.add_menu_item('3', 'VIEW ALL CONTRACTORS', LocConst.LIST_CONTRACTORS)
+    menu.add_menu_item('1', 'VIEW ALL BUILDINGS', BuildConst.FILTER_LOCATION)
+    menu.add_menu_item('2', 'VIEW ALL EMPLOYEES', EmpConst.FILTER_LOCATION)
+    menu.add_menu_item('3', 'VIEW ALL CONTRACTORS', ContrConst.FILTER_LOCATION)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
@@ -135,7 +135,7 @@ class LocationView():
     self.__screen.delete_character(5, 6, 50)
     menu = Menu(18)
     menu.add_menu_item('A', 'APPLY CHANGES', LocConst.SAVE)
-    menu.add_menu_item('D', 'DISCARD CHANGES', LocConst.MENU)
+    menu.add_menu_item('D', 'DISCARD CHANGES', LocConst.LIST_ALL)
     self.__screen.display_menu(menu)
     return menu.get_options()
 
@@ -242,7 +242,7 @@ class LocationView():
           self.__screen.flash()
 
   def __list_buildings_handler(self):
-    pass
+    pass 
 
   def __list_employees_handler(self):
     pass
