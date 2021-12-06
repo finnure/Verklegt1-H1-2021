@@ -1,14 +1,15 @@
 from llapi import LlApi
-from ui.constants import BuildConst, ContrConst, EmpConst, LocConst, ReportConst, SearchConst, TaskConst
+from ui.constants import ReportConst, TaskConst
 from ui.menu import Menu
 from ui.screen import Screen
 
 
 class MainMenuView():
 
-  def __init__(self, screen: Screen, llapi: LlApi):
+  def __init__(self, screen: Screen, llapi: LlApi, menu: Menu):
     self.__screen = screen
     self.llapi = llapi
+    self.menu = menu
     self.__create_input_map()
 
   def __create_input_map(self):
@@ -33,15 +34,8 @@ class MainMenuView():
   def __menu_handler(self):
     ''' Displays main menu and returns options for it. '''
     # Create the main menu and get options as dict
-    menu = Menu(9) # Menu starts in line 9
-    menu.add_menu_item('L', 'VIEW LOCATIONS', LocConst.MENU)
-    menu.add_menu_item('B', 'VIEW BUILDINGS', BuildConst.MENU)
-    menu.add_menu_item('E', 'VIEW EMPLOYEES', EmpConst.MENU)
-    menu.add_menu_item('T', 'VIEW TASKS', TaskConst.MENU)
-    menu.add_menu_item('C', 'VIEW CONTRACTORS', ContrConst.MENU)
-    menu.add_menu_item('S', 'SEARCH', SearchConst.MENU)
-    options = menu.get_options()
-    self.__screen.display_menu(menu)
+    options = self.menu.get_options()
+    self.__screen.display_menu(self.menu)
 
     # Create admin menu, displayed in top right corner
     admin_menu = Menu(2, 20) # Menu starts in line 2, options are 20 cols from right edge

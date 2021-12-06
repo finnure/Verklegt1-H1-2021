@@ -1,7 +1,12 @@
+from llapi import LlApi
+from ui.screen import Screen
+
+
 class ReportView():
 
-  def __init__(self, screen):
+  def __init__(self, screen: Screen, llapi: LlApi):
     self.__screen = screen
+    self.llapi = llapi
 
   def create_menu():
     pass

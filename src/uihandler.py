@@ -30,12 +30,12 @@ class UiHandler():
     self.login_view = LoginView(self.__window, self.llapi)
     self.view_frame = ViewFrame(self.__screen, self.llapi, self.header_menu, self.footer_menu)
     self.location_view = LocationView(self.__window, self.llapi)
-    self.main_menu_view = MainMenuView(self.__window, self.llapi)
+    self.main_menu_view = MainMenuView(self.__window, self.llapi, self.header_menu)
     self.employee_view = EmployeeView(self.__window, self.llapi)
     self.building_view = BuildingView(self.__window, self.llapi)
     # self.accessory_view = AccessoryView(self.__window)
-    self.task_view = TaskView(self.__window)
-    self.report_view = ReportView(self.__window)
+    self.task_view = TaskView(self.__window, self.llapi)
+    self.report_view = ReportView(self.__window, self.llapi)
     self.contractor_view = ContractorView(self.__window, self.llapi)
     self.search_view = SearchView(self.__window, self.llapi)
 
@@ -66,7 +66,7 @@ class UiHandler():
     self.__screen.set_color_pair(10, 254, 236) # EDITING
 
   def __init_menu(self):
-    header_menu = Menu()
+    header_menu = Menu(9)
     header_menu.add_menu_item('L', '(L)OCATIONS', LocConst.LIST_ALL)
     header_menu.add_menu_item('B', '(B)UILDING', BuildConst.MENU)
     header_menu.add_menu_item('E', '(E)MPLOYEE', EmpConst.MENU)
