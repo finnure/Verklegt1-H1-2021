@@ -39,9 +39,9 @@ class Location():
   def get_new_fields():
     return [
       FormField('country', 'COUNTRY', None, 1, 32, validators=[Validate.options], options='LOCATION'),
-      FormField('city', 'CITY', None, 1, 15),
-      FormField('airport', 'AIRPORT', None, 1, 10),
-      FormField('address', 'ADDRESS', None, 1, 10),
+      FormField('city', 'CITY', None, 1, 20),
+      FormField('airport', 'AIRPORT', None, 1, 20),
+      FormField('address', 'ADDRESS', None, 1, 20),
       FormField('phone', 'PHONE NUMBER', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('opening_hours', 'OPENING HOURS', None, 1, 32),
       FormField('manager', 'MANAGER', None, 1, 32, validators=[Validate.min_length(5)])
@@ -51,9 +51,9 @@ class Location():
         return [
       FormField('id', 'ID', self.id, 1, 3, editable=False),
       FormField('country', 'COUNTRY', self.country, 1, 32, validators=[Validate.options], options='LOCATION'),
-      FormField('city', 'CITY', self.city, 1, 15),
-      FormField('airport', 'AIRPORT', self.airport, 1, 10),
-      FormField('address', 'ADDRESS', self.address, 1, 10),
+      FormField('city', 'CITY', self.city, 1, 20),
+      FormField('airport', 'AIRPORT', self.airport, 1, 20),
+      FormField('address', 'ADDRESS', self.address, 1, 40),
       FormField('phone', 'PHONE NUMBER', self.phone, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('opening_hours', 'OPENING HOURS', self.opening_hours, 1, 32),
       FormField('manager', 'MANAGER', self.manager, 1, 32, validators=[Validate.min_length(5)])
