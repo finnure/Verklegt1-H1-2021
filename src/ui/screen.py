@@ -223,6 +223,34 @@ class Screen():
       self.print('EXT ', style=style)
     return filter
 
+  def select_from_table(self, table: Table, line, question_text):
+    col = len(question_text) + 8
+    self.print(question_text, line, 6, 'DATA_KEY')
+    while True: # Ask user to select Location
+      filter = Filters.NUMBERS
+      filter += self.display_table(table)
+      selection = self.get_string(line, col, 2, filter)
+      # Clear error and previous input if exists
+      self.delete_character(line, col, 116 - col)
+      try:
+        # Get selected Location
+        row = int(selection)
+        return table.data[row - 1]
+      except IndexError:
+        # User should select a correct number, display error and try again
+        self.print('INVALID NUMBER', line, col + 5, 'ERROR')
+      except ValueError:
+        # Switching pages
+        key = selection.upper()
+        if key == 'P':
+          table.previous_page()
+        elif key == 'N':
+          table.next_page()
+        else:
+          # Fat fingers, should only press either P or N and then Enter
+          self.flash()
+
+
   def display_form(self, form: Form, begin_line: int = 8, begin_col: int = 6):
     ''' Creates a new window and displays the form on it. 
     Returns the new window to enable editing. '''

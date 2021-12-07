@@ -38,7 +38,7 @@ class ReportView():
     The screen is cleared before calling the requested handler and refreshed
     before returning back to ui handler to make sure everything is displayed correctly. '''
     if input not in self.__input_map:
-      raise KeyError(f'Building does not have a handler for {input}')
+      raise KeyError(f'Report does not have a handler for {input}')
     handler: function = self.__input_map[input]
     self.__screen.clear()
     options = handler()

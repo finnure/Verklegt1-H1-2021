@@ -64,10 +64,10 @@ class EmployeeData():
       if key in self.headers:
         if partial_match:
           # Check if value is in field
-          filtered_employees = [emp for emp in employees if val in emp[key]]
+          filtered_employees = [emp for emp in employees if val in getattr(emp, key)]
         else:
           # Full match, check if value equals field
-          filtered_employees = [emp for emp in employees if val == emp[key]]
+          filtered_employees = [emp for emp in employees if val == getattr(emp, key)]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for Employee: {key}')

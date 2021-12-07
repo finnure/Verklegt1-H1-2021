@@ -32,6 +32,15 @@ class EmpConst():
   FORM_PARAM = 'EMPLOYEE:FORM'
   TABLE_PARAM = 'EMPLOYEE:TABLE'
   EMPLOYEE_PARAM = 'EMPLOYEE:EMPLOYEE'
+  INPUT_PARAM = 'EMPLOYEE:INPUT'
+
+  TABLE_HEADERS = {
+    'id': 'ID',
+    'name': 'NAME',
+    'location_city': 'CITY',
+    'mobile': 'MOBILE',
+    'email': 'EMAIL'
+  }
 
   # Connections
   ADMIN_NEW = 'EMPLOYEE:ADD_NEW'
@@ -50,6 +59,15 @@ class LocConst():
   FORM_PARAM = 'LOCATION:FORM'
   TABLE_PARAM = 'LOCATION:TABLE'
   LOCATION_PARAM = 'LOCATION:LOCATION'
+  INPUT_PARAM = 'LOCATION:INPUT'
+
+  TABLE_HEADERS = {
+    'id': 'ID',
+    'airport': 'AIRPORT',
+    'country': 'COUNTRY',
+    'city': 'CITY',
+    'phone': 'PHONE MUMBER'
+  }
 
   # Connections
   ADMIN_NEW = 'LOCATION:ADD_NEW'
@@ -72,6 +90,17 @@ class TaskConst():
   FORM_PARAM = 'TASK:FORM'
   TABLE_PARAM = 'TASK:TABLE'
   TASK_PARAM = 'TASK:TASK'
+  INPUT_PARAM = 'TASK:INPUT'
+
+  TABLE_HEADERS = {
+    'id': 'ID',
+    'status': 'STATUS',
+    'priority': 'PRIORITY',
+    'start_date': 'START DATE',
+    'due_date': 'DUE DATE',
+    'building_id': 'BUILDING',
+    'employee_id': 'EMPLOYEE'
+  }
 
   # Connections
   ADMIN_NEW = 'TASK:ADD_NEW'
@@ -96,6 +125,17 @@ class BuildConst():
   FORM_PARAM = 'BUILDING:FORM'
   TABLE_PARAM = 'BUILDING:TABLE'
   BUILDING_PARAM = 'BUILDING:BUILDING'
+  INPUT_PARAM = 'BUILDING:INPUT'
+
+  TABLE_HEADERS = {
+    'id': 'ID',
+    'address': 'ADDRESS',
+    'location_id': 'LOCATION',
+    'type': 'TYPE',
+    'rooms': 'ROOMS',
+    'state': 'STATE',
+    'size': 'TASKS'
+  }
 
   # Connections
   ADMIN_NEW = 'BUILDING:ADD_NEW'
@@ -117,6 +157,16 @@ class ContrConst():
   FORM_PARAM = 'CONTRACTOR:FORM'
   TABLE_PARAM = 'CONTRACTOR:TABLE'
   CONTRACTOR_PARAM = 'CONTRACTOR:CONTRACTOR'
+  INPUT_PARAM = 'CONTRACTOR:INPUT'
+
+  TABLE_HEADERS = {
+    'id': 'ID',
+    'location_id': 'LOCATION',
+    'name': 'NAME',
+    'speciality': 'SPECIALITY',
+    'openinghours': 'OPENING HOURS',
+    'phone': 'PHONE'
+  }
 
   # Connections
   ADMIN_NEW = 'CONTRACTOR:ADD_NEW'
@@ -137,7 +187,7 @@ class ReportConst():
   FORM_PARAM = 'REPORT:FORM'
   TABLE_PARAM = 'REPORT:TABLE'
   REPORT_PARAM = 'REPORT:REPORT'
-  CONNECTION_PARAM = 'REPORT:CONNECTION'
+  INPUT_PARAM = 'REPORT:INPUT'
 
   TABLE_HEADERS = {
     'id': 'ID',
@@ -165,6 +215,7 @@ class ReportConst():
   FILTER_EMPLOYEE = 'REPORT:FILTER_EMPLOYEE'
   FILTER_TASK = 'REPORT:FILTER_TASK'
   FILTER_CONTRACTOR = 'REPORT:FILTER_CONTRACTOR'
+  FILTER_BUILDING = 'REPORT:FILTER_BUILDING'
 
 
 class AccConst():
@@ -173,6 +224,11 @@ class AccConst():
   FORM_PARAM = 'ACCESSORY:FORM'
   TABLE_PARAM = 'ACCESSORY:TABLE'
   ACCESSORY_PARAM = 'ACCESSORY:ACCESSORY'
+  INPUT_PARAM = 'INPUT:INPUT'
+
+  TABLE_HEADERS = {
+    'id': 'ID'
+  }
 
   # Connections
   ADMIN_NEW = 'ACCESSORY:ADD_NEW'
@@ -193,3 +249,12 @@ class SearchConst():
 
   # Connections
   MENU = 'SEARCH:MENU'
+  EMPLOYEE_BY_LOCATION = 'SEARCH:EMPLOYEE_BY_LOCATION'
+  BUILDING_BY_LOCATION = 'SEARCH:BUILDING_BY_LOCATION'
+  EMPLOYEE_BY_ID = 'SEARCH:EMPLOYEE_BY_ID'
+  BUILDING_BY_ID = 'SEARCH:BUILDING_BY_ID'
+  TASK_BY_ID = 'SEARCH:TASK_BY_ID'
+  TASK_BY_BUILDING = 'SEARCH:TASK_BY_BUILDING'
+  TASK_BY_EMPLOYEE = 'SEARCH:TASK_BY_EMPLOYEE'
+  REPORT_BY_BUILDING = 'SEARCH:REPORT_BY_BUILDING'
+  REPORT_BY_EMPLOYEE = 'SEARCH:REPORT_BY_EMPLOYEE'

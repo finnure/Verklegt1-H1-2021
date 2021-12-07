@@ -44,7 +44,7 @@ class LlApi():
     Raises an error if no param is available for given key. '''
     if key not in self.params:
       raise KeyError(f'No data available for key {key}')
-    return self.params.pop(key)
+    return self.params[key]
   
   ##### Building methods ########
 
@@ -121,8 +121,8 @@ class LlApi():
   def get_all_employees(self):
     return self.employee_logic.get_all()
 
-  def get_employee_by_location(self, filter):
-    return self.employee_logic.get_employee_by_location(filter)
+  def get_employee_by_location(self, location_id: int):
+    return self.employee_logic.get_employee_by_location(location_id)
   
   def get_reports_for_employee(self, filter):
     return self.employee_logic.get_reports_for_employee(filter)
