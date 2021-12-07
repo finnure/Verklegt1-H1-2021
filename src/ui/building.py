@@ -5,7 +5,7 @@ from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters
-from ui.constants import AccConst, BuildConst, LocConst, Styles, TaskConst
+from ui.constants import AccConst, BuildConst, LocConst, ReportConst, Styles, TaskConst
 
 
 class BuildingView():
@@ -203,6 +203,7 @@ class BuildingView():
     menu = Menu(14)
     menu.add_menu_item('1', 'VIEW ACTIVE TASKS', TaskConst.FILTER_BUILDING)
     menu.add_menu_item('2', 'VIEW LOCATION INFORMATION', LocConst.VIEW)
+    menu.add_menu_item('3', 'VIEW REPORTS', ReportConst.FILTER_BUILDING)
     options = menu.get_options()
 
     admin_menu = Menu(2, 18)

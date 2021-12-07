@@ -52,7 +52,7 @@ class ViewFrame():
   def __display_logo(self) -> None:
     ''' Displays logo in window. '''
     self.__screen.print('NaN', 1, 2, Styles.LOGO_NAME)
-    self.__screen.print('NaN', 3, 26, Styles.LOGO_NAME)
+    self.__screen.print('NaN', 3, 25, Styles.LOGO_NAME)
     self.__screen.print('We divide by zero', 2, 7, Styles.LOGO_TEXT)
 
   def __display_header(self) -> None:

@@ -69,8 +69,8 @@ class UiHandler():
   def __init_menu(self):
     header_menu = Menu(9)
     header_menu.add_menu_item('L', '(L)OCATIONS', LocConst.LIST_ALL)
-    header_menu.add_menu_item('B', '(B)UILDING', BuildConst.MENU)
-    header_menu.add_menu_item('E', '(E)MPLOYEE', EmpConst.MENU)
+    header_menu.add_menu_item('B', '(B)UILDINGS', BuildConst.MENU)
+    header_menu.add_menu_item('E', '(E)MPLOYEES', EmpConst.MENU)
     header_menu.add_menu_item('T', '(T)ASKS', TaskConst.MENU)
     header_menu.add_menu_item('C', '(C)ONTRACTORS', ContrConst.MENU)
     header_menu.add_menu_item('S', '(S)EARCH', SearchConst.MENU)

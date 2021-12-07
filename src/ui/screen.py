@@ -138,8 +138,8 @@ class Screen():
     css_classes: 'dict[str,tuple[int,list[str]]]' = {
       'ERROR': (1,['REVERSE']),
       'FRAME_TEXT': (2,['BOLD']),
-      'OPTION': (3,['BOLD', 'UNDERLINE']),
-      'LOGO_NAME': (4,['BLINK']),
+      'OPTION': (3,['BOLD']),
+      'LOGO_NAME': (4,['BOLD']),
       'LOGO_TEXT': (5,['BOLD']),
       'TABLE_HEADER': (6,['UNDERLINE']),
       'PAGE_HEADER': (7,['BOLD', 'UNDERLINE']),
