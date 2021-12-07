@@ -91,32 +91,6 @@ package ViewLayer {
     + create_form()
     + display_form()
   }
-  Class Menu {
-    + menu_items
-
-    + add_menu_item()
-  }
-  Class MenuItem {
-    + option
-    + text
-    + link_to
-  }
-  Class Form {
-    + form_fields
-
-    + get_longest_name()
-    + add_form_field()
-    + get_field_name_position()
-    + get_field_value_position()
-  }
-  Class FormField {
-    + name
-    + value
-    + value_type
-  }
-  Form o-- FormField
-  Menu o-- MenuItem
-}
 package LogicLayer {
   Class LLAPI <<API>> {
     - ALL BL CLASSES
@@ -188,10 +162,9 @@ package DataLayer {
     + ALL EXPOSED FUNCTIONS()
   }
   class FileHandler <<DL>> {
-    - openFile(method)
     - readFile(file_handler)
     - writeFile(file_handler, data)
-    - updateFile(file_handler, data)
+    - addLine(file_handler, data)
   }
   Class LocationData <<DL>> {
     - filename: string
@@ -203,8 +176,8 @@ package DataLayer {
     + get_one_location(id)
     + get_filtered_locations(filter)
 
-    - prepare(data)
     - parser()
+    - get_next_id()
   }
   Class BuildingData <<DL>> {
     - filename: string
@@ -215,9 +188,9 @@ package DataLayer {
     + get_all_buildings()
     + get_one_building(id)
     + get_filtered_buildings(filter)
-
-    - prepare(data)
-    - parser()
+    
+    - parse()
+    - get_next_id()
   }
   Class AccessoryData <<DL>> {
     - filename: string
@@ -229,8 +202,8 @@ package DataLayer {
     + get_one_accessory(id)
     + get_filtered_accessories(filter)
 
-    - prepare(data)
-    - parser()
+    - parse()
+    - get_next_id()
   }
   Class EmployeeData <<DL>> {
     - filename: string
@@ -242,8 +215,8 @@ package DataLayer {
     + get_one_employee(id)
     + get_filtered_employees(filter)
 
-    - prepare(data)
-    - parser()
+    - parse()
+    - get_next_id()
   }
   Class ContractorData <<DL>> {
     - filename: string
@@ -255,10 +228,10 @@ package DataLayer {
     + get_one_contractor(id)
     + get_filtered_contractors(filter)
 
-    - prepare(data)
     - parser()
+    - get_next_id()
   }
-  Class ReportData <<DL>> {
+  Class ContractorReportData <<DL>> {
     - filename: string
     
     + add_report()
@@ -268,8 +241,21 @@ package DataLayer {
     + get_one_report(id)
     + get_filtered_reports(filter)
 
-    - prepare(data)
-    - parser()
+    - parse()
+    - get_next_id()
+  }
+  Class EmployeeReportData <<DL>> {
+    - filename: string
+    
+    + add_report()
+    + update_report()
+    + delete_report()
+    + get_all_reports()
+    + get_one_report(id)
+    + get_filtered_reports(filter)
+
+    - parse()
+    - get_next_id()
   }
   Class TaskData <<DL>> {
     - filename: string
@@ -281,8 +267,8 @@ package DataLayer {
     + get_one_task(id)
     + get_filtered_tasks(filter)
 
-    - prepare(data)
-    - parser()
+    - parse()
+    - get_next_id()
   }
 }
 
