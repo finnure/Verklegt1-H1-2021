@@ -1,4 +1,5 @@
 from dlapi import DlApi
+from bl.accessory import AccessoryLogic
 from bl.building import BuildingLogic
 from bl.contractor import ContractorLogic
 from bl.employee import EmployeeLogic
@@ -16,6 +17,7 @@ class LlApi():
     self.__init_logic()
 
   def __init_logic(self):
+    self.accessory_logic = AccessoryLogic(self.dlapi)
     self.building_logic = BuildingLogic(self.dlapi)
     self.contractor_logic = ContractorLogic(self.dlapi)
     self.employee_logic = EmployeeLogic(self.dlapi)
@@ -61,11 +63,26 @@ class LlApi():
   def get_filtered_buildings(self, filter):
     return self.building_logic.get_filtered(filter)
   
-  def add_accessory_to_building(self, form: Form, building_id):
-    return self.building_logic.add_accessory_to_building(form, building_id)
-
   def get_reports_for_building(self, id: int):
     return self.report_logic.get_filtered({'building_id': id})
+
+  ##### Accessory methods ########
+
+  def new_accessory(self, form: Form, building_id):
+    return self.accessory_logic.new(form, building_id)
+
+  def update_accessory(self, form: Form):
+    return self.accessory_logic.update(form)
+
+  def get_accessory(self, id: int):
+    return self.accessory_logic.get(id)
+  
+  def get_all_accessories(self):
+    return self.accessory_logic.get_all()
+
+  def get_filtered_accessories(self, filter):
+    return self.accessory_logic.get_filtered(filter)
+
 
   ##### Contractor methods ########
 

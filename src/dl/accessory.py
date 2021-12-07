@@ -8,11 +8,11 @@ class AccessoryData():
     self.headers = [
       'id',
       'building_id',
+      'name',
       'description',
       'state',
       'bought',
       'last_maintained',
-      'active'
     ]
     self.data_folder = data_folder
     self.__file = FileHandler('accessories.csv', self.data_folder, self.headers)
@@ -77,11 +77,11 @@ class AccessoryData():
     return Accessory(
         int(accessory['id']), 
         int(accessory['bulding_id']),
+        accessory['name'],
         accessory['description'],
         accessory['state'],
         accessory['bought'],
         accessory['last_maintained'],
-        accessory['active']
       )
 
 

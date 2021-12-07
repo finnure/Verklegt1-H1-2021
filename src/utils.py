@@ -1,5 +1,6 @@
 import string
 from typing import Callable
+from datetime import datetime
 
 class Filters():
   ''' String constants used in filters. '''
@@ -10,7 +11,7 @@ class Filters():
   FLOATS = '.0123456789'
   PHONE = '+0123456789 '
   USER_ID = 'Qq0123456789'
-  DATE = '/0123456789'
+  DATE = '-0123456789'
 
 def none_if_not_list(list) -> 'list | None':
   ''' Returns list if it is a list, else returns None '''
@@ -32,6 +33,17 @@ class Helpers():
       lines.append(text[start_i:next_i])
       start_i = next_i + 1
     return lines
+
+  @staticmethod
+  def get_current_date():
+    date, _ = str(datetime.now()).split()
+    return date
+
+  @staticmethod
+  def date_between(start, end, value) -> bool:
+    ''' Checks if date value is between start date and end date.
+    Returns True if it is, False otherwise. '''
+    return datetime(start) < datetime(value) < datetime(end)
 
 
 ########### Validators #################
@@ -109,7 +121,7 @@ class Validate():
   @staticmethod
   def date(date: str) -> None:
     '''Raises an error if date format is incorrect'''
-    year,month,day = date.split('/')
+    year,month,day = date.split('-')
     if len(year) != 4:
       raise ValueError('YEAR MUST BE 4 DIGITS')
     if len(month) != 2: 
@@ -126,4 +138,4 @@ class Validate():
   def float_num(value: str) -> None:
     '''Raise error if more than one . is in value'''
     if len([c for c in value if c == '.']) > 1:
-      raise ValueError('Only one . allowed in value')
+      raise ValueError('ONLY ONE DOT ALLOWED IN VALUE')
