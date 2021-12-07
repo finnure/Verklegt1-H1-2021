@@ -110,14 +110,14 @@ class Validate():
   def date(date: str) -> None:
     '''Raises an error if date format is incorrect'''
     year,month,day = date.split('/')
-    if len/(year) != 4:
+    if len(year) != 4:
       raise ValueError('YEAR MUST BE 4 DIGITS')
     if len(month) != 2: 
       raise ValueError('MONTH MUST BE 2 DIGITS')
     if len(day) != 2: 
       raise ValueError('DAY MUST BE 2 DIGITS')
     if int(month) < 1 or int(month) > 12: 
-      raise ValueError('INVALID VALUE FOR MONTH {month}')
+      raise ValueError(f'INVALID VALUE FOR MONTH {month}')
     if int(day) < 1 or int(day) > 31:
-      raise ValueError('INVALID VALUE FOR DAY {day}')
+      raise ValueError(f'INVALID VALUE FOR DAY {day}')
 
