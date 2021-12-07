@@ -5,11 +5,16 @@ Package Main {
   Class Location {
     + id: number
     + country: string
+    + city: string
     + airport: string
+    + address: string
     + phone: number
     + openinghours: string
+    + manager_id: number
   }
   Class Employee {
+    + id: number
+    + location_id: number
     + name: string
     + ssn: number
     + address: string
@@ -20,79 +25,135 @@ Package Main {
   }
   Class Contractor {
     + id: number
+    + location_id: number
     + name: string
     + contact: string
     + phone: number
     + openinghours: string
+    + email: string
+    + speciality: string
   }
   Class Building {
     + id: number
+    + registration: number
+    + location_id: number
     + free: boolean
     + description: string
     + state: string
+    + address: string
+    + size: number
+    + rooms: number
+    + type: string
   }
   Class Accessory {
     + id: number
+    + building_id: number
     + description: string
     + state: string
     + bought: Date
     + last_maintained: Date
   }
-  Class Project {
-    + title: string
-  }
+
   Class Task {
     + id: number
+    + loaction_id: number
+    + building_id: number
+    + employee_id: number
+    + title: string
+    + description: string
     + type: string
-    + created: Date
+    + start_date: Date
+    + due_date: Date
     + modified: Date
-    + finished: Date
     + priority: Priority
     + recurring: Recurrance
+    + repeats_every: string
     + state: TaskState
-    + estimate: number
+    + estimated_cost: number
   }
   Class Report {
     + id: number
+    + report_date: Date
+    + approved: boolean
     + description: string
-    + type: ReportType
+    + type: TaskType
     + hours: number
-    + cost: number
+    + note: string
   }
   Class EmployeeReport {
+    + employee_id: number
+    + task_id: number
+    + material_cost: number
+    + labor_cost: number
+    + total_cost: number
   }
   Class ContractorReport {
-    + rating: number
+    + contractor_id: number
+    + employee_report_id: number
+    + contractor_fee: number
+    + contractor_grade: number
   }
-  package Enums {
-    enum TaskState {
-      CREATED
-      ASSIGNED
-      IN_PROGRESS
-      DONE
-      ACCEPTED       
-    }
-    enum ReportType {
-      MAINTENANCE
-      EMERGENCY
-    }
-    enum Role {
-      SUPERVISOR
-      EMPLOYEE
-    }
-    enum Priority {
-      EMERGENCY
-      NOW
-      YESTERDAY
-    }
-    enum Recurrance {
-      ONCE
-      DAILY
-      WEEKLY
-      MONTHLY
-      YEARLY
-    }
+  
+ Class Menu {
+    + menu_items
+
+    + add_menu_item()
+    + get_options()
+    - getitem()
+    - iter()
   }
+  Class MenuItem {
+    + name
+    + option
+    + connection
+  }
+  Class Form {
+    + form_fields
+
+    - getitem()
+    - iter()
+  }
+  Class FormField {
+    + key
+    + name
+    + value
+    + lines
+    + cols 
+    + filter
+    + editable
+    + validators
+    + options
+    + border
+
+    + get_lines()
+    + set_position()
+  }
+
+  Class Table {
+    + table_column
+
+    + next_page()
+    + previous_page()
+    + first_page()
+    + last_page()
+    - pages_info()
+    - add_columns()
+    - getitem()
+    - iter()
+  }
+  Class TableColumn {
+    + name
+    + rows
+    + max_lines
+
+    + get_width()
+
+  }
+
+  Form o-- FormField
+  Menu o-- MenuItem
+  Table o-- TableColumn
+
   Report <|-- EmployeeReport
   Report <|-- ContractorReport
   Task *-- EmployeeReport
@@ -101,10 +162,8 @@ Package Main {
   Location "1" -- "1..*" Employee
   Location "1" -- "1..*" Building
   Location "1" -- "*" Contractor
-  Building -- Project
   Building -- Task
   Accessory o-- Task
-  Project o-- Task
   Contractor o-- ContractorReport
   Building *- Accessory
 }
