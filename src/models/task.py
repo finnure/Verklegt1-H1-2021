@@ -62,15 +62,15 @@ class Task():
   @staticmethod
   def get_new_fields():
     return [
-      FormField('title', 'TITLE', None, 1, 5, Filters.NUMBERS),
-      FormField('short_desription', 'DESRIPTION', None, 1, 10, validators=[Validate.required]),
+      FormField('title', 'TITLE', None, 1, 64),
+      FormField('short_desription', 'DESRIPTION', None, 1, 64, validators=[Validate.required]),
       FormField('type', 'TYPE', None, 1, 15),
-      FormField('start_date', 'START DATE', None, 1, 64),
-      FormField('due_date', 'DUE DATE', None, 1, 64),
+      FormField('start_date', 'START DATE', None, 1, 15),
+      FormField('due_date', 'DUE DATE', None, 1, 15),
       FormField('priority', 'PRIORITY', None, 1, 32),
-      FormField('recurring', 'RECURRING', None, 1, 10, Filters.FLOATS),
-      FormField('repeats_every', 'REPEATS EVERY', None, 1, 5, Filters.NUMBERS),
-      FormField('estimated_cost', 'ESTIMATED COST', None, 1, 5, Filters.NUMBERS),
+      FormField('recurring', 'RECURRING', None, 1, 3),
+      FormField('repeats_every', 'REPEATS EVERY', None, 1, 10),
+      FormField('estimated_cost', 'ESTIMATED COST', None, 1, 32, Filters.NUMBERS),
     ]
 
   def get_edit_fields(self):
@@ -78,14 +78,14 @@ class Task():
       FormField('id', 'ID', self.id, 1, 3, editable=False),
       FormField('location_id', 'BUILDING', self.location_id, 1, 3, editable=False),
       FormField('building_id', 'BUILDING', self.building_id, 1, 3, editable=False),
-      FormField('title', 'TITLE', self.title, 1, 5, Filters.NUMBERS),
-      FormField('short_desription', 'DESRIPTION', self.short_description, 1, 10, validators=[Validate.required]),
+      FormField('title', 'TITLE', self.title, 1, 64),
+      FormField('short_desription', 'DESRIPTION', self.short_description, 1, 64, validators=[Validate.required]),
       FormField('type', 'TYPE', self.type, 1, 15),
-      FormField('start_date', 'START DATE', self.start_date, 1, 64),
-      FormField('due_date', 'DUE DATE', self.due_date, 1, 64),
+      FormField('start_date', 'START DATE', self.start_date, 1, 15),
+      FormField('due_date', 'DUE DATE', self.due_date, 1, 15),
       FormField('priority', 'PRIORITY', self.priority, 1, 32),
-      FormField('recurring', 'RECURRING', self.recurring, 1, 10, Filters.FLOATS),
-      FormField('repeats_every', 'REPEATS EVERY', self.repeats_every, 1, 5, Filters.NUMBERS),
-      FormField('status', 'STATUS', self.status, 1, 5, Filters.NUMBERS),
-      FormField('estimated_cost', 'ESTIMATED COST', self.estimated_cost, 1, 5, Filters.NUMBERS),
+      FormField('recurring', 'RECURRING', self.recurring, 1, 3),
+      FormField('repeats_every', 'REPEATS EVERY', self.repeats_every, 1, 10),
+      FormField('status', 'STATUS', self.status, 1, 10),
+      FormField('estimated_cost', 'ESTIMATED COST', self.estimated_cost, 1, 32, Filters.NUMBERS),
     ]

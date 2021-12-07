@@ -1,3 +1,5 @@
+from utils import Validate, Filters
+from ui.form import FormField
 class Accessory():
   
   def __init__(self, id: int, building_id: int, description: str,
@@ -23,3 +25,21 @@ class Accessory():
       'last_maintained': self.last_maintained,
       'active': self.active
     }
+
+  @staticmethod
+  def get_new_fields():
+    return [
+      FormField('description', 'DESCRIPTION', None, 1, 64),
+      FormField('state', 'STATE', None, 1, 64),
+      FormField('bought', 'BOUGHT', None, 1, 15),
+      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 15),
+    ]
+
+  def get_edit_fields(self):
+    return [
+      FormField('id', 'ID', None, 1, 3, editable=False),
+      FormField('description', 'DESCRIPTION', None, 1, 64),
+      FormField('state', 'STATE', None, 1, 64),
+      FormField('bought', 'BOUGHT', None, 1, 15),
+      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 15),
+    ]

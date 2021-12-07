@@ -39,22 +39,22 @@ class Contractor():
   @staticmethod
   def get_new_fields():
     return [
-      FormField('name', 'NAME', None, 1, 10, validators=[Validate.required]),
+      FormField('name', 'NAME', None, 1, 32, validators=[Validate.required]),
       FormField('contact', 'CONTACT', None, 1, 32),
-      FormField('phone', 'PHONE', None, 1, 20, Filters.PHONE, validators=[Validate.phone]),
+      FormField('phone', 'PHONE', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('openinghours', 'OPENING HOURS', None, 1, 32),
-      FormField('email', 'EMAIL', None, 1, 20, validators=[Validate.email]),
-      FormField('speciality', 'SPECIALITY', None, 1, 15),
+      FormField('email', 'EMAIL', None, 1, 64, validators=[Validate.email]),
+      FormField('speciality', 'SPECIALITY', None, 1, 32),
     ]
 
   def get_edit_fields(self):
     return [
       FormField('id', 'ID', self.id, 1, 3, editable=False),
       FormField('location_id', 'LOCATION', self.location_id, 1, 3, editable=False),
-      FormField('name', 'NAME', self.name, 1, 10, validators=[Validate.required]),
+      FormField('name', 'NAME', self.name, 1, 32, validators=[Validate.required]),
       FormField('contact', 'CONTACT', self.contact, 1, 32),
-      FormField('phone', 'PHONE', self.phone, 1, 20, Filters.PHONE, validators=[Validate.phone]),
+      FormField('phone', 'PHONE', self.phone, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('openinghours', 'OPENING HOURS', self.openinghours, 1, 32),
-      FormField('email', 'EMAIL', self.email, 1, 20, validators=[Validate.email]),
-      FormField('speciality', 'SPECIALITY', self.speciality, 1, 15),
+      FormField('email', 'EMAIL', self.email, 1, 64, validators=[Validate.email]),
+      FormField('speciality', 'SPECIALITY', self.speciality, 1, 32),
     ]
