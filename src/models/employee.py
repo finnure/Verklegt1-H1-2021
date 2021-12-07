@@ -58,10 +58,10 @@ class Employee():
     return [
       FormField('name', 'NAME', None, 1, 32, validators=[Validate.min_length(5)]),
       FormField('ssn', 'SSN', None, 1, 15, validators=[Validate.ssn]),
-      FormField('phone', 'PHONE', None, 1, 10, Filters.PHONE, validators=[Validate.phone]),
-      FormField('mobile', 'MOBILE', None, 1, 10, Filters.PHONE, validators=[Validate.phone]),
-      FormField('email', 'E-MAIL', None, 1, 32, validators=[Validate.email]),
-      FormField('address', 'ADDRESS', None, 1, 32),
+      FormField('phone', 'PHONE', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
+      FormField('mobile', 'MOBILE', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
+      FormField('email', 'E-MAIL', None, 1, 64, validators=[Validate.email]),
+      FormField('address', 'ADDRESS', None, 1, 64),
       FormField('location_id', 'COUNTRY', None, 1, 3, validators=[Validate.options], options='LOCATION'),
     ]
 
@@ -70,10 +70,10 @@ class Employee():
       FormField('id', 'ID', self.id, 1, 3, editable=False),
       FormField('name', 'NAME', self.name, 1, 32, validators=[Validate.min_length(5)]),
       FormField('ssn', 'SSN', self.ssn, 1, 15, editable=False),
-      FormField('phone', 'PHONE', self.phone, 1, 10, Filters.PHONE, validators=[Validate.phone]),
-      FormField('mobile', 'MOBILE', self.mobile, 1, 10, Filters.PHONE, validators=[Validate.phone]),
-      FormField('email', 'E-MAIL', self.email, 1, 32, validators=[Validate.email]),
-      FormField('address', 'ADDRESS', self.address, 1, 32),
+      FormField('phone', 'PHONE', self.phone, 1, 32, Filters.PHONE, validators=[Validate.phone]),
+      FormField('mobile', 'MOBILE', self.mobile, 1, 32, Filters.PHONE, validators=[Validate.phone]),
+      FormField('email', 'E-MAIL', self.email, 1, 64, validators=[Validate.email]),
+      FormField('address', 'ADDRESS', self.address, 1, 64),
       FormField('location_id', 'COUNTRY', self.location_id, 1, 3, validators=[Validate.options], options='LOCATION'),
       FormField('role', 'ROLE', self.role, 1, 10, editable=False),
     ]
