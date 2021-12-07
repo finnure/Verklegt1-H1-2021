@@ -30,3 +30,4 @@ id,location_id,name,ssn,address,phone,mobile,email,role
 128,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 129,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 130,102,Stefán Óli,adh,fewa,3463,4574,s@nan.is,EMPLOYEE
+131,102,Lára Björk,96734513,Mosó,3687316,45727245,lara@ru.is,EMPLOYEE

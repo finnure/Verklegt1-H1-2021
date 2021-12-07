@@ -345,7 +345,7 @@ class Screen():
       self.print(value)
     if editing:
       # Do fancy visual stuff to make the text we're editing stand out
-      self.paint_character(self.get_css_class('EDITING'), 0, 0, cols)
+      self.paint_character(self.get_css_class('EDITING'), line, col, cols)
       self.move_cursor_by_offset(0, index)
       self.refresh()
     while True:
@@ -374,7 +374,7 @@ class Screen():
         continue
       if editing:
         # Re-apply fancy visual stuff to keep looks consistent and move cursor to correct position
-        self.paint_character(self.get_css_class('EDITING'), 0, 0, cols)
+        self.paint_character(self.get_css_class('EDITING'), line, col, cols)
         self.move_cursor_by_offset(0, index)
         self.refresh()
         if not started_editing:
