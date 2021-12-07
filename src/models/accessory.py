@@ -31,8 +31,8 @@ class Accessory():
     return [
       FormField('description', 'DESCRIPTION', None, 1, 64),
       FormField('state', 'STATE', None, 1, 64),
-      FormField('bought', 'BOUGHT', None, 1, 15),
-      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 15),
+      FormField('bought', 'BOUGHT', None, 1, 15, Filters.DATE, validators=[Validate.date]),
+      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 15, Filters.DATE, validators=[Validate.date]),
     ]
 
   def get_edit_fields(self):
@@ -40,6 +40,6 @@ class Accessory():
       FormField('id', 'ID', None, 1, 3, editable=False),
       FormField('description', 'DESCRIPTION', None, 1, 64),
       FormField('state', 'STATE', None, 1, 64),
-      FormField('bought', 'BOUGHT', None, 1, 15),
-      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 15),
+      FormField('bought', 'BOUGHT', None, 1, 15, Filters.DATE, validators=[Validate.date]),
+      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 15, Filters.DATE, validators=[Validate.date]),
     ]
