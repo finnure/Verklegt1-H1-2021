@@ -86,6 +86,6 @@ class LocationData():
       )
   def __get_next_id(self) -> int:
     ''' Finds max id and returns id+1 '''
-    employees = self.get_all()
-    all_ids = [emp.id for emp in employees]
+    locations = self.get_all()
+    all_ids = [loc.id for loc in locations]
     return max(all_ids) + 1
