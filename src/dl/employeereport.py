@@ -9,12 +9,12 @@ class EmployeeReportData():
       'id',
       'task_id',
       'report_date',
-      'approved'
+      'approved',
       'employee_id',
       'hours',
       'material_cost',
       'labor_cost',
-      'description'
+      'description',
       'note',
       ]
     

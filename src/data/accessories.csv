@@ -1,4 +1,4 @@
-﻿id,building_id,name,description,state,bought,last_maintained
+id,building_id,name,description,state,bought,last_maintained
 100,101,Sauna,Sauna room for guests,Good,2017-04-20,2019-03-18
 101,101,OK-650VV Nuclear furnace,Heating equipment for chilly days,Good,2021-08-18,2021-10-07
 102,101,Gym equipment,Barbells and bumper plates,Bad,2020-04-06,2020-08-21

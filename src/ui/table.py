@@ -37,7 +37,7 @@ class Table():
     if self.numerate:
       self.columns.append(TableColumn('#', list(range(1, len(self.data) + 1)), self.max_lines))
     for key, name in self.headers.items():
-      rows = [item.as_dict()[key] for item in self.data]
+      rows = [getattr(item, key) for item in self.data]
       self.columns.append(TableColumn(name.upper(), rows, self.max_lines))
 
   def __getitem__(self, index):

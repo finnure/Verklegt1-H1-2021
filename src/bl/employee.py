@@ -1,3 +1,4 @@
+from models.location import Location
 from ui.form import Form
 from dlapi import DlApi
 from models.employee import Employee
@@ -17,9 +18,9 @@ class EmployeeLogic():
       'role'
     ]
 
-  def new(self, form: Form) -> Employee:
+  def new(self, form: Form, location_id: int) -> Employee:
     ''' TODO '''
-    emp = self.__parse_form(form)
+    emp = self.__parse_form(form, location_id)
     employee = self.dlapi.add_employee(emp)
     return self.add_extras(employee)
 
@@ -56,18 +57,21 @@ class EmployeeLogic():
     #employee.set_tasks(tasks)
     return employee
 
-  def __parse_form(self, form: Form) -> Employee:
+  def __parse_form(self, form: Form, location_id: int = None) -> Employee:
     ''' Returns instance of Employee if everything is ok. '''
     try:
       id = form['id']
       role = form['role']
     except StopIteration:
+      # id and role missing from form, set defaults for new employee
       id = 0
       role = 'EMPLOYEE'
+    if location_id is None:
+      location_id = form['location_id']
 
     return Employee(
         id, 
-        form['location_id'],
+        location_id,
         form['name'],
         form['ssn'],
         form['address'],

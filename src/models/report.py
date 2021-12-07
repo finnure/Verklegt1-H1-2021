@@ -24,15 +24,8 @@ class Report():
       'description': self.description,
       'note': self.note,
       'hours': self.hours,
-      'employee_name': self.employee.name
     }
   
-  def add_employee(self, employee):
-    self.employee = employee
-    
-  def add_task(self, task):
-    self.task = task
-
 class ContractorReport(Report):
 
   def __init__(self, id: int, 
@@ -91,6 +84,12 @@ class EmployeeReport(Report):
     self.material_cost = material_cost
     self.labor_cost = labor_cost
 
+  def add_employee(self, employee):
+    self.employee = employee
+    
+  def add_task(self, task):
+    self.task = task
+
   def add_contractor_reports(self, reports: 'list[ContractorReport]'):
     self.contractor_reports = reports
 
@@ -100,7 +99,7 @@ class EmployeeReport(Report):
       'employee_id': self.employee_id, 
       'task_id': self.task_id, 
       'material_cost': self.material_cost, 
-      'labor_cost': self.labor_cost, 
+      'labor_cost': self.labor_cost,
     })
 
   @staticmethod

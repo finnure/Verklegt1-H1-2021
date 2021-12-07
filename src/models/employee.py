@@ -29,7 +29,7 @@ class Employee():
   def set_location(self, location) -> None:
     self.location = location
     self.location_city = location.city
-    
+
   def set_reports(self, reports) -> None:
     self.reports = reports
 
@@ -47,7 +47,6 @@ class Employee():
       'mobile': self.mobile,
       'email': self.email,
       'role': self.role,
-      'location_city': self.location_city,
     }
 
   @staticmethod
@@ -59,7 +58,6 @@ class Employee():
       FormField('mobile', 'MOBILE', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('email', 'E-MAIL', None, 1, 64, validators=[Validate.email]),
       FormField('address', 'ADDRESS', None, 1, 64),
-      FormField('location_id', 'COUNTRY', None, 1, 3, validators=[Validate.options], options='LOCATION'),
     ]
 
   def get_edit_fields(self):
@@ -71,6 +69,6 @@ class Employee():
       FormField('mobile', 'MOBILE', self.mobile, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('email', 'E-MAIL', self.email, 1, 64, validators=[Validate.email]),
       FormField('address', 'ADDRESS', self.address, 1, 64),
-      FormField('location_id', 'COUNTRY', self.location_id, 1, 3, validators=[Validate.options], options='LOCATION'),
+      FormField('location_id', 'COUNTRY', self.location_id, 1, 3, editable=False),
       FormField('role', 'ROLE', self.role, 1, 10, editable=False),
     ]

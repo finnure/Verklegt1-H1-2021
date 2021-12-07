@@ -121,29 +121,25 @@ class UiHandler():
               if len(self.breadcrumb) <= 0:
                 # Nothing to go back to, flash and continue
                 self.__screen.flash()
-                continue
               else:
                 # pop last view from breadcrumb and display it
-                self.find_connection(self.breadcrumb.pop())
+                options = self.find_connection(self.breadcrumb.pop())
             else:
               raise ValueError(f'Invalid handler key for self: {handler_key}')
           else:
             # Global menu option selected. Set it as current view and set home as breadcrumb
             self.breadcrumb = ['MENU:MENU']
             options = self.find_connection(connection)
-            continue
 
         # selection is not in global options, check current view options
         elif key in options:
           if self.current_view is not None: # Don't add None to breadcrumbs
             self.breadcrumb.append(self.current_view)
           options = self.find_connection(options[key])
-          continue
 
         # Invalid option selected, flash and try again
         else:
           self.__screen.flash()
-          continue
 
   def find_handler(self, handler_key: str):
     ''' Generic handler for global options if view_key is GLOBAL. '''
