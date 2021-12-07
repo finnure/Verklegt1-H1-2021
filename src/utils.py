@@ -10,6 +10,7 @@ class Filters():
   FLOATS = '.0123456789'
   PHONE = '+0123456789 '
   USER_ID = 'Qq0123456789'
+  DATE = '/0123456789'
 
 def none_if_not_list(list) -> 'list | None':
   ''' Returns list if it is a list, else returns None '''
@@ -105,4 +106,18 @@ class Validate():
   def ssn(ssn: str) -> None:
     ''' TODO '''
 
+  @staticmethod
+  def date(date: str) -> None:
+    '''Raises an error if date format is incorrect'''
+    year,month,day = date.split('/')
+    if len/(year) != 4:
+      raise ValueError('YEAR MUST BE 4 DIGITS')
+    if len(month) != 2: 
+      raise ValueError('MONTH MUST BE 2 DIGITS')
+    if len(day) != 2: 
+      raise ValueError('DAY MUST BE 2 DIGITS')
+    if int(month) < 1 or int(month) > 12: 
+      raise ValueError('INVALID VALUE FOR MONTH {month}')
+    if int(day) < 1 or int(day) > 31:
+      raise ValueError('INVALID VALUE FOR DAY {day}')
 
