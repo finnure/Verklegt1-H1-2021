@@ -136,6 +136,18 @@ class ReportConst():
   FORM_PARAM = 'REPORT:FORM'
   TABLE_PARAM = 'REPORT:TABLE'
   REPORT_PARAM = 'REPORT:REPORT'
+  CONNECTION_PARAM = 'REPORT:CONNECTION'
+
+  TABLE_HEADERS = {
+    'id': 'ID',
+    'task_id': 'TASK',
+    'report_date': 'REPORT DATE',
+    'approved': 'APPROVED',
+    'task_type': 'TASK TYPE',
+    'employee_name': 'EMPLOYEE',
+    'contractor_name': 'CONTRACTOR',
+    'building_registration': 'BUILDING',
+  }
 
   # Connections
   ADMIN_NEW = 'REPORT:ADD_NEW'
@@ -143,8 +155,8 @@ class ReportConst():
   ADMIN_ACTIVE = 'REPORT:LIST_ACTIVE'
   MENU = 'REPORT:MENU'
   LIST_ALL = 'REPORT:LIST_ALL'
-  LIST_ALL_NEXT = 'REPORT:LIST_ALL_NEXT'
-  LIST_ALL_PREV = 'REPORT:LIST_ALL_PREV'
+  PAGING_NEXT = 'REPORT:LIST_ALL_NEXT'
+  PAGING_PREV = 'REPORT:LIST_ALL_PREV'
   SELECT_FROM_LIST = 'REPORT:SELECT_FROM_LIST'
   VIEW = 'REPORT:VIEW'
   SAVE = 'REPORT:SAVE'

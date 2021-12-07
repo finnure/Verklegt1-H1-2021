@@ -146,6 +146,10 @@ class LlApi():
   
   def add_contractor_to_report(self):
     return self.report_logic.add_contractor_to_report()
+
+  def get_reports_for_task(self, task_id: int):
+    return self.report_logic.get_reports_for_task(task_id)
+
   
   ##### Task methods ########
 

@@ -1,4 +1,4 @@
-id,country,city,airport,address,phone,openinghours
-100,Greenland,Kulusuk,Kulusuk Airport,"Aqisseqarajooq, HVF8+R25, Nuuk 3905",+299 98 66 98,06:00-20:00
-101,Faroe Islands,Thorshavn,Vágar Airport,"3P9C+29Q, Sørvágur",+298 354400,06:00-22:00
-102,Svalbard,Longyearbyen,Svalbard Airport,Longyearbyen 9170,+47 67 03 54 00,06:00-14:00
+id,country,city,airport,address,phone,openinghours,manager_id
+100,Greenland,Kulusuk,Kulusuk Airport,"Aqisseqarajooq, HVF8+R25, Nuuk 3905",+299 98 66 98,06:00-20:00,101
+101,Faroe Islands,Thorshavn,Vágar Airport,"3P9C+29Q, Sørvágur",+298 354400,06:00-22:00,102
+102,Svalbard,Longyearbyen,Svalbard Airport,Longyearbyen 9170,+47 67 03 54 00,06:00-14:00,103

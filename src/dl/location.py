@@ -12,6 +12,7 @@ class LocationData():
       'address',
       'phone',
       'openinghours',
+      'manager_id',
     ]
     self.data_folder = data_folder
     self.__file = FileHandler('locations.csv', self.data_folder, self.headers)
@@ -81,6 +82,7 @@ class LocationData():
         location['address'],
         location['phone'],
         location['openinghours'],
+        location['manager_id'],
       )
   def __get_next_id(self) -> int:
     ''' Finds max id and returns id+1 '''

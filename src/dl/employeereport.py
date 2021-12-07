@@ -10,13 +10,10 @@ class EmployeeReportData():
       'task_id',
       'report_date',
       'approved'
-      'task_type',
       'employee_id',
-      'contractor_id',
       'hours',
       'material_cost',
       'labor_cost',
-      'total_cost',
       'description'
       'note',
       ]
@@ -79,27 +76,20 @@ class EmployeeReportData():
         raise KeyError(f'Invalid filter key for EmployeeReport: {key}')
     return filtered_employeereports
 
-  def parse(self, employeereport: 'dict[str, str]') -> EmployeeReport:
+  def __parse(self, employeereport: 'dict[str, str]') -> EmployeeReport:
     ''' Creates and returns an instance of EmployeeReport '''
     return EmployeeReport(
         int(employeereport['id']), 
         int(employeereport['task_id']),
         employeereport['report_date'],
         employeereport['approved'],
-        employeereport['task_type'],
         int(employeereport['employee_id']),
-        int(employeereport['contractor_id']),
         float(employeereport['hours']),
         float(employeereport['material_cost']),
         float(employeereport['labor_cost']),
-        float(employeereport['total_cost']),
         employeereport['description'],
         employeereport['note']
       )
-
-  def prepare(self, data):
-    ''' Converts data to a format that file expects '''
-    pass
 
   def __get_next_id(self) -> int:
     ''' Finds max id and returns id+1 '''

@@ -1,6 +1,3 @@
-from models.location import Location
-from models.report import EmployeeReport
-from models.task import Task
 from utils import Validate, Filters
 from ui.form import FormField
 
@@ -29,14 +26,14 @@ class Employee():
   def __str__(self) -> str:
     return f'#{self.id} - {self.name} - {self.role}'
 
-  def set_location(self, location: Location) -> None:
+  def set_location(self, location) -> None:
     self.location = location
     self.location_city = location.city
     
-  def set_reports(self, reports: 'list[EmployeeReport]') -> None:
+  def set_reports(self, reports) -> None:
     self.reports = reports
 
-  def set_tasks(self, tasks: 'list[Task]') -> None:
+  def set_tasks(self, tasks) -> None:
     self.tasks = tasks
 
   def as_dict(self) -> 'dict[str, str | int]':

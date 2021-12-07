@@ -122,35 +122,28 @@ class UiHandler():
                 self.__screen.flash()
                 continue
               else:
-                # set current view to last view in breadcrumb
-                self.current_view = self.breadcrumb.pop()
-                # next execution should use current view to find handler
+                # pop last view from breadcrumb and display it
+                self.find_connection(self.breadcrumb.pop())
             else:
               raise ValueError(f'Invalid handler key for self: {handler_key}')
           else:
             # Global menu option selected. Set it as current view and set home as breadcrumb
             self.breadcrumb = ['MENU:MENU']
-            self.current_view = connection
-            # next execution should use current view to find handler
+            options = self.find_connection(connection)
+            continue
 
         # selection is not in globacl options, check current view options
         elif key in options:
           if self.current_view is not None: # Don't add None to breadcrumbs
             self.breadcrumb.append(self.current_view)
-          self.current_view = options[key]
+          options = self.find_connection(options[key])
+          continue
 
         # Invalid option selected, flash and try again
         else:
           self.__screen.flash()
           continue
 
-        # Find and call handler for selected view
-        view_key, handler_key = self.current_view.split(':')
-        if view_key not in self.view_map:
-          raise KeyError(f'View not available for {view_key}')
-        view = self.view_map[view_key]
-        options = view.find_handler(handler_key)
-        
   def find_handler(self, handler_key):
     ''' Generic handler for global options if view_key is GLOBAL. '''
     if handler_key == 'BACK':
@@ -166,6 +159,21 @@ class UiHandler():
           raise KeyError(f'View not available for {view_key}')
         view = self.view_map[view_key]
         return view.find_handler(handler_key)
+
+  def find_connection(self, connection: str):
+    ''' Find view handler for selected option. '''
+    self.current_view = connection
+    # Find and call handler for selected view
+    view_key, handler_key = self.current_view.split(':')
+    if view_key not in self.view_map:
+      raise KeyError(f'View not available for {view_key}')
+    view = self.view_map[view_key]
+    options = view.find_handler(handler_key)
+    if type(options) is str:
+      # View calling another view directly
+      return self.find_connection(options)
+    return options
+
 
 
 

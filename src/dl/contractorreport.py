@@ -6,11 +6,12 @@ class ContractorReportData():
   def __init__(self, data_folder):
     self.headers = [
       'id',
+      'report_date',
       'contractor_id',
       'employee_report_id',
       'description',
       'approved',
-      'task_type',
+      'note',
       'hours',
       'contractor_fee',
       'contractor_rating'
@@ -79,7 +80,7 @@ class ContractorReportData():
       int(contractor_report['employee_report_id']),
       contractor_report['description'],
       contractor_report['approved'],
-      contractor_report['task_type'],
+      contractor_report['note'],
       float(contractor_report['hours']),
       int(contractor_report['contractor_fee']),
       float(contractor_report['contractor_rating']),
