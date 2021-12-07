@@ -121,3 +121,9 @@ class Validate():
     if int(day) < 1 or int(day) > 31:
       raise ValueError(f'INVALID VALUE FOR DAY {day}')
 
+
+  @staticmethod
+  def float_num(value: str) -> None:
+    '''Raise error if more than one . is in value'''
+    if len([c for c in value if c == '.']) > 1:
+      raise ValueError('Only one . allowed in value')
