@@ -63,10 +63,10 @@ class AccessoryData():
       if key in self.headers:
         if partial_match:
           # Check if value is in field
-          filtered_accessories = [acc for acc in accessories if val in acc[key]]
+          filtered_accessories = [acc for acc in accessories if str(val).lower() in str(getattr(acc, key)).lower()]
         else:
           # Full match, check if value equals field
-          filtered_accessories = [acc for acc in accessories if val == acc[key]]
+          filtered_accessories = [acc for acc in accessories if str(val).lower() == str(getattr(acc, key)).lower()]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for Accessory: {key}')

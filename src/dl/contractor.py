@@ -69,9 +69,9 @@ class ContractorData():
     for key, val in filter.items():
       if key in self.headers:
         if partial_match:
-          filtered_contractors = [con for con in contractors if val in con[key]]
+          filtered_contractors = [con for con in contractors if str(val).lower() in str(getattr(con, key)).lower()]
         else:
-          filtered_contractors = [con for con in contractors if val == con[key]]
+          filtered_contractors = [con for con in contractors if str(val).lower() == str(getattr(con, key)).lower()]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for Contractor: {key}')

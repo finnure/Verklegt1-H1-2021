@@ -63,10 +63,10 @@ class LocationData():
       if key in self.headers:
         if partial_match:
           # Check if value is in field
-          filtered_locations = [loc for loc in locations if val in loc[key]]
+          filtered_locations = [loc for loc in locations if str(val).lower() in str(getattr(loc, key)).lower()]
         else:
           # Full match, check if value equals field
-          filtered_locations = [loc for loc in locations if val == loc[key]]
+          filtered_locations = [loc for loc in locations if str(val).lower() == str(getattr(loc, key)).lower()]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for Location: {key}')

@@ -68,9 +68,9 @@ class EmployeeReportData():
     for key, val in filter.items():
       if key in self.headers:
         if partial_match:
-          filtered_employeereports = [emp_rep for emp_rep in employeereports if val in emp_rep[key]]
+          filtered_employeereports = [emp_rep for emp_rep in employeereports if str(val).lower() in str(getattr(emp_rep, key)).lower()]
         else:
-          filtered_employeereports = [emp_rep for emp_rep in employeereports if val == emp_rep[key]]
+          filtered_emp_reployeereports = [emp_rep for emp_rep in employeereports if str(val).lower() == str(getattr(emp_rep, key)).lower()]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for EmployeeReport: {key}')

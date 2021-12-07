@@ -69,10 +69,10 @@ class BuildingData():
       if key in self.headers:
         if partial_match:
           # Check if value is in field
-          filtered_buildings = [build for build in buildings if val in build[key]]
+          filtered_buildings = [build for build in buildings if str(val).lower() in str(getattr(build, key)).lower()]
         else:
           # Full match, check if value equals field
-          filtered_buildings = [build for build in buildings if val == build[key]]
+          filtered_buildings = [build for build in buildings if str(val).lower() == str(getattr(build, key)).lower()]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for Building: {key}')

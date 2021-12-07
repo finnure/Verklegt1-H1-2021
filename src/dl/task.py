@@ -71,10 +71,10 @@ class TaskData():
       if key in self.headers:
         if partial_match:
           # Check if value is in field
-          filtered_tasks = [task for task in tasks if str(val).lower() in str(task[key]).lower()]
+          filtered_tasks = [task for task in tasks if str(val).lower() in str(getattr(task, key)).lower()]
         else:
           # Full match, check if value equals field
-          filtered_tasks = [task for task in tasks if str(val).lower() == str(task[key]).lower()]
+          filtered_tasks = [task for task in tasks if str(val).lower() == str(getattr(task, key)).lower()]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for Task: {key}')
