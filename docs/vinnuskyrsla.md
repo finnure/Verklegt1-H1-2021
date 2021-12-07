@@ -369,34 +369,34 @@ To do
 ## Dagur 15
 
 ### Plan dagsins
-- [] - Yfirfara öll UC í excel og bera saman við skýrslu (samræma)
-- [] - Setja inn 'Viðbætur'' á UC
+[] - Yfirfara öll UC í excel og bera saman við skýrslu (samræma)
+[] - Setja inn 'Viðbætur'' á UC
 - [x] - Byrja á handriti fyrir leiðbeiningamyndband
 - [x] - fínstilla útlit og laga tengingar yfir á önnur view
 - [/] - klára kóða fyrir Task, EmployeeReport og Contractor Report
 
 ### Framkvæmt í dag
-- Ákveðið að bíða með yfirferð á öllum UC þar til búið er að tengja alla hluta kerfisins
+Ákveðið að bíða með yfirferð á öllum UC þar til búið er að tengja alla hluta kerfisins
 Til viðbótar við plan dagsins var eftirfarandi framkvæmt
 - [/] - setja upp töflu með öllum villuboðum (til að hafa í skýrslu)
 - [x] - Yfirfara allar aðgerðir í UI skjali og samræma
 - [x] - uppfæra klasaritið (Menu, Form og table)
 
-- Finnur: Forritun (fínstillingar og klára tengingar + view) - (8 klst)
-- Kristín: samantekt á validations og uppfæra CSV skjöl (max 64 stafir), uppfærsla á Klasariti, uppfærsla á klasariti - (7 klst)
-- Stefán: forrita tengingar milli klasa og aðstoða Finn við tilfallandi verkefni - (_ klst)
-- Lára: Skipulagsvinna, uppsetning á villuboðstöflu, yfirferð á öllum UI aðgerðum og samræming - (8 klst)
+Finnur: Forritun (fínstillingar og klára tengingar + view) - (10 klst)
+Kristín: samantekt á validations og uppfæra CSV skjöl (max 64 stafir), uppfærsla á Klasariti, uppfærsla á klasariti - (7 klst)
+Stefán: forrita tengingar milli klasa og aðstoða Finn við tilfallandi verkefni - (_ klst)
+Lára: Skipulagsvinna, uppsetning á villuboðstöflu, yfirferð á öllum UI aðgerðum og samræming - (8 klst)
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 16
 
 ### Plan dagsins
-- [] - Klára að skilgreina öll villuboð og "viðbætur"
-- [] - Yfirfara öll UC í excel og sjá til þess að þau séu rétt
-- [] - færa allar kröfur inn í skýrslu og lagfæra happy path í samræmi við kerfið (sé þess þörf)
-- [] - uppfæra aðgerðir í kóða (ef þörf er á)
-- [] - Klára handrit að myndbandi
+[] - Klára að skilgreina öll villuboð og "viðbætur"
+[] - Yfirfara öll UC í excel og sjá til þess að þau séu rétt
+[] - færa allar kröfur inn í skýrslu og lagfæra happy path í samræmi við kerfið (sé þess þörf)
+[] - uppfæra aðgerðir í kóða (ef þörf er á)
+[] - Klára handrit að myndbandi
 ### Framkvæmt í dag
 
 [Heim](#efnisyfirlit)
