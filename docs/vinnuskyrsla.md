@@ -369,8 +369,8 @@ To do
 ## Dagur 15
 
 ### Plan dagsins
-- [ ] - Yfirfara öll UC í excel og bera saman við skýrslu (samræma)
-- [ ] - Setja inn 'Viðbætur'' á UC
+- [x] - Yfirfara öll UC í excel og bera saman við skýrslu (samræma)
+- [x] - Setja inn 'Viðbætur'' á UC
 - [x] - Byrja á handriti fyrir leiðbeiningamyndband
 - [x] - fínstilla útlit og laga tengingar yfir á önnur view
 - [/] - klára kóða fyrir Task, EmployeeReport og Contractor Report
@@ -378,7 +378,7 @@ To do
 ### Framkvæmt í dag
 Ákveðið að bíða með yfirferð á öllum UC þar til búið er að tengja alla hluta kerfisins
 Til viðbótar við plan dagsins var eftirfarandi framkvæmt
-- [/] - setja upp töflu með öllum villuboðum (til að hafa í skýrslu)
+- [x] - setja upp töflu með öllum villuboðum (til að hafa í skýrslu)
 - [x] - Yfirfara allar aðgerðir í UI skjali og samræma
 - [x] - uppfæra klasaritið (Menu, Form og table)
 
@@ -394,7 +394,7 @@ Til viðbótar við plan dagsins var eftirfarandi framkvæmt
 ### Plan dagsins
 - [x] - Klára að skilgreina öll villuboð og "viðbætur"
 - [x] - Yfirfara öll UC í excel og sjá til þess að þau séu rétt
-- [/] - færa allar kröfur inn í skýrslu 
+- [ ] - færa allar kröfur inn í skýrslu --> Bíða með þar til á morgun/fim
 - [x] - lagfæra happy path í samræmi við kerfið (sé þess þörf)
 - [x] - uppfæra aðgerðir í kóða 
 - [X] - Halda áfram með handrit að myndbandi
