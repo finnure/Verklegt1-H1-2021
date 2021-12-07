@@ -369,8 +369,8 @@ To do
 ## Dagur 15
 
 ### Plan dagsins
-[] - Yfirfara öll UC í excel og bera saman við skýrslu (samræma)
-[] - Setja inn 'Viðbætur'' á UC
+- [ ] - Yfirfara öll UC í excel og bera saman við skýrslu (samræma)
+- [ ] - Setja inn 'Viðbætur'' á UC
 - [x] - Byrja á handriti fyrir leiðbeiningamyndband
 - [x] - fínstilla útlit og laga tengingar yfir á önnur view
 - [/] - klára kóða fyrir Task, EmployeeReport og Contractor Report
@@ -382,27 +382,41 @@ Til viðbótar við plan dagsins var eftirfarandi framkvæmt
 - [x] - Yfirfara allar aðgerðir í UI skjali og samræma
 - [x] - uppfæra klasaritið (Menu, Form og table)
 
-Finnur: Forritun (fínstillingar og klára tengingar + view) - (10 klst)
-Kristín: samantekt á validations og uppfæra CSV skjöl (max 64 stafir), uppfærsla á Klasariti, uppfærsla á klasariti - (7 klst)
-Stefán: forrita tengingar milli klasa og aðstoða Finn við tilfallandi verkefni - (_ klst)
-Lára: Skipulagsvinna, uppsetning á villuboðstöflu, yfirferð á öllum UI aðgerðum og samræming - (8 klst)
+- Finnur: Forritun (fínstillingar og klára tengingar + view) - (10 klst)
+- Kristín: samantekt á validations og uppfæra CSV skjöl (max 64 stafir), uppfærsla á Klasariti, uppfærsla á klasariti - (7 klst)
+- Stefán: forrita tengingar milli klasa og aðstoða Finn við tilfallandi verkefni - (_ klst)
+- Lára: Skipulagsvinna, uppsetning á villuboðstöflu, yfirferð á öllum UI aðgerðum og samræming - (8 klst)
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 16
 
 ### Plan dagsins
-[] - Klára að skilgreina öll villuboð og "viðbætur"
-[] - Yfirfara öll UC í excel og sjá til þess að þau séu rétt
-[] - færa allar kröfur inn í skýrslu og lagfæra happy path í samræmi við kerfið (sé þess þörf)
-[] - uppfæra aðgerðir í kóða (ef þörf er á)
-[] - Klára handrit að myndbandi
+- [x] - Klára að skilgreina öll villuboð og "viðbætur"
+- [x] - Yfirfara öll UC í excel og sjá til þess að þau séu rétt
+- [/] - færa allar kröfur inn í skýrslu 
+- [x] - lagfæra happy path í samræmi við kerfið (sé þess þörf)
+- [x] - uppfæra aðgerðir í kóða 
+- [X] - Halda áfram með handrit að myndbandi
+- [X] - Stefán:  Uppfæra stöðurit --> Bíða með loka uppfærslu þar til kóði er fullkláraður
 ### Framkvæmt í dag
+Nær öll verk á dagskrá voru kláruð, sum var ákveðið að bíða með þar til á morgun/síðasta lagi fimmtudag
+
+- Finnur : Forritun (samþætting milli view-a)
+- Kristín: Forritun (viðbætur), villuboð samantekt og skráning inn í UC
+- Lára: Yfirferð á UC, uppfæra öll Happy Paths sbr. uppfært UI, villuboð samantekt og skráning inn í UC, inngangur að handriti, færsla á UC inn í skýrslu - (8 klst)
+- Stefán:  Stöðurit, beinagrind og byrjun handrit að myndbandi (3 klst)
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 17
-
+- [ ] - framkvæma notendaprófanir með superusers til að staðfesta að A og B kröfur séu tilbúnar
+- [ ] - lagfæra UC fyrir þær kröfur sem vantaði enn að kóða að fullu
+- [ ] - Taka saman C kröfur (ef einhverjar)
+- [ ] - Lagfæringar á kóðanum
+- [ ] - Færa UC ásamt niðrustöðu prófana inn í skýrslu og hverju var breytt (ef einhverju)
+- [ ] - klára handrit fyrir myndband
+- [ ] - Lára: Taka upp voice-over fyrir leiðbeiningamyndband --> senda á Finn
 ### Plan dagsins
 
 ### Framkvæmt í dag
