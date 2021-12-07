@@ -11,6 +11,7 @@ from ui.login import LoginView
 from ui.mainmenu import MainMenuView
 from ui.search import SearchView
 from ui.menu import Menu
+from ui.table import Table
 from ui.constants import BuildConst, ContrConst, EmpConst, LocConst, SearchConst, TaskConst, GlobalConst
 
 class UiHandler():
@@ -132,7 +133,7 @@ class UiHandler():
             options = self.find_connection(connection)
             continue
 
-        # selection is not in globacl options, check current view options
+        # selection is not in global options, check current view options
         elif key in options:
           if self.current_view is not None: # Don't add None to breadcrumbs
             self.breadcrumb.append(self.current_view)
@@ -144,7 +145,7 @@ class UiHandler():
           self.__screen.flash()
           continue
 
-  def find_handler(self, handler_key):
+  def find_handler(self, handler_key: str):
     ''' Generic handler for global options if view_key is GLOBAL. '''
     if handler_key == 'BACK':
       if len(self.breadcrumb) <= 0:
@@ -152,13 +153,16 @@ class UiHandler():
         self.__screen.flash()
         return ''
       else:
-        # set current view to last view in breadcrumb
-        self.current_view = self.breadcrumb.pop()
-        view_key, handler_key = self.current_view.split(':')
-        if view_key not in self.view_map:
-          raise KeyError(f'View not available for {view_key}')
-        view = self.view_map[view_key]
-        return view.find_handler(handler_key)
+        return self.find_connection(self.breadcrumb.pop())
+    elif handler_key.startswith('PAGING'):
+      table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
+      if handler_key == 'PAGING_NEXT':
+        table.next_page()
+      elif handler_key == 'PAGING_PREV':
+        table.previous_page()
+      self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+      return self.find_connection(self.breadcrumb.pop())
+      
 
   def find_connection(self, connection: str):
     ''' Find view handler for selected option. '''

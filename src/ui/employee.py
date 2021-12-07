@@ -5,7 +5,7 @@ from utils import Filters
 from llapi import LlApi
 from ui.screen import Screen
 from ui.menu import Menu
-from ui.constants import EmpConst, ReportConst, Styles, TaskConst
+from ui.constants import EmpConst, GlobalConst, ReportConst, Styles, TaskConst
 
 class EmployeeView():
 
@@ -21,8 +21,6 @@ class EmployeeView():
       'MENU': self.__menu_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
       'LIST_ALL': self.__list_all_handler,
-      'LIST_ALL_NEXT': self.__list_all_paging_next_handler,
-      'LIST_ALL_PREV': self.__list_all_paging_prev_handler,
       'LIST_TASKS': self.__list_tasks_handler,
       'LIST_REPORTS': self.__list_reports_handler,
       'SELECT_FROM_LIST': self.__select_from_list_handler,
@@ -87,34 +85,13 @@ class EmployeeView():
     self.__screen.clear()
     return self.__view_employee_handler(emp)
 
-  def __list_all_paging_next_handler(self):
-    ''' Go to next page of employee list. If table is not available
-    in params, list all handler will be called and whole list from page 
-    one will be displayed. '''
-    try:
-      # pop table from params, go to next page and call list all handler with table
-      table: Table = self.llapi.get_param(EmpConst.TABLE_PARAM)
-      table.next_page()
-      return self.__list_all_handler(table)
-    except KeyError:
-      return self.__list_all_handler()
 
-  def __list_all_paging_prev_handler(self):
-    ''' Go to previous page of employee list. If table is not available
-    in params, list all handler will be called and whole list from page 
-    one will be displayed. '''
-    try:
-      # pop table from params, go to previous page and call list all handler with table
-      table: Table = self.llapi.get_param(EmpConst.TABLE_PARAM)
-      table.previous_page()
-      return self.__list_all_handler(table)
-    except KeyError:
-      return self.__list_all_handler()
-
-  def __list_all_handler(self, table: Table = None):
+  def __list_all_handler(self):
     ''' Handler that gets a list of all Employees and displays as a table.
     If too many rows are to be displayed, paging is applied.'''
-    if table is None:
+    try:
+      table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
+    except KeyError:
       # First call to list. If table is not None, paging is being used
       emps = self.llapi.get_all_employees()
       table = self.__create_table(emps)
@@ -127,9 +104,9 @@ class EmployeeView():
     # Display the table and get paging options
     paging_options = self.__screen.display_table(table)
     if 'N' in paging_options:
-      menu.add_menu_item('N', 'NEXT', EmpConst.LIST_ALL_NEXT)
+      menu.add_menu_item('N', 'NEXT', GlobalConst.PAGING_NEXT)
     if 'P' in paging_options:
-      menu.add_menu_item('P', 'PREVIOUS', EmpConst.LIST_ALL_PREV)
+      menu.add_menu_item('P', 'PREVIOUS', GlobalConst.PAGING_PREV)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
@@ -138,7 +115,7 @@ class EmployeeView():
     
     if table.pages > 0:
       # Store table so paging handlers can use paging
-      self.llapi.set_param(EmpConst.TABLE_PARAM, table)
+      self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
 
     return options
 
