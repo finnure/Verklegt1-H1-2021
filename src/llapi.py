@@ -67,7 +67,7 @@ class LlApi():
     return self.task_logic.get_active_tasks_for_building(id)
   
   def get_reports_for_building(self, id: int):
-    return self.report_logic.get_filtered({'building_id': id})
+    return self.report_logic.get_reports_for_building(id)
 
   def get_accessories_for_building(self, id: int):
     return self.accessory_logic.get_filtered({'building_id': id})
@@ -135,7 +135,7 @@ class LlApi():
     return self.employee_logic.get_employee_by_location(location_id)
   
   def get_reports_for_employee(self, filter):
-    return self.employee_logic.get_reports_for_employee(filter)
+    return self.report_logic.get_reports_for_employee(filter)
 
   def get_active_tasks_for_user(self, id: int):
     return self.task_logic.get_active_tasks_for_employee(id)

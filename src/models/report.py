@@ -86,12 +86,18 @@ class EmployeeReport(Report):
 
   def add_employee(self, employee):
     self.employee = employee
+    self.employee_name = employee.name
     
   def add_task(self, task):
     self.task = task
+    self.task_type = task.type
 
   def add_contractor_reports(self, reports: 'list[ContractorReport]'):
     self.contractor_reports = reports
+
+  def add_building(self, building):
+    self.building = building
+    self.building_registration = building.registration
 
   def as_dict(self) -> 'dict[str, str | int]':
     report = super().as_dict()

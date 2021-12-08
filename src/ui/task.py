@@ -108,7 +108,7 @@ class TaskView():
     to try again. '''
     try:
       # Get table from params if available
-      table: Table = self.llapi.get_param(TaskConst.TABLE_PARAM)
+      table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
     except KeyError:
       # Else create a new table
       tasks = self.llapi.get_all_tasks()

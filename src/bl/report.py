@@ -23,7 +23,7 @@ class ReportLogic():
 
   def get_all(self):
     reports = self.dlapi.get_all_employee_reports()
-    return [self.__add_contractor_extras(rep) for rep in reports]
+    return [self.__add_employee_extras(rep) for rep in reports]
 
   def get_filtered(self, filter):
     reports = self.dlapi.get_filtered_employee_reports(filter)
@@ -44,10 +44,23 @@ class ReportLogic():
     reports = self.dlapi.get_filtered_contractor_reports(filter)
     return [self.__add_contractor_extras(rep) for rep in reports]
   
+  def get_reports_for_building(self, building_id: int):
+    task_filter = {'building_id': building_id}
+    tasks = self.dlapi.get_filtered_tasks(task_filter)
+    reports = []
+    for task in tasks:
+      filter = {'task_id': task.id}
+      reports.extend(self.dlapi.get_filtered_employee_reports(filter))
+    return [self.__add_employee_extras(rep) for rep in reports]
+
   def __add_employee_extras(self, report: EmployeeReport):
     employee = self.dlapi.get_one_employee(report.employee_id)
+    task = self.dlapi.get_one_task(report.id)
+    building = self.dlapi.get_one_building(task.building_id)
     contractor_reports = self.dlapi.get_filtered_contractor_reports({'employee_report_id': report.id})
     report.add_employee(employee)
+    report.add_task(task)
+    report.add_building(building)
     report.add_contractor_reports(contractor_reports)
     return report
 

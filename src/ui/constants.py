@@ -196,7 +196,6 @@ class ReportConst():
     'approved': 'APPROVED',
     'task_type': 'TASK TYPE',
     'employee_name': 'EMPLOYEE',
-    'contractor_name': 'CONTRACTOR',
     'building_registration': 'BUILDING',
   }
 
