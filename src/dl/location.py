@@ -82,7 +82,7 @@ class LocationData():
         location['address'],
         location['phone'],
         location['openinghours'],
-        location['manager_id'],
+        int(location['manager_id']),
       )
   def __get_next_id(self) -> int:
     ''' Finds max id and returns id+1 '''

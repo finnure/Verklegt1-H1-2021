@@ -1,5 +1,6 @@
 from llapi import LlApi
 from models.accessory import Accessory
+from models.location import Location
 from ui.screen import Screen
 from models.building import Building
 from ui.form import Form
@@ -284,5 +285,12 @@ class BuildingView():
     return self.__view_handler(building)
 
   def __filter_location_handler(self):
-    options = self.__menu_handler()
-    return options
+    try:
+      location: Location = self.llapi.get_param(BuildConst.INPUT_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    buildings = self.llapi.get_buildings_by_location(location.id)
+    table = Table(buildings, BuildConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return BuildConst.LIST_ALL

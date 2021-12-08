@@ -17,6 +17,19 @@ class Location():
   def __str__(self) -> str:
     return '#{}  {}, {}'.format(str(self.id),self.city,self.country)
 
+  def set_buildings(self, buildings):
+    self.buildings = buildings
+
+  def set_manager(self, manager):
+    self.manager = manager
+    self.manager_name = manager.name
+
+  def set_employees(self, employees):
+    self.employees = employees
+
+  def set_contractors(self, contractors):
+    self.contractors = contractors
+
   def as_dict(self) -> 'dict[str, str | int]':
     return {
       'id': self.id,

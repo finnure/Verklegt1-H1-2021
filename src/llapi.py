@@ -72,6 +72,9 @@ class LlApi():
   def get_accessories_for_building(self, id: int):
     return self.accessory_logic.get_filtered({'building_id': id})
 
+  def get_buildings_by_location(self, id: int):
+    return self.building_logic.get_filtered({'location_id': id})
+
   ##### Accessory methods ########
 
   def new_accessory(self, form: Form, building_id):

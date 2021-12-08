@@ -1,8 +1,8 @@
 id,location_id,name,ssn,address,phone,mobile,email,role
 100,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 101,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-102,100,Finnur Eiríks,2202785149,Leiðhamrar,58855,84219,klauvi@gmail.co,MANAGER
-103,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
+102,101,Finnur Eiríks,2202785149,Leiðhamrar,58855,84219,klauvi@gmail.co,MANAGER
+103,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 104,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 105,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
 106,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER

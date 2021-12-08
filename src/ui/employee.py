@@ -101,7 +101,9 @@ class EmployeeView():
     If too many rows are to be displayed, paging is applied.'''
     try:
       table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
-    except KeyError:
+      if not isinstance(table.data[0], Employee):
+        raise KeyError
+    except (KeyError, IndexError):
       # First call to list. If table is not None, paging is being used
       emps = self.llapi.get_all_employees()
       table = Table(emps, EmpConst.TABLE_HEADERS)

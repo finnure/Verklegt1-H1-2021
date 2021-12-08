@@ -7,33 +7,41 @@ class LocationLogic():
 
   def __init__(self, dlapi: Type[DlApi]) -> None:
     self.dlapi = dlapi
-    self.required_headers = [
-      'country',
-      'city',
-      'airport',
-      'address',
-      'phone',
-      'opening_hours',
-      'manager'
-    ]
 
   def new(self, form: Form) -> Location:
     ''' TODO '''
     loc = self.__parse_form(form)
-    return self.dlapi.add_location(loc)
+    location = self.dlapi.add_location(loc)
+    return self.add_extras(location)
 
   def update(self, form: Form) -> Location:
     ''' TODO '''
     loc = self.__parse_form(form)
-    return self.dlapi.update_location(loc.id, loc)
+    location= self.dlapi.update_location(loc.id, loc)
+    return self.add_extras(location)
 
   def get(self, id: int) -> Location:
     ''' TODO '''
-    return self.dlapi.get_one_location(id)
+    location = self.dlapi.get_one_location(id)
+    return self.add_extras(location)
 
   def get_all(self) -> 'list[Location]':
     ''' TODO '''
-    return self.dlapi.get_all_locations()
+    locations = self.dlapi.get_all_locations()
+    return [self.add_extras(loc) for loc in locations]
+
+  def add_extras(self, location: Location):
+    filter = {'location_id': location.id}
+    buildings = self.dlapi.get_filtered_buildings(filter)
+    manager = self.dlapi.get_one_employee(location.manager_id)
+    employees = self.dlapi.get_filtered_employees(filter)
+    contractors = self.dlapi.get_filtered_contractors(filter)
+    location.set_buildings(buildings)
+    location.set_manager(manager)
+    location.set_employees(employees)
+    location.set_contractors(contractors)
+    return location
+
 
   def __parse_form(self, form: Form) -> Location:
     ''' Returns instance of Location if everything is ok. '''
