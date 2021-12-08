@@ -62,7 +62,7 @@ class LocationView():
     If too many rows are to be displayed, paging is applied.'''
     try:
       table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
-      if isinstance(table.data[0], Location):
+      if not isinstance(table.data[0], Location):
         raise KeyError
     except (KeyError, IndexError):
       # First call to list. If table is not None, paging is being used
