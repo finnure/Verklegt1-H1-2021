@@ -324,7 +324,8 @@ class Screen():
         ord('\n'), # NEW LINE
         ord('\r'), # CARRIAGE RETURN
         curses.KEY_UP,
-        curses.KEY_DOWN
+        curses.KEY_DOWN,
+        curses.KEY_ENTER
       ]
     self.string_termination = termination
 

@@ -62,7 +62,7 @@ class TaskView():
     menu.add_menu_item('2', 'VIEW TASKS BY EMPLOYEE', TaskConst.FILTER_EMPLOYEE, Roles.MANAGER)
     menu.add_menu_item('3', 'VIEW TASKS BY LOCATION', TaskConst.FILTER_LOCATION, Roles.MANAGER)
     menu.add_menu_item('4', 'VIEW TASKS BY CONTRACTOR', TaskConst.FILTER_CONTRACTOR, Roles.MANAGER)
-    options = menu.get_options(self.llapi.user.role)
+    options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
     admin_menu.add_menu_item('+', 'ADD NEW', TaskConst.ADMIN_NEW)
