@@ -23,6 +23,8 @@ class LocationLogic():
   def get(self, id: int) -> Location:
     ''' TODO '''
     location = self.dlapi.get_one_location(id)
+    if location is None:
+      return
     return self.add_extras(location)
 
   def get_all(self) -> 'list[Location]':

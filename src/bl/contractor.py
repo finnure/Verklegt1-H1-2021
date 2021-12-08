@@ -19,6 +19,8 @@ class ContractorLogic():
 
   def get(self, id: int):
     con = self.dlapi.get_one_contractor(id)
+    if con is None:
+      return
     return self.add_extras(con)
 
   def get_all(self):

@@ -19,6 +19,8 @@ class ReportLogic():
 
   def get(self, id: int):
     report = self.dlapi.get_one_employee_report(id)
+    if report is None:
+      return
     return self.__add_employee_extras(report)
 
   def get_all(self):

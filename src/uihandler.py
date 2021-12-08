@@ -103,7 +103,7 @@ class UiHandler():
         try:
           key = selection.upper()
         except AttributeError:
-          key = selection
+          key = str(selection)
 
         # Check if selection is in global options
         if key in self.global_options:

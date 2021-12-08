@@ -24,6 +24,8 @@ class EmployeeLogic():
   def get(self, id: int) -> Employee:
     ''' TODO '''
     employee = self.dlapi.get_one_employee(id)
+    if employee is None:
+      return
     return self.add_extras(employee)
 
   def get_all(self) -> 'list[Employee]':

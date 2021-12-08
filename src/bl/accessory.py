@@ -20,6 +20,8 @@ class AccessoryLogic():
 
   def get(self, id: int):
     accessory = self.dlapi.get_one_accessory(id)
+    if accessory is None:
+      return
     return self.add_extras(accessory)
 
   def get_all(self):

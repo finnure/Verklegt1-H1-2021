@@ -19,6 +19,8 @@ class BuildingLogic():
 
   def get(self, id: int):
     building =  self.dlapi.get_one_building(id)
+    if building is None:
+      return
     return self.add_extras(building)
 
   def get_all(self):
