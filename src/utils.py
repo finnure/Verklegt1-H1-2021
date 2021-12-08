@@ -12,6 +12,7 @@ class Filters():
   PHONE = '+0123456789 '
   USER_ID = 'Qq0123456789'
   DATE = '-0123456789'
+  SSN = '0123456789'
 
 def none_if_not_list(list) -> 'list | None':
   ''' Returns list if it is a list, else returns None '''
@@ -121,7 +122,9 @@ class Validate():
     
   @staticmethod
   def ssn(ssn: str) -> None:
-    ''' TODO '''
+    ''' Raises an error if ssn is not numeric '''
+    if not ssn[0:].isnumeric():
+      raise ValueError('SSN MUST BE NUMERIC ONLY')
 
   @staticmethod
   def date(date: str) -> None:
