@@ -100,7 +100,10 @@ class UiHandler():
         # Get input from user
         self.__screen.flush_input()
         selection = self.__screen.get_character()
-        key = selection.upper()
+        try:
+          key = selection.upper()
+        except AttributeError:
+          key = selection
 
         # Check if selection is in global options
         if key in self.global_options:

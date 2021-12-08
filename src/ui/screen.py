@@ -350,10 +350,14 @@ class Screen():
       self.refresh()
     while True:
       character = self.get_character()
-      if ord(character) in self.string_termination:
+      try:
+        char = ord(character)
+      except TypeError:
+        char = char
+      if char in self.string_termination:
         # break out of while loop to make sure echo is turned off again and cursor hidden
         break
-      elif ord(character) in [8, 127, curses.KEY_BACKSPACE]: # backspace
+      elif char in [8, 127, curses.KEY_BACKSPACE]: # backspace
         if index > 0: # Not possible to erase if cursor is at beginning of string
           # Move index back and pop character from accumulated string
           index -= 1
