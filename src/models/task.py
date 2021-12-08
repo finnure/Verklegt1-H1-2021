@@ -37,6 +37,18 @@ class Task():
   def __str__(self) -> str:
     return f'#{self.id} - {self.type} - {self.status}'
 
+  def set_location(self, location):
+    self.location = location
+
+  def set_building(self, building):
+    self.building = building
+
+  def set_employee(self, employee):
+    self.employee = employee
+
+  def set_reports(self, reports: list):
+    self.reports = reports
+  
   def __getitem__(self, name: str):
     return self.as_dict()[name]
 

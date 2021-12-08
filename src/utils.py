@@ -43,7 +43,12 @@ class Helpers():
   def date_between(start, end, value) -> bool:
     ''' Checks if date value is between start date and end date.
     Returns True if it is, False otherwise. '''
-    return datetime(start) < datetime(value) < datetime(end)
+    return datetime.fromisoformat(start) < datetime.fromisoformat(value) < datetime.fromisoformat(end)
+
+  @staticmethod
+  def is_date(check, value) -> bool:
+    ''' Checks if date value matches check date. '''
+    return datetime.fromisoformat(check) == datetime.fromisoformat(value)
 
 
 ########### Validators #################
@@ -121,6 +126,8 @@ class Validate():
   @staticmethod
   def date(date: str) -> None:
     '''Raises an error if date format is incorrect'''
+    if date is None or date == '':
+      return
     year,month,day = date.split('-')
     if len(year) != 4:
       raise ValueError('YEAR MUST BE 4 DIGITS')

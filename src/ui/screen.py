@@ -167,11 +167,16 @@ class Screen():
     else:
       return {}
 
-  def display_menu(self, menu: Menu, css_class: str = 'OPTION') -> None:
+  def display_menu(self, menu: Menu, css_class: str = 'OPTION', role: str = None) -> None:
     ''' Displays a menu on the window positioned with settings on the class. '''
-    for line, item in enumerate(menu):
+    line = 0
+    for item in menu:
+      if role is not None and item.role is not None and role != item.role:
+        # logged in users role should not see this menu item
+        continue
       self.print(item.option, menu.start_line + line, menu.start_col, self.get_css_class(css_class))
       self.print(item.name, menu.start_line + line, menu.start_col + menu.spacing)
+      line += 1
 
   def display_table(self, table: Table) -> str:
     ''' Creates a new window for table and displays it. If paging is true, paging footer is also displayed.
@@ -432,6 +437,17 @@ class Screen():
       self.__screen.hline(curses.ACS_BSBS, cols)
     else:
       self.__screen.hline(line, col, curses.ACS_BSBS, cols)
+
+  def print_selected(self, selected: bool, line: int, col: int):
+    ''' Prints a green checkmark if selected is true, else a red x. '''
+    CHECK = '\U00002713'
+    CROSS = '\U00002716'
+    text = CHECK if selected else CROSS
+    color = 11 if selected else 12
+
+    self.__screen.addstr(line, col, text, self.get_color_pair(color))
+
+
 
   #################### Utility methods #######################
 

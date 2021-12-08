@@ -254,6 +254,6 @@ class EmployeeView():
     self.__screen.print('ROLE', 8, 6, Styles.DATA_KEY)
     self.__screen.print(emp.role, 8, 16)
     self.__screen.print('NUMBER OF ACTIVE TASKS: ', 10, 6, Styles.DATA_KEY)
-    tasks = self.llapi.get_active_tasks_for_user(emp.id)
+    tasks = self.llapi.get_active_tasks_for_employee(emp.id)
     self.__screen.print(str(len(tasks)))
 

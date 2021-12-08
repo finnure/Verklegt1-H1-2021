@@ -6,13 +6,13 @@ class Menu():
     self.spacing = spacing
     self.menu_items: 'list[MenuItem]' = []
 
-  def add_menu_item(self, option: str, name: str, connection: str = None) -> None:
+  def add_menu_item(self, option: str, name: str, connection: str = None, role: str = None) -> None:
     ''' Adds a new menu item to the menu.
     Name is what is displayed after the menu option.
     Option is the character that selects this menu item.
     Connection is the ui object that should be called when this item is selected
     line and col mark the spot where form field should appear.'''
-    self.menu_items.append(MenuItem(option, name, connection))
+    self.menu_items.append(MenuItem(option, name, connection, role))
 
   def get_options(self) -> 'dict[str,str]':
     ''' Returns all options from menu items as a dict 
@@ -30,10 +30,11 @@ class Menu():
     return iter(self.menu_items)
 
 class MenuItem():
-  def __init__(self, option: str, name: str, connection:str):
+  def __init__(self, option: str, name: str, connection: str, role: 'str | None'):
     self.name = name
     self.option = option
     self.connection = connection
+    self.role = role
 
   def __str__(self):
     return f'{self.option} = {self.name} for {self.connection}'

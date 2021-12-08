@@ -1,19 +1,18 @@
 from llapi import LlApi
 from models.building import Building
+from models.contractor import Contractor
 from models.employee import Employee
+from models.location import Location
 from ui.screen import Screen
 from models.task import Task
-from ui.form import Form
+from ui.form import Form, FormField
 from ui.table import Table
 from ui.menu import Menu
-from utils import Filters, Helpers
-from ui.constants import AccConst, BuildConst, EmpConst, GlobalConst, ReportConst, TaskConst, LocConst, Styles, TaskConst
+from utils import Filters, Helpers, Validate
+from ui.constants import AccConst, BuildConst, EmpConst, GlobalConst, ReportConst, Roles, TaskConst, LocConst, Styles, TaskConst
 
 
 class TaskView():
-
-  def __init__(self, screen):
-    self.__screen = screen
 
   def __init__(self, screen: Screen, llapi: LlApi):
     self.__screen = screen
@@ -32,9 +31,11 @@ class TaskView():
       'SAVE': self.__save_handler,
       'EDIT': self.__edit_handler,
       'GET_ID': self.__get_id_handler,
+      'FILTER_MY_ACTIVE': self.__filter_my_active_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
       'FILTER_EMPLOYEE': self.__filter_employee_handler,
       'FILTER_BUILDING': self.__filter_building_handler,
+      'FILTER_CONTRACTOR': self.__filter_contractor_handler,
     }
 
   def find_handler(self, input: str):
@@ -56,8 +57,12 @@ class TaskView():
     menu = Menu(2, 6)
     menu.add_menu_item('I', 'SEARCH FOR TASK BY ID', TaskConst.GET_ID)
     menu.add_menu_item('A', 'VIEW ALL TASKS', TaskConst.LIST_ALL)
-    menu.add_menu_item('F', 'VIEW TASKS BY LOCATION', TaskConst.FILTER_LOCATION)
-    options = menu.get_options()
+    menu.add_menu_item('M', 'VIEW MY ACTIVE TASKS', TaskConst.FILTER_MY_ACTIVE)
+    menu.add_menu_item('1', 'VIEW TASKS BY BUILDING', TaskConst.FILTER_BUILDING, Roles.MANAGER)
+    menu.add_menu_item('2', 'VIEW TASKS BY EMPLOYEE', TaskConst.FILTER_EMPLOYEE, Roles.MANAGER)
+    menu.add_menu_item('3', 'VIEW TASKS BY LOCATION', TaskConst.FILTER_LOCATION, Roles.MANAGER)
+    menu.add_menu_item('4', 'VIEW TASKS BY CONTRACTOR', TaskConst.FILTER_CONTRACTOR, Roles.MANAGER)
+    options = menu.get_options(self.llapi.user.role)
 
     admin_menu = Menu(2, 13, 10)
     admin_menu.add_menu_item('+', 'ADD NEW', TaskConst.ADMIN_NEW)
@@ -265,9 +270,23 @@ class TaskView():
     self.llapi.set_param(TaskConst.TASK_PARAM, task)
     return TaskConst.VIEW
 
+  def __filter_my_active_handler(self):
+    tasks = self.llapi.get_tasks_for_employee(self.llapi.user.id, ['assigned'])
+    table = Table(tasks, TaskConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return TaskConst.LIST_ALL
+
   def __filter_location_handler(self):
-    options = self.__menu_handler()
-    return options
+    try:
+      loc: Location = self.llapi.get_param(TaskConst.INPUT_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    statuses, from_date, to_date = self.__get_filter_for_task()
+    tasks = self.llapi.get_tasks_for_location(loc.id, statuses, from_date, to_date)
+    table = Table(tasks, TaskConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return TaskConst.LIST_ALL
 
   def __filter_employee_handler(self):
     try:
@@ -275,7 +294,8 @@ class TaskView():
     except KeyError as err:
       self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
       return {}
-    tasks = self.llapi.get_active_tasks_for_user(emp.id)
+    statuses, from_date, to_date = self.__get_filter_for_task()
+    tasks = self.llapi.get_tasks_for_employee(emp.id, statuses, from_date, to_date)
     table = Table(tasks, TaskConst.TABLE_HEADERS)
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
     return TaskConst.LIST_ALL
@@ -286,7 +306,95 @@ class TaskView():
     except KeyError as err:
       self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
       return {}
-    tasks = self.llapi.get_active_tasks_for_user(building.id)
+    statuses, from_date, to_date = self.__get_filter_for_task()
+    tasks = self.llapi.get_tasks_for_building(building.id, statuses, from_date, to_date)
     table = Table(tasks, TaskConst.TABLE_HEADERS)
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
     return TaskConst.LIST_ALL
+
+  def __filter_contractor_handler(self):
+    try:
+      contractor: Contractor = self.llapi.get_param(TaskConst.INPUT_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    statuses, from_date, to_date = self.__get_filter_for_task()
+    tasks = self.llapi.get_tasks_for_contractor(contractor.id, statuses, from_date, to_date)
+    table = Table(tasks, TaskConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return TaskConst.LIST_ALL
+
+  def __get_filter_for_task(self):
+    available = True
+    assigned = self.llapi.user.role == Roles.MANAGER
+    completed = self.llapi.user.role == Roles.MANAGER
+    approved = False
+    menu = Menu(7, 6, 5)
+    menu.add_menu_item('1', 'AVAILABLE')
+    menu.add_menu_item('2', 'ASSIGNED')
+    menu.add_menu_item('3', 'COMPLETED')
+    menu.add_menu_item('4', 'APPROVED')
+    menu.add_menu_item('5', 'SELECT DATE RANGE')
+
+    from_date = FormField('from_date', 'FROM DATE', None, 1, 10, Filters.DATE, validators=[Validate.date])
+    to_date = FormField('to_date', 'TO DATE', None, 1, 10, Filters.DATE, validators=[Validate.date])
+    form = Form([from_date, to_date])
+    while True:
+      self.__screen.clear()
+      self.__screen.print('SELECT FILTERS. END SELECTION WITH ', 3, 6, Styles.DATA_KEY)
+      self.__screen.print('0', style=Styles.OPTION)
+      self.__screen.print('INCLUDED STATUSES', 5, 6, Styles.DATA_KEY)
+      self.__screen.display_menu(menu)
+      self.__screen.print_selected(available, 7, 9)
+      self.__screen.print_selected(assigned, 8, 9)
+      self.__screen.print_selected(completed, 9, 9)
+      self.__screen.print_selected(approved, 10, 9)
+      self.__screen.refresh()
+      while True:
+        from_date = form['from_date']
+        to_date = form['to_date']
+        if from_date is not None and from_date != '':
+          self.__screen.print('DATE FORMAT = YYYY-MM-DD', 13, 6)
+          self.__screen.print('IF TO DATE IS OMITTED, ONLY REPORTS ON SELECTED FROM DATE WILL BE DISPLAYED', 14, 6)
+          self.__screen.print('FROM DATE', 16, 6, Styles.DATA_KEY)
+          self.__screen.print(from_date, 16, 17)
+        else:
+          to_date = None
+        if to_date is not None and to_date != '':
+          self.__screen.print('TO DATE', 17, 6, Styles.DATA_KEY)
+          self.__screen.print(to_date, 17, 17)
+        selection = self.__screen.get_character()
+        if selection in '012345':
+          break
+        else:
+          self.__screen.flash()
+      if selection == '5':
+        window = self.__screen.display_form(form, 16)
+        self.__screen.print('DATE FORMAT = YYYY-MM-DD', 13, 6)
+        self.__screen.print('IF TO DATE IS OMITTED, ONLY REPORTS ON SELECTED FROM DATE WILL BE DISPLAYED', 14, 6)
+        self.__screen.refresh()
+        for field in form:
+          window.edit_form_field(field)
+      elif selection == '1':
+        available = not available
+      elif selection == '2':
+        assigned = not assigned
+      elif selection == '3':
+        completed = not completed
+      elif selection == '4':
+        approved = not approved
+      elif selection == '0':
+        statuses = []
+        if available:
+          statuses.append('available')
+        if assigned:
+          statuses.append('assigned')
+        if completed:
+          statuses.append('completed')
+        if approved:
+          statuses.append('approved')
+        from_date = form['from_date']
+        to_date = form['to_date']
+        from_date = None if from_date == '' else from_date
+        to_date = None if to_date == '' else to_date
+        return (statuses, from_date, to_date)

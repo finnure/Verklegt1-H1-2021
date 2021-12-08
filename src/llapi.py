@@ -63,9 +63,6 @@ class LlApi():
   def get_filtered_buildings(self, filter):
     return self.building_logic.get_filtered(filter)
 
-  def get_active_tasks_for_building(self, id: int):
-    return self.task_logic.get_active_tasks_for_building(id)
-  
   def get_reports_for_building(self, id: int):
     return self.report_logic.get_reports_for_building(id)
 
@@ -137,9 +134,6 @@ class LlApi():
   def get_reports_for_employee(self, filter):
     return self.report_logic.get_reports_for_employee(filter)
 
-  def get_active_tasks_for_user(self, id: int):
-    return self.task_logic.get_active_tasks_for_employee(id)
-  
   ##### Location methods ########
 
   def new_location(self, form: Form):
@@ -204,3 +198,15 @@ class LlApi():
   def calculate_task_cost(self):
     return self.task_logic.calculate_task_cost()
 
+  def get_tasks_for_building(self, id: int, statuses: 'list[str]' = None, from_date: str = None, to_date: str = None):
+    return self.task_logic.get_tasks_for_building(id, statuses, from_date, to_date)
+  
+  def get_tasks_for_employee(self, id: int, statuses: 'list[str]' = None, from_date: str = None, to_date: str = None):
+    return self.task_logic.get_tasks_for_employee(id, statuses, from_date, to_date)
+  
+  def get_tasks_for_location(self, id: int, statuses: 'list[str]' = None, from_date: str = None, to_date: str = None):
+    return self.task_logic.get_tasks_for_location(id, statuses, from_date, to_date)
+  
+  def get_tasks_for_contractor(self, id: int, statuses: 'list[str]' = None, from_date: str = None, to_date: str = None):
+    return self.task_logic.get_tasks_for_contractor(id, statuses, from_date, to_date)
+  

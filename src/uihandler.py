@@ -65,6 +65,9 @@ class UiHandler():
     self.__screen.set_color_pair(8, 75) # DATA_KEY
     self.__screen.set_color_pair(9, 8) # DISABLED
     self.__screen.set_color_pair(10, 254, 236) # EDITING
+    self.__screen.set_color_pair(11, 82) # Green Checkmark
+    self.__screen.set_color_pair(12, 196) # Red x
+
 
   def __init_menu(self):
     header_menu = Menu(9)
