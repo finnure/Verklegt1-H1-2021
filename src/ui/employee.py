@@ -51,8 +51,8 @@ class EmployeeView():
     ''' Displays information about an employee. '''
     try:
       emp = self.llapi.get_param(EmpConst.EMPLOYEE_PARAM)
-    except KeyError as err:
-      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+    except KeyError:
+      self.__screen.print('NO EMPLOYEE FOUND TO DISPLAY', 6, 6, Styles.ERROR)
       return {}
     menu = Menu(12)
     menu.add_menu_item('1', 'VIEW USER TASKS', TaskConst.FILTER_EMPLOYEE)
@@ -66,7 +66,7 @@ class EmployeeView():
     
     self.__display_one_employee(emp)
     self.__screen.display_menu(menu)
-    # Store emp in params so edit handler can pick it up and handle editing
+    # Store emp in params so other handlers can pick it up to display relative data
     self.llapi.set_param(EmpConst.EMPLOYEE_PARAM, emp)
     return options
 
@@ -85,7 +85,7 @@ class EmployeeView():
     ''' Ask user to enter id of employee to find. '''
     options = self.__menu_handler()
     self.__screen.print('PLEASE ENTER ID:', 8, 10)
-    employee_id = self.__screen.get_string(8, 28, 3, Filters.NUMBERS)
+    employee_id = self.__screen.get_string(8, 28, 3, Filters.NUMBERS, editing=True)
     emp = self.llapi.get_employee(int(employee_id))
     if emp is None:
       self.__screen.print(f'NO EMPLOYEE FOUND WITH ID {employee_id}', 10, 10, Styles.ERROR)

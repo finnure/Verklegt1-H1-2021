@@ -8,15 +8,6 @@ class EmployeeLogic():
 
   def __init__(self, dlapi: DlApi) -> None:
     self.dlapi = dlapi
-    self.required_headers = [
-      'name',
-      'ssn',
-      'address',
-      'phone',
-      'mobile',
-      'email',
-      'role'
-    ]
 
   def new(self, form: Form, location_id: int) -> Employee:
     ''' TODO '''

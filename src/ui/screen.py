@@ -142,7 +142,7 @@ class Screen():
       'LOGO_NAME': (4,['BOLD']),
       'LOGO_TEXT': (5,['BOLD']),
       'TABLE_HEADER': (6,['UNDERLINE']),
-      'PAGE_HEADER': (7,['BOLD', 'UNDERLINE']),
+      'PAGE_HEADER': (7,['BOLD']),
       'DATA_KEY': (8,['BOLD']),
       'DISABLED': (9,['NORMAL']),
       'EDITING': (10, ['NORMAL'])
@@ -420,6 +420,14 @@ class Screen():
       self.__screen.addstr(text, style)
     else:
       self.__screen.addstr(line, col, text, style)
+
+  def horizontal_line(self, cols: int, line: int = None, col: int = None):
+    ''' Displays a horizontal line on the screen starting at position line, col
+    ranging cols character. If line or col is None, line will start at current cursor position'''
+    if line is None or col is None:
+      self.__screen.hline(curses.ACS_BSBS, cols)
+    else:
+      self.__screen.hline(line, col, curses.ACS_BSBS, cols)
 
   #################### Utility methods #######################
 

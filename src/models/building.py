@@ -25,6 +25,18 @@ class Building():
   def __str__(self) -> str:
     return f'#{self.id} - {self.address} - {self.registration}'
 
+  def set_location(self, location):
+    self.location = location
+    self.location_city = location.city
+  
+  def set_tasks(self, tasks):
+    self.tasks = tasks
+    self.task_count = len(tasks)
+
+  def set_accessories(self, accessories):
+    self.accessories = accessories
+    self.accessory_count = len(accessories)
+
   def as_dict(self) -> 'dict[str, str | int]':
     return {
       'id' : self.id,

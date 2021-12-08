@@ -31,6 +31,10 @@ class TaskLogic():
     }
     return self.dlapi.get_filtered_tasks(filter)
 
+  def get_active_tasks_for_building(self, building_id: int):
+    tasks = self.get_all()
+    return [t for t in tasks if t.building_id == building_id and t.status.lower() != 'approved']
+
   def add_report_to_task(self):
     pass
   

@@ -130,11 +130,11 @@ class BuildConst():
   TABLE_HEADERS = {
     'id': 'ID',
     'address': 'ADDRESS',
-    'location_id': 'LOCATION',
+    'location_city': 'LOCATION',
     'type': 'TYPE',
     'rooms': 'ROOMS',
     'state': 'STATE',
-    'size': 'TASKS'
+    'task_count': 'TASKS'
   }
 
   # Connections
@@ -227,7 +227,11 @@ class AccConst():
   INPUT_PARAM = 'INPUT:INPUT'
 
   TABLE_HEADERS = {
-    'id': 'ID'
+    'id': 'ID',
+    'name': 'NAME',
+    'description': 'DESCRIPTION',
+    'state': 'STATE',
+    'last_maintained': 'FIXED'
   }
 
   # Connections

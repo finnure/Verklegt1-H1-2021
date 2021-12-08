@@ -62,9 +62,15 @@ class LlApi():
 
   def get_filtered_buildings(self, filter):
     return self.building_logic.get_filtered(filter)
+
+  def get_active_tasks_for_building(self, id: int):
+    return self.task_logic.get_active_tasks_for_building(id)
   
   def get_reports_for_building(self, id: int):
     return self.report_logic.get_filtered({'building_id': id})
+
+  def get_accessories_for_building(self, id: int):
+    return self.accessory_logic.get_filtered({'building_id': id})
 
   ##### Accessory methods ########
 
@@ -82,6 +88,7 @@ class LlApi():
 
   def get_filtered_accessories(self, filter):
     return self.accessory_logic.get_filtered(filter)
+
 
 
   ##### Contractor methods ########

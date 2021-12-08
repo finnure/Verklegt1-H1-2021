@@ -76,7 +76,7 @@ class AccessoryData():
     ''' Creates and returns an instance of Accessory '''
     return Accessory(
         int(accessory['id']), 
-        int(accessory['bulding_id']),
+        int(accessory['building_id']),
         accessory['name'],
         accessory['description'],
         accessory['state'],
