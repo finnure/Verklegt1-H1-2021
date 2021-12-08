@@ -173,13 +173,13 @@ class TaskView():
 
     left_column = Menu(5, spacing=10)
     left_column.add_menu_item('TYPE', task.type)
-    left_column.add_menu_item('STATE', task.priority)
-    left_column.add_menu_item('LOCATION', str(task.building_id))
+    left_column.add_menu_item('PRIORITY', task.priority)
+    left_column.add_menu_item('BULDING', str(task.building_id))
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
     right_column = Menu(5, 46, 14)
-    right_column.add_menu_item('ROOMS', task.recurring)
-    right_column.add_menu_item('SIZE', task.status)
+    right_column.add_menu_item('RECCURING', task.recurring)
+    right_column.add_menu_item('STATUS', task.status)
     right_column.add_menu_item('ACTIVE TASKS', '10')
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
