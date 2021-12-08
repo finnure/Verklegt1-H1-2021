@@ -90,7 +90,7 @@ class Task():
   def get_edit_fields(self):
     return [
       FormField('id', 'ID', self.id, 1, 3, editable=False),
-      FormField('location_id', 'BUILDING', self.location_id, 1, 3, editable=False),
+      FormField('location_id', 'LOCATION', self.location_id, 1, 3, editable=False),
       FormField('building_id', 'BUILDING', self.building_id, 1, 3, editable=False),
       FormField('title', 'TITLE', self.title, 1, 64),
       FormField('short_desription', 'DESRIPTION', self.short_description, 1, 64, validators=[Validate.required]),
