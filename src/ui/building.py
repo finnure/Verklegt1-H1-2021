@@ -175,8 +175,6 @@ class BuildingView():
 
     options = menu.get_options()
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
-    
-      
 
     # Store location so location view gets something to view
     location = self.llapi.get_location(building.location_id)

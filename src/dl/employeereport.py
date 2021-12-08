@@ -68,27 +68,27 @@ class EmployeeReportData():
     for key, val in filter.items():
       if key in self.headers:
         if partial_match:
-          filtered_employeereports = [emp_rep for emp_rep in employeereports if str(val).lower() in str(getattr(emp_rep, key)).lower()]
+          filtered_employee_reports = [emp_rep for emp_rep in employeereports if str(val).lower() in str(getattr(emp_rep, key)).lower()]
         else:
-          filtered_emp_reployeereports = [emp_rep for emp_rep in employeereports if str(val).lower() == str(getattr(emp_rep, key)).lower()]
+          filtered_employee_reports = [emp_rep for emp_rep in employeereports if str(val).lower() == str(getattr(emp_rep, key)).lower()]
       else:
         # Wrong key in filter. Raise error
         raise KeyError(f'Invalid filter key for EmployeeReport: {key}')
-    return filtered_employeereports
+    return filtered_employee_reports
 
   def __parse(self, employeereport: 'dict[str, str]') -> EmployeeReport:
     ''' Creates and returns an instance of EmployeeReport '''
     return EmployeeReport(
         int(employeereport['id']), 
-        int(employeereport['task_id']),
         employeereport['report_date'],
         employeereport['approved'],
-        int(employeereport['employee_id']),
+        employeereport['description'],
+        employeereport['note'],
         float(employeereport['hours']),
+        int(employeereport['employee_id']),
+        int(employeereport['task_id']),
         float(employeereport['material_cost']),
         float(employeereport['labor_cost']),
-        employeereport['description'],
-        employeereport['note']
       )
 
   def __get_next_id(self) -> int:

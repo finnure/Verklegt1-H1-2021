@@ -1,4 +1,5 @@
 from llapi import LlApi
+from models.building import Building
 from models.employee import Employee
 from ui.screen import Screen
 from models.task import Task
@@ -6,7 +7,7 @@ from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters, Helpers
-from ui.constants import AccConst, BuildConst, EmpConst, TaskConst, LocConst, Styles, TaskConst
+from ui.constants import AccConst, BuildConst, EmpConst, GlobalConst, ReportConst, TaskConst, LocConst, Styles, TaskConst
 
 
 class TaskView():
@@ -25,8 +26,6 @@ class TaskView():
     self.__input_map = {
       'MENU': self.__menu_handler,
       'LIST_ALL': self.__list_all_handler,
-      'LIST_ALL_NEXT': self.__list_all_paging_next_handler,
-      'LIST_ALL_PREV': self.__list_all_paging_prev_handler,
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_handler,
       'ADD_NEW': self.__add_new_handler,
@@ -35,6 +34,7 @@ class TaskView():
       'GET_ID': self.__get_id_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
       'FILTER_EMPLOYEE': self.__filter_employee_handler,
+      'FILTER_BUILDING': self.__filter_building_handler,
     }
 
   def find_handler(self, input: str):
@@ -67,58 +67,37 @@ class TaskView():
 
       ################## List handlers #####################
 
-  def __list_all_paging_next_handler(self):
-    ''' Go to next page of task list. If table is not available
-    in params, list all handler will be called and whole list from page 
-    one will be displayed. '''
-    try:
-      # pop table from params, go to next page and call list all handler with table
-      table: Table = self.llapi.get_param(TaskConst.TABLE_PARAM)
-      table.next_page()
-      return self.__list_all_handler(table)
-    except KeyError:
-      return self.__list_all_handler()
-
-  def __list_all_paging_prev_handler(self):
-    ''' Go to previous page of task list. If table is not available
-    in params, list all handler will be called and whole list from page 
-    one will be displayed. '''
-    try:
-      # pop table from params, go to previous page and call list all handler with table
-      table: Table = self.llapi.get_param(TaskConst.TABLE_PARAM)
-      table.previous_page()
-      return self.__list_all_handler(table)
-    except KeyError:
-      return self.__list_all_handler()
-
   def __list_all_handler(self, table: Table = None):
     ''' Handler that gets a list of all Tasks and displays as a table.
     If too many rows are to be displayed, paging is applied.'''
-    if table is None:
+    try:
+      table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
+      if not isinstance(table.data[0], Task):
+        raise KeyError
+    except (KeyError, IndexError):
       # First call to list. If table is not None, paging is being used
       tasks = self.llapi.get_all_tasks()
-      table = self.__create_table(tasks)
+      table = Table(tasks, TaskConst.TABLE_HEADERS)
 
     # Create and display menu option that allows user to select an item from the list
     menu = Menu()
-    menu.add_menu_item('V', 'SELECT AN TASK TO VIEW', TaskConst.SELECT_FROM_LIST)
+    menu.add_menu_item('V', 'SELECT A TASK TO VIEW', TaskConst.SELECT_FROM_LIST)
     self.__screen.display_menu(menu)
 
     # Display the table and get paging options
     paging_options = self.__screen.display_table(table)
     if 'N' in paging_options:
-      menu.add_menu_item('N', 'NEXT', TaskConst.LIST_ALL_NEXT)
+      menu.add_menu_item('N', 'NEXT', GlobalConst.PAGING_NEXT)
     if 'P' in paging_options:
-      menu.add_menu_item('P', 'PREVIOUS', TaskConst.LIST_ALL_PREV)
+      menu.add_menu_item('P', 'PREVIOUS', GlobalConst.PAGING_PREV)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
     admin_menu.add_menu_item('+', 'ADD NEW', TaskConst.ADMIN_NEW)
     options.update(self.__screen.display_admin_menu(admin_menu,self.llapi.user.role))
     
-    if table.pages > 0:
-      # Store table so paging handlers can use paging
-      self.llapi.set_param(TaskConst.TABLE_PARAM, table)
+    # Store table so paging handlers can use paging
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
 
     return options
 
@@ -133,51 +112,13 @@ class TaskView():
     except KeyError:
       # Else create a new table
       tasks = self.llapi.get_all_tasks()
-      if len(tasks) <= 0:
-        self.__screen.print('NO TASKS FOUND', 5, 6, 'ERROR')
-        return {}
-      table = self.__create_table(tasks)
-    
-    self.__screen.print('ENTER NUMBER (#) OF TASK TO VIEW', 3, 6, Styles.DATA_KEY)
-    while True: # Ask user to select Task
-      filter = Filters.NUMBERS
-      filter += self.__screen.display_table(table)
-      selection = self.__screen.get_string(3, 43, 2, filter)
-      # Clear error and previous input if exists
-      [self.__screen.delete_character(3, x + 43) for x in range(40)]
-      try:
-        # Get selected Task and send it to View handler
-        row = int(selection)
-        task: Task = table.data[row - 1]
-        self.__screen.clear() # Clears screen so view gets a clean canvas
-        return self.__view_handler(task)
-      except IndexError:
-        # User should select a correct number, display error and try again
-        self.__screen.print('INVALID NUMBER', 3, 60, Styles.ERROR)
-      except ValueError:
-        # Switching pages
-        key = selection.upper()
-        if key == 'P':
-          table.previous_page()
-        elif key == 'N':
-          table.next_page()
-        else:
-          # Fat fingers, should only press either P or N and then Enter
-          self.__screen.flash()
+      table = Table(tasks, TaskConst.TABLE_HEADERS)
 
-  def __create_table(self, tasks: 'list[Task]', begin_line: int = 5) -> Table:
-    ''' Create a Table object from a list of Tasks. Table class takes in
-    a list of task instances and list of headers to create a table. '''
-    headers = {
-      'id': 'ID',
-      'status': 'STATUS',
-      'priority': 'PRIORITY',
-      'start_date': 'START DATE',
-      'due_date': 'DUE DATE',
-      'building_id': 'BUILDING',
-      'employee_id': 'EMPLOYEE'
-    }
-    return Table(tasks, headers, begin_line)
+    question_text = 'ENTER NUMBER (#) OF TASK TO VIEW'
+    task = self.__screen.select_from_table(table, 3, question_text)
+    self.llapi.set_param(TaskConst.TASK_PARAM, task)
+    return TaskConst.VIEW
+
 
   def __get_id_handler(self):
     ''' Ask user to enter id of task to find. '''
@@ -191,19 +132,18 @@ class TaskView():
       self.__screen.paint_character('OPTION', 11, 16)
       return options
     # Task found, clear screen and call view handler to display info
-    self.__screen.clear()
-    return self.__view_handler(task)
+    self.llapi.set_param(TaskConst.TASK_PARAM, task)
+    return TaskConst.VIEW
 
-  def __view_handler(self, task: Task = None):
+  def __view_handler(self):
     ''' Displays information about a task. '''
-    if task is None:
-      try:
-        task = self.llapi.get_param(TaskConst.TASK_PARAM)
-      except KeyError:
-        self.__screen.print('NO TASK FOUND TO DISPLAY', 3, 6, 'ERROR')
-        return {}
-    menu = Menu(14)
-    #menu.add_menu_item('1', 'VIEW ACTIVE TASKS', TaskConst.FILTER_TASK)
+    try:
+      task: Task = self.llapi.get_param(TaskConst.TASK_PARAM)
+    except KeyError:
+      self.__screen.print('NO TASK FOUND TO DISPLAY', 3, 6, 'ERROR')
+      return {}
+    menu = Menu(18)
+    menu.add_menu_item('1', 'VIEW REPORTS', ReportConst.FILTER_TASK)
     menu.add_menu_item('2', 'VIEW BUILDING INFORMATION', BuildConst.VIEW)
     options = menu.get_options()
 
@@ -217,7 +157,10 @@ class TaskView():
     self.__display_one_task(task)
     self.__screen.display_menu(menu)
     # Store task in params so edit handler can pick it up and handle editing
+    self.llapi.set_param(ReportConst.INPUT_PARAM, task)
     self.llapi.set_param(TaskConst.TASK_PARAM, task)
+    building = self.llapi.get_building(task.building_id)
+    self.llapi.set_param(BuildConst.BUILDING_PARAM, building)
     return options
 
   def __display_one_task(self, task: Task) -> None:
@@ -226,6 +169,7 @@ class TaskView():
     # display header info
     text = str(task)
     self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
 
     left_column = Menu(5, spacing=10)
     left_column.add_menu_item('TYPE', task.type)
@@ -243,6 +187,7 @@ class TaskView():
     lines = Helpers.get_multiline_string(task.short_description, 50)
     for line, text in enumerate(lines):
       self.__screen.print(text, 10 + line, 20)
+    self.__screen.horizontal_line(100, 16, 6)
 
   def __add_new_handler(self):
     ''' Handler to display a form to enter data for new Task. '''
@@ -317,7 +262,8 @@ class TaskView():
     except StopIteration:
       # No id present, adding new task
       task = self.llapi.new_task(form)
-    return self.__view_handler(task)
+    self.llapi.set_param(TaskConst.TASK_PARAM, task)
+    return TaskConst.VIEW
 
   def __filter_location_handler(self):
     options = self.__menu_handler()
@@ -325,11 +271,22 @@ class TaskView():
 
   def __filter_employee_handler(self):
     try:
-      emp: Employee = self.llapi.get_param(EmpConst.EMPLOYEE_PARAM)
+      emp: Employee = self.llapi.get_param(TaskConst.INPUT_PARAM)
     except KeyError as err:
-      self.__screen.print(str(err), 6, 6, Styles.ERROR)
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
       return {}
     tasks = self.llapi.get_active_tasks_for_user(emp.id)
-    table = self.__create_table(tasks)
-    self.__screen.display_table(table)
-    return {}
+    table = Table(tasks, TaskConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return TaskConst.LIST_ALL
+
+  def __filter_building_handler(self):
+    try:
+      building: Building = self.llapi.get_param(TaskConst.INPUT_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    tasks = self.llapi.get_active_tasks_for_user(building.id)
+    table = Table(tasks, TaskConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return TaskConst.LIST_ALL

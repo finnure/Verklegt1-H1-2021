@@ -68,6 +68,8 @@ class EmployeeView():
     self.__screen.display_menu(menu)
     # Store emp in params so other handlers can pick it up to display relative data
     self.llapi.set_param(EmpConst.EMPLOYEE_PARAM, emp)
+    self.llapi.set_param(TaskConst.INPUT_PARAM, emp)
+    self.llapi.set_param(ReportConst.INPUT_PARAM, emp)
     return options
 
   def __filter_location_handler(self):
