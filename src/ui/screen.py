@@ -44,7 +44,7 @@ class Screen():
     curses.noecho()
     curses.cbreak()
     curses.curs_set(0)
-    self.__screen.keypad(True)
+    self.__screen.keypad(False)
     # Check if color is supported. Init color info if it is
     self.color_supported = curses.has_colors()
     if self.color_supported:

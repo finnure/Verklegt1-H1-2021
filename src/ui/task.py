@@ -179,7 +179,7 @@ class TaskView():
     left_column = Menu(5, spacing=10)
     left_column.add_menu_item('TYPE', task.type)
     left_column.add_menu_item('PRIORITY', task.priority)
-    left_column.add_menu_item('BULDING', str(task.building_id))
+    left_column.add_menu_item('BULDING', task.building.registration)
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
     right_column = Menu(5, 46, 14)

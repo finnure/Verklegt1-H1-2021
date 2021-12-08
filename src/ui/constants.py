@@ -108,8 +108,8 @@ class TaskConst():
     'priority': 'PRIORITY',
     'start_date': 'START DATE',
     'due_date': 'DUE DATE',
-    'building_id': 'BUILDING',
-    'employee_id': 'EMPLOYEE'
+    'building_reg': 'BUILDING',
+    'employee_name': 'EMPLOYEE'
   }
 
   # Connections

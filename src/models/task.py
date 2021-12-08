@@ -42,9 +42,11 @@ class Task():
 
   def set_building(self, building):
     self.building = building
+    self.building_reg = building.registration
 
   def set_employee(self, employee):
     self.employee = employee
+    self.employee_name = None if employee is None else employee.name
 
   def set_reports(self, reports: list):
     self.reports = reports

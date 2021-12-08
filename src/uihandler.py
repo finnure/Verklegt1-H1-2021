@@ -177,6 +177,8 @@ class UiHandler():
     options = view.find_handler(handler_key)
     if type(options) is str:
       # View calling another view directly
+      self.breadcrumb.append(self.current_view)
+      self.current_view = options
       return self.find_connection(options)
     return options
 
