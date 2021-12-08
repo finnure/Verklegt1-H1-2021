@@ -1,3 +1,4 @@
+from models.report import ContractorReport
 from ui.form import FormField
 from utils import Filters, Validate
 
@@ -23,6 +24,19 @@ class Contractor():
 
   def __str__(self) -> str:
     return f'#{self.id} - {self.name} - {self.phone}'
+
+  def set_location(self, location):
+    self.location = location
+    self.location_city = location.city
+
+  def set_reports(self, reports):
+    self.reports = reports
+
+  def get_rating(self):
+    ratings = [rep.contractor_rating for rep in self.reports if rep.contractor_rating > 0]
+    if len(ratings) == 0:
+      return 0
+    return sum(ratings) / len(ratings)
 
   def as_dict(self) -> 'dict[str, str | int]':
     return {

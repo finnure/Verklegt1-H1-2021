@@ -277,12 +277,13 @@ class BuildingView():
       return {}
     try:
       # Check if form has an id field. If it does, it's an edit operation
-      id = form['id']
+      _ = form['id']
       building = self.llapi.update_building(form)
     except StopIteration:
       # No id present, adding new building
       building = self.llapi.new_building(form)
-    return self.__view_handler(building)
+    self.llapi.set_param(BuildConst.BUILDING_PARAM, building)
+    return BuildConst.VIEW
 
   def __filter_location_handler(self):
     try:

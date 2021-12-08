@@ -5,7 +5,7 @@ from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters
-from ui.constants import AccConst, ContrConst, LocConst, ReportConst, Styles, TaskConst
+from ui.constants import AccConst, ContrConst, GlobalConst, LocConst, ReportConst, Styles, TaskConst
 
 
 class ContractorView():
@@ -21,8 +21,6 @@ class ContractorView():
     self.__input_map = {
       'MENU': self.__menu_handler,
       'LIST_ALL': self.__list_all_handler,
-      'LIST_ALL_NEXT': self.__list_all_paging_next_handler,
-      'LIST_ALL_PREV': self.__list_all_paging_prev_handler,
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_handler,
       'ADD_NEW': self.__add_new_handler,
@@ -62,37 +60,17 @@ class ContractorView():
 
       ################## List handlers #####################
 
-  def __list_all_paging_next_handler(self):
-    ''' Go to next page of contractor list. If table is not available
-    in params, list all handler will be called and whole list from page 
-    one will be displayed. '''
-    try:
-      # pop table from params, go to next page and call list all handler with table
-      table: Table = self.llapi.get_param(ContrConst.TABLE_PARAM)
-      table.next_page()
-      return self.__list_all_handler(table)
-    except KeyError:
-      return self.__list_all_handler()
-
-  def __list_all_paging_prev_handler(self):
-    ''' Go to previous page of contractor list. If table is not available
-    in params, list all handler will be called and whole list from page 
-    one will be displayed. '''
-    try:
-      # pop table from params, go to previous page and call list all handler with table
-      table: Table = self.llapi.get_param(ContrConst.TABLE_PARAM)
-      table.previous_page()
-      return self.__list_all_handler(table)
-    except KeyError:
-      return self.__list_all_handler()
-
   def __list_all_handler(self, table: Table = None):
     ''' Handler that gets a list of all Contractors and displays as a table.
     If too many rows are to be displayed, paging is applied.'''
-    if table is None:
+    try:
+      table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
+      if not isinstance(table.data[0], Contractor):
+        raise KeyError
+    except (KeyError, IndexError):
       # First call to list. If table is not None, paging is being used
       contractors = self.llapi.get_all_contractors()
-      table = self.__create_table(contractors)
+      table = Table(contractors, ContrConst.TABLE_HEADERS)
 
     # Create and display menu option that allows user to select an item from the list
     menu = Menu()
@@ -102,18 +80,17 @@ class ContractorView():
     # Display the table and get paging options
     paging_options = self.__screen.display_table(table)
     if 'N' in paging_options:
-      menu.add_menu_item('N', 'NEXT', ContrConst.LIST_ALL_NEXT)
+      menu.add_menu_item('N', 'NEXT', GlobalConst.PAGING_NEXT)
     if 'P' in paging_options:
-      menu.add_menu_item('P', 'PREVIOUS', ContrConst.LIST_ALL_PREV)
+      menu.add_menu_item('P', 'PREVIOUS', GlobalConst.PAGING_PREV)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
     admin_menu.add_menu_item('+', 'ADD NEW', ContrConst.ADMIN_NEW)
     options.update(self.__screen.display_admin_menu(admin_menu,self.llapi.user.role))
     
-    if table.pages > 0:
-      # Store table so paging handlers can use paging
-      self.llapi.set_param(ContrConst.TABLE_PARAM, table)
+    # Store table so paging handlers can use paging
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
 
     return options
 
@@ -124,54 +101,16 @@ class ContractorView():
     to try again. '''
     try:
       # Get table from params if available
-      table: Table = self.llapi.get_param(ContrConst.TABLE_PARAM)
+      table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
     except KeyError:
       # Else create a new table
       contractors = self.llapi.get_all_contractors()
-      if len(contractors) <= 0:
-        self.__screen.print('NO CONTRACTORS FOUND', 5, 6, 'ERROR')
-        return {}
-      table = self.__create_table(contractors)
+      table = Table(contractors, ContrConst.TABLE_HEADERS)
     
-    self.__screen.print('ENTER NUMBER (#) OF CONTRACTOR TO VIEW', 3, 6, Styles.DATA_KEY)
-    while True: # Ask user to select Contractor
-      filter = Filters.NUMBERS
-      filter += self.__screen.display_table(table)
-      selection = self.__screen.get_string(3, 43, 2, filter)
-      # Clear error and previous input if exists
-      [self.__screen.delete_character(3, x + 43) for x in range(40)]
-      try:
-        # Get selected Contractor and send it to View handler
-        row = int(selection)
-        contractor: Contractor = table.data[row - 1]
-        self.__screen.clear() # Clears screen so view gets a clean canvas
-        return self.__view_handler(contractor)
-      except IndexError:
-        # User should select a correct number, display error and try again
-        self.__screen.print('INVALID NUMBER', 3, 60, Styles.ERROR)
-      except ValueError:
-        # Switching pages
-        key = selection.upper()
-        if key == 'P':
-          table.previous_page()
-        elif key == 'N':
-          table.next_page()
-        else:
-          # Fat fingers, should only press either P or N and then Enter
-          self.__screen.flash()
-
-  def __create_table(self, contractors: 'list[Contractor]', begin_line: int = 5) -> Table:
-    ''' Create a Table object from a list of Contractors. Table class takes in
-    a list of contractor instances and list of headers to create a table. '''
-    headers = {
-      'id': 'ID',
-      'location_id': 'LOCATION',
-      'name': 'NAME',
-      'speciality': 'SPECIALITY',
-      'openinghours': 'OPENING HOURS',
-      'phone': 'PHONE'
-    }
-    return Table(contractors, headers, begin_line)
+    question_text = 'ENTER NUMBER (#) OF CONTRACTOR TO VIEW'
+    contractor = self.__screen.select_from_table(table, 3, question_text)
+    self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
+    return ContrConst.VIEW
 
   def __get_id_handler(self):
     ''' Ask user to enter id of contractor to find. '''
@@ -185,17 +124,16 @@ class ContractorView():
       self.__screen.paint_character('OPTION', 11, 16)
       return options
     # Contractor found, clear screen and call view handler to display info
-    self.__screen.clear()
-    return self.__view_handler(contractor)
+    self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
+    return ContrConst.VIEW
 
-  def __view_handler(self, contractor: Contractor = None):
+  def __view_handler(self):
     ''' Displays information about a contractor. '''
-    if contractor is None:
-      try:
-        contractor = self.llapi.get_param(ContrConst.CONTRACTOR_PARAM)
-      except KeyError:
-        self.__screen.print('NO CONTRACTOR FOUND TO DISPLAY', 3, 6, 'ERROR')
-        return {}
+    try:
+      contractor: Contractor = self.llapi.get_param(ContrConst.CONTRACTOR_PARAM)
+    except KeyError:
+      self.__screen.print('NO CONTRACTOR FOUND TO DISPLAY', 3, 6, 'ERROR')
+      return {}
     menu = Menu(14)
     menu.add_menu_item('1', 'VIEW REPORTS', ReportConst.FILTER_CONTRACTOR)
     menu.add_menu_item('2', 'VIEW LOCATION INFORMATION', LocConst.VIEW)
@@ -211,7 +149,12 @@ class ContractorView():
     self.__display_one_contractor(contractor)
     self.__screen.display_menu(menu)
     # Store contractor in params so edit handler can pick it up and handle editing
+    self.llapi.set_param(ReportConst.INPUT_PARAM, contractor)
     self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
+    
+    # Set location for location view to pickup if selected
+    location = self.llapi.get_location(contractor.location_id)
+    self.llapi.set_param(LocConst.LOCATION_PARAM, location)
     return options
 
   def __display_one_contractor(self, contractor: Contractor) -> None:
@@ -220,21 +163,23 @@ class ContractorView():
     # display header info
     text = str(contractor)
     self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
 
     left_column = Menu(5, spacing=11)
     left_column.add_menu_item('NAME', contractor.name)
     left_column.add_menu_item('CONTACT', contractor.contact)
-    left_column.add_menu_item('LOCATION', str(contractor.location_id))
+    left_column.add_menu_item('LOCATION', contractor.location_city)
+    left_column.add_menu_item('SPECIALITY', contractor.speciality)
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
     right_column = Menu(5, 46, 16)
     right_column.add_menu_item('EMAIL', contractor.email)
     right_column.add_menu_item('OPENING HOURS', contractor.openinghours)
     right_column.add_menu_item('PHONE', contractor.phone)
+    right_column.add_menu_item('RATING', f'{contractor.get_rating():0.2f}')
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
-    self.__screen.print('SPECIALITY', 10, 6, Styles.DATA_KEY)
-    self.__screen.print(contractor.speciality, 10, 20)
+    self.__screen.horizontal_line(100, 12, 6)
 
   def __add_new_handler(self):
     ''' Handler to display a form to enter data for new Contractor. '''
@@ -304,12 +249,13 @@ class ContractorView():
       return {}
     try:
       # Check if form has an id field. If it does, it's an edit operation
-      id = form['id']
+      _ = form['id']
       contractor = self.llapi.update_contractor(form)
     except StopIteration:
       # No id present, adding new contractor
       contractor = self.llapi.new_contractor(form)
-    return self.__view_handler(contractor)
+    self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
+    return ContrConst.VIEW
 
   def __filter_location_handler(self):
     options = self.__menu_handler()

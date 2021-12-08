@@ -75,13 +75,14 @@ class ContractorReportData():
   def __parse(self, contractor_report: 'dict[str,str]') -> ContractorReport:
     ''' Converts data to either a dict or an instance of ContractorReport '''
     return ContractorReport(
-      int(contractor_report['id']), 
-      int(contractor_report['contractor_id']),
-      int(contractor_report['employee_report_id']),
-      contractor_report['description'],
+      int(contractor_report['id']),
+      contractor_report['report_date'],
       contractor_report['approved'],
+      contractor_report['description'],
       contractor_report['note'],
       float(contractor_report['hours']),
+      int(contractor_report['contractor_id']),
+      int(contractor_report['employee_report_id']),
       int(contractor_report['contractor_fee']),
       float(contractor_report['contractor_rating']),
     )

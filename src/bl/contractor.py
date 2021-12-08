@@ -9,20 +9,33 @@ class ContractorLogic():
 
   def new(self, form: Form, location_id: int):
     contractor = self.__parse_form(form, location_id)
-    return self.dlapi.add_contractor(contractor)
+    con = self.dlapi.add_contractor(contractor)
+    return self.add_extras(con)
 
   def update(self, form: Form):
     contractor = self.__parse_form(form)
-    return self.dlapi.update_contractor(contractor)
+    con = self.dlapi.update_contractor(contractor)
+    return self.add_extras(con)
 
   def get(self, id: int):
-    return self.dlapi.get_one_contractor(id)
+    con = self.dlapi.get_one_contractor(id)
+    return self.add_extras(con)
 
   def get_all(self):
-    return self.dlapi.get_all_contractors()
+    contractors = self.dlapi.get_all_contractors()
+    return [self.add_extras(con) for con in contractors]
 
   def get_filtered(self, filter):
-    return self.dlapi.get_filtered_contractors(filter)
+    contractors = self.dlapi.get_filtered_contractors(filter)
+    return [self.add_extras(con) for con in contractors]
+
+  def add_extras(self, contractor: Contractor):
+    filter = {'contractor_id': contractor.id}
+    location = self.dlapi.get_one_location(contractor.location_id)
+    reports = self.dlapi.get_filtered_contractor_reports(filter)
+    contractor.set_location(location)
+    contractor.set_reports(reports)
+    return contractor
 
   def __parse_form(self, form: Form, location_id: int = None) -> Contractor:
     ''' Returns instance of Building if everything is ok. '''
