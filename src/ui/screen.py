@@ -80,7 +80,7 @@ class Screen():
     if os.name == 'posix': # Linux or Mac
       os.system(f'printf "\e[8;{self.lines};{self.cols}t"')
     else:
-      os.system(f'mode con: cols={self.cols} lines={self.lines}"')
+      os.system(f'mode con: cols={self.cols} lines={self.lines}')
     sleep(0.01) # Need to give OS a chance to finish resize before checking if successful
     return self.__window_size_correct()
 
