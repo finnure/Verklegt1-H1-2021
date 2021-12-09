@@ -48,7 +48,7 @@ class Task():
 
   def set_employee(self, employee):
     self.employee = employee
-    self.employee_name = None if employee is None else employee.name
+    self.employee_name = '' if employee is None else employee.name
 
   def set_reports(self, reports: list):
     self.reports = reports

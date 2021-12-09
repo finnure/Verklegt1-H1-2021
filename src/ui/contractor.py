@@ -22,6 +22,7 @@ class ContractorView():
       'MENU': self.__menu_handler,
       'LIST_ALL': self.__list_all_handler,
       'SELECT_FROM_LIST': self.__select_from_list_handler,
+      'SELECT_FOR_REPORT': self.__select_for_report_handler,
       'VIEW': self.__view_handler,
       'ADD_NEW': self.__add_new_handler,
       'SAVE': self.__save_handler,
@@ -111,6 +112,26 @@ class ContractorView():
     contractor = self.__screen.select_from_table(table, 3, question_text)
     self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
     return ContrConst.VIEW
+
+  def __select_for_report_handler(self):
+    ''' Handler that allows user to select an Contractor from a list.
+    Available input is either a row number or an available paging option.
+    If wrong row number is selected, an error is displayed and user asked
+    to try again. '''
+    try:
+      # Get table from params if available
+      table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
+      if not isinstance(table.data[0], Contractor):
+        raise KeyError
+    except (KeyError, IndexError):
+      # Else create a new table
+      contractors = self.llapi.get_all_contractors(self.llapi.user.location_id)
+      table = Table(contractors, ContrConst.TABLE_HEADERS)
+    
+    question_text = 'ENTER NUMBER (#) OF CONTRACTOR FOR REPORT'
+    contractor = self.__screen.select_from_table(table, 3, question_text)
+    self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
+    return ReportConst.NEW_CONTRACTOR
 
   def __get_id_handler(self):
     ''' Ask user to enter id of contractor to find. '''

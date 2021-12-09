@@ -8,7 +8,7 @@ from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters
-from ui.constants import AccConst, ReportConst, GlobalConst, LocConst, ReportConst, Styles, TaskConst
+from ui.constants import AccConst, ContrConst, ReportConst, GlobalConst, LocConst, ReportConst, Styles, TaskConst
 
 class ReportView():
 
@@ -25,7 +25,7 @@ class ReportView():
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_handler,
       'ADD_NEW': self.__add_new_handler,
-      'ADD_CONTRACTOR_REPORT': self.__add_contractor_report_handler,
+      'NEW_CONTRACTOR': self.__add_contractor_report_handler,
       'SAVE': self.__save_handler,
       'GET_ID': self.__get_id_handler,
       'FILTER_TASK': self.__filter_task_handler,
@@ -234,10 +234,22 @@ class ReportView():
 
   def __add_new_handler(self):
     ''' Handler to display a form to enter data for new Report. '''
+    try:
+      task = self.llapi.get_param(ReportConst.INPUT_PARAM)
+      if not isinstance(task, Task):
+        raise KeyError('NO TASK FOUND TO REPORT ON')
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
     self.__screen.print('CREATE NEW REPORT', 2, 50, Styles.PAGE_HEADER)
     self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW REPORT', 5, 6, Styles.DATA_KEY)
     self.__screen.refresh()
     form = Form(EmployeeReport.get_new_fields())
+    for field in form:
+      if field.key == 'task_id':
+        field.value = task.id
+      if field.key == 'employee_id':
+        field.value = self.llapi.user.id
     form_window = self.__screen.display_form(form)
     for field in form:
       if field.options is not None:
@@ -259,10 +271,29 @@ class ReportView():
 
   def __add_contractor_report_handler(self):
     ''' Handler to display a form to enter data for new Report. '''
+    try:
+      report = self.llapi.get_param(ReportConst.INPUT_PARAM)
+      if not isinstance(report, EmployeeReport):
+        raise KeyError('NO REPORT FOUND TO ADD CONTRACTOR TO')
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    try:
+      contractor = self.llapi.get_param(ContrConst.CONTRACTOR_PARAM)
+      if not isinstance(contractor, Contractor):
+        raise KeyError('NO CONTRACTOR FOUND TO REPORT ON')
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
     self.__screen.print('CREATE NEW REPORT', 2, 50, Styles.PAGE_HEADER)
     self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW REPORT', 5, 6, Styles.DATA_KEY)
     self.__screen.refresh()
     form = Form(ContractorReport.get_new_fields())
+    for field in form:
+      if field.key == 'employee_report_id':
+        field.value = report.id
+      if field.key == 'contractor_id':
+        field.value = contractor.id
     form_window = self.__screen.display_form(form)
     for field in form:
       if field.options is not None:

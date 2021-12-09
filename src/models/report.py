@@ -46,6 +46,7 @@ class ContractorReport(Report):
 
   def add_contractor(self, contractor):
     self.contractor = contractor
+    self.contractor_name = contractor.name
   
   def as_dict(self) -> 'dict[str, str | int]':
     report = super().as_dict()
@@ -54,7 +55,6 @@ class ContractorReport(Report):
       'employee_report_id': self.employee_report_id,
       'contractor_fee': self.contractor_fee,
       'contractor_rating': self.contractor_rating,
-      'contractor_name': self.contractor.name
     })
 
   @staticmethod
@@ -63,7 +63,12 @@ class ContractorReport(Report):
       FormField('description', 'DESCRIPTION', None, 1, 64),
       FormField('note', 'NOTE', None, 1, 64),
       FormField('hours', 'HOURS', None, 1, 5, Filters.NUMBERS),
-      FormField('contractor_fee', 'CONTRACTOR FEE', None, 1, 15, Filters.FLOATS),
+      FormField('contractor_fee', 'CONTRACTOR FEE', None, 1, 10, Filters.FLOATS),
+      FormField('contractor_rating', 'CONTRACTOR RATING', 0, 1, 1, '12345'),
+      FormField('employee_report_id', 'REPORT ID', None, 1, 3, editable=False),
+      FormField('contractor_id', 'CONTRACTOR ID', None, 1, 3, editable=False),
+      FormField('report_date', 'REPORT DATE', 'Today', 1, 10, editable=False),
+      FormField('approved', 'APPROVED', 'N', 1, 1, editable=False),
     ]
 
 class EmployeeReport(Report):
@@ -115,5 +120,9 @@ class EmployeeReport(Report):
       FormField('note', 'NOTE', None, 1, 64),
       FormField('hours', 'HOURS', None, 1, 5, Filters.NUMBERS),
       FormField('material_cost', 'MATERIAL COST', None, 1, 10, Filters.FLOATS),
-      FormField('labor_cost', 'ROOMS', None, 1, 5, Filters.NUMBERS),
+      FormField('labor_cost', 'LABOR COST', None, 1, 5, Filters.NUMBERS),
+      FormField('employee_id', 'EMPLOYEE ID', None, 1, 3, editable=False),
+      FormField('task_id', 'TASK ID', None, 1, 3, editable=False),
+      FormField('report_date', 'REPORT DATE', 'Today', 1, 10, editable=False),
+      FormField('approved', 'APPROVED', 'N', 1, 1, editable=False),
     ]

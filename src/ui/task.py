@@ -206,7 +206,7 @@ class TaskView():
     right_column = Menu(12, 46, 14)
     right_column.add_menu_item('BUILDING', task.recurring.upper())
     right_column.add_menu_item('EST COST', f'{task.estimated_cost} ISK')
-    right_column.add_menu_item('EMPLOYEE', task.employee_name if task.employee_id is not None else None)
+    right_column.add_menu_item('EMPLOYEE', task.employee_name if task.employee_id is not None else '')
     right_column.add_menu_item('STATUS', task.status)
     right_column.add_menu_item('TOTAL COST', f'{self.llapi.calculate_task_cost(task)} ISK')
     self.__screen.display_menu(right_column, Styles.DATA_KEY)

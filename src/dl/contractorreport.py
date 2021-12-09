@@ -6,15 +6,15 @@ class ContractorReportData():
   def __init__(self, data_folder):
     self.headers = [
       'id',
-      'report_date',
-      'contractor_id',
       'employee_report_id',
-      'description',
+      'contractor_id',
+      'report_date',
       'approved',
+      'contractor_fee',
+      'contractor_rating',
+      'description',
       'note',
       'hours',
-      'contractor_fee',
-      'contractor_rating'
     ]
     self.data_folder = data_folder
     self.__file = FileHandler('contractor_reports.csv', self.data_folder, self.headers)
