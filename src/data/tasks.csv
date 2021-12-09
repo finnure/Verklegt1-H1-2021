@@ -1,94 +1,96 @@
 id,short_description,type,estimated_cost,start_date,due_date,modified,priority,building_id,location_id,employee_id,recurring,repeats_every,title,status
-100,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-11-30,2021-12-05,2021-12-09,High,101,102,123,Y,Week,Spread boron into nuclear furnace,Completed
-101,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-06,2021-06-12,,High,101,102,104,Y,Week,Spread boron into nuclear furnace,Assigned
-102,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-13,2021-12-19,,High,101,102,104,Y,Week,Spread boron into nuclear furnace,Assigned
-103,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-20,2021-12-26,,High,101,102,104,Y,Week,Spread boron into nuclear furnace,Assigned
-104,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2022-12-27,2022-01-02,,High,101,102,104,Y,Week,Spread boron into nuclear furnace,Assigned
-105,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2021-11-01,2021-11-15,18.11.2021,Low,101,102,114,Y,Year,Put up christmas decorations,Completed
-106,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2022-11-01,2022-11-15,,Low,101,102,,Y,Year,Put up christmas decorations,Available
-107,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2023-11-01,2023-11-15,,Low,101,102,,Y,Year,Put up christmas decorations,Available
-108,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2024-11-01,2024-11-15,,Low,101,102,,Y,Year,Put up christmas decorations,Available
-109,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2025-11-01,2025-11-15,,Low,101,102,,Y,Year,Put up christmas decorations,Available
-110,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2022-01-10,2022-01-24,,Low,101,102,114,Y,Year,Take down christmas decorations,Assigned
-111,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2023-01-10,2023-01-24,,Low,101,102,,Y,Year,Take down christmas decorations,Available
-112,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2024-01-10,2024-01-24,,Low,101,102,,Y,Year,Take down christmas decorations,Available
-113,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2025-01-10,2025-01-24,,Low,101,102,,Y,Year,Take down christmas decorations,Available
-114,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2026-01-10,2026-01-24,,Low,101,102,,Y,Year,Take down christmas decorations,Available
-115,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,103,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-116,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,103,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-117,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,104,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-118,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,105,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-119,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,106,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-120,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2021-09-25,2021-10-01,10.11.2021,Low,118,101,109,Y,Week,Mow grass and cut weed of the mud houses' roofs,Approved
-121,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-07,,Low,118,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-122,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-14,,Low,118,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-123,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,119,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-124,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,Low,119,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-125,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2021-04-01,2021-04-25,20.5.2021,Low,118,101,107,Y,Year,Plan lawn mowing and maintainance of mud houses,Approved
-126,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,Low,118,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-127,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,Low,119,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-128,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,Low,120,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-129,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,Low,121,110,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-130,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-01,2022-01-04,,Medium,100,102,,Y,Week,Window cleaning,Available
-131,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-08,2022-01-11,,Medium,100,102,,Y,Week,Window cleaning,Available
-132,All windows of all buildings must be cleaned once a week,Maintainance,15000,2022-01-01,2022-01-04,,Medium,113,100,,Y,Week,Window cleaning,Available
-133,All windows of all buildings must be cleaned once a week,Maintainance,15000,2022-01-08,2022-01-11,,Medium,113,100,,Y,Week,Window cleaning,Available
-134,All windows of all buildings must be cleaned once a week,Maintainance,40000,2022-01-01,2022-01-04,,Medium,115,100,,Y,Week,Window cleaning,Available
-135,All windows of all buildings must be cleaned once a week,Maintainance,40000,2022-01-08,2022-01-11,,Medium,115,100,,Y,Week,Window cleaning,Available
-136,All windows of all buildings must be cleaned once a week,Maintainance,20000,2022-01-01,2022-01-04,,Medium,116,101,,Y,Week,Window cleaning,Available
-137,All windows of all buildings must be cleaned once a week,Maintainance,20000,2022-01-08,2022-01-11,,Medium,116,101,,Y,Week,Window cleaning,Available
-138,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-01,2022-01-04,,Medium,117,101,,Y,Week,Window cleaning,Available
-139,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-08,2022-01-11,,Medium,117,101,,Y,Week,Window cleaning,Available
-140,A window in the kitchen is broken and needs to be fixed asap,Repair,45000,2021-12-10,2021-12-10,,High,100,102,,N,,Fix broken window,Available
-141,The front door needs to be removed and a new one installed in place,Repair,210000,2021-12-13,2021-12-13,,High,116,101,110,N,,Replace front door,Assigned
-142,Check over the electrical panel,Repair,50000,2022-02-01,2022-02-10,,High,115,100,,N,,Check over the electrical panel,Available
-143,Toilet is overflooding needs to be fixed asap,Repair,180000,2021-11-10,2021-11-10,25.11.2021,High,117,101,108,N,,Fix toilet,Approved
-144,All rooms in the apartment need to be painted ,Maintainance,800000,2021-11-20,2021-11-05,21.11.2021,High,113,100,105,N,,Paint the apartment,Completed
-145,A new fence needs to be built around the house,Repair,1200000,2021-09-15,2021-10-15,20.10.2021,Medium,100,102,101,N,,Build a new fence,Approved
-146,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,104,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-147,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,105,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-148,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,106,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-149,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,107,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-150,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,108,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-151,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,109,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-152,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,110,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-153,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,111,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-154,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,112,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-155,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,106,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-156,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,107,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-157,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,108,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-158,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,109,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-159,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,110,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-160,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,111,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-161,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,Medium,112,100,,Y,Year,Cool down the Iglo and fill up holes,Available
-162,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,120,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-163,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,Low,120,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-164,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,121,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-165,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,Low,121,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-166,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,122,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-167,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,Low,122,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-168,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,123,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-169,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,Low,123,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-170,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,124,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-171,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,Low,124,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-172,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,125,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-173,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,Low,125,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-174,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,126,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-175,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,Low,126,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-176,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,Low,127,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-177,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150001,2022-05-08,2022-05-28,,Low,127,101,,Y,Week,Mow grass and cut weed of the mud houses' roofs,Available
-178,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,Low,122,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-179,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10001,2022-04-01,2022-04-25,,Low,123,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-180,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10002,2022-04-01,2022-04-25,,Low,124,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-181,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10003,2022-04-01,2022-04-25,,Low,125,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-182,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10004,2022-04-01,2022-04-25,,Low,126,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
-183,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10005,2022-04-01,2022-04-25,,Low,127,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
+143,Toilet is overflooding needs to be fixed asap,Repair,180000,2021-11-10,2021-11-10,2021-12-09,3,117,101,108,N,0,Fix toilet,Approved
+144,All rooms in the apartment need to be painted ,Maintainance,800000,2021-11-20,2021-11-05,21.11.2021,1,113,100,105,N,0,Paint the apartment,Completed
+100,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-11-30,2021-12-05,2021-12-09,1,101,102,123,Y,2,Spread boron into nuclear furnace,Approved
+101,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-06,2021-06-12,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
+140,A window in the kitchen is broken and needs to be fixed asap,Repair,45000,2021-12-10,2021-12-10,,1,100,102,,N,0,Fix broken window,Available
+102,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-13,2021-12-19,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
+141,The front door needs to be removed and a new one installed in place,Repair,210000,2021-12-13,2021-12-13,,1,116,101,110,N,0,Replace front door,Assigned
+103,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-20,2021-12-26,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
+142,Check over the electrical panel,Repair,50000,2022-02-01,2022-02-10,,1,115,100,,N,0,Check over the electrical panel,Available
+104,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2022-12-27,2022-01-02,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
+193,test,test,123,2020-10-10,2020-10-11,2021-12-09,2,100,102,123,n,1,test,Approved
+145,A new fence needs to be built around the house,Repair,1200000,2021-09-15,2021-10-15,20.10.2021,2,100,102,101,N,0,Build a new fence,Approved
+130,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-01,2022-01-04,,2,100,102,,Y,2,Window cleaning,Available
+132,All windows of all buildings must be cleaned once a week,Maintainance,15000,2022-01-01,2022-01-04,,2,113,100,,Y,2,Window cleaning,Available
+134,All windows of all buildings must be cleaned once a week,Maintainance,40000,2022-01-01,2022-01-04,,2,115,100,,Y,2,Window cleaning,Available
+136,All windows of all buildings must be cleaned once a week,Maintainance,20000,2022-01-01,2022-01-04,,2,116,101,,Y,2,Window cleaning,Available
+138,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-01,2022-01-04,,2,117,101,,Y,2,Window cleaning,Available
 184,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-01,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
 185,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-02,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
 186,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-03,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
 187,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-04,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
 188,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-05,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
-189,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-06,2022-01-10,2021-12-09,3,102,100,,y,1,Snúa kubbum,Available
 190,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-07,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+131,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-08,2022-01-11,,2,100,102,,Y,2,Window cleaning,Available
+133,All windows of all buildings must be cleaned once a week,Maintainance,15000,2022-01-08,2022-01-11,,2,113,100,,Y,2,Window cleaning,Available
+135,All windows of all buildings must be cleaned once a week,Maintainance,40000,2022-01-08,2022-01-11,,2,115,100,,Y,2,Window cleaning,Available
+137,All windows of all buildings must be cleaned once a week,Maintainance,20000,2022-01-08,2022-01-11,,2,116,101,,Y,2,Window cleaning,Available
+139,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-08,2022-01-11,,2,117,101,,Y,2,Window cleaning,Available
 191,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-08,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
 192,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-09,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+115,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,103,100,,Y,4,Cool down the Iglo and fill up holes,Available
+146,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,104,100,,Y,4,Cool down the Iglo and fill up holes,Available
+147,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,105,100,,Y,4,Cool down the Iglo and fill up holes,Available
+148,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,106,100,,Y,4,Cool down the Iglo and fill up holes,Available
+149,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,107,100,,Y,4,Cool down the Iglo and fill up holes,Available
+150,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,108,100,,Y,4,Cool down the Iglo and fill up holes,Available
+151,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,109,100,,Y,4,Cool down the Iglo and fill up holes,Available
+152,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,110,100,,Y,4,Cool down the Iglo and fill up holes,Available
+153,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,111,100,,Y,4,Cool down the Iglo and fill up holes,Available
+154,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,2,112,100,,Y,4,Cool down the Iglo and fill up holes,Available
+116,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,103,100,,Y,4,Cool down the Iglo and fill up holes,Available
+117,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,104,100,,Y,4,Cool down the Iglo and fill up holes,Available
+118,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,105,100,,Y,4,Cool down the Iglo and fill up holes,Available
+119,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,106,100,,Y,4,Cool down the Iglo and fill up holes,Available
+155,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,106,100,,Y,4,Cool down the Iglo and fill up holes,Available
+156,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,107,100,,Y,4,Cool down the Iglo and fill up holes,Available
+157,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,108,100,,Y,4,Cool down the Iglo and fill up holes,Available
+158,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,109,100,,Y,4,Cool down the Iglo and fill up holes,Available
+159,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,110,100,,Y,4,Cool down the Iglo and fill up holes,Available
+160,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,111,100,,Y,4,Cool down the Iglo and fill up holes,Available
+161,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2023-07-15,2023-08-25,,2,112,100,,Y,4,Cool down the Iglo and fill up holes,Available
+125,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2021-04-01,2021-04-25,20.5.2021,3,118,101,107,Y,4,Plan lawn mowing and maintainance of mud houses,Approved
+120,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2021-09-25,2021-10-01,10.11.2021,3,118,101,109,Y,2,Mow grass and cut weed of the mud houses' roofs,Approved
+194,test,test,123,2021-10-10,2021-10-11,,3,100,102,,n,1,test,Available
+105,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2021-11-01,2021-11-15,18.11.2021,3,101,102,114,Y,4,Put up christmas decorations,Completed
+189,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-06,2022-01-10,2021-12-09,3,102,100,,y,1,Snúa kubbum,Available
+110,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2022-01-10,2022-01-24,,3,101,102,114,Y,4,Take down christmas decorations,Assigned
+126,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,3,118,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+127,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,3,119,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+128,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,3,120,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+129,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,3,121,110,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+178,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,3,122,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+179,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10001,2022-04-01,2022-04-25,,3,123,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+180,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10002,2022-04-01,2022-04-25,,3,124,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+181,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10003,2022-04-01,2022-04-25,,3,125,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+182,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10004,2022-04-01,2022-04-25,,3,126,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+183,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10005,2022-04-01,2022-04-25,,3,127,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available
+121,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-07,,3,118,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+123,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,119,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+162,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,120,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+164,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,121,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+166,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,122,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+168,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,123,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+170,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,124,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+172,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,125,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+174,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,126,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+176,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-01,2022-05-21,,3,127,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+122,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-14,,3,118,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+124,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,3,119,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+163,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,3,120,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+165,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,3,121,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+167,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,3,122,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+169,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,3,123,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+171,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,3,124,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+173,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,3,125,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+175,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2022-05-08,2022-05-28,,3,126,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+177,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150001,2022-05-08,2022-05-28,,3,127,101,,Y,2,Mow grass and cut weed of the mud houses' roofs,Available
+106,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2022-11-01,2022-11-15,,3,101,102,,Y,4,Put up christmas decorations,Available
+111,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2023-01-10,2023-01-24,,3,101,102,,Y,4,Take down christmas decorations,Available
+107,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2023-11-01,2023-11-15,,3,101,102,,Y,4,Put up christmas decorations,Available
+112,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2024-01-10,2024-01-24,,3,101,102,,Y,4,Take down christmas decorations,Available
+108,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2024-11-01,2024-11-15,,3,101,102,,Y,4,Put up christmas decorations,Available
+113,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2025-01-10,2025-01-24,,3,101,102,,Y,4,Take down christmas decorations,Available
+109,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2025-11-01,2025-11-15,,3,101,102,,Y,4,Put up christmas decorations,Available
+114,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2026-01-10,2026-01-24,,3,101,102,,Y,4,Take down christmas decorations,Available

@@ -15,7 +15,7 @@ class ContractorLogic():
 
   def update(self, form: Form):
     contractor = self.__parse_form(form)
-    con = self.dlapi.update_contractor(contractor)
+    con = self.dlapi.update_contractor(contractor.id, contractor)
     return self.add_extras(con)
 
   def get(self, id: int):

@@ -9,7 +9,7 @@ class Filters():
   ALL_PRINTABLE = PRINTABLE + SPECIAL_CHARACTERS
   NUMBERS = '0123456789'
   FLOATS = '.0123456789'
-  PHONE = '+0123456789 '
+  PHONE = '+-0123456789 '
   USER_ID = 'Qq0123456789'
   DATE = '-0123456789'
   SSN = '0123456789'
@@ -20,6 +20,15 @@ def none_if_not_list(list) -> 'list | None':
 
 class Helpers():
   ''' Helper functions. '''
+
+  @staticmethod
+  def format_currency(value: 'float| str'):
+    ''' Returns value formatted as currency. '''
+    try:
+      value = float(value)
+    except ValueError:
+      return value + ' ISK'
+    return f'{value:0.1f} ISK'
 
   @staticmethod
   def get_multiline_string(text: str, cols: int) -> 'list[str]':
@@ -110,7 +119,7 @@ class Validate():
   @staticmethod
   def phone(value: str) -> None:
     ''' Raises error if phonenumber is not valid. '''
-    if value[0] not in Filters.PHONE or not value[1:].isnumeric():
+    if '+' in value[1:]:
       raise ValueError(f'{value} IS NOT A VALID PHONE NUMBER')
 
   @staticmethod

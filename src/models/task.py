@@ -35,9 +35,23 @@ class Task():
     self.estimated_cost = estimated_cost
     self.title = title
     self.modified = modified
+    self.reports = []
+    self.building_reg = ''
 
   def __str__(self) -> str:
     return f'TASK - T{self.id}'
+
+  def get_priority_for_csv(self):
+    try:
+      return int(self.priority)
+    except ValueError:
+      return str(['', 'High', 'Medium', 'Low'].index(self.priority))
+
+  def get_repeats_for_csv(self):
+    try:
+      return int(self.repeats_every)
+    except ValueError:
+      return str(['', 'Day', 'Week', '28 Days', 'Year'].index(self.repeats_every))
 
   def set_location(self, location):
     self.location = location
@@ -67,9 +81,9 @@ class Task():
       'type': self.type, 
       'start_date': self.start_date, 
       'due_date': self.due_date, 
-      'priority': self.priority, 
+      'priority': self.get_priority_for_csv(), 
       'recurring': self.recurring, 
-      'repeats_every': self.repeats_every, 
+      'repeats_every': self.get_repeats_for_csv(), 
       'estimated_cost': self.estimated_cost, 
       'status': self.status, 
       'modified': self.modified
@@ -130,9 +144,9 @@ class Task():
       FormField('type', 'TYPE', self.type, 1, 15),
       FormField('start_date', 'START DATE', self.start_date, 1, 10, Filters.DATE, validators=[Validate.date]),
       FormField('due_date', 'END DATE', self.due_date, 1, 10, Filters.DATE, validators=[Validate.date]),
-      FormField('priority', 'PRIORITY', self.priority, 1, 1, '123', options=Task.get_priority_menu(6)),
+      FormField('priority', 'PRIORITY', self.get_priority_for_csv(), 1, 1, '123', options=Task.get_priority_menu(6)),
       FormField('recurring', 'RECURRING', self.recurring, 1, 1, editable=False),
-      FormField('repeats_every', 'REPEATS EVERY', self.repeats_every, 1, 1, editable=False),
+      FormField('repeats_every', 'REPEATS EVERY', self.repeats_every, 1, 10, editable=False),
       FormField('estimated_cost', 'ESTIMATED COST', self.estimated_cost, 1, 10, Filters.NUMBERS),
       FormField('status', 'STATUS', self.status, 1, 10, editable=False),
     ]

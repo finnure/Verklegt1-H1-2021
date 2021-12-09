@@ -21,6 +21,7 @@ class SearchView():
       'MENU': self.__menu_handler,
       'EMPLOYEE_BY_LOCATION': self.__emp_by_location_handler,
       'BUILDING_BY_LOCATION': self.__build_by_location_handler,
+      'CONTRACTOR_BY_LOCATION': self.__contractor_by_location_handler,
       'EMPLOYEE_BY_ID': self.__emp_by_id_handler,
       'BUILDING_BY_ID': self.__build_by_id_handler,
       'TASK_BY_ID': self.__task_by_id_handler,
@@ -51,7 +52,7 @@ class SearchView():
     self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
     self.__screen.horizontal_line(50, 3, 34)
     # Create the main menu and get options as dict
-    menu = Menu(5) # Menu starts in line 9
+    menu = Menu(5) # Menu starts in line 5
     menu.add_menu_item('1', 'SEARCH FOR EMPLOYEES BY LOCATION', SearchConst.EMPLOYEE_BY_LOCATION)
     menu.add_menu_item('2', 'SEARCH FOR BUILDINGS BY LOCATION', SearchConst.BUILDING_BY_LOCATION)
     menu.add_menu_item('3', 'SEARCH FOR AN EMPLOYEE BY ID', SearchConst.EMPLOYEE_BY_ID)
@@ -75,7 +76,7 @@ class SearchView():
     locations = self.llapi.get_all_locations()
     table = Table(locations, LocConst.TABLE_HEADERS)
     question_text = 'ENTER NUMBER (#) OF LOCATION'
-    location = self.__screen.select_from_table(table, 3, question_text)
+    location = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(EmpConst.INPUT_PARAM, location)
     return EmpConst.FILTER_LOCATION
 
@@ -87,9 +88,21 @@ class SearchView():
     locations = self.llapi.get_all_locations()
     table = Table(locations, LocConst.TABLE_HEADERS)
     question_text = 'ENTER NUMBER (#) OF LOCATION'
-    location = self.__screen.select_from_table(table, 3, question_text)
+    location = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(BuildConst.INPUT_PARAM, location)
     return BuildConst.FILTER_LOCATION
+
+  def __contractor_by_location_handler(self):
+    ''' Handler that allows user to select a location from a list.
+    Available input is either a row number or an available paging option.
+    If wrong row number is selected, an error is displayed and user asked
+    to try again. '''
+    locations = self.llapi.get_all_locations()
+    table = Table(locations, LocConst.TABLE_HEADERS)
+    question_text = 'ENTER NUMBER (#) OF LOCATION'
+    location = self.__screen.select_from_table(table, 5, question_text)
+    self.llapi.set_param(ContrConst.INPUT_PARAM, location)
+    return ContrConst.FILTER_LOCATION
 
   def __emp_by_id_handler(self):
     self.__screen.print('EMPLOYEE SEARCH', 5, 6, Styles.PAGE_HEADER)
@@ -132,7 +145,7 @@ class SearchView():
     buildings = self.llapi.get_all_buildings()
     table = Table(buildings, BuildConst.TABLE_HEADERS)
     question_text = 'ENTER NUMBER (#) OF BUILDING'
-    building = self.__screen.select_from_table(table, 3, question_text)
+    building = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(TaskConst.INPUT_PARAM, building)
     return TaskConst.FILTER_BUILDING
 
@@ -144,7 +157,7 @@ class SearchView():
     employees = self.llapi.get_all_employees()
     table = Table(employees, EmpConst.TABLE_HEADERS)
     question_text = 'ENTER NUMBER (#) OF EMPLOYEE'
-    employee = self.__screen.select_from_table(table, 3, question_text)
+    employee = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(TaskConst.INPUT_PARAM, employee)
     return TaskConst.FILTER_EMPLOYEE
 
@@ -156,7 +169,7 @@ class SearchView():
     locations = self.llapi.get_all_locations()
     table = Table(locations, LocConst.TABLE_HEADERS)
     question_text = 'ENTER NUMBER (#) OF LOCATION'
-    location = self.__screen.select_from_table(table, 3, question_text)
+    location = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(TaskConst.INPUT_PARAM, location)
     return TaskConst.FILTER_LOCATION
 
@@ -168,7 +181,7 @@ class SearchView():
     contractors = self.llapi.get_all_contractors()
     table = Table(contractors, ContrConst.TABLE_HEADERS)
     question_text = 'ENTER NUMBER (#) OF CONTRACTOR'
-    contractor = self.__screen.select_from_table(table, 3, question_text)
+    contractor = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(TaskConst.INPUT_PARAM, contractor)
     return TaskConst.FILTER_CONTRACTOR
 
@@ -180,7 +193,7 @@ class SearchView():
     buildings = self.llapi.get_all_buildings()
     table = Table(buildings, BuildConst.TABLE_HEADERS)
     question_text = 'ENTER NUMBER (#) OF BUILDING'
-    building = self.__screen.select_from_table(table, 3, question_text)
+    building = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(ReportConst.INPUT_PARAM, building)
     return ReportConst.FILTER_BUILDING
 
@@ -192,7 +205,7 @@ class SearchView():
     employees = self.llapi.get_all_employees()
     table = Table(employees, EmpConst.TABLE_HEADERS)
     question_text = 'ENTER NUMBER (#) OF EMPLOYEE'
-    employee = self.__screen.select_from_table(table, 3, question_text)
+    employee = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(ReportConst.INPUT_PARAM, employee)
     return ReportConst.FILTER_EMPLOYEE
 

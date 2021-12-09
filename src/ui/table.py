@@ -1,6 +1,6 @@
 class Table():
 
-  def __init__(self, data, headers: 'dict[str,str]', begin_line: int = 5, begin_col: int = 6, max_lines: int = 20, numerate: bool = True) -> None:
+  def __init__(self, data, headers: 'dict[str,str]', begin_line: int = 7, begin_col: int = 6, max_lines: int = 18, numerate: bool = True) -> None:
     self.data = data
     self.headers = headers
     self.begin_line = begin_line

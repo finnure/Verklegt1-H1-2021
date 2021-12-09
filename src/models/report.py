@@ -1,4 +1,4 @@
-from utils import Validate, Filters
+from utils import Helpers, Validate, Filters
 from ui.form import FormField
 
 class Report():
@@ -46,6 +46,7 @@ class ContractorReport(Report):
     self.employee_report_id = employee_report_id
     self.contractor_fee = contractor_fee
     self.contractor_rating = contractor_rating
+    self.fee = Helpers.format_currency(self.contractor_fee)
 
   def add_contractor(self, contractor):
     self.contractor = contractor
@@ -92,6 +93,8 @@ class EmployeeReport(Report):
     self.task_id = task_id
     self.material_cost = material_cost
     self.labor_cost = labor_cost
+    self.mcost = Helpers.format_currency(material_cost)
+    self.lcost = Helpers.format_currency(labor_cost)
 
   def add_employee(self, employee):
     self.employee = employee

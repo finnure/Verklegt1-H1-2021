@@ -1,4 +1,5 @@
 from dlapi import DlApi
+from models.report import EmployeeReport
 from utils import Helpers
 from models.task import Task
 from ui.form import Form
@@ -38,7 +39,7 @@ class TaskLogic():
 
   def get_tasks_for_employee(self, id: int, statuses: 'list[str]' = None, from_date: str = None, to_date: str = None):
     filter = {'employee_id': id}
-    tasks: 'list[Task]' = self.dlapi.get_filtered_tasks(filter)
+    tasks: 'list[Task]' = self.get_filtered(filter)
     return self.apply_filters(tasks, statuses, from_date, to_date)
 
   def get_tasks_for_building(self, id: int, statuses: 'list[str]' = None, from_date: str = None, to_date: str = None):
@@ -80,7 +81,16 @@ class TaskLogic():
     return self.add_extras(updated_task)
 
   def calculate_task_cost(self, task: Task):
-    return 0
+    reports: 'list[EmployeeReport]' = task.reports
+    total_cost = 0
+    if len(reports) > 0:
+      for rep in reports:
+        filter = {'employee_report_id': rep.id}
+        con_rep = self.dlapi.get_filtered_contractor_reports(filter)
+        con_total = sum([r.contractor_fee for r in con_rep])
+        total_cost += con_total + rep.labor_cost + rep.material_cost
+    return total_cost
+    
 
   def add_extras(self, task: Task):
     filter = {'task_id': task.id}

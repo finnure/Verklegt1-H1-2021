@@ -52,7 +52,7 @@ class TaskData():
   def get_all(self) -> 'list[Task]':
     ''' Get all tasks from file and return as list of Task instances. '''
     tasks = self.__file.read()
-    return [self.__parse(task) for task in tasks]
+    return [self.__parse(task) for task in sorted(tasks, key=lambda x: (x['priority'], x['start_date']))]
 
   def get_one(self, id: int) -> 'Task | None':
     ''' Find Task matching the id specified. If no task is found, None is returned '''
@@ -86,6 +86,16 @@ class TaskData():
       employee_id = int(task['employee_id'])
     except (ValueError, TypeError):
       employee_id = None
+    try:
+      priority = int(task['priority'])
+      priority = ['', 'High', 'Medium', 'Low'][priority]
+    except (ValueError, IndexError):
+      priority = None
+    try:
+      rep = int(task['repeats_every'])
+      rep = ['', 'Day', 'Week', '28 Days', 'Year'][rep]
+    except (ValueError, IndexError):
+      rep = task['repeats_every']
     return Task(
         int(task['id']), 
         int(task['location_id']),
@@ -94,12 +104,12 @@ class TaskData():
         task['type'],
         task['start_date'],
         task['due_date'],
-        task['priority'],
+        priority,
         task['recurring'],
         task['status'],
         task['estimated_cost'],
         task['title'],
-        task['repeats_every'],
+        rep,
         employee_id,
         task['modified']
       )
@@ -110,5 +120,3 @@ class TaskData():
     all_ids = [tas.id for tas in tasks]
     return max(all_ids) + 1
   
-  def prepare(self, data):
-    ''' Converts data to a format that file expects '''

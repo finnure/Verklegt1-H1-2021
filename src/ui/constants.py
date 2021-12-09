@@ -185,7 +185,7 @@ class ContrConst():
 
   TABLE_HEADERS = {
     'id': 'ID',
-    'location_id': 'LOCATION',
+    'location_city': 'LOCATION',
     'name': 'NAME',
     'speciality': 'SPECIALITY',
     'openinghours': 'OPENING HOURS',
@@ -223,6 +223,15 @@ class ReportConst():
     'task_type': 'TASK TYPE',
     'employee_name': 'EMPLOYEE',
     'building_registration': 'BUILDING',
+  }
+
+  CON_TABLE_HEADERS = {
+    'id': 'ID',
+    'report_date': 'DATE',
+    'approved': 'APPROVED',
+    'description': 'DESCRIPTION',
+    'fee': 'FEE',
+    'contractor_rating': 'RATING',
   }
 
   # Connections
@@ -280,6 +289,7 @@ class SearchConst():
   MENU = 'SEARCH:MENU'
   EMPLOYEE_BY_LOCATION = 'SEARCH:EMPLOYEE_BY_LOCATION'
   BUILDING_BY_LOCATION = 'SEARCH:BUILDING_BY_LOCATION'
+  CONTRACTOR_BY_LOCATION = 'SEARCH:CONTRACTOR_BY_LOCATION'
   EMPLOYEE_BY_ID = 'SEARCH:EMPLOYEE_BY_ID'
   BUILDING_BY_ID = 'SEARCH:BUILDING_BY_ID'
   TASK_BY_ID = 'SEARCH:TASK_BY_ID'
