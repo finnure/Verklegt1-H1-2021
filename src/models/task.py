@@ -42,10 +42,10 @@ class Task():
     return f'TASK - T{self.id}'
 
   def get_priority_for_csv(self):
-    return ['', 'High', 'Medium', 'Low'].index(self.priority)
+    return str(['', 'High', 'Medium', 'Low'].index(self.priority))
 
   def get_repeats_for_csv(self):
-    return ['', 'Day', 'Week', '28 Days', 'Year'].index(self.repeats_every)
+    return str(['', 'Day', 'Week', '28 Days', 'Year'].index(self.repeats_every))
 
   def set_location(self, location):
     self.location = location
@@ -138,9 +138,9 @@ class Task():
       FormField('type', 'TYPE', self.type, 1, 15),
       FormField('start_date', 'START DATE', self.start_date, 1, 10, Filters.DATE, validators=[Validate.date]),
       FormField('due_date', 'END DATE', self.due_date, 1, 10, Filters.DATE, validators=[Validate.date]),
-      FormField('priority', 'PRIORITY', self.priority, 1, 1, '123', options=Task.get_priority_menu(6)),
+      FormField('priority', 'PRIORITY', self.get_priority_for_csv(), 1, 1, '123', options=Task.get_priority_menu(6)),
       FormField('recurring', 'RECURRING', self.recurring, 1, 1, editable=False),
-      FormField('repeats_every', 'REPEATS EVERY', self.repeats_every, 1, 1, editable=False),
+      FormField('repeats_every', 'REPEATS EVERY', self.repeats_every, 1, 10, editable=False),
       FormField('estimated_cost', 'ESTIMATED COST', self.estimated_cost, 1, 10, Filters.NUMBERS),
       FormField('status', 'STATUS', self.status, 1, 10, editable=False),
     ]
