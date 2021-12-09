@@ -113,8 +113,11 @@ class EmployeeView():
       emps = self.llapi.get_all_employees()
       table = Table(emps, EmpConst.TABLE_HEADERS)
 
+    text = 'EMPLOYEE LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     # Create and display menu option that allows user to select an item from the list
-    menu = Menu()
+    menu = Menu(5)
     menu.add_menu_item('V', 'SELECT AN EMPLOYEE TO VIEW', EmpConst.SELECT_FROM_LIST)
     self.__screen.display_menu(menu)
 
@@ -148,8 +151,11 @@ class EmployeeView():
       emps = self.llapi.get_all_employees()
       table = Table(emps, EmpConst.TABLE_HEADERS)
     
+    text = 'EMPLOYEE LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     question_text = 'ENTER NUMBER (#) OF EMPLOYEE TO VIEW'
-    employee = self.__screen.select_from_table(table, 3, question_text)
+    employee = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(EmpConst.EMPLOYEE_PARAM, employee)
     return EmpConst.VIEW
 

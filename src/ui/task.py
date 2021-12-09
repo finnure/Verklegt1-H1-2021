@@ -167,7 +167,8 @@ class TaskView():
     options = menu.get_options()
 
     admin_menu = Menu(2, 18)
-    admin_menu.add_menu_item('/', 'EDIT TASK', TaskConst.ADMIN_EDIT)
+    if task.status != 'Approved':
+      admin_menu.add_menu_item('/', 'EDIT TASK', TaskConst.ADMIN_EDIT)
     admin_menu.add_menu_item('+', 'ADD TASK', TaskConst.ADMIN_NEW)
     if task.status == 'Completed':
       admin_menu.add_menu_item('A', 'APPROVE', TaskConst.ADMIN_APPROVE)
@@ -181,6 +182,7 @@ class TaskView():
     self.llapi.set_param(TaskConst.TASK_PARAM, task)
     building = self.llapi.get_building(task.building_id)
     self.llapi.set_param(BuildConst.BUILDING_PARAM, building)
+    self.llapi.set_param(TaskConst.INPUT_PARAM, building)
     return options
 
   def __display_one_task(self, task: Task) -> None:

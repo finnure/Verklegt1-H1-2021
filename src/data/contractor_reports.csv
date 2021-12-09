@@ -1,8 +1,9 @@
 id,employee_report_id,contractor_id,report_date,approved,contractor_fee,contractor_rating,description,note,hours
-100,100,100,2021-12-05,N,60000,4,Spread boron into nuclear furnace,No comments,2
-101,105,101,2021-11-15,N,0,0,Set up christmas decorations,Had to buy more bulbs,10
-102,120,102,2021-10-01,Y,0,0,Mow grass and cut weed,No comments,10
-103,125,101,2021-04-25,Y,0,0,Plan lawn mowing and maintainance of mud houses,All good,2
-104,143,100,2021-11-10,Y,500000,4.5,Fix toilet,Plunger broke so I had to buy a new one,3
-105,144,102,2021-11-05,N,0,0,Paint the apartment,All good,20
-106,145,100,2021-10-15,Y,1000000,4.5,Build a new fence,Wood and nails needed so I bought them,20
+100,100,100,2021-12-05,N,60000,4.0,Spread boron into nuclear furnace,No comments,2.0
+101,105,101,2021-11-15,N,0,4.0,Set up christmas decorations,Had to buy more bulbs,10.0
+102,120,102,2021-10-01,Y,0,0.0,Mow grass and cut weed,No comments,10.0
+103,125,101,2021-04-25,Y,0,0.0,Plan lawn mowing and maintainance of mud houses,All good,2.0
+104,143,100,2021-11-10,Y,500000,4.5,Fix toilet,Plunger broke so I had to buy a new one,3.0
+105,144,102,2021-11-05,N,0,0.0,Paint the apartment,All good,20.0
+106,145,100,2021-10-15,Y,1000000,4.5,Build a new fence,Wood and nails needed so I bought them,20.0
+107,110,108,2021-12-09,N,2000,4,Skipti um ljósaperu,"Braut eina, þurfti að kaupa aðra",2.0
