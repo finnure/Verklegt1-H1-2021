@@ -117,6 +117,9 @@ class LlApi():
   def get_reports_for_contractor(self, id: int):
     return self.report_logic.get_filtered({'contractor_id': id})
 
+  def get_contractors_by_location(self, id: int):
+    return self.contractor_logic.get_filtered({'location_id': id})
+
   ##### Employee methods ########
 
   def new_employee(self, form: Form):

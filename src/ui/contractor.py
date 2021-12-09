@@ -1,3 +1,4 @@
+from models.location import Location
 from ui.screen import Screen
 from llapi import LlApi
 from models.contractor import Contractor
@@ -5,7 +6,7 @@ from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters
-from ui.constants import AccConst, ContrConst, GlobalConst, LocConst, ReportConst, Styles, TaskConst
+from ui.constants import AccConst, ContrConst, GlobalConst, LocConst, ReportConst, SearchConst, Styles, TaskConst
 
 
 class ContractorView():
@@ -53,7 +54,7 @@ class ContractorView():
     menu = Menu(5, 6)
     menu.add_menu_item('I', 'SEARCH FOR CONTRACTOR BY ID', ContrConst.GET_ID)
     menu.add_menu_item('A', 'VIEW ALL CONTRACTORS', ContrConst.LIST_ALL)
-    menu.add_menu_item('F', 'VIEW CONTRACTORS BY LOCATION', ContrConst.FILTER_LOCATION)
+    menu.add_menu_item('F', 'VIEW CONTRACTORS BY LOCATION', SearchConst.CONTRACTOR_BY_LOCATION)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
@@ -76,9 +77,12 @@ class ContractorView():
       contractors = self.llapi.get_all_contractors()
       table = Table(contractors, ContrConst.TABLE_HEADERS)
 
+    text = 'CONTRACTOR LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     # Create and display menu option that allows user to select an item from the list
-    menu = Menu()
-    menu.add_menu_item('V', 'SELECT AN CONTRACTOR TO VIEW', ContrConst.SELECT_FROM_LIST)
+    menu = Menu(5)
+    menu.add_menu_item('V', 'SELECT A CONTRACTOR TO VIEW', ContrConst.SELECT_FROM_LIST)
     self.__screen.display_menu(menu)
 
     # Display the table and get paging options
@@ -111,8 +115,12 @@ class ContractorView():
       contractors = self.llapi.get_all_contractors()
       table = Table(contractors, ContrConst.TABLE_HEADERS)
     
+    text = 'CONTRACTOR LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
+
     question_text = 'ENTER NUMBER (#) OF CONTRACTOR TO VIEW'
-    contractor = self.__screen.select_from_table(table, 3, question_text)
+    contractor = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
     return ContrConst.VIEW
 
@@ -158,20 +166,13 @@ class ContractorView():
     except KeyError:
       self.__screen.print('NO CONTRACTOR FOUND TO DISPLAY', 3, 6, 'ERROR')
       return {}
-    menu = Menu(14)
-    menu.add_menu_item('1', 'VIEW REPORTS', ReportConst.FILTER_CONTRACTOR)
-    menu.add_menu_item('2', 'VIEW LOCATION INFORMATION', LocConst.VIEW)
-    options = menu.get_options()
 
-    admin_menu = Menu(2, 18)
-    admin_menu.add_menu_item('/', 'EDIT CONT.', ContrConst.ADMIN_EDIT)
-    admin_menu.add_menu_item('+', 'ADD CONT.', ContrConst.ADMIN_NEW)
-    admin_menu.add_menu_item('W', 'ADD TASK', TaskConst.ADMIN_NEW)
-    admin_menu.add_menu_item('Y', 'ADD ACCESSORY', AccConst.ADMIN_NEW)
-    options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
+    admin_menu = Menu(2, 12)
+    admin_menu.add_menu_item('/', 'EDIT', ContrConst.ADMIN_EDIT)
+    admin_menu.add_menu_item('+', 'ADD NEW', ContrConst.ADMIN_NEW)
+    options = self.__screen.display_admin_menu(admin_menu, self.llapi.user.role)
     
-    self.__display_one_contractor(contractor)
-    self.__screen.display_menu(menu)
+    options.update(self.__display_one_contractor(contractor))
     # Store contractor in params so edit handler can pick it up and handle editing
     self.llapi.set_param(ReportConst.INPUT_PARAM, contractor)
     self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
@@ -183,27 +184,41 @@ class ContractorView():
 
   def __display_one_contractor(self, contractor: Contractor) -> None:
     ''' Displays information about an employee on the screen. '''
-
+    options = {}
     # display header info
     text = str(contractor)
     self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
     self.__screen.horizontal_line(50, 3, 34)
 
-    left_column = Menu(5, spacing=11)
-    left_column.add_menu_item('NAME', contractor.name)
-    left_column.add_menu_item('CONTACT', contractor.contact)
-    left_column.add_menu_item('LOCATION', contractor.location_city)
+    left_column = Menu(5, spacing=16)
+    left_column.add_menu_item('OPENING HOURS', contractor.openinghours)
     left_column.add_menu_item('SPECIALITY', contractor.speciality)
-    self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
-    right_column = Menu(5, 46, 16)
-    right_column.add_menu_item('EMAIL', contractor.email)
-    right_column.add_menu_item('OPENING HOURS', contractor.openinghours)
+    right_column = Menu(5, 50, 10)
+    right_column.add_menu_item('CONTACT', contractor.contact)
     right_column.add_menu_item('PHONE', contractor.phone)
-    right_column.add_menu_item('RATING', f'{contractor.get_rating():0.2f}')
+    right_column.add_menu_item('E-MAIL', contractor.email)
+
+    if len(contractor.reports) > 0:
+      # only display Report info if they exist
+      menu = Menu()
+      left_column.add_menu_item('RATING', f'{contractor.get_rating():0.1f}')
+      self.__screen.print('REPORTS', 12, 6, Styles.DATA_KEY)
+      table = Table(contractor.reports, ReportConst.CON_TABLE_HEADERS, 14, 6, 8, False)
+      self.__screen.display_table(table)
+      paging_options = self.__screen.display_table(table)
+      if 'N' in paging_options:
+        menu.add_menu_item('N', 'NEXT', GlobalConst.PAGING_NEXT)
+      if 'P' in paging_options:
+        menu.add_menu_item('P', 'PREVIOUS', GlobalConst.PAGING_PREV)
+      self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+      options = menu.get_options()
+
+    self.__screen.display_menu(left_column, Styles.DATA_KEY)
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
-    self.__screen.horizontal_line(100, 12, 6)
+    self.__screen.horizontal_line(100, 10, 6)
+    return options
 
   def __add_new_handler(self):
     ''' Handler to display a form to enter data for new Contractor. '''
@@ -282,5 +297,12 @@ class ContractorView():
     return ContrConst.VIEW
 
   def __filter_location_handler(self):
-    options = self.__menu_handler()
-    return options
+    try:
+      location: Location = self.llapi.get_param(ContrConst.INPUT_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    contractors = self.llapi.get_contractors_by_location(location.id)
+    table = Table(contractors, ContrConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return ContrConst.LIST_ALL

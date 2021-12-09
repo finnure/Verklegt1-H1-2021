@@ -225,6 +225,15 @@ class ReportConst():
     'building_registration': 'BUILDING',
   }
 
+  CON_TABLE_HEADERS = {
+    'id': 'ID',
+    'report_date': 'DATE',
+    'approved': 'APPROVED',
+    'description': 'DESCRIPTION',
+    'fee': 'FEE',
+    'contractor_rating': 'RATING',
+  }
+
   # Connections
   ADMIN_NEW = 'REPORT:ADD_NEW'
   NEW_CONTRACTOR = 'REPORT:NEW_CONTRACTOR'
@@ -280,6 +289,7 @@ class SearchConst():
   MENU = 'SEARCH:MENU'
   EMPLOYEE_BY_LOCATION = 'SEARCH:EMPLOYEE_BY_LOCATION'
   BUILDING_BY_LOCATION = 'SEARCH:BUILDING_BY_LOCATION'
+  CONTRACTOR_BY_LOCATION = 'SEARCH:CONTRACTOR_BY_LOCATION'
   EMPLOYEE_BY_ID = 'SEARCH:EMPLOYEE_BY_ID'
   BUILDING_BY_ID = 'SEARCH:BUILDING_BY_ID'
   TASK_BY_ID = 'SEARCH:TASK_BY_ID'
