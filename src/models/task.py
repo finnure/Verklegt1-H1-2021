@@ -42,10 +42,16 @@ class Task():
     return f'TASK - T{self.id}'
 
   def get_priority_for_csv(self):
-    return str(['', 'High', 'Medium', 'Low'].index(self.priority))
+    try:
+      return int(self.priority)
+    except ValueError:
+      return str(['', 'High', 'Medium', 'Low'].index(self.priority))
 
   def get_repeats_for_csv(self):
-    return str(['', 'Day', 'Week', '28 Days', 'Year'].index(self.repeats_every))
+    try:
+      return int(self.repeats_every)
+    except ValueError:
+      return str(['', 'Day', 'Week', '28 Days', 'Year'].index(self.repeats_every))
 
   def set_location(self, location):
     self.location = location

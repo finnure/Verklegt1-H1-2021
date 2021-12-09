@@ -1,6 +1,5 @@
 id,short_description,type,estimated_cost,start_date,due_date,modified,priority,building_id,location_id,employee_id,recurring,repeats_every,title,status
-193,test,test,123,2020-10-10,2020-10-11,2021-12-09,1,100,102,123,n,1,test,Approved
-143,Toilet is overflooding needs to be fixed asap,Repair,180000,2021-11-10,2021-11-10,25.11.2021,1,117,101,108,N,0,Fix toilet,Approved
+143,Toilet is overflooding needs to be fixed asap,Repair,180000,2021-11-10,2021-11-10,2021-12-09,3,117,101,108,N,0,Fix toilet,Approved
 144,All rooms in the apartment need to be painted ,Maintainance,800000,2021-11-20,2021-11-05,21.11.2021,1,113,100,105,N,0,Paint the apartment,Completed
 100,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-11-30,2021-12-05,2021-12-09,1,101,102,123,Y,2,Spread boron into nuclear furnace,Approved
 101,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-06,2021-06-12,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
@@ -10,6 +9,7 @@ id,short_description,type,estimated_cost,start_date,due_date,modified,priority,b
 103,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-20,2021-12-26,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
 142,Check over the electrical panel,Repair,50000,2022-02-01,2022-02-10,,1,115,100,,N,0,Check over the electrical panel,Available
 104,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2022-12-27,2022-01-02,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
+193,test,test,123,2020-10-10,2020-10-11,2021-12-09,2,100,102,123,n,1,test,Approved
 145,A new fence needs to be built around the house,Repair,1200000,2021-09-15,2021-10-15,20.10.2021,2,100,102,101,N,0,Build a new fence,Approved
 130,All windows of all buildings must be cleaned once a week,Maintainance,25000,2022-01-01,2022-01-04,,2,100,102,,Y,2,Window cleaning,Available
 132,All windows of all buildings must be cleaned once a week,Maintainance,15000,2022-01-01,2022-01-04,,2,113,100,,Y,2,Window cleaning,Available
