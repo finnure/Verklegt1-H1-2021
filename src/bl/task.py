@@ -8,9 +8,15 @@ class TaskLogic():
   def __init__(self, dlapi: DlApi):
     self.dlapi = dlapi
 
-  def new(self, form: Form, location_id: int, building_id: int):
-    task = self.__parse_form(form, location_id, building_id)
+  def new(self, form: Form):
+    task = self.__parse_form(form)
     updated_task = self.dlapi.add_task(task)
+    if task.recurring.lower() == 'y':
+      next_date = Helpers.get_next_date(task.start_date, task.due_date, task.repeats_every)
+      while next_date is not None:
+        task.start_date = next_date
+        self.dlapi.add_task(task)
+        next_date = Helpers.get_next_date(task.start_date, task.due_date, task.repeats_every)
     return self.add_extras(updated_task)
 
   def update(self, form: Form):
@@ -46,8 +52,12 @@ class TaskLogic():
     return self.apply_filters(tasks, statuses, from_date, to_date)
 
   def get_tasks_for_contractor(self, id: int, statuses: 'list[str]' = None, from_date: str = None, to_date: str = None):
-    filter = {'building_id': id}
-    tasks = self.get_filtered(filter)
+    contractor = self.dlapi.get_one_contractor(id)
+    c_filter = {'contractor_id': contractor.id}
+    c_reports = self.dlapi.get_filtered_contractor_reports(c_filter) # contractor reports
+    contractor.set_reports(c_reports)
+    e_reports = [self.dlapi.get_one_employee_report(report) for report in c_reports] # employee reports
+    tasks = [self.dlapi.get_one_task(rep.task_id) for rep in e_reports]
     return self.apply_filters(tasks, statuses, from_date, to_date)
 
   def apply_filters(self, tasks: 'list[Task]', statuses: 'list[str] | None', from_date: 'str | None', to_date: 'str | None'):
@@ -85,20 +95,18 @@ class TaskLogic():
     task.set_reports(reports)
     return task
 
-  def __parse_form(self, form: Form, location_id: int = None, building_id: int = None) -> Task:
+  def __parse_form(self, form: Form) -> Task:
     ''' Returns instance of Task if everything is ok. '''
     try:
       id = form['id']
+      modified = Helpers.get_current_date()
     except StopIteration:
       id = 0
-    if building_id is None:
-      building_id = form['building_id']
-    if location_id is None:
-      location_id = form['location_id']
+      modified = None
     return Task(
         id, 
-        location_id,
-        building_id,
+        form['location_id'],
+        form['building_id'],
         form['short_description'],
         form['type'],
         form['start_date'],
@@ -110,5 +118,5 @@ class TaskLogic():
         form['title'],
         form['repeats_every'],
         form['employee_id'],
-        form['modified'],
+        modified,
       )

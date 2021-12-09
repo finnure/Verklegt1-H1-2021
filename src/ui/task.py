@@ -196,24 +196,40 @@ class TaskView():
 
   def __add_new_handler(self):
     ''' Handler to display a form to enter data for new Task. '''
+    try:
+      building: Building = self.llapi.get_param(TaskConst.INPUT_PARAM)
+    except KeyError:
+      self.__screen.print('NO BUILDING SELECTED TO ADD TASK TO. PLEASE SELECT A BUILDING FIRST', 6, 6, Styles.ERROR)
+      return {}
     self.__screen.print('CREATE NEW TASK', 2, 50, Styles.PAGE_HEADER)
     self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW TASK', 5, 6, Styles.DATA_KEY)
+    self.__screen.print('DATE FORMAT', 7, 6, Styles.DATA_KEY)
+    self.__screen.print('YYYY-MM-DD', 7, 19)
     self.__screen.refresh()
     form = Form(Task.get_new_fields())
-    form_window = self.__screen.display_form(form)
     for field in form:
+      if field.key == 'building_id':
+        field.value = building.id
+      if field.key == 'location_id':
+        field.value = building.location_id
+    form_window = self.__screen.display_form(form, 9)
+    for field in form:
+      options_window = None
       if field.options is not None:
-        # TODO Display options list
-        pass
+        options_window: Screen = form_window.display_form_menu(field.options)
       if field.editable:
         form_window.edit_form_field(field)
+      if options_window:
+        options_window.clear()
+        options_window.refresh()
+        form_window.refresh()
     
     # Save form in params so the save handler can pick it up and save data to disk
     self.llapi.set_param(TaskConst.FORM_PARAM, form)
 
     # Delete outdated message and display menu options
     self.__screen.delete_character(5, 6, 50)
-    menu = Menu(18)
+    menu = Menu(23, 6)
     menu.add_menu_item('A', 'APPLY CHANGES', TaskConst.SAVE)
     menu.add_menu_item('D', 'DISCARD CHANGES', TaskConst.MENU)
     self.__screen.display_menu(menu)
@@ -229,23 +245,29 @@ class TaskView():
     
     self.__screen.print(str(task), 2, 50, Styles.PAGE_HEADER)
     self.__screen.print('PLEASE EDIT EACH FIELD IN THE FORM', 5, 6, Styles.DATA_KEY)
+    self.__screen.print('DATE FORMAT', 7, 6, Styles.DATA_KEY)
+    self.__screen.print('YYYY-MM-DD', 7, 19)
     self.__screen.refresh()
 
     form = Form(task.get_edit_fields())
-    form_window = self.__screen.display_form(form)
+    form_window = self.__screen.display_form(form, 9)
     for field in form:
+      options_window = None
       if field.options is not None:
-        # TODO Display options list
-        pass
+        options_window: Screen = form_window.display_form_menu(field.options)
       if field.editable:
         form_window.edit_form_field(field)
+      if options_window:
+        options_window.clear()
+        options_window.refresh()
+        form_window.refresh()
     
     # Save form in params so the save handler can pick it up and save data to disk
     self.llapi.set_param(TaskConst.FORM_PARAM, form)
 
     # Delete outdated message and display menu options
     self.__screen.delete_character(5, 6, 50)
-    menu = Menu(18)
+    menu = Menu(24)
     menu.add_menu_item('A', 'APPLY CHANGES', TaskConst.SAVE)
     menu.add_menu_item('D', 'DISCARD CHANGES', TaskConst.MENU)
     self.__screen.display_menu(menu)

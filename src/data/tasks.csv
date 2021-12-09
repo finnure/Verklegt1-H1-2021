@@ -43,7 +43,7 @@ id,short_description,type,estimated_cost,start_date,due_date,modified,priority,b
 141,The front door needs to be removed and a new one installed in place,Repair,210000,2021-12-13,2021-12-13,,High,116,101,110,N,,Replace front door,Assigned
 142,Check over the electrical panel,Repair,50000,2022-02-01,2022-02-10,,High,115,100,,N,,Check over the electrical panel,Available
 143,Toilet is overflooding needs to be fixed asap,Repair,180000,2021-11-10,2021-11-10,25.11.2021,High,117,101,108,N,,Fix toilet,Approved
-144,"All rooms in the apartment need to be painted ",Maintainance,800000,2021-11-20,2021-11-05,21.11.2021,High,113,100,105,N,,Paint the apartment,Completed
+144,All rooms in the apartment need to be painted ,Maintainance,800000,2021-11-20,2021-11-05,21.11.2021,High,113,100,105,N,,Paint the apartment,Completed
 145,A new fence needs to be built around the house,Repair,1200000,2021-09-15,2021-10-15,20.10.2021,Medium,100,102,101,N,,Build a new fence,Approved
 146,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,104,100,,Y,Year,Cool down the Iglo and fill up holes,Available
 147,Iglo maintainence during summer time. Add snow and close any holes that have or are appearing,Maintainance,150000,2022-07-15,2022-08-25,,Medium,105,100,,Y,Year,Cool down the Iglo and fill up holes,Available
@@ -83,3 +83,12 @@ id,short_description,type,estimated_cost,start_date,due_date,modified,priority,b
 181,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10003,2022-04-01,2022-04-25,,Low,125,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
 182,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10004,2022-04-01,2022-04-25,,Low,126,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
 183,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10005,2022-04-01,2022-04-25,,Low,127,101,,Y,Year,Plan lawn mowing and maintainance of mud houses,Available
+184,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-01,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+185,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-02,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+186,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-03,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+187,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-04,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+188,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-05,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+189,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-06,2022-01-10,2021-12-09,3,102,100,,y,1,Snúa kubbum,Available
+190,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-07,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+191,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-08,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+192,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-09,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available

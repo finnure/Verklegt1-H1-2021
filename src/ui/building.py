@@ -181,6 +181,8 @@ class BuildingView():
     self.llapi.set_param(LocConst.LOCATION_PARAM, location)
     # Store building in params so other handlers can pick it up to display relative data
     self.llapi.set_param(BuildConst.BUILDING_PARAM, building)
+    self.llapi.set_param(TaskConst.INPUT_PARAM, building)
+    self.llapi.set_param(AccConst.INPUT_PARAM, building)
     return options
 
   def __display_one_building(self, building: Building) -> None:

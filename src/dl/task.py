@@ -7,20 +7,20 @@ class TaskData():
   def __init__(self, data_folder):
     self.headers = [
       'id',
-      'building_id',
-      'accessory_id',
-      'employee_id',
       'short_description',
       'type',
+      'estimated_cost',
       'start_date',
       'due_date',
-      'estimated_cost',
+      'modified',
       'priority',
+      'building_id',
+      'location_id',
+      'employee_id',
       'recurring',
       'repeats_every',
-      'status',
       'title',
-      'modified',
+      'status',
     ]
     self.data_folder = data_folder
     self.__file = FileHandler('tasks.csv', self.data_folder, self.headers)
@@ -84,7 +84,7 @@ class TaskData():
     ''' Creates and returns an instance of Task '''
     try:
       employee_id = int(task['employee_id'])
-    except ValueError:
+    except (ValueError, TypeError):
       employee_id = None
     return Task(
         int(task['id']), 

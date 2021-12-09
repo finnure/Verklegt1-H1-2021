@@ -17,13 +17,6 @@ class Roles():
   EMPLOYEE = 'EMPLOYEE'
   CHUCK = 'CHUCK'
 
-class TaskStatus():
-  ''' Available statuses for tasks. '''
-  AVAILABLE = 'Available'
-  ASSIGNED = 'Assigned'
-  COMPLETED = 'Completed'
-  APPROVED = 'Approved'
-  
 class Styles():
   ''' Constants for style names available. '''
   ERROR = 'ERROR'
@@ -37,6 +30,10 @@ class Styles():
   DISABLED = 'DISABLED'
   EDITING = 'EDITING'
 
+class MenuConsts():
+
+  # Connections
+  MENU = 'MENU:MENU'
 
 class EmpConst():
   ''' Constants and connections for EmployeeView. '''
@@ -110,6 +107,12 @@ class TaskConst():
     'due_date': 'DUE DATE',
     'building_reg': 'BUILDING',
     'employee_name': 'EMPLOYEE'
+  }
+
+  PRIORITIES = {
+    '1': 'HIGH',
+    '2': 'MEDIUM',
+    '3': 'LOW',
   }
 
   # Connections

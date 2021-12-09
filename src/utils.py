@@ -1,6 +1,6 @@
 import string
 from typing import Callable
-from datetime import datetime
+from datetime import datetime, timedelta
 
 class Filters():
   ''' String constants used in filters. '''
@@ -49,6 +49,22 @@ class Helpers():
   def is_date(check, value) -> bool:
     ''' Checks if date value matches check date. '''
     return datetime.fromisoformat(check) == datetime.fromisoformat(value)
+
+  @staticmethod
+  def get_next_date(start: str, end: str, interval: str):
+    start_date = datetime.fromisoformat(start)
+    end_date = datetime.fromisoformat(end)
+    if interval == '1': # daily
+      next_date = start_date + timedelta(days=1)
+    if interval == '2': # weekly
+      next_date = start_date + timedelta(days=7)
+    if interval == '3': # monthly
+      next_date = start_date + timedelta(days=28)
+    if interval == '4': # yearly
+      next_date = start_date + timedelta(days=365)
+    if next_date < end_date:
+      date, _ = str(next_date).split()
+      return date
 
 
 ########### Validators #################

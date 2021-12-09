@@ -281,6 +281,13 @@ class Screen():
     window.refresh() # Make all the stuff appear on screen
     return window
 
+  def display_form_menu(self, menu: Menu):
+    ''' Displays a menu with available options for form field. '''
+    window = Screen(len(menu.menu_items) + menu.start_line + 2, 40, 0, 70, parent=self)
+    window.display_menu(menu)
+    window.refresh()
+    return window
+
   def edit_form_field(self, field: FormField) -> str:
     ''' Allows user to edit field, mutates value. '''
     # Need to add extra column to sub window to make sure cursor doesn't go out of bounds on last char
@@ -306,7 +313,7 @@ class Screen():
         self.refresh()
       except TypeError:
         # Validator is not a function
-        pass
+        break
     
     # Remove EDITING formatting 
     window.paint_character(0,0,0,field.cols)
@@ -325,7 +332,7 @@ class Screen():
         ord('\r'), # CARRIAGE RETURN
         curses.KEY_UP,
         curses.KEY_DOWN,
-        curses.KEY_ENTER
+        curses.KEY_ENTER,
       ]
     self.string_termination = termination
 
@@ -375,6 +382,12 @@ class Screen():
           self.flash()
       elif character in filter:
         # Add allowed character to string and move cursor and index
+        if editing and cols == 1:
+          # Replace character and return it.
+          self.move_cursor_by_offset(0, -1)
+          self.print(character)
+          curses.curs_set(0)
+          return character
         accumulated_string.append(character)
         index += 1
         self.print(character)
@@ -387,7 +400,7 @@ class Screen():
         self.paint_character(self.get_css_class('EDITING'), line, col, cols)
         self.move_cursor_by_offset(0, index)
         self.refresh()
-        if not started_editing:
+        if not started_editing and value is not None:
           # Give user a chance to delete from a string that is of max length
           started_editing = True
           continue

@@ -16,7 +16,8 @@ class MainMenuView():
     ''' Dictionary with second half of menu item connection as key and
     handler method for that selection as value. '''
     self.__input_map = {
-      'MENU': self.__menu_handler
+      'MENU': self.__menu_handler,
+      'NEW_TASK': self.__new_task_handler,
     }
 
   def find_handler(self, input: str):
@@ -39,7 +40,6 @@ class MainMenuView():
 
     # Create admin menu, displayed in top right corner
     admin_menu = Menu(2, 20) # Menu starts in line 2, options are 20 cols from right edge
-    admin_menu.add_menu_item('+', 'CREATE NEW TASK', TaskConst.ADMIN_NEW)
     admin_menu.add_menu_item('R', 'ACTIVE REPORTS', ReportConst.ADMIN_ACTIVE)
     # Display admin menu if user role is MANAGER, and update options with displayed admin options
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
@@ -54,3 +54,7 @@ class MainMenuView():
 
     # Return options to uihandler
     return options
+
+  def __new_task_handler(self):
+    menu = Menu()
+    menu.add_menu_item('1', 'ALL BUILDINGS', )
