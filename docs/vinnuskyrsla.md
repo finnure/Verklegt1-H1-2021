@@ -433,12 +433,13 @@ Farið verður í Retest síðar í dag/morgun á aðgerðum sem voru ekki fullk
 ## Dagur 18
 
 ### Plan dagsins
-- [ ] - Lára: Fínpússa handrit
-- [ ] - Lára: Taka upp og klippa leiðbeiningamyndband
-- [ ] - Fínpússa kerfið (útlit/virkni)
-- [ ] - Stefán: Taka skjáskot af ölum view-um í kerfinu og setja inn í skýrslu
+- [x] - Lára: Fínpússa handrit
+- [x] - Lára: Taka upp vocals f. leiðbeiningamyndband
+- [x] - Lára: Klippa leiðbeiningarmyndband
+- [x] - Finnur: Fínpússa kerfið (útlit/virkni)
+- [x] - Stefán: Taka skjáskot af ölum view-um í kerfinu og setja inn í skýrslu
 - [ ] - Stefán: uppfæra stöðurit
-- [ ] - Kristín: Sjá til þess að öll gögn séu í skýrslunni (kröfur/UC/rit)
+- [x] - Kristín: Sjá til þess að öll gögn séu í skýrslunni (kröfur/UC/rit)
 
 ### Framkvæmt í dag
 
