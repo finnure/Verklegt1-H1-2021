@@ -53,12 +53,13 @@ class ContractorReport(Report):
   
   def as_dict(self) -> 'dict[str, str | int]':
     report = super().as_dict()
-    return report.update({
+    report.update({
       'contractor_id': self.contractor_id,
       'employee_report_id': self.employee_report_id,
       'contractor_fee': self.contractor_fee,
       'contractor_rating': self.contractor_rating,
     })
+    return report
 
   @staticmethod
   def get_new_fields():
@@ -100,8 +101,8 @@ class EmployeeReport(Report):
     self.task = task
     self.task_type = task.type
 
-  def add_contractor_reports(self, reports: 'list[ContractorReport]'):
-    self.contractor_reports = reports
+  def add_contractor_report(self, report: ContractorReport):
+    self.contractor_report = report
 
   def add_building(self, building):
     self.building = building
@@ -109,12 +110,13 @@ class EmployeeReport(Report):
 
   def as_dict(self) -> 'dict[str, str | int]':
     report = super().as_dict()
-    return report.update({
+    report.update({
       'employee_id': self.employee_id, 
       'task_id': self.task_id, 
       'material_cost': self.material_cost, 
       'labor_cost': self.labor_cost,
     })
+    return report
 
   @staticmethod
   def get_new_fields():

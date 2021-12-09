@@ -51,10 +51,12 @@ class BuildingView():
 
   def __menu_handler(self):
     ''' Displays Building main menu and returns options and connections as a list'''
-    menu = Menu(2, 6)
+    text = 'BUILDING MENU'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
+    menu = Menu(5, 6)
     menu.add_menu_item('I', 'SEARCH FOR BUILDING BY ID', BuildConst.GET_ID)
     menu.add_menu_item('A', 'VIEW ALL BUILDINGS', BuildConst.LIST_ALL)
-    menu.add_menu_item('F', 'VIEW BUILDINGS BY LOCATION', BuildConst.FILTER_LOCATION)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
@@ -120,13 +122,13 @@ class BuildingView():
   def __get_id_handler(self):
     ''' Ask user to enter id of building to find. '''
     options = self.__menu_handler()
-    self.__screen.print('PLEASE ENTER ID:', 8, 10)
-    building_id = self.__screen.get_string(8, 28, 3, Filters.NUMBERS, editing=True)
+    self.__screen.print('PLEASE ENTER ID:', 11, 10)
+    building_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS, editing=True)
     building = self.llapi.get_building(int(building_id))
     if building is None:
-      self.__screen.print(f'NO BUILDING FOUND WITH ID {building_id}', 10, 10, Styles.ERROR)
-      self.__screen.print('PRESS I TO SEARCH AGAIN', 11, 10)
-      self.__screen.paint_character('OPTION', 11, 16)
+      self.__screen.print(f'NO BUILDING FOUND WITH ID {building_id}', 13, 10, Styles.ERROR)
+      self.__screen.print('PRESS I TO SEARCH AGAIN', 14, 10)
+      self.__screen.paint_character('OPTION', 14, 16)
       return options
     # Building found, clear screen and call view handler to display info
     self.llapi.set_param(BuildConst.BUILDING_PARAM, building)

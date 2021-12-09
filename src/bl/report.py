@@ -70,12 +70,16 @@ class ReportLogic():
     employee = self.dlapi.get_one_employee(report.employee_id)
     task = self.dlapi.get_one_task(report.id)
     building = self.dlapi.get_one_building(task.building_id)
-    contractor_reports = self.dlapi.get_filtered_contractor_reports({'employee_report_id': report.id})
-    c_reports = [self.__add_contractor_extras(rep) for rep in contractor_reports]
+    try:
+      contractor_report = self.dlapi.get_filtered_contractor_reports({'employee_report_id': report.id})[0]
+      c_report = self.__add_contractor_extras(contractor_report)
+      report.add_contractor_report(c_report)
+    except IndexError:
+      # No Contractor report yet
+      pass
     report.add_employee(employee)
     report.add_task(task)
     report.add_building(building)
-    report.add_contractor_reports(c_reports)
     return report
 
   def __add_contractor_extras(self, report: ContractorReport):

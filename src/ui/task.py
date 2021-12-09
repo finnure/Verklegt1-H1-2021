@@ -9,7 +9,7 @@ from ui.form import Form, FormField
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters, Helpers, Validate
-from ui.constants import AccConst, BuildConst, EmpConst, GlobalConst, ReportConst, Roles, TaskConst, LocConst, Styles, TaskConst
+from ui.constants import AccConst, BuildConst, EmpConst, GlobalConst, ReportConst, Roles, SearchConst, TaskConst, LocConst, Styles, TaskConst
 
 
 class TaskView():
@@ -57,20 +57,26 @@ class TaskView():
 
   def __menu_handler(self):
     ''' Displays Task main menu and returns options and connections as a list'''
-    menu = Menu(2, 6)
+    text = 'TASK MENU'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
+    menu = Menu(5)
     menu.add_menu_item('I', 'SEARCH FOR TASK BY ID', TaskConst.GET_ID)
     menu.add_menu_item('A', 'VIEW ALL TASKS', TaskConst.LIST_ALL)
     menu.add_menu_item('M', 'VIEW MY ACTIVE TASKS', TaskConst.FILTER_MY_ACTIVE)
-    menu.add_menu_item('1', 'VIEW TASKS BY BUILDING', TaskConst.FILTER_BUILDING, Roles.MANAGER)
-    menu.add_menu_item('2', 'VIEW TASKS BY EMPLOYEE', TaskConst.FILTER_EMPLOYEE, Roles.MANAGER)
-    menu.add_menu_item('3', 'VIEW TASKS BY LOCATION', TaskConst.FILTER_LOCATION, Roles.MANAGER)
-    menu.add_menu_item('4', 'VIEW TASKS BY CONTRACTOR', TaskConst.FILTER_CONTRACTOR, Roles.MANAGER)
+    sub_menu = Menu(9)
+    sub_menu.add_menu_item('1', 'VIEW TASKS BY BUILDING', SearchConst.TASK_BY_BUILDING)
+    sub_menu.add_menu_item('2', 'VIEW TASKS BY EMPLOYEE', SearchConst.TASK_BY_EMPLOYEE)
+    sub_menu.add_menu_item('3', 'VIEW TASKS BY LOCATION', SearchConst.TASK_BY_LOCATION)
+    sub_menu.add_menu_item('4', 'VIEW TASKS BY CONTRACTOR', SearchConst.TASK_BY_CONTRACTOR)
     options = menu.get_options()
+    options.update(sub_menu.get_options())
 
     admin_menu = Menu(2, 13, 10)
     admin_menu.add_menu_item('+', 'ADD NEW', TaskConst.ADMIN_NEW)
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
     self.__screen.display_menu(menu)
+    self.__screen.display_menu(sub_menu)
     return options
 
       ################## List handlers #####################
@@ -131,13 +137,13 @@ class TaskView():
   def __get_id_handler(self):
     ''' Ask user to enter id of task to find. '''
     options = self.__menu_handler()
-    self.__screen.print('PLEASE ENTER ID:', 8, 10)
-    task_id = self.__screen.get_string(8, 28, 3, Filters.NUMBERS)
+    self.__screen.print('PLEASE ENTER ID:', 11, 10)
+    task_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS)
     task = self.llapi.get_task(int(task_id))
     if task is None:
-      self.__screen.print(f'NO TASK FOUND WITH ID {task_id}', 10, 10, Styles.ERROR)
-      self.__screen.print('PRESS I TO SEARCH AGAIN', 11, 10)
-      self.__screen.paint_character('OPTION', 11, 16)
+      self.__screen.print(f'NO TASK FOUND WITH ID {task_id}', 13, 10, Styles.ERROR)
+      self.__screen.print('PRESS I TO SEARCH AGAIN', 14, 10)
+      self.__screen.paint_character('OPTION', 14, 16)
       return options
     # Task found, clear screen and call view handler to display info
     self.llapi.set_param(TaskConst.TASK_PARAM, task)

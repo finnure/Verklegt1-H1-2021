@@ -7,6 +7,7 @@ from models.employee import Employee
 from bl.location import LocationLogic
 from bl.report import ReportLogic
 from bl.task import TaskLogic
+from models.report import ContractorReport, EmployeeReport
 from models.task import Task
 from ui.form import Form
 
@@ -110,7 +111,8 @@ class LlApi():
     return self.contractor_logic.get_filtered(filter)
 
   def get_contractor_rating(self, id: int):
-    return self.contractor_logic.get_contractor_rating(id)
+    reports = self.report_logic.get_reports_for_contractor(id)
+    return self.contractor_logic.get_contractor_rating(reports)
   
   def get_reports_for_contractor(self, id: int):
     return self.report_logic.get_filtered({'contractor_id': id})
@@ -157,11 +159,11 @@ class LlApi():
   def new_contractor_report(self, form: Form):
     return self.report_logic.new_contractor_report(form)
 
-  def update_employee_report(self, form: Form):
-    return self.report_logic.update_employee_property(form)
+  def update_employee_report(self, report: EmployeeReport):
+    return self.report_logic.update_employee_property(report)
   
-  def update_contractor_report(self, form: Form):
-    return self.report_logic.update_contractor_property(form)
+  def update_contractor_report(self, report: ContractorReport):
+    return self.report_logic.update_contractor_property(report)
 
   def get_report(self, id: int):
     return self.report_logic.get(id)

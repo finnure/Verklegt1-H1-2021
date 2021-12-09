@@ -35,7 +35,10 @@ class EmployeeView():
 
   def __menu_handler(self):
     ''' Displays Employee main menu and returns options and connections as a list'''
-    menu = Menu(2, 6)
+    text = 'EMPLOYEE MENU'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
+    menu = Menu(5, 6)
     menu.add_menu_item('I', 'SEARCH FOR A EMPLOYEE BY ID', EmpConst.GET_ID)
     menu.add_menu_item('A', 'VIEW ALL EMPLOYEES', EmpConst.LIST_ALL)
     menu.add_menu_item('F', 'VIEW EMPLOYEES BY LOCATION', EmpConst.FILTER_LOCATION)
@@ -86,13 +89,13 @@ class EmployeeView():
   def __get_id_handler(self):
     ''' Ask user to enter id of employee to find. '''
     options = self.__menu_handler()
-    self.__screen.print('PLEASE ENTER ID:', 8, 10)
-    employee_id = self.__screen.get_string(8, 28, 3, Filters.NUMBERS, editing=True)
+    self.__screen.print('PLEASE ENTER ID:', 11, 10)
+    employee_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS, editing=True)
     emp = self.llapi.get_employee(int(employee_id))
     if emp is None:
-      self.__screen.print(f'NO EMPLOYEE FOUND WITH ID {employee_id}', 10, 10, Styles.ERROR)
-      self.__screen.print('PRESS I TO SEARCH AGAIN', 11, 10)
-      self.__screen.paint_character('OPTION', 11, 16)
+      self.__screen.print(f'NO EMPLOYEE FOUND WITH ID {employee_id}', 13, 10, Styles.ERROR)
+      self.__screen.print('PRESS I TO SEARCH AGAIN', 14, 10)
+      self.__screen.paint_character('OPTION', 14, 16)
       return options
     # Employee found, clear screen and call view handler to display info
     self.llapi.set_param(EmpConst.EMPLOYEE_PARAM, emp)

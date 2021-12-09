@@ -27,6 +27,7 @@ class ReportView():
       'ADD_NEW': self.__add_new_handler,
       'NEW_CONTRACTOR': self.__add_contractor_report_handler,
       'SAVE': self.__save_handler,
+      'APPROVE': self.__approve_handler,
       'GET_ID': self.__get_id_handler,
       'FILTER_TASK': self.__filter_task_handler,
       'FILTER_EMPLOYEE': self.__filter_employee_handler,
@@ -173,7 +174,7 @@ class ReportView():
   def __view_handler(self):
     ''' Displays information about a report. '''
     try:
-      report: Report = self.llapi.get_param(ReportConst.REPORT_PARAM)
+      report: EmployeeReport = self.llapi.get_param(ReportConst.REPORT_PARAM)
     except KeyError:
       self.__screen.print('NO REPORT FOUND TO DISPLAY', 6, 6, 'ERROR')
       return {}
@@ -182,8 +183,14 @@ class ReportView():
     menu.add_menu_item('2', 'VIEW LOCATION INFORMATION', LocConst.VIEW)
 
     admin_menu = Menu(2, 20)
-    admin_menu.add_menu_item('V', 'APPROVE REPORT', ReportConst.ADMIN_APPROVE)
-    admin_menu.add_menu_item('G', 'RATE CONTRACTOR', ContrConst.RATE)
+    if report.approved.lower() == 'n':
+      admin_menu.add_menu_item('V', 'APPROVE REPORT', ReportConst.ADMIN_APPROVE)
+    try:
+      _ = report.contractor_report
+      admin_menu.add_menu_item('G', 'RATE CONTRACTOR', ContrConst.RATE)
+    except AttributeError:
+      # Report does not have a contractor, no contractor to rate
+      pass
     
     self.__display_one_report(report)
     #self.__screen.display_menu(menu)
@@ -192,6 +199,7 @@ class ReportView():
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
 
     # Store report in params so other handlers can pick it up to display relative data
+    self.llapi.set_param(ContrConst.INPUT_PARAM, report)
     self.llapi.set_param(ReportConst.REPORT_PARAM, report)
     return options
 
@@ -203,13 +211,7 @@ class ReportView():
     self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
     self.__screen.horizontal_line(50, 3, 34)
 
-    c_reps = report.contractor_reports
-    if len(c_reps) == 1:
-      contractor = c_reps[0].contractor.name
-    else:
-      contractor = str(len(c_reps))
-    con_fee = sum([rep.contractor_fee for rep in c_reps])
-    total_cost = con_fee + report.material_cost + report.labor_cost
+    total_cost = report.material_cost + report.labor_cost
 
     left_column = Menu(5, spacing=14)
     left_column.add_menu_item('BUILDING', report.building.registration)
@@ -217,17 +219,26 @@ class ReportView():
     left_column.add_menu_item('REPORT DATE', report.report_date)
     left_column.add_menu_item('TASK TYPE', report.task.type)
     left_column.add_menu_item('EMPLOYEE', report.employee.name)
-    left_column.add_menu_item('CONTRACTOR', contractor)
-    self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
     right_column = Menu(5, 60, 18)
     right_column.add_menu_item('MATERIAL COST', f'{report.material_cost} {GlobalConst.CURRENCY}')
     right_column.add_menu_item('LABOUR COST', f'{report.labor_cost} {GlobalConst.CURRENCY}')
-    right_column.add_menu_item('CONTRACTOR FEE', f'{con_fee} {GlobalConst.CURRENCY}')
+
+    try:
+      rep = report.contractor_report
+      left_column.add_menu_item('CONTRACTOR', rep.contractor.name)
+      left_column.add_menu_item('CONTRACTOR RATING', f'{self.llapi.get_contractor_rating(rep.contractor_id):0.1f}')
+      right_column.add_menu_item('CONTRACTOR FEE', f'{rep.contractor_fee} {GlobalConst.CURRENCY}')
+      total_cost += rep.contractor_fee
+    except AttributeError:
+      # report has no contractor. skip displaying contractor info
+      pass
     right_column.add_menu_item('TOTAL COST', f'{total_cost} {GlobalConst.CURRENCY}')
     right_column.add_menu_item('TASK STATUS', report.task.status)
     right_column.add_menu_item('REPORT APPROVED', report.approved.upper())
+    
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
+    self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
     self.__screen.horizontal_line(100, 12, 6)
 
@@ -239,6 +250,18 @@ class ReportView():
 
     self.__screen.print('NOTE', 20, 6, Styles.DATA_KEY)
     self.__screen.print(report.note, 21, 6)
+
+  def __approve_handler(self):
+    ''' Mark report as approved. '''
+    try:
+      report: Report = self.llapi.get_param(ReportConst.REPORT_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    report.approved = 'Y'
+    updated_report = self.llapi.update_employee_report(report)
+    self.llapi.set_param(ReportConst.REPORT_PARAM, updated_report)
+    return GlobalConst.BACK
 
 
   def __add_new_handler(self):

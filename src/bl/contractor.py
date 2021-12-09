@@ -1,5 +1,6 @@
 from dlapi import DlApi
 from models.contractor import Contractor
+from models.report import ContractorReport
 from ui.form import Form
 
 class ContractorLogic():
@@ -30,6 +31,12 @@ class ContractorLogic():
   def get_filtered(self, filter):
     contractors = self.dlapi.get_filtered_contractors(filter)
     return [self.add_extras(con) for con in contractors]
+
+  def get_contractor_rating(self, reports: 'list[ContractorReport]'):
+    ratings = [rep.contractor_rating for rep in reports if rep.contractor_rating > 0]
+    if len(ratings) == 0: # We divide by zero, but not here :)
+      return 0
+    return sum(ratings) / len(ratings)
 
   def add_extras(self, contractor: Contractor):
     filter = {'contractor_id': contractor.id}

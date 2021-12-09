@@ -1,7 +1,7 @@
 from llapi import LlApi
 from models.employee import Employee
 from models.location import Location
-from ui.constants import BuildConst, EmpConst, LocConst, ReportConst, SearchConst, Styles, TaskConst
+from ui.constants import BuildConst, ContrConst, EmpConst, LocConst, ReportConst, SearchConst, Styles, TaskConst
 from ui.menu import Menu
 from ui.screen import Screen
 from ui.table import Table
@@ -26,6 +26,8 @@ class SearchView():
       'TASK_BY_ID': self.__task_by_id_handler,
       'TASK_BY_BUILDING': self.__task_by_building_handler,
       'TASK_BY_EMPLOYEE': self.__task_by_emp_handler,
+      'TASK_BY_LOCATION': self.__task_by_loc_handler,
+      'TASK_BY_CONTRACTOR': self.__task_by_contr_handler,
       'REPORT_BY_BUILDING': self.__report_by_build_handler,
       'REPORT_BY_EMPLOYEE': self.__report_by_emp_handler,
     }
@@ -44,26 +46,26 @@ class SearchView():
   
 
   def __menu_handler(self):
-      ''' Displays main menu and returns options for it. '''
-      # Create the main menu and get options as dict
-      menu = Menu(9) # Menu starts in line 9
-      menu.add_menu_item('1', 'SEARCH FOR EMPLOYEES BY LOCATION', SearchConst.EMPLOYEE_BY_LOCATION)
-      menu.add_menu_item('2', 'SEARCH FOR BUILDINGS BY LOCATION', SearchConst.BUILDING_BY_LOCATION)
-      menu.add_menu_item('3', 'SEARCH FOR AN EMPLOYEE BY ID', SearchConst.EMPLOYEE_BY_ID)
-      menu.add_menu_item('4', 'SEARCH FOR A BUILDING BY ID ', SearchConst.BUILDING_BY_ID)
-      menu.add_menu_item('5', 'SEARCH FOR A TASK BY ID', SearchConst.TASK_BY_ID)
-      menu.add_menu_item('6', 'SEARCH FOR TASKS BY BUILDINGS', SearchConst.TASK_BY_BUILDING)
-      menu.add_menu_item('7', 'SEARCH FOR TASKS BY EMPLOYEE', SearchConst.TASK_BY_EMPLOYEE)
-      menu.add_menu_item('8', 'SEARCH FOR REPORTS BY BUILDING', SearchConst.REPORT_BY_BUILDING)
-      menu.add_menu_item('9', 'SEARCH FOR REPORTS BY EMPLOYEE', SearchConst.REPORT_BY_EMPLOYEE)
-      options = menu.get_options()
-      self.__screen.display_menu(menu)
+    ''' Displays main menu and returns options for it. '''
+    text = 'SEARCH MENU'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
+    # Create the main menu and get options as dict
+    menu = Menu(5) # Menu starts in line 9
+    menu.add_menu_item('1', 'SEARCH FOR EMPLOYEES BY LOCATION', SearchConst.EMPLOYEE_BY_LOCATION)
+    menu.add_menu_item('2', 'SEARCH FOR BUILDINGS BY LOCATION', SearchConst.BUILDING_BY_LOCATION)
+    menu.add_menu_item('3', 'SEARCH FOR AN EMPLOYEE BY ID', SearchConst.EMPLOYEE_BY_ID)
+    menu.add_menu_item('4', 'SEARCH FOR A BUILDING BY ID ', SearchConst.BUILDING_BY_ID)
+    menu.add_menu_item('5', 'SEARCH FOR A TASK BY ID', SearchConst.TASK_BY_ID)
+    menu.add_menu_item('6', 'SEARCH FOR TASKS BY BUILDINGS', SearchConst.TASK_BY_BUILDING)
+    menu.add_menu_item('7', 'SEARCH FOR TASKS BY EMPLOYEE', SearchConst.TASK_BY_EMPLOYEE)
+    menu.add_menu_item('8', 'SEARCH FOR REPORTS BY BUILDING', SearchConst.REPORT_BY_BUILDING)
+    menu.add_menu_item('9', 'SEARCH FOR REPORTS BY EMPLOYEE', SearchConst.REPORT_BY_EMPLOYEE)
+    options = menu.get_options()
+    self.__screen.display_menu(menu)
 
-      # Display header text using css class PAGE_HEADER
-      self.__screen.print('SYSTEM SEARCH', 2, 50, 'PAGE_HEADER') # starting from line 2, col 40
-
-      # Return options to uihandler
-      return options
+    # Return options to uihandler
+    return options
 
   def __emp_by_location_handler(self):
     ''' Handler that allows user to select a location from a list.
@@ -145,6 +147,30 @@ class SearchView():
     employee = self.__screen.select_from_table(table, 3, question_text)
     self.llapi.set_param(TaskConst.INPUT_PARAM, employee)
     return TaskConst.FILTER_EMPLOYEE
+
+  def __task_by_loc_handler(self):
+    ''' Handler that allows user to select a location from a list.
+    Available input is either a row number or an available paging option.
+    If wrong row number is selected, an error is displayed and user asked
+    to try again. '''
+    locations = self.llapi.get_all_locations()
+    table = Table(locations, LocConst.TABLE_HEADERS)
+    question_text = 'ENTER NUMBER (#) OF LOCATION'
+    location = self.__screen.select_from_table(table, 3, question_text)
+    self.llapi.set_param(TaskConst.INPUT_PARAM, location)
+    return TaskConst.FILTER_LOCATION
+
+  def __task_by_contr_handler(self):
+    ''' Handler that allows user to select a location from a list.
+    Available input is either a row number or an available paging option.
+    If wrong row number is selected, an error is displayed and user asked
+    to try again. '''
+    contractors = self.llapi.get_all_contractors()
+    table = Table(contractors, ContrConst.TABLE_HEADERS)
+    question_text = 'ENTER NUMBER (#) OF CONTRACTOR'
+    contractor = self.__screen.select_from_table(table, 3, question_text)
+    self.llapi.set_param(TaskConst.INPUT_PARAM, contractor)
+    return TaskConst.FILTER_CONTRACTOR
 
   def __report_by_build_handler(self):
     ''' Handler that allows user to select a location from a list.

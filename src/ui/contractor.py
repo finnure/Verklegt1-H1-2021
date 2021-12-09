@@ -47,7 +47,10 @@ class ContractorView():
 
   def __menu_handler(self):
     ''' Displays Contractor main menu and returns options and connections as a list'''
-    menu = Menu(2, 6)
+    text = 'CONTRACTOR MENU'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
+    menu = Menu(5, 6)
     menu.add_menu_item('I', 'SEARCH FOR CONTRACTOR BY ID', ContrConst.GET_ID)
     menu.add_menu_item('A', 'VIEW ALL CONTRACTORS', ContrConst.LIST_ALL)
     menu.add_menu_item('F', 'VIEW CONTRACTORS BY LOCATION', ContrConst.FILTER_LOCATION)
@@ -136,13 +139,13 @@ class ContractorView():
   def __get_id_handler(self):
     ''' Ask user to enter id of contractor to find. '''
     options = self.__menu_handler()
-    self.__screen.print('PLEASE ENTER ID:', 8, 10)
-    contractor_id = self.__screen.get_string(8, 28, 3, Filters.NUMBERS)
+    self.__screen.print('PLEASE ENTER ID:', 11, 10)
+    contractor_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS)
     contractor = self.llapi.get_contractor(int(contractor_id))
     if contractor is None:
-      self.__screen.print(f'NO CONTRACTOR FOUND WITH ID {contractor_id}', 10, 10, Styles.ERROR)
-      self.__screen.print('PRESS I TO SEARCH AGAIN', 11, 10)
-      self.__screen.paint_character('OPTION', 11, 16)
+      self.__screen.print(f'NO CONTRACTOR FOUND WITH ID {contractor_id}', 13, 10, Styles.ERROR)
+      self.__screen.print('PRESS I TO SEARCH AGAIN', 14, 10)
+      self.__screen.paint_character('OPTION', 14, 16)
       return options
     # Contractor found, clear screen and call view handler to display info
     self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)

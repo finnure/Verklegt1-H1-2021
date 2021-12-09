@@ -8,14 +8,14 @@ class EmployeeReportData():
     self.headers = [
       'id',
       'task_id',
+      'employee_id',
       'report_date',
       'approved',
-      'employee_id',
-      'hours',
       'material_cost',
-      'labor_cost',
       'description',
       'note',
+      'hours',
+      'labor_cost',
       ]
     
     self.data_folder = data_folder
