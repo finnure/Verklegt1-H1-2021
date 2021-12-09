@@ -198,7 +198,7 @@ class TaskView():
     left_column = Menu(12, spacing=16)
     left_column.add_menu_item('START DATE', task.start_date)
     left_column.add_menu_item('END DATE', task.due_date)
-    left_column.add_menu_item('LAST MODIFIED', task.modified)
+    left_column.add_menu_item('LAST MODIFIED', task.modified if task.modified is not None else '')
     left_column.add_menu_item('TASK TYPE', task.type)
     left_column.add_menu_item('RECURRENT', task.recurring.upper())
     if task.recurring.lower().startswith('y'):

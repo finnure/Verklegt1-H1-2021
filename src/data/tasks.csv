@@ -92,3 +92,5 @@ id,short_description,type,estimated_cost,start_date,due_date,modified,priority,b
 190,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-07,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
 191,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-08,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
 192,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-09,2022-01-10,,2,102,100,,y,1,Snúa kubbum,Available
+193,test,test,123,2020-10-10,2020-10-11,,1,100,102,,n,1,test,Available
+194,test,test,123,2021-10-10,2021-10-11,,3,100,102,,n,1,test,Available
