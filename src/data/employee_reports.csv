@@ -7,3 +7,5 @@ id,task_id,employee_id,report_date,approved,material_cost,description,note,hours
 104,143,108,2021-11-10,Y,9650,Fix toilet,Plunger broke so I had to buy a new one,3,10500
 106,145,100,2021-10-15,Y,6950,Build a new fence,Wood and nails needed so I bought them,20,70000
 107,100,123,2021-12-09,N,123,Test,Test,123,123
+108,100,123,2021-12-09,N,0,Kláraði að skúra gólfin,Gerði það rosalega vel,2,0
+109,193,123,2021-12-09,N,100,Skúra gólfin,Gerði það miklu betur,5,2000

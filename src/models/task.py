@@ -35,9 +35,17 @@ class Task():
     self.estimated_cost = estimated_cost
     self.title = title
     self.modified = modified
+    self.reports = []
+    self.building_reg = ''
 
   def __str__(self) -> str:
     return f'TASK - T{self.id}'
+
+  def get_priority_for_csv(self):
+    return ['', 'High', 'Medium', 'Low'].index(self.priority)
+
+  def get_repeats_for_csv(self):
+    return ['', 'Day', 'Week', '28 Days', 'Year'].index(self.repeats_every)
 
   def set_location(self, location):
     self.location = location
@@ -67,9 +75,9 @@ class Task():
       'type': self.type, 
       'start_date': self.start_date, 
       'due_date': self.due_date, 
-      'priority': self.priority, 
+      'priority': self.get_priority_for_csv(), 
       'recurring': self.recurring, 
-      'repeats_every': self.repeats_every, 
+      'repeats_every': self.get_repeats_for_csv(), 
       'estimated_cost': self.estimated_cost, 
       'status': self.status, 
       'modified': self.modified

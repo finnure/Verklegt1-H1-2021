@@ -53,7 +53,7 @@ class Contractor():
   @staticmethod
   def get_new_fields():
     return [
-      FormField('name', 'NAME', None, 1, 64, validators=[Validate.required]),
+      FormField('name', 'NAME', None, 1, 32, validators=[Validate.required]),
       FormField('contact', 'CONTACT', None, 1, 32),
       FormField('phone', 'PHONE', None, 1, 15, Filters.PHONE, validators=[Validate.phone]),
       FormField('openinghours', 'OPENING HOURS', None, 1, 15),
@@ -65,7 +65,7 @@ class Contractor():
     return [
       FormField('id', 'ID', self.id, 1, 3, editable=False),
       FormField('location_id', 'LOCATION ID', self.location_id, 1, 3, editable=False),
-      FormField('name', 'NAME', self.name, 1, 64, validators=[Validate.required]),
+      FormField('name', 'NAME', self.name, 1, 32, validators=[Validate.required]),
       FormField('contact', 'CONTACT', self.contact, 1, 32),
       FormField('phone', 'PHONE', self.phone, 1, 15, Filters.PHONE, validators=[Validate.phone]),
       FormField('openinghours', 'OPENING HOURS', self.openinghours, 1, 15),

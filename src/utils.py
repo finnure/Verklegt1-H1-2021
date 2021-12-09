@@ -22,8 +22,12 @@ class Helpers():
   ''' Helper functions. '''
 
   @staticmethod
-  def format_currency(value: float):
+  def format_currency(value: 'float| str'):
     ''' Returns value formatted as currency. '''
+    try:
+      value = float(value)
+    except ValueError:
+      return value + ' ISK'
     return f'{value:0.1f} ISK'
 
   @staticmethod

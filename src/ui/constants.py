@@ -185,7 +185,7 @@ class ContrConst():
 
   TABLE_HEADERS = {
     'id': 'ID',
-    'location_id': 'LOCATION',
+    'location_city': 'LOCATION',
     'name': 'NAME',
     'speciality': 'SPECIALITY',
     'openinghours': 'OPENING HOURS',

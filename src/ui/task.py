@@ -72,9 +72,6 @@ class TaskView():
     options = menu.get_options()
     options.update(sub_menu.get_options())
 
-    admin_menu = Menu(2, 13, 10)
-    admin_menu.add_menu_item('+', 'ADD NEW', TaskConst.ADMIN_NEW)
-    options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
     self.__screen.display_menu(menu)
     self.__screen.display_menu(sub_menu)
     return options
@@ -93,8 +90,11 @@ class TaskView():
       tasks = self.llapi.get_all_tasks()
       table = Table(tasks, TaskConst.TABLE_HEADERS)
 
+    text = 'TASK LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     # Create and display menu option that allows user to select an item from the list
-    menu = Menu()
+    menu = Menu(5)
     menu.add_menu_item('V', 'SELECT A TASK TO VIEW', TaskConst.SELECT_FROM_LIST)
     self.__screen.display_menu(menu)
 
@@ -106,10 +106,6 @@ class TaskView():
       menu.add_menu_item('P', 'PREVIOUS', GlobalConst.PAGING_PREV)
     options = menu.get_options()
 
-    admin_menu = Menu(2, 13, 10)
-    admin_menu.add_menu_item('+', 'ADD NEW', TaskConst.ADMIN_NEW)
-    options.update(self.__screen.display_admin_menu(admin_menu,self.llapi.user.role))
-    
     # Store table so paging handlers can use paging
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
 
@@ -128,8 +124,11 @@ class TaskView():
       tasks = self.llapi.get_all_tasks()
       table = Table(tasks, TaskConst.TABLE_HEADERS)
 
+    text = 'TASK LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     question_text = 'ENTER NUMBER (#) OF TASK TO VIEW'
-    task = self.__screen.select_from_table(table, 3, question_text)
+    task = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(TaskConst.TASK_PARAM, task)
     return TaskConst.VIEW
 
@@ -157,17 +156,21 @@ class TaskView():
       self.__screen.print('NO TASK FOUND TO DISPLAY', 3, 6, 'ERROR')
       return {}
     menu = Menu(22)
-    menu.add_menu_item('1', 'ASSIGN TO ME', TaskConst.ASSIGN)
-    menu.add_menu_item('2', 'COMPLETE', TaskConst.COMPLETE)
-    menu.add_menu_item('3', 'VIEW REPORTS', ReportConst.FILTER_TASK)
-    menu.add_menu_item('4', 'ADD REPORT', ReportConst.ADMIN_NEW)
-    menu.add_menu_item('5', 'VIEW BUILDING', BuildConst.VIEW)
+    if task.status == 'Available':
+      menu.add_menu_item('1', 'ASSIGN TO ME', TaskConst.ASSIGN)
+    elif task.status == 'Assigned' and len(task.reports) > 0:
+      menu.add_menu_item('1', 'COMPLETE', TaskConst.COMPLETE)
+    menu.add_menu_item('2', 'ADD REPORT', ReportConst.ADMIN_NEW)
+    menu.add_menu_item('3', 'VIEW BUILDING', BuildConst.VIEW)
+    if len(task.reports) > 0:
+      menu.add_menu_item('4', 'VIEW REPORTS', ReportConst.FILTER_TASK)
     options = menu.get_options()
 
     admin_menu = Menu(2, 18)
     admin_menu.add_menu_item('/', 'EDIT TASK', TaskConst.ADMIN_EDIT)
     admin_menu.add_menu_item('+', 'ADD TASK', TaskConst.ADMIN_NEW)
-    admin_menu.add_menu_item('A', 'APPROVE', TaskConst.ADMIN_APPROVE)
+    if task.status == 'Completed':
+      admin_menu.add_menu_item('A', 'APPROVE', TaskConst.ADMIN_APPROVE)
 
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
     
@@ -206,15 +209,16 @@ class TaskView():
         repeats = TaskConst.REPEATS[task.repeats_every]
       except KeyError:
         repeats = task.repeats_every
+
       left_column.add_menu_item('REPEATS EVERY', repeats)
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
     right_column = Menu(12, 46, 14)
-    right_column.add_menu_item('BUILDING', task.recurring.upper())
-    right_column.add_menu_item('EST COST', f'{task.estimated_cost} ISK')
+    right_column.add_menu_item('BUILDING', task.building.registration)
+    right_column.add_menu_item('EST COST', Helpers.format_currency(task.estimated_cost))
     right_column.add_menu_item('EMPLOYEE', task.employee_name if task.employee_id is not None else '')
     right_column.add_menu_item('STATUS', task.status)
-    right_column.add_menu_item('TOTAL COST', f'{self.llapi.calculate_task_cost(task)} ISK')
+    right_column.add_menu_item('TOTAL COST', Helpers.format_currency(self.llapi.calculate_task_cost(task)))
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
     self.__screen.horizontal_line(100, 20, 6)
@@ -355,8 +359,19 @@ class TaskView():
     self.llapi.set_param(TaskConst.TASK_PARAM, task)
     return TaskConst.VIEW
 
+  def __no_task_found(self):
+    self.__screen.clear()
+    self.__screen.print(f'NO TASKS FOUND WITH GIVEN FILTER', 6, 6, Styles.DATA_KEY)
+    self.__screen.refresh()
+    return {}
+
   def __filter_my_active_handler(self):
     tasks = self.llapi.get_tasks_for_employee(self.llapi.user.id, ['assigned'])
+    if len(tasks) == 0:
+      return self.__no_task_found()
+    if len(tasks) == 1:
+      self.llapi.set_param(TaskConst.TASK_PARAM, tasks[0])
+      return TaskConst.VIEW
     table = Table(tasks, TaskConst.TABLE_HEADERS)
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
     return TaskConst.LIST_ALL
@@ -369,6 +384,11 @@ class TaskView():
       return {}
     statuses, from_date, to_date = self.__get_filter_for_task()
     tasks = self.llapi.get_tasks_for_location(loc.id, statuses, from_date, to_date)
+    if len(tasks) == 0:
+      return self.__no_task_found()
+    if len(tasks) == 1:
+      self.llapi.set_param(TaskConst.TASK_PARAM, tasks[0])
+      return TaskConst.VIEW
     table = Table(tasks, TaskConst.TABLE_HEADERS)
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
     return TaskConst.LIST_ALL
@@ -381,6 +401,11 @@ class TaskView():
       return {}
     statuses, from_date, to_date = self.__get_filter_for_task()
     tasks = self.llapi.get_tasks_for_employee(emp.id, statuses, from_date, to_date)
+    if len(tasks) == 0:
+      return self.__no_task_found()
+    if len(tasks) == 1:
+      self.llapi.set_param(TaskConst.TASK_PARAM, tasks[0])
+      return TaskConst.VIEW
     table = Table(tasks, TaskConst.TABLE_HEADERS)
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
     return TaskConst.LIST_ALL
@@ -393,6 +418,11 @@ class TaskView():
       return {}
     statuses, from_date, to_date = self.__get_filter_for_task()
     tasks = self.llapi.get_tasks_for_building(building.id, statuses, from_date, to_date)
+    if len(tasks) == 0:
+      return self.__no_task_found()
+    if len(tasks) == 1:
+      self.llapi.set_param(TaskConst.TASK_PARAM, tasks[0])
+      return TaskConst.VIEW
     table = Table(tasks, TaskConst.TABLE_HEADERS)
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
     return TaskConst.LIST_ALL
@@ -405,6 +435,11 @@ class TaskView():
       return {}
     statuses, from_date, to_date = self.__get_filter_for_task()
     tasks = self.llapi.get_tasks_for_contractor(contractor.id, statuses, from_date, to_date)
+    if len(tasks) == 0:
+      return self.__no_task_found()
+    if len(tasks) == 1:
+      self.llapi.set_param(TaskConst.TASK_PARAM, tasks[0])
+      return TaskConst.VIEW
     table = Table(tasks, TaskConst.TABLE_HEADERS)
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
     return TaskConst.LIST_ALL

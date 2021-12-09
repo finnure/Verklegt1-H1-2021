@@ -7,7 +7,7 @@ from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters
-from ui.constants import AccConst, BuildConst, GlobalConst, LocConst, ReportConst, Styles, TaskConst
+from ui.constants import AccConst, BuildConst, GlobalConst, LocConst, ReportConst, SearchConst, Styles, TaskConst
 
 
 class BuildingView():
@@ -57,6 +57,7 @@ class BuildingView():
     menu = Menu(5, 6)
     menu.add_menu_item('I', 'SEARCH FOR BUILDING BY ID', BuildConst.GET_ID)
     menu.add_menu_item('A', 'VIEW ALL BUILDINGS', BuildConst.LIST_ALL)
+    menu.add_menu_item('F', 'VIEW BUILDINGS BY LOCATION', SearchConst.BUILDING_BY_LOCATION)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)
@@ -79,8 +80,11 @@ class BuildingView():
       buildings = self.llapi.get_all_buildings()
       table = Table(buildings, BuildConst.TABLE_HEADERS)
 
+    text = 'BUILDING LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     # Create and display menu option that allows user to select an item from the list
-    menu = Menu()
+    menu = Menu(5)
     menu.add_menu_item('V', 'SELECT A BUILDING TO VIEW', BuildConst.SELECT_FROM_LIST)
     self.__screen.display_menu(menu)
 
@@ -114,8 +118,11 @@ class BuildingView():
       buildings = self.llapi.get_all_buildings()
       table = Table(buildings, BuildConst.TABLE_HEADERS)
     
+    text = 'BUILDING LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     question_text = 'ENTER NUMBER (#) OF BUILDING TO VIEW'
-    building = self.__screen.select_from_table(table, 3, question_text)
+    building = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(BuildConst.BUILDING_PARAM, building)
     return BuildConst.VIEW
 
