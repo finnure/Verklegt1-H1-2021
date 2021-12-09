@@ -37,7 +37,7 @@ class Task():
     self.modified = modified
 
   def __str__(self) -> str:
-    return f'#{self.id} - {self.type} - {self.status}'
+    return f'TASK - T{self.id}'
 
   def set_location(self, location):
     self.location = location

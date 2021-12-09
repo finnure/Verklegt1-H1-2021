@@ -28,6 +28,9 @@ class TaskView():
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_handler,
       'ADD_NEW': self.__add_new_handler,
+      'ASSIGN': self.__assign_handler,
+      'COMPLETE': self.__complete_handler,
+      'APPROVE': self.__approve_handler,
       'SAVE': self.__save_handler,
       'EDIT': self.__edit_handler,
       'GET_ID': self.__get_id_handler,
@@ -147,16 +150,19 @@ class TaskView():
     except KeyError:
       self.__screen.print('NO TASK FOUND TO DISPLAY', 3, 6, 'ERROR')
       return {}
-    menu = Menu(18)
-    menu.add_menu_item('1', 'VIEW REPORTS', ReportConst.FILTER_TASK)
-    menu.add_menu_item('2', 'VIEW BUILDING INFORMATION', BuildConst.VIEW)
+    menu = Menu(22)
+    menu.add_menu_item('1', 'ASSIGN TO ME', TaskConst.ASSIGN)
+    menu.add_menu_item('2', 'COMPLETE', TaskConst.COMPLETE)
+    menu.add_menu_item('3', 'VIEW REPORTS', ReportConst.FILTER_TASK)
+    menu.add_menu_item('4', 'ADD REPORT', ReportConst.ADMIN_NEW)
+    menu.add_menu_item('5', 'VIEW BUILDING', BuildConst.VIEW)
     options = menu.get_options()
 
     admin_menu = Menu(2, 18)
     admin_menu.add_menu_item('/', 'EDIT TASK', TaskConst.ADMIN_EDIT)
     admin_menu.add_menu_item('+', 'ADD TASK', TaskConst.ADMIN_NEW)
-    admin_menu.add_menu_item('W', 'ADD TASK', TaskConst.ADMIN_NEW)
-    admin_menu.add_menu_item('Y', 'ADD ACCESSORY', AccConst.ADMIN_NEW)
+    admin_menu.add_menu_item('A', 'APPROVE', TaskConst.ADMIN_APPROVE)
+
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
     
     self.__display_one_task(task)
@@ -176,23 +182,74 @@ class TaskView():
     self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
     self.__screen.horizontal_line(50, 3, 34)
 
-    left_column = Menu(5, spacing=10)
-    left_column.add_menu_item('TYPE', task.type)
-    left_column.add_menu_item('PRIORITY', task.priority)
-    left_column.add_menu_item('BULDING', task.building.registration)
-    self.__screen.display_menu(left_column, Styles.DATA_KEY)
-
-    right_column = Menu(5, 46, 14)
-    right_column.add_menu_item('RECCURING', task.recurring)
-    right_column.add_menu_item('STATUS', task.status)
-    right_column.add_menu_item('ACTIVE TASKS', '10')
-    self.__screen.display_menu(right_column, Styles.DATA_KEY)
-
-    self.__screen.print('DESCRIPTION', 10, 6, Styles.DATA_KEY)
+    self.__screen.print('TITLE', 5, 6, Styles.DATA_KEY)
+    self.__screen.print(task.title, 5, 22)
+    self.__screen.print('DESCRIPTION', 7, 6, Styles.DATA_KEY)
     lines = Helpers.get_multiline_string(task.short_description, 50)
     for line, text in enumerate(lines):
-      self.__screen.print(text, 10 + line, 20)
-    self.__screen.horizontal_line(100, 16, 6)
+      self.__screen.print(text, 7 + line, 22)
+
+    left_column = Menu(12, spacing=16)
+    left_column.add_menu_item('START DATE', task.start_date)
+    left_column.add_menu_item('END DATE', task.due_date)
+    left_column.add_menu_item('LAST MODIFIED', task.modified)
+    left_column.add_menu_item('TASK TYPE', task.type)
+    left_column.add_menu_item('RECURRENT', task.recurring.upper())
+    if task.recurring.lower().startswith('y'):
+      try:
+        repeats = TaskConst.REPEATS[task.repeats_every]
+      except KeyError:
+        repeats = task.repeats_every
+      left_column.add_menu_item('REPEATS EVERY', repeats)
+    self.__screen.display_menu(left_column, Styles.DATA_KEY)
+
+    right_column = Menu(12, 46, 14)
+    right_column.add_menu_item('BUILDING', task.recurring.upper())
+    right_column.add_menu_item('EST COST', f'{task.estimated_cost} ISK')
+    right_column.add_menu_item('EMPLOYEE', task.employee_name if task.employee_id is not None else None)
+    right_column.add_menu_item('STATUS', task.status)
+    right_column.add_menu_item('TOTAL COST', f'{self.llapi.calculate_task_cost(task)} ISK')
+    self.__screen.display_menu(right_column, Styles.DATA_KEY)
+
+    self.__screen.horizontal_line(100, 20, 6)
+
+  def __assign_handler(self):
+    ''' Assign task to logged in employee. '''
+    try:
+      task: Task = self.llapi.get_param(TaskConst.TASK_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    task.employee_id = self.llapi.user.id
+    task.status = 'Assigned'
+    updated_task = self.llapi.update_task_property(task)
+    self.llapi.set_param(TaskConst.TASK_PARAM, updated_task)
+    return GlobalConst.BACK
+
+  def __complete_handler(self):
+    ''' Assign task to logged in employee. '''
+    try:
+      task: Task = self.llapi.get_param(TaskConst.TASK_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    task.employee_id = self.llapi.user.id
+    task.status = 'Completed'
+    updated_task = self.llapi.update_task_property(task)
+    self.llapi.set_param(TaskConst.TASK_PARAM, updated_task)
+    return GlobalConst.BACK
+
+  def __approve_handler(self):
+    ''' Assign task to logged in employee. '''
+    try:
+      task: Task = self.llapi.get_param(TaskConst.TASK_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    task.status = 'Approved'
+    updated_task = self.llapi.update_task_property(task)
+    self.llapi.set_param(TaskConst.TASK_PARAM, updated_task)
+    return GlobalConst.BACK
 
   def __add_new_handler(self):
     ''' Handler to display a form to enter data for new Task. '''

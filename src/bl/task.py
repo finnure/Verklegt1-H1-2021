@@ -74,14 +74,13 @@ class TaskLogic():
     return tasks
 
 
-  def add_report_to_task(self):
-    pass
-  
-  def update_task_state(self):
-    pass
+  def update_task_property(self, task: Task):
+    task.modified = Helpers.get_current_date()
+    updated_task = self.dlapi.update_task(task.id, task)
+    return self.add_extras(updated_task)
 
-  def calculate_task_cost(self):
-    pass
+  def calculate_task_cost(self, task: Task):
+    return 0
 
   def add_extras(self, task: Task):
     filter = {'task_id': task.id}

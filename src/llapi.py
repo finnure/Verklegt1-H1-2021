@@ -7,6 +7,7 @@ from models.employee import Employee
 from bl.location import LocationLogic
 from bl.report import ReportLogic
 from bl.task import TaskLogic
+from models.task import Task
 from ui.form import Form
 
 class LlApi():
@@ -189,14 +190,11 @@ class LlApi():
   def get_filtered_tasks(self, filter):
     return self.task_logic.get_filtered(filter)
   
-  def add_report_to_task(self):
-    return self.task_logic.add_report_to_task()
+  def update_task_property(self, task: Task):
+    return self.task_logic.update_task_property(task)
 
-  def update_task_state(self):
-    return self.task_logic.update_task_state()
-
-  def calculate_task_cost(self):
-    return self.task_logic.calculate_task_cost()
+  def calculate_task_cost(self, task: Task):
+    return self.task_logic.calculate_task_cost(task)
 
   def get_tasks_for_building(self, id: int, statuses: 'list[str]' = None, from_date: str = None, to_date: str = None):
     return self.task_logic.get_tasks_for_building(id, statuses, from_date, to_date)
