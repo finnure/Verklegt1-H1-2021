@@ -201,7 +201,6 @@ class LocationView():
     left_column = Menu(7,6,15)
     left_column.add_menu_item('AIRPORT', loc.airport)
     left_column.add_menu_item('OPENING HOURS', loc.opening_hours)
-    left_column.add_menu_item('AIRPORT', loc.airport)
     left_column.add_menu_item('PHONE', loc.phone)
     left_column.add_menu_item('ADDRESS', loc.address)
     self.__screen.display_menu(left_column, Styles.DATA_KEY)

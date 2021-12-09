@@ -410,22 +410,35 @@ Nær öll verk á dagskrá voru kláruð, sum var ákveðið að bíða með þa
 [Heim](#efnisyfirlit)
 
 ## Dagur 17
-- [ ] - framkvæma notendaprófanir með superusers til að staðfesta að A og B kröfur séu tilbúnar
-- [ ] - lagfæra UC fyrir þær kröfur sem vantaði enn að kóða að fullu
-- [ ] - Taka saman C kröfur (ef einhverjar)
-- [ ] - Lagfæringar á kóðanum
-- [ ] - Færa UC ásamt niðrustöðu prófana inn í skýrslu og hverju var breytt (ef einhverju)
-- [ ] - klára handrit fyrir myndband
-- [ ] - Lára: Taka upp voice-over fyrir leiðbeiningamyndband --> senda á Finn
-### Plan dagsins
 
+### Plan dagsins
+- [x] - framkvæma notendaprófanir með superusers til að staðfesta að A og B kröfur séu tilbúnar
+- [x] - Sjá til þess að allar kröfur séu til staðar í Excel áður en þær eru færðar í skýrsluna
+- [x] - lagfæra UC fyrir þær kröfur sem vantaði 
+- [x] - Taka saman C kröfur (ef einhverjar) í Excel
+- [x] - Lagfæringar á kóðanum
+- [x] - Færa UC ásamt niðurstöðu prófana inn í skýrslu og hverju var breytt (ef einhverju)
+- [x] - vinna að handriti fyrir myndband
+- [ ] - Lára: Taka upp voice-over fyrir leiðbeiningamyndband --> fært til þar til kerfið er alveg tilbúið
 ### Framkvæmt í dag
+- Kristín: Notendaprófanir fyrir öll UC, lagfæringar á kóða, buglisti eftir prófanir, uppfæra CSV skrár fyrir kafbátinn - (10 klst)
+- Lára: Notendaprófanir fyrir öll UC, handritagerð, uppfærsla á UC, samantekt á kröfum og kröfulista, lagfæringar í skýrslu - (11 klst)
+Stefán: Retest og yfirferð á niðurstöðum notendaprófana
+Finnur: forritunarvinna 
+ 
+Farið verður í Retest síðar í dag/morgun á aðgerðum sem voru ekki fullkláraðar á mrogun
 
 [Heim](#efnisyfirlit)
 
 ## Dagur 18
 
 ### Plan dagsins
+- [ ] - Lára: Fínpússa handrit
+- [ ] - Lára: Taka upp og klippa leiðbeiningamyndband
+- [ ] - Fínpússa kerfið (útlit/virkni)
+- [ ] - Stefán: Taka skjáskot af ölum view-um í kerfinu og setja inn í skýrslu
+- [ ] - Stefán: uppfæra stöðurit
+- [ ] - Kristín: Sjá til þess að öll gögn séu í skýrslunni (kröfur/UC/rit)
 
 ### Framkvæmt í dag
 

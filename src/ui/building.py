@@ -204,6 +204,7 @@ class BuildingView():
     right_column.add_menu_item('ACTIVE TASKS', str(building.task_count))
     right_column.add_menu_item('UNAPPROVED REPORTS', str(building.size))
     right_column.add_menu_item('ACCESSORIES', str(building.accessory_count))
+    right_column.add_menu_item('SIZE IN M2', str(building.size))
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
     self.__screen.horizontal_line(100, 10, 6)

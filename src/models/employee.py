@@ -53,7 +53,7 @@ class Employee():
   def get_new_fields():
     return [
       FormField('name', 'NAME', None, 1, 32, validators=[Validate.min_length(5)]),
-      FormField('ssn', 'SSN', None, 1, 15, validators=[Validate.ssn]),
+      FormField('ssn', 'SSN', None, 1, 15, Filters.SSN,validators=[Validate.ssn]),
       FormField('phone', 'PHONE', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('mobile', 'MOBILE', None, 1, 32, Filters.PHONE, validators=[Validate.phone]),
       FormField('email', 'E-MAIL', None, 1, 64, validators=[Validate.email]),
