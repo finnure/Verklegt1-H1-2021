@@ -1,6 +1,7 @@
 from dlapi import DlApi
 from models.report import ContractorReport, EmployeeReport, Report
 from ui.form import Form
+from utils import Helpers
 
 class ReportLogic():
 
@@ -9,13 +10,23 @@ class ReportLogic():
 
   def new_employee_report(self, form: Form):
     rep = self.__parse_employee_form(form)
+    rep.report_date = Helpers.get_current_date()
     report = self.dlapi.add_employee_report(rep)
     return self.__add_employee_extras(report)
 
   def new_contractor_report(self, form: Form):
     rep = self.__parse_contractor_form(form)
+    rep.report_date = Helpers.get_current_date()
     report = self.dlapi.add_contractor_report(rep)
     return self.__add_contractor_extras(report)
+
+  def update_employee_property(self, report: EmployeeReport):
+    updated_report = self.dlapi.update_employee_report(report.id, report)
+    return self.__add_employee_extras(updated_report)
+
+  def update_contractor_property(self, report: EmployeeReport):
+    updated_report = self.dlapi.update_contractor_report(report.id, report)
+    return self.__add_contractor_extras(updated_report)
 
   def get(self, id: int):
     report = self.dlapi.get_one_employee_report(id)
@@ -60,10 +71,11 @@ class ReportLogic():
     task = self.dlapi.get_one_task(report.id)
     building = self.dlapi.get_one_building(task.building_id)
     contractor_reports = self.dlapi.get_filtered_contractor_reports({'employee_report_id': report.id})
+    c_reports = [self.__add_contractor_extras(rep) for rep in contractor_reports]
     report.add_employee(employee)
     report.add_task(task)
     report.add_building(building)
-    report.add_contractor_reports(contractor_reports)
+    report.add_contractor_reports(c_reports)
     return report
 
   def __add_contractor_extras(self, report: ContractorReport):

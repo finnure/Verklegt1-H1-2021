@@ -151,11 +151,17 @@ class LlApi():
 
   ##### Report methods ########
 
-  def new_report(self, form: Form):
-    return self.report_logic.new(form)
+  def new_employee_report(self, form: Form):
+    return self.report_logic.new_employee_report(form)
   
-  def update_report(self, form: Form):
-    return self.report_logic.update(form)
+  def new_contractor_report(self, form: Form):
+    return self.report_logic.new_contractor_report(form)
+
+  def update_employee_report(self, form: Form):
+    return self.report_logic.update_employee_property(form)
+  
+  def update_contractor_report(self, form: Form):
+    return self.report_logic.update_contractor_property(form)
 
   def get_report(self, id: int):
     return self.report_logic.get(id)
@@ -166,9 +172,15 @@ class LlApi():
   def get_filtered_reports(self, filter):
     return self.report_logic.get_filtered(filter)
   
-  def add_contractor_to_report(self):
-    return self.report_logic.add_contractor_to_report()
+  def get_contractor_report(self, id: int):
+    return self.report_logic.get(id)
+  
+  def get_all_contractor_reports(self):
+    return self.report_logic.get_all()
 
+  def get_filtered_contractor_reports(self, filter):
+    return self.report_logic.get_filtered(filter)
+  
   def get_reports_for_task(self, task_id: int):
     return self.report_logic.get_reports_for_task(task_id)
 

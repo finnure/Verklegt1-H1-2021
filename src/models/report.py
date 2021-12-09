@@ -5,7 +5,7 @@ class Report():
 
   def __init__(self, id: int,
               report_date: str,
-              approved: bool,
+              approved: str,
               description: str,
               note: str,
               hours: float) -> None:
@@ -15,6 +15,9 @@ class Report():
     self.description = description
     self.note = note
     self.hours = hours
+
+  def __str__(self):
+    return f'REPORT - R{self.id}'
 
   def as_dict(self) -> 'dict[str, str | int]':
     return {
@@ -30,7 +33,7 @@ class ContractorReport(Report):
 
   def __init__(self, id: int, 
                report_date: str,
-               approved: bool,
+               approved: str,
                description: str,
                note: str,
                hours: float,
@@ -75,7 +78,7 @@ class EmployeeReport(Report):
 
   def __init__(self, id: int,
                report_date: str,
-               approved: bool,
+               approved: str,
                description: str,
                note: str,
                hours: float,

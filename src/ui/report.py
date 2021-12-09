@@ -179,30 +179,23 @@ class ReportView():
       return {}
 
     menu = Menu(14)
-    menu.add_menu_item('1', 'VIEW ACTIVE TASKS', TaskConst.FILTER_REPORT)
     menu.add_menu_item('2', 'VIEW LOCATION INFORMATION', LocConst.VIEW)
-    menu.add_menu_item('3', 'VIEW REPORTS', ReportConst.FILTER_REPORT)
 
-    admin_menu = Menu(2, 18)
-    admin_menu.add_menu_item('/', 'EDIT REPORT', ReportConst.ADMIN_EDIT)
-    admin_menu.add_menu_item('+', 'ADD REPORT', ReportConst.ADMIN_NEW)
-    admin_menu.add_menu_item('W', 'ADD TASK', TaskConst.ADMIN_NEW)
-    admin_menu.add_menu_item('Y', 'ADD ACCESSORY', AccConst.ADMIN_NEW)
+    admin_menu = Menu(2, 20)
+    admin_menu.add_menu_item('V', 'APPROVE REPORT', ReportConst.ADMIN_APPROVE)
+    admin_menu.add_menu_item('G', 'RATE CONTRACTOR', ContrConst.RATE)
     
     self.__display_one_report(report)
-    self.__screen.display_menu(menu)
+    #self.__screen.display_menu(menu)
 
     options = menu.get_options()
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
 
-    # Store location so location view gets something to view
-    location = self.llapi.get_location(report.location_id)
-    self.llapi.set_param(LocConst.LOCATION_PARAM, location)
     # Store report in params so other handlers can pick it up to display relative data
     self.llapi.set_param(ReportConst.REPORT_PARAM, report)
     return options
 
-  def __display_one_report(self, report: Report) -> None:
+  def __display_one_report(self, report: EmployeeReport) -> None:
     ''' Displays information about an employee on the screen. '''
 
     # display header info
@@ -210,26 +203,42 @@ class ReportView():
     self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
     self.__screen.horizontal_line(50, 3, 34)
 
+    c_reps = report.contractor_reports
+    if len(c_reps) == 1:
+      contractor = c_reps[0].contractor.name
+    else:
+      contractor = str(len(c_reps))
+    con_fee = sum([rep.contractor_fee for rep in c_reps])
+    total_cost = con_fee + report.material_cost + report.labor_cost
+
     left_column = Menu(5, spacing=14)
-    left_column.add_menu_item('BUILDING', report.type)
-    left_column.add_menu_item('ADDRESS', report.rooms)
-    left_column.add_menu_item('REPORT DATE', report.state)
-    left_column.add_menu_item('TASK TYPE', report.description)
-    left_column.add_menu_item('EMPLOYEE', report.description)
-    left_column.add_menu_item('CONTRACTOR', report.description)
-    left_column.add_menu_item('CONTRACTOR RATING', report.description)
+    left_column.add_menu_item('BUILDING', report.building.registration)
+    left_column.add_menu_item('ADDRESS', report.building.address)
+    left_column.add_menu_item('REPORT DATE', report.report_date)
+    left_column.add_menu_item('TASK TYPE', report.task.type)
+    left_column.add_menu_item('EMPLOYEE', report.employee.name)
+    left_column.add_menu_item('CONTRACTOR', contractor)
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
-    right_column = Menu(5, 46, 20)
-    right_column.add_menu_item('TOTAL MATERIAL COST', str(report.task_count))
-    right_column.add_menu_item('LABOUR COST', str(report.size))
-    right_column.add_menu_item('CONTRACTOR FEE', str(report.accessory_count))
-    right_column.add_menu_item('TOTAL COST', str(report.accessory_count))
-    right_column.add_menu_item('TASK STATUS', str(report.accessory_count))
-    right_column.add_menu_item('REPORT APPROVED', str(report.accessory_count))
+    right_column = Menu(5, 60, 18)
+    right_column.add_menu_item('MATERIAL COST', f'{report.material_cost} {GlobalConst.CURRENCY}')
+    right_column.add_menu_item('LABOUR COST', f'{report.labor_cost} {GlobalConst.CURRENCY}')
+    right_column.add_menu_item('CONTRACTOR FEE', f'{con_fee} {GlobalConst.CURRENCY}')
+    right_column.add_menu_item('TOTAL COST', f'{total_cost} {GlobalConst.CURRENCY}')
+    right_column.add_menu_item('TASK STATUS', report.task.status)
+    right_column.add_menu_item('REPORT APPROVED', report.approved.upper())
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
-    self.__screen.horizontal_line(100, 10, 6)
+    self.__screen.horizontal_line(100, 12, 6)
+
+    self.__screen.print('TASK DESCRIPTION', 14, 6, Styles.DATA_KEY)
+    self.__screen.print(report.task.title, 15, 6)
+
+    self.__screen.print('REPORT DESCRIPTION', 17, 6, Styles.DATA_KEY)
+    self.__screen.print(report.description, 18, 6)
+
+    self.__screen.print('NOTE', 20, 6, Styles.DATA_KEY)
+    self.__screen.print(report.note, 21, 6)
 
 
   def __add_new_handler(self):
@@ -320,15 +329,16 @@ class ReportView():
       form: Form = self.llapi.get_param(ReportConst.FORM_PARAM)
     except KeyError as err:
       # This really shouldn't happen. We'll put this here anyways.
-      self.__screen.print(str(err), 6, 6, Styles.ERROR)
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
       return {}
     try:
-      # Check if form has an id field. If it does, it's an edit operation
-      _ = form['id']
-      report = self.llapi.update_report(form)
+      # Check if form has a task_id field. If it does, it's an EmployeeReport
+      _ = form['task_id']
+      report = self.llapi.new_employee_report(form)
     except StopIteration:
-      # No id present, adding new report
-      report = self.llapi.new_report(form)
+      # No task_id present, it's a ContractorReport
+      contractor_report = self.llapi.new_contractor_report(form)
+      report = self.llapi.get_report(contractor_report.employee_report_id)
     self.llapi.set_param(ReportConst.REPORT_PARAM, report)
     return ReportConst.VIEW
 
