@@ -140,8 +140,8 @@ class ContractorView():
     options = menu.get_options()
 
     admin_menu = Menu(2, 18)
-    admin_menu.add_menu_item('/', 'EDIT CONTRACTOR', ContrConst.ADMIN_EDIT)
-    admin_menu.add_menu_item('+', 'ADD CONTRACTOR', ContrConst.ADMIN_NEW)
+    admin_menu.add_menu_item('/', 'EDIT CONT.', ContrConst.ADMIN_EDIT)
+    admin_menu.add_menu_item('+', 'ADD CONT.', ContrConst.ADMIN_NEW)
     admin_menu.add_menu_item('W', 'ADD TASK', TaskConst.ADMIN_NEW)
     admin_menu.add_menu_item('Y', 'ADD ACCESSORY', AccConst.ADMIN_NEW)
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
