@@ -385,13 +385,13 @@ class TaskView():
     self.__screen.refresh()
     return {}
 
-  def __filter_my_active_handler(self):
+  def __filter_active_handler(self):
     try:
       building: Building = self.llapi.get_param(TaskConst.INPUT_PARAM)
     except KeyError as err:
       self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
       return {}
-    tasks = self.llapi.get_tasks_for_building(building.id, ['active'])
+    tasks = self.llapi.get_tasks_for_building(building.id, ['available', 'assigned'])
     if len(tasks) == 0:
       return self.__no_task_found()
     if len(tasks) == 1:
@@ -401,7 +401,7 @@ class TaskView():
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
     return TaskConst.LIST_ALL
 
-  def __filter_active_handler(self):
+  def __filter_my_active_handler(self):
     tasks = self.llapi.get_tasks_for_employee(self.llapi.user.id, ['assigned'])
     if len(tasks) == 0:
       return self.__no_task_found()
