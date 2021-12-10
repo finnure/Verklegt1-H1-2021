@@ -1,11 +1,10 @@
 Report/ inniheldur skýrsluna og öll hönnunarskjöl
 Code/ inniheldur allan kóðann.
 Code/main.py er aðal forritið
-Keyrið forritið með því að fara inn í Code möppuna og keyra
+Keyrið forritið með því að fara inn í src undir Code möppunni og keyra
 python main.py
 eða
 python3 main.py
-
 Kröfur:
 Mac þarf að keyra forritið í terminal (ekki iTerm, innbyggðu vscode terminal eða öðru)
 Engir auka pakkar í Mac
@@ -36,6 +35,5 @@ Nokkur atriði sem gott er að hafa í huga við notkun kerfisins:
 •	Þegar niðurstöður síunnar eru birtar koma þær í lista þó með þeirri undantekningu að þegar aðeins 
     eitt atriði uppfyllir síunarkröfur opnast það atriði beint en birtist ekki í lista. 
 
-
-Hlekkur á myndband:
+Hlekkur á myndband: https://www.dropbox.com/s/qg8s42niyig7raj/H1_Lei%C3%B0beiningamyndband_NaNAir.mp4?dl=0
 
