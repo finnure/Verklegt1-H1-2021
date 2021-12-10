@@ -9,88 +9,230 @@ skinparam class {
 }
 
 package ViewLayer {
+  Class Table {
+    + data
+    + headers
+    + begin_line
+    + begin_col
+    + max_lines
+    + numerate
+
+    - add_columns()
+    - pages_info()
+    - getitem()
+    - iter()
+    + next_page()
+    + previous_page()
+    + first_page()
+    + last_page()
+
+  }
+  Class TableColumn {
+    + name
+    + rows
+    + max_lines
+    + pages
+    + current_page
+
+    + get_width()
+    + set_position()
+  } 
+
+  Table o-- TableColumn
+
+  Class Form {
+    + instance
+    + form_fields
+    + line
+    + spacing
+
+    - getitem()
+    - iter()
+  }
+  Class FormField {
+    + key
+    + name
+    + value
+    + lines
+    + cols
+    + filter
+    + editable
+    + validators
+    + options
+    + border
+
+    + get_lines()
+    + set_position()
+  } 
+
+  Form o-- FormField
+
+  Class Menu {
+    + start_line
+    + start_col
+    + spacing
+    + menu_items
+
+    + add_menu_item()
+    + get_options()
+    - getitem()
+    - iter()
+  }
+  Class MenuItem {
+    + option
+    + name
+    + connection
+    + role
+
+    - str()
+  }
+
+  Menu o-- MenuItem
+
   Class MainProgram {
     - logged_in_user
     - llapi
   }
   Class ViewFrame <<VL>> {
     - screen: _CursesWindow
-    - current_view
-    - previous_view
-    - available_inputs
+    - llapi
+    - header_menu
+    - foot_menu
 
-    + get_input()
-    + display_frame()
-    + display_header()
-    + display_footer()
+    + print_view()
+    - display_frame()
+    - display_logo()
+    - display_header()
+    - display_footer()
+    - display_logged_in_user()
+    - display_divder_line()
+    - draw_selections()
+    - get_dividers()
   }
   Class LocationView <<VL>> {
-    - menu
-    - form
+    - screen
+    - llapi
 
-    + create_menu()
-    + create_form()
-    + display_menu()
-    + display_view()
-    + display_list_view()
-    + display_form()
+    - create_input_map()
+    - view_location_handler()
+    - list_all_handler()
+    - new_location_handler()
+    - save_location_handler()
+    - edit_location_handler()
+    - find_handler()
+    - select_from_list_handler()
+    - display_one_location()
+    
   }
   Class BuildingView <<VL>> {
-    - menu
-    - form
+    - screen
+    - llapi
 
-    + create_menu()
-    + create_form()
-    + display_menu()
-    + display_view()
-    + display_list_view()
-    + display_form()
+    - create_input_map()
+    - find_handler()
+    - menu_handler()
+    - list_all_handler()
+    - select_from_list_handler()
+    - get_id_handler()
+    - view_handler()
+    - display_one_building()
+    - add_new_handler()
+    - add_accessory_handler()
+    - save_accessory_handler()
+    - edit_handler()
+    - save_handler()
+    - filter_location_handler()
   }
   Class EmployeeView <<VL>> {
-    - menu
-    - form
-
-    + create_menu()
-    + create_form()
-    + display_menu()
-    + display_view()
-    + display_list_view()
-    + display_form()
+    - screen
+    - llapi
+ 
+    - create_input_map()
+    - menu_handler()
+    - view_employee_handler
+    - filter_location_handler()
+    - get_id_handler()
+    - list_all_handler()
+    - select_from_list_handler()
+    - new_employee_handler()
+    - edit_employee_handler()
+    - save_employee_handler()
+    - find_handler()
+    - display_one_employee()
   }
   Class ContractorView <<VL>> {
-    - menu
-    - form
+    - screen
+    - llapi
 
-    + create_menu()
-    + create_form()
-    + display_menu()
-    + display_view()
-    + display_list_view()
-    + display_form()
+    - create_input_map
+    - menu_handler()
+    - list_all_handler()
+    - select_from_list_handler()
+    - select_for_report_handler()
+    - view_handler()
+    - display_one_contractor()
+    - add_new_handler()
+    - save_handler()
+    - edit_handler()
+    - rate_handler()
+    - get_id_handler()
+    - filter_location_handler()
   }
   Class TaskView <<VL>> {
-    - menu
-    - form
+    - screen
+    - llapi
 
-    + create_menu()
-    + create_form()
-    + display_menu()
-    + display_view()
-    + display_list_view()
-    + display_form()
+    - find_handler()
+    - menu_handler()
+    - list_all_handler()
+    - select_from_list_handler()
+    - view_handler()
+    - add_new_handler()
+    - assign_handler()
+    - reject_handler()
+    - complete_handler()
+    - approve_handler()
+    - save_handler()
+    - edit_handler()
+    - get_id_handler()
+    - filter_my_active_handler()
+    - filter_active_handler()
+    - filter_completed_handler()
+    - filter_location_handler()
+    - filter_employee_handler()
+    - filter_building_handler()
+    - filter_contractor_handler()
   }
   Class SearchView <<VL>> {
-    - menu
+    - screen
+    - llapi
 
-    + create_menu()
-    + display_menu()
+    - find_handler()
+    - menu_handler()
+    - emp_by_location_handler()
+    - build_by_location_handler()
+    - contractor_by_location_handler()
+    - contractor_for_report_handler()
+    - emp_by_id_handler()
+    - build_by_id_handler()
+    - task_by_id_handler()
+    - task_by_building_handler()
+    - task_by_emp_handler()
+    - task_by_loc_handler()
+    - task_by_contr_handler()
+    - report_by_build_handler()
+    - reort_by_emp_handler()
   }
   Class LoginView <<VL>> {
-    - form
+    - screen
+    - llapi
 
-    + create_form()
-    + display_form()
+    + display_view()
+    + invalid_input_error()
+    + user_not_found_error()
+    + get_input()
   }
+}
 package LogicLayer {
   Class LLAPI <<API>> {
     - ALL BL CLASSES
@@ -101,7 +243,9 @@ package LogicLayer {
     + update_location()
     + get_location(id)
     + get_all_locations()
-    + add_employee_to_location()
+    + add_extras()
+
+    - parse_form()
   }
   class BuildingLogic <<LL>> {
     + new_building()
@@ -109,23 +253,31 @@ package LogicLayer {
     + get_building(id)
     + get_all_buildings()
     + get_filtered_buildings(filter)
-    + add_accessory_to_building()
-    + get_reports_for_building(filter)
+    + get_buildings_by_location()
+    + add_extras()
+
+    - parse_form()
   }
   class AccessoryLogic <<LL>> {
     + new_accessory()
     + update_accessory()
     + get_accessory(id)
     + get_all_accessories()
-    + get_accessory_by_building(building_id)
+    + get_filtered_accessories()
+    + update_maintainence()
+    + add_extras()
+
+    - parse_form()
   }
   class EmployeeLogic <<LL>> {
     + new_employee()
     + update_employee()
     + get_employee(id)
     + get_all_employees()
-    + get_filtered_employees(filter)
-    + get_reports_for_employee(filter)
+    + get_employee_by_location()
+    + add_extras()
+
+    - parse_form()
   }
   class ContractorLogic <<LL>> {
     + new_contractor()
@@ -134,7 +286,9 @@ package LogicLayer {
     + get_all_contractors()
     + get_filtered_contractors(filter)
     + get_contractor_rating(id)
-    + get_reports_for_contractor(filter)
+    + add_extras()
+
+    - parse_form()
   }
   class TaskLogic <<LL>> {
     + new_task()
@@ -142,17 +296,37 @@ package LogicLayer {
     + get_task(id)
     + get_all_tasks()
     + get_filtered_tasks(filter)
-    + add_report_to_task()
-    + update_task_state()
+    + get_task_for_employee()
+    + get_task_for_building()
+    + get_task_for_location()
+    + get_task_for_contractor()
+    + apply_filters()
+    + update_task_property()
     + calculate_task_cost()
+    + add_extras()
+
+    - parse_form()
   }
   class ReportLogic <<LL>> {
-    + new_report()
-    + update_report()
+    + new_employee_report()
+    + new_contractor_report()
+    + update_empoloyee_report()
+    + update_contractor_report()
+    + update_empoloyee_property()
+    + update_contractor_property()
     + get_report(id)
     + get_all_reports()
     + get_filtered_reports(filter)
-    + add_contractor_to_report()
+    + get_reports_for_task()
+    + get_reports_for_employee()
+    + get_reports_for_contractor()
+    + get_reports_for_building()
+    
+    - add_employee_extras()
+    - add_contractor_extras()
+    - parse_emoployee_form()
+    - parse_contractor_form()
+
   }
 }
 
