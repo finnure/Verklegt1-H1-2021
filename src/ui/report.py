@@ -185,20 +185,23 @@ class ReportView():
       self.__screen.print('NO REPORT FOUND TO DISPLAY', 6, 6, 'ERROR')
       return {}
 
+    menu = Menu(24)
+    menu.add_menu_item('1', 'VIEW TASK', TaskConst.VIEW)
+    options = menu.get_options()
     admin_menu = Menu(2, 20)
     if report.approved.lower() == 'n':
       admin_menu.add_menu_item('V', 'APPROVE REPORT', ReportConst.ADMIN_APPROVE)
     try:
       _ = report.contractor_report
       admin_menu.add_menu_item('G', 'RATE CONTRACTOR', ContrConst.RATE)
-      menu = Menu(24)
-      menu.add_menu_item('1', 'VIEW TASK', TaskConst.VIEW)
     except AttributeError:
       # Report does not have a contractor, no contractor to rate
-      menu = Menu(11)
-      menu.add_menu_item('R', 'ADD CONTRACTOR', SearchConst.CONTRACTOR_FOR_REPORT)
+      rate_menu = Menu(11)
+      rate_menu.add_menu_item('R', 'ADD CONTRACTOR', SearchConst.CONTRACTOR_FOR_REPORT)
+      self.__screen.display_menu(rate_menu)
+      options.update(rate_menu.get_options())
+
     
-    options = menu.get_options()
     self.__screen.display_menu(menu)
     self.__display_one_report(report)
 

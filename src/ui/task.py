@@ -163,7 +163,8 @@ class TaskView():
       menu.add_menu_item('1', 'ASSIGN TO ME', TaskConst.ASSIGN)
     elif task.status == 'Assigned' and len(task.reports) > 0:
       menu.add_menu_item('1', 'COMPLETE', TaskConst.COMPLETE)
-    menu.add_menu_item('2', 'ADD REPORT', ReportConst.ADMIN_NEW)
+    if task.status != 'Approved':
+      menu.add_menu_item('2', 'ADD REPORT', ReportConst.ADMIN_NEW)
     menu.add_menu_item('3', 'VIEW BUILDING', BuildConst.VIEW)
     if len(task.reports) > 0:
       menu.add_menu_item('4', 'VIEW REPORTS', ReportConst.FILTER_TASK)

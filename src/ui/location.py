@@ -42,10 +42,6 @@ class LocationView():
     menu.add_menu_item('3', 'VIEW ALL CONTRACTORS', ContrConst.FILTER_LOCATION)
     options = menu.get_options()
 
-    admin_menu = Menu(2, 13, 10)
-    admin_menu.add_menu_item('/', 'EDIT', LocConst.ADMIN_EDIT)
-    options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
-    
     self.__display_one_location(loc)
     self.__screen.display_menu(menu)
 
@@ -85,10 +81,6 @@ class LocationView():
       menu.add_menu_item('P', 'PREVIOUS', GlobalConst.PAGING_PREV)
     options = menu.get_options()
 
-    admin_menu = Menu(2, 13, 10)
-    admin_menu.add_menu_item('+', 'ADD NEW', LocConst.ADMIN_NEW)
-    options.update(self.__screen.display_admin_menu(admin_menu,self.llapi.user.role))
-    
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
 
     return options
