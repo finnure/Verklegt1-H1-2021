@@ -456,7 +456,18 @@ Morgundagurinn mun fara í að setja upp leiðbeiningamyndbandið með tilbúnu 
 ## Dagur 19
 
 ### Plan dagsins
+[x] - Klára leiðbeiningamyndband
+[x] - Samræma skjáskot (Stefán)
+[x] - Færa myndband youtube/dropbox og setja slóð inn á ReadMe á Git
+[x] - Færa skýrslu yfir á PDF form
+[x] - Færa öll vinnuskjöl í Git Möppuna
+[x] - Skila öllum gögnum í Zip File
+[x] - Fá sér einn kaldan og fagna því að önninni sé lokið! 
 
 ### Framkvæmt í dag
+Finnur: Fín pússun á kóða. Fékk frí til að hella í sig seinni part (2 klst)
+Kristín: Skjalavinna og yfirferð á skýrslu. Fékk frí seinni part til að hella í sig á tónleikum (4 klst)
+Stefán: Skjalavinna, myndir, rit og skila inn verkefni (8 klst)
+Lára: Handrit og leiðbeininga myndbandsgerð (12 klst)
 
 [Heim](#efnisyfirlit)

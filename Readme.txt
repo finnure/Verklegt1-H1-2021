@@ -37,3 +37,4 @@ Nokkur atriði sem gott er að hafa í huga við notkun kerfisins:
 
 Hlekkur á myndband: https://www.dropbox.com/s/qg8s42niyig7raj/H1_Lei%C3%B0beiningamyndband_NaNAir.mp4?dl=0
 
+Skýrslu má finna undir docs möppunni
