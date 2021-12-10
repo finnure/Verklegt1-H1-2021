@@ -1,8 +1,0 @@
-﻿Report ID,Task ID,Building ID,Date,Approved,Task type,Material Cost,Employee,Contractor,Contractor Fee,ContractorRating,Description,Notes,Hours,LabourCost
-100,100,AA999,12/5/2021,N,Maintainance,100000,Aqqaluk Lynge,Nuuk Handymand,60000,4,Spread boron into nuclear furnace,No comments,2,7000
-101,105,AA999,11/15/2021,N,Maintainance,50000,Line Bruun Jensen,,,,Set up christmas decorations,Had to buy more bulbs,10,35000
-102,120,ix-9492 - ix-9502 ,10/1/2021,Y,Maintainance,5000,Bjørk Brimnes,,,,Mow grass and cut weed,No comments,10,35000
-103,125,ix-9492 - ix-9502 ,4/25/2021,Y,Maintainance,6800,Áki Knudsen,,,,Plan lawn mowing and maintainance of mud houses,All good,2,7000
-104,143,ix-2239,11/10/2021,Y,Repair,9650,André Hjaltalin,Demich,500000,4.5,Fix toilet,Plunger broke so I had to buy a new one,3,10500
-105,144,64-3875-6,11/5/2021,N,Maintainance,4850,Nauja Lynge,,,,Paint the apartment,All good,20,70000
-106,145,F959594,10/15/2021,Y,Repair,6950,Jacob Yxa,Svalbard Bygg AS,1000000,4.5,Build a new fence,Wood and nails needed so I bought them,20,70000

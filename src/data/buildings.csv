@@ -1,6 +1,6 @@
 id,registration,location_id,description,state,address,size,rooms,type
-100,F959594,102,Rental house,Good,Vei 217,151,4,House
-101,AA999,102,Submarine hotel,Good,Longyearbyen Harbor 1,5000,80,Submarine
+100,F959594,102,Rental house,Good,Vei 217,150,4,House
+101,AA999-1,102,Submarine hotel reception,Good,Longyearbyen Harbor 1,5000,80,Submarine
 102,64-3900,100,Reception and restaurants,Good,iGloo-Ville,500,1,Reception
 103,64-3901,100,Igloo,Good,iGloo-Ville,35,1,Igloo
 104,64-3902,100,Igloo,Good,iGloo-Ville,35,1,Igloo
@@ -27,4 +27,83 @@ id,registration,location_id,description,state,address,size,rooms,type
 125,ix-9499,101,,Good,Nýggivegur 1,15,1,Mud house
 126,ix-9500,101,,Good,Nýggivegur 1,15,1,Mud house
 127,ix-9501,101,,Good,Nýggivegur 1,15,1,Mud house
-128,202-142,100,Þvottahús með baði,Poor,Norðurogniðurrassgat 12,3,5,Line
+128,AA999-2,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,80,1,Submarine
+129,AA999-3,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,120,1,Submarine
+130,AA999-4,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,100,1,Submarine
+131,AA999-5,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,80,1,Submarine
+132,AA999-6,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,80,1,Submarine
+133,AA999-7,102,Room in submarine hotel,Poor,Longyearbyen Harbor 1,80,1,Submarine
+134,AA999-8,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,80,1,Submarine
+135,AA999-9,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+136,AA999-10,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+137,AA999-11,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+138,AA999-12,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+139,AA999-13,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+140,AA999-14,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+141,AA999-15,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+142,AA999-16,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+143,AA999-17,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+144,AA999-18,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+145,AA999-19,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+146,AA999-20,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+147,AA999-21,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+148,AA999-22,102,Room in submarine hotel,Poor,Longyearbyen Harbor 1,20,1,Submarine
+149,AA999-23,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+150,AA999-24,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+151,AA999-25,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+152,AA999-26,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+153,AA999-27,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+154,AA999-28,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+155,AA999-29,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+156,AA999-30,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+157,AA999-31,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+158,AA999-32,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+159,AA999-33,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+160,AA999-34,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+161,AA999-35,102,Room in submarine hotel,Poor,Longyearbyen Harbor 1,20,1,Submarine
+162,AA999-36,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+163,AA999-37,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+164,AA999-38,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+165,AA999-39,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+166,AA999-40,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+167,AA999-41,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+168,AA999-42,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+169,AA999-43,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+170,AA999-44,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+171,AA999-45,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+172,AA999-46,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+173,AA999-47,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+174,AA999-48,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+175,AA999-49,102,Room in submarine hotel,Poor,Longyearbyen Harbor 1,20,1,Submarine
+176,AA999-50,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+177,AA999-51,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+178,AA999-52,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+179,AA999-53,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+180,AA999-54,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+181,AA999-55,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+182,AA999-56,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,20,1,Submarine
+183,AA999-57,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+184,AA999-58,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+185,AA999-59,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+186,AA999-60,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+187,AA999-61,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+188,AA999-62,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+189,AA999-63,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+190,AA999-64,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+191,AA999-65,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+192,AA999-66,102,Room in submarine hotel,Poor,Longyearbyen Harbor 1,12,1,Submarine
+193,AA999-67,102,Room in submarine hotel,Poor,Longyearbyen Harbor 1,12,1,Submarine
+194,AA999-68,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+195,AA999-69,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+196,AA999-70,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+197,AA999-71,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+198,AA999-72,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+199,AA999-73,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+200,AA999-74,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+201,AA999-75,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+202,AA999-76,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+203,AA999-77,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+204,AA999-78,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+205,AA999-79,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+206,AA999-80,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine
+207,AA999-81,102,Room in submarine hotel,Good,Longyearbyen Harbor 1,12,1,Submarine

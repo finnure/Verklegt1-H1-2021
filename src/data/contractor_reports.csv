@@ -1,9 +1,12 @@
 id,employee_report_id,contractor_id,report_date,approved,contractor_fee,contractor_rating,description,note,hours
-100,100,100,2021-12-05,N,60000,4.0,Spread boron into nuclear furnace,No comments,2.0
-101,105,101,2021-11-15,N,0,4.0,Set up christmas decorations,Had to buy more bulbs,10.0
-102,120,102,2021-10-01,Y,0,0.0,Mow grass and cut weed,No comments,10.0
-103,125,101,2021-04-25,Y,0,0.0,Plan lawn mowing and maintainance of mud houses,All good,2.0
-104,143,100,2021-11-10,Y,500000,4.5,Fix toilet,Plunger broke so I had to buy a new one,3.0
-105,144,102,2021-11-05,N,0,0.0,Paint the apartment,All good,20.0
-106,145,100,2021-10-15,Y,1000000,4.5,Build a new fence,Wood and nails needed so I bought them,20.0
-107,110,108,2021-12-09,N,2000,4,Skipti um ljósaperu,"Braut eina, þurfti að kaupa aðra",2.0
+100,102,100,2017-09-21,N,700000,4.5,Maintainance,No comments,14
+101,100,106,2017-01-23,Y,1000000,1,Repair,Had to buy more bulbs,20
+102,114,103,2017-10-24,Y,350000,1.5,Repair,No comments,7
+103,101,104,2019-08-18,N,950000,3.5,Repair,All good,19
+104,105,106,2019-10-23,N,500000,0.5,Repair,Plunger broke so I had to buy a new one,10
+105,112,106,2019-09-26,N,500000,5,Repair,All good,10
+106,105,101,2017-02-27,N,450000,2.5,Repair,Wood and nails needed so I bought them,9
+107,108,105,2017-10-09,N,850000,1,Maintainance,No comments,17
+108,106,106,2016-06-01,N,650000,3.5,Repair,Had to buy more bulbs,13
+109,108,103,2016-12-13,N,600000,1.5,Repair,No comments,12
+110,104,101,2019-09-24,N,300000,3,Maintainance,All good,6

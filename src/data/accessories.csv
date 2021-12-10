@@ -2,7 +2,7 @@ id,building_id,name,description,state,bought,last_maintained
 100,101,Sauna,Sauna room for guests,Good,2017-04-20,2019-03-18
 101,101,OK-650VV Nuclear furnace,Heating equipment for chilly days,Good,2021-08-18,2021-10-07
 102,101,Gym equipment,Barbells and bumper plates,Bad,2020-04-06,2020-08-21
-103,101,Pool table,"Table, ball, and two ques",Good,2021-02-28,2021-04-03
+103,101,Pool table,"Table. ball, and two ques",Good,2021-02-28,2021-04-03
 104,101,Massage table,Portable massage table,Bad,2017-09-21,2019-12-26
 105,101,Hot tub,Electric hot tub,Good,2017-01-23,2018-01-18
 106,101,Gaming equipment,PCs for gaming,Good,2017-10-24,2018-08-19
@@ -39,4 +39,3 @@ id,building_id,name,description,state,bought,last_maintained
 137,117,PlayStation 5,PlayStation 5 console and 2 joysticks,New,2017-08-22,2019-08-11
 138,117,Xbox One,Xbox One console and 2 joysticks,New,2016-12-18,2019-04-13
 139,117,Nintendo Wii,Nintendo Wii console and 2 joysticks,New,2016-11-02,2017-10-18
-140,100,Sjónvarp,Risastórt,Flatt,2020-10-10,

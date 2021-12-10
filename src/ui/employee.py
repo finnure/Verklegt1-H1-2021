@@ -6,7 +6,7 @@ from utils import Filters
 from llapi import LlApi
 from ui.screen import Screen
 from ui.menu import Menu
-from ui.constants import EmpConst, GlobalConst, ReportConst, Styles, TaskConst
+from ui.constants import EmpConst, GlobalConst, ReportConst, SearchConst, Styles, TaskConst
 
 class EmployeeView():
 
@@ -41,7 +41,7 @@ class EmployeeView():
     menu = Menu(5, 6)
     menu.add_menu_item('I', 'SEARCH FOR A EMPLOYEE BY ID', EmpConst.GET_ID)
     menu.add_menu_item('A', 'VIEW ALL EMPLOYEES', EmpConst.LIST_ALL)
-    menu.add_menu_item('F', 'VIEW EMPLOYEES BY LOCATION', EmpConst.FILTER_LOCATION)
+    menu.add_menu_item('F', 'VIEW EMPLOYEES BY LOCATION', SearchConst.EMPLOYEE_BY_LOCATION)
     options = menu.get_options()
 
     admin_menu = Menu(2, 13, 10)

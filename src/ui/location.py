@@ -69,8 +69,11 @@ class LocationView():
       loc = self.llapi.get_all_locations()
       table = Table(loc, LocConst.TABLE_HEADERS)
 
+    text = 'LOCATION LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     # Create and display menu option that allows user to select an item from the list
-    menu = Menu()
+    menu = Menu(5)
     menu.add_menu_item('V', 'SELECT LOCATION TO VIEW', LocConst.SELECT_FROM_LIST)
     self.__screen.display_menu(menu)
 
@@ -191,8 +194,11 @@ class LocationView():
       locs = self.llapi.get_all_locations()
       table = Table(locs, LocConst.TABLE_HEADERS)
     
+    text = 'LOCATION LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     question_text = 'ENTER NUMBER (#) OF LOCATION TO VIEW'
-    location = self.__screen.select_from_table(table, 3, question_text)
+    location = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(LocConst.LOCATION_PARAM, location)
     return LocConst.VIEW
 

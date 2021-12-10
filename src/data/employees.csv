@@ -1,33 +1,16 @@
 id,location_id,name,ssn,address,phone,mobile,email,role
-100,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-101,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-102,101,Finnur Eiríks,2202785149,Leiðhamrar,58855,84219,klauvi@gmail.co,MANAGER
-103,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-104,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-105,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-106,100,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-107,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-108,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-109,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-110,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-111,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-112,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-113,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-114,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-115,101,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-116,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-117,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-118,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-119,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-120,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-121,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-122,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-123,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-124,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-125,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-126,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-127,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-128,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-129,102,Finnur Eiríksson,2202785149,Leiðhamrar 34,5885522,8421922,klauvi@gmail.com,MANAGER
-130,102,Stefán Óli,adh,fewa,3463,4574,s@nan.is,EMPLOYEE
-131,102,Lára Björk,96734513,Mosó,3687316,45727245,lara@ru.is,EMPLOYEE
+100,102,Jan Jacobsen,1083992942,"Vei 230 12, Longyearbyen, Svalbard",+47 92 09 77 00,+354 777 1337,jan.jacobsen@nanair.is,MANAGER
+101,102,Jacob Yxa,2403759199,"Vei 224 3B, Longyearbyen, Svalbard",+47 92 09 77 01,+354 777 1338,jacob.yxa@nanair.is,EMPLOYEE
+102,102,Nanna Daema,1401784269,"Ivan Starostin st. 109, Barantsburg, Svalbard",+47 92 09 77 02,+354 777 1339,nanna.daema@nanair.is,EMPLOYEE
+103,100,Minik Wallace,1906522433,"Isaajap Aqqutaa 1, 3900, Nuuk, Greenland",+299 34 24 67,+354 777 1361,minik.wallace@nanair.is,MANAGER
+104,100,Aqqaluk Lynge,1411811349,"Qattaaq 44, 3905, Nuuk, Greenland",+299 35 24 66,+354 777 1362,aqqaluk.lynge@nanair.is,EMPLOYEE
+105,100,Nauja Lynge,1006706344,"Qunguleq 3759, 3905, Nuuk, Greenland",+299 31 21 64,+354 777 1363,nauja.lynge@nanair.is,EMPLOYEE
+106,101,Annette Djurhuus,0602898679,"Tjarnardeild 8, 100, Tórshavn, Faroe Islands",+298 772000,+354 777 1381,annette.djurhuus@nanair.is,MANAGER
+107,101,Áki Knudsen,0408644389,"Traðartún 3, 108, Argir, Faroe Islands",+298 617210,+354 777 1381,aki.knudsen@nanair.is,EMPLOYEE
+108,101,André Hjaltalin,0708526993,"Í Lágni 19, 100, Tórshavn, Faroe Islands",+298 661441,+354 777 1382,Andre.hjaltalin@nanair.is,EMPLOYEE
+109,101,Bjørk Brimnes,1707617674,"Torfinsgøta 4, Tórshavn, Faroe Islands",+298 546512,+354 777 1386,bjork.brimnes@nanair.is,EMPLOYEE
+110,101,Filip í Lida,1712587809,"Áarrás 11, Tórshavn, Faroe Islands",+298 819854,+354 777 1377,filip.i.lida@nanair.is,EMPLOYEE
+111,102,Audun Bårdseth,3107795209,"Vei 509.2 H0102, Longyearbyen, Svalbard",+47 23 33 91 00,+354 777 1371,audun.bardseth@nanair.is,EMPLOYEE
+112,102,Siri Wiersen,0604654937,"Sjøområdet, 9170 Longyearbyen",+47 79 02 47 00,+354 777 1370,siri.wiersen@nanair.is,EMPLOYEE
+113,100,Kaspar Mondrup,3007716933,"Issortarfimmut 3, 3900 Nuuk, Greenland",+299 34 95 00,+354 777 1341,kaspar.mondrup@nanair.is,EMPLOYEE
+114,100,Line Bruun Jensen,1604741366,"Tuapannguit 11B, 3905 Nuuk, Greenland",+299 34 96 60,+354 777 1365,line.brun.jensen@nanair.is,EMPLOYEE
