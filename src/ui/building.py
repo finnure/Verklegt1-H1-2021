@@ -136,7 +136,7 @@ class BuildingView():
     ''' Ask user to enter id of building to find. '''
     options = self.__menu_handler()
     self.__screen.print('PLEASE ENTER ID:', 11, 10)
-    building_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS, editing=True)
+    building_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS, editing=True, required=True)
     building = self.llapi.get_building(int(building_id))
     if building is None:
       self.__screen.print(f'NO BUILDING FOUND WITH ID {building_id}', 13, 10, Styles.ERROR)

@@ -166,7 +166,7 @@ class ReportView():
     ''' Ask user to enter id of report to find. '''
     options = self.__menu_handler()
     self.__screen.print('PLEASE ENTER ID:', 8, 10)
-    report_id = self.__screen.get_string(8, 28, 3, Filters.NUMBERS, editing=True)
+    report_id = self.__screen.get_string(8, 28, 3, Filters.NUMBERS, editing=True, required=True)
     report = self.llapi.get_report(int(report_id))
     if report is None:
       self.__screen.print(f'NO REPORT FOUND WITH ID {report_id}', 10, 10, Styles.ERROR)

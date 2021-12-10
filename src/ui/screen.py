@@ -340,7 +340,7 @@ class Screen():
     ''' Listenes to keyboard input and returns character. '''
     return self.__screen.get_wch()
 
-  def get_string(self, line: int, col: int, cols: int = 64, filter: str = Filters.ALL_PRINTABLE, value: str = None, editing: bool = False) -> str:
+  def get_string(self, line: int, col: int, cols: int = 64, filter: str = Filters.ALL_PRINTABLE, value: str = None, editing: bool = False, required: bool = False) -> str:
     ''' Collects input from keyboard and returns as string.
     Only printable characters are allowed by default.
     Terminates on Enter, Tab, Arrow up, Arrow down.
@@ -368,6 +368,9 @@ class Screen():
       except TypeError:
         char = char
       if char in self.string_termination:
+        if required and len(accumulated_string) == 0:
+          self.flash()
+          continue
         # break out of while loop to make sure echo is turned off again and cursor hidden
         break
       elif char in [8, 127, curses.KEY_BACKSPACE]: # backspace
@@ -407,6 +410,7 @@ class Screen():
       if len(accumulated_string) >= cols:
         # max string length reached, break out of while and return string        
         break
+       
     # Reset terminal settings, hide cursor
     curses.curs_set(0)
     # Return list as string

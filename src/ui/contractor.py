@@ -150,7 +150,7 @@ class ContractorView():
     ''' Ask user to enter id of contractor to find. '''
     options = self.__menu_handler()
     self.__screen.print('PLEASE ENTER ID:', 11, 10)
-    contractor_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS)
+    contractor_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS, required=True)
     contractor = self.llapi.get_contractor(int(contractor_id))
     if contractor is None:
       self.__screen.print(f'NO CONTRACTOR FOUND WITH ID {contractor_id}', 13, 10, Styles.ERROR)

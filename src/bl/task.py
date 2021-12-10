@@ -27,6 +27,8 @@ class TaskLogic():
 
   def get(self, id: int):
     task = self.dlapi.get_one_task(id)
+    if task is None:
+      return
     return self.add_extras(task)
 
   def get_all(self):

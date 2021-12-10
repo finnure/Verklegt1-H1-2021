@@ -90,7 +90,7 @@ class EmployeeView():
     ''' Ask user to enter id of employee to find. '''
     options = self.__menu_handler()
     self.__screen.print('PLEASE ENTER ID:', 11, 10)
-    employee_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS, editing=True)
+    employee_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS, editing=True, required=True)
     emp = self.llapi.get_employee(int(employee_id))
     if emp is None:
       self.__screen.print(f'NO EMPLOYEE FOUND WITH ID {employee_id}', 13, 10, Styles.ERROR)

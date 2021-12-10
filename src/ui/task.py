@@ -139,13 +139,13 @@ class TaskView():
   def __get_id_handler(self):
     ''' Ask user to enter id of task to find. '''
     options = self.__menu_handler()
-    self.__screen.print('PLEASE ENTER ID:', 11, 10)
-    task_id = self.__screen.get_string(11, 28, 3, Filters.NUMBERS)
+    self.__screen.print('PLEASE ENTER ID:', 14, 10)
+    task_id = self.__screen.get_string(14, 28, 3, Filters.NUMBERS, required=True)
     task = self.llapi.get_task(int(task_id))
     if task is None:
-      self.__screen.print(f'NO TASK FOUND WITH ID {task_id}', 13, 10, Styles.ERROR)
-      self.__screen.print('PRESS I TO SEARCH AGAIN', 14, 10)
-      self.__screen.paint_character('OPTION', 14, 16)
+      self.__screen.print(f'NO TASK FOUND WITH ID {task_id}', 16, 10, Styles.ERROR)
+      self.__screen.print('PRESS I TO SEARCH AGAIN', 17, 10)
+      self.__screen.paint_character('OPTION', 17, 16)
       return options
     # Task found, clear screen and call view handler to display info
     self.llapi.set_param(TaskConst.TASK_PARAM, task)

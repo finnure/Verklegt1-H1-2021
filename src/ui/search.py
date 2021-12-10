@@ -120,7 +120,7 @@ class SearchView():
   def __emp_by_id_handler(self):
     self.__screen.print('EMPLOYEE SEARCH', 5, 6, Styles.PAGE_HEADER)
     self.__screen.print('PLEASE ENTER AN ID', 7, 6, Styles.DATA_KEY)
-    id = self.__screen.get_string(7, 26, 3, Filters.NUMBERS, editing=True)
+    id = self.__screen.get_string(7, 26, 3, Filters.NUMBERS, editing=True, required=True)
     emp = self.llapi.get_employee(int(id))
     if emp is None:
       self.__screen.print(f'NO EMPLOYEE FOUND WITH ID {id}. PLEASE GO BACK AND TRY AGAIN', 9, 6, Styles.ERROR)
@@ -131,7 +131,7 @@ class SearchView():
   def __build_by_id_handler(self):
     self.__screen.print('BUILDING SEARCH', 5, 6, Styles.PAGE_HEADER)
     self.__screen.print('PLEASE ENTER AN ID', 7, 6, Styles.DATA_KEY)
-    id = self.__screen.get_string(7,26,3, Filters.NUMBERS, editing=True)
+    id = self.__screen.get_string(7,26,3, Filters.NUMBERS, editing=True, required=True)
     building = self.llapi.get_building(int(id))
     if building is None:
       self.__screen.print(f'NO BUILDING FOUND WITH ID {id}. PLEASE GO BACK AND TRY AGAIN', 9, 6, Styles.ERROR)
@@ -142,7 +142,7 @@ class SearchView():
   def __task_by_id_handler(self):
     self.__screen.print('TASK SEARCH', 5, 6, Styles.PAGE_HEADER)
     self.__screen.print('PLEASE ENTER AN ID', 7, 6, Styles.DATA_KEY)
-    id = self.__screen.get_string(7,26,3, Filters.NUMBERS, editing=True)
+    id = self.__screen.get_string(7,26,3, Filters.NUMBERS, editing=True, required=True)
     task = self.llapi.get_task(int(id))
     if task is None:
       self.__screen.print(f'NO TASK FOUND WITH ID {id}. PLEASE GO BACK AND TRY AGAIN', 9, 6, Styles.ERROR)
