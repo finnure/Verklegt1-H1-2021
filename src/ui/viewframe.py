@@ -75,7 +75,7 @@ class ViewFrame():
     ''' Displays information about logged in user in bottom left corner. '''
     menu = Menu(37, 2, 11)
     menu.add_menu_item('NAME', self.llapi.user.name)
-    menu.add_menu_item('LOCATION', str(self.llapi.user.location_city)) # TODO breyta í location
+    menu.add_menu_item('LOCATION', str(self.llapi.user.location_city))
     menu.add_menu_item('ROLE', self.llapi.user.role)
     self.__screen.display_menu(menu, Styles.DATA_KEY)
 

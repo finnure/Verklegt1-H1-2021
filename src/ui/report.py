@@ -296,9 +296,6 @@ class ReportView():
         field.value = self.llapi.user.id
     form_window = self.__screen.display_form(form)
     for field in form:
-      if field.options is not None:
-        # TODO Display options list
-        pass
       if field.editable:
         form_window.edit_form_field(field)
     
@@ -340,9 +337,6 @@ class ReportView():
         field.value = contractor.id
     form_window = self.__screen.display_form(form)
     for field in form:
-      if field.options is not None:
-        # TODO Display options list
-        pass
       if field.editable:
         form_window.edit_form_field(field)
     

@@ -1,4 +1,3 @@
-import sys
 from uihandler import UiHandler
 
 

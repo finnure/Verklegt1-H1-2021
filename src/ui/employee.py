@@ -215,9 +215,6 @@ class EmployeeView():
     form = Form(emp.get_edit_fields())
     form_window = self.__screen.display_form(form)
     for field in form:
-      if field.options is not None:
-        # TODO Display options list
-        pass
       if field.editable:
         form_window.edit_form_field(field)
     

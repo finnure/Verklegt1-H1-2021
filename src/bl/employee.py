@@ -10,31 +10,34 @@ class EmployeeLogic():
     self.dlapi = dlapi
 
   def new(self, form: Form, location_id: int) -> Employee:
-    ''' TODO '''
+    ''' Add new employee. Takes in a form and location id, converts the form to an instance
+    of Employee and sends it to data layer for writing to file. Gets a new Employee object
+    back that is loaded with extras and sent back to View Layer '''
     emp = self.__parse_form(form, location_id)
     employee = self.dlapi.add_employee(emp)
     return self.add_extras(employee)
 
   def update(self, form: Form) -> Employee:
-    ''' TODO '''
+    ''' Creates an instance of Employee from form and sends it to data layer for update.
+    Returns updated Employee loaded with extras '''
     emp = self.__parse_form(form)
     employee = self.dlapi.update_employee(emp.id, emp)
     return self.add_extras(employee)
 
   def get(self, id: int) -> Employee:
-    ''' TODO '''
+    ''' Get one employee by id, loads it with extras and return it. Returns None if nothing was found '''
     employee = self.dlapi.get_one_employee(id)
     if employee is None:
       return
     return self.add_extras(employee)
 
   def get_all(self) -> 'list[Employee]':
-    ''' TODO '''
+    ''' Gets a list of all employees from data layer, loads it with extras and returns a list '''
     employees = self.dlapi.get_all_employees()
     return [self.add_extras(emp) for emp in employees]
 
   def get_employee_by_location(self, location_id: int) -> 'list[Employee]':
-    ''' TODO '''
+    ''' Get a list of employees filtered by location '''
     filter = {'location_id': location_id}
     employees = self.dlapi.get_filtered_employees(filter)
     return [self.add_extras(emp) for emp in employees]
