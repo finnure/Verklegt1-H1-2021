@@ -8,7 +8,7 @@ from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters
-from ui.constants import AccConst, ContrConst, ReportConst, GlobalConst, LocConst, ReportConst, SearchConst, Styles, TaskConst
+from ui.constants import ContrConst, ReportConst, GlobalConst, ReportConst, SearchConst, Styles, TaskConst
 
 class ReportView():
 
@@ -185,25 +185,28 @@ class ReportView():
       self.__screen.print('NO REPORT FOUND TO DISPLAY', 6, 6, 'ERROR')
       return {}
 
-    options = {}
     admin_menu = Menu(2, 20)
     if report.approved.lower() == 'n':
       admin_menu.add_menu_item('V', 'APPROVE REPORT', ReportConst.ADMIN_APPROVE)
     try:
       _ = report.contractor_report
       admin_menu.add_menu_item('G', 'RATE CONTRACTOR', ContrConst.RATE)
+      menu = Menu(24)
+      menu.add_menu_item('1', 'VIEW TASK', TaskConst.VIEW)
     except AttributeError:
       # Report does not have a contractor, no contractor to rate
       menu = Menu(11)
       menu.add_menu_item('R', 'ADD CONTRACTOR', SearchConst.CONTRACTOR_FOR_REPORT)
-      self.__screen.display_menu(menu)
-      options = menu.get_options()
     
+    options = menu.get_options()
+    self.__screen.display_menu(menu)
     self.__display_one_report(report)
 
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
 
     # Store report in params so other handlers can pick it up to display relative data
+    task = self.llapi.get_task(report.task_id)
+    self.llapi.set_param(TaskConst.TASK_PARAM, task)
     self.llapi.set_param(ContrConst.INPUT_PARAM, report)
     self.llapi.set_param(ReportConst.REPORT_PARAM, report)
     self.llapi.set_param(ReportConst.INPUT_PARAM, report)
@@ -369,5 +372,7 @@ class ReportView():
       contractor_report = self.llapi.new_contractor_report(form)
       report = self.llapi.get_report(contractor_report.employee_report_id)
     self.llapi.set_param(ReportConst.REPORT_PARAM, report)
+    task = self.llapi.get_task(report.task_id)
+    self.llapi.set_param(TaskConst.TASK_PARAM, task)
     return ReportConst.VIEW
 

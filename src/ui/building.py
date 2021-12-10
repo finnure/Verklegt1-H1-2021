@@ -29,6 +29,8 @@ class BuildingView():
       'SELECT_FROM_LIST': self.__select_from_list_handler,
       'VIEW': self.__view_handler,
       'ADD_NEW': self.__add_new_handler,
+      'ADD_ACCESSORY': self.__add_accessory_handler,
+      'SAVE_ACCESSORY': self.__save_accessory_handler,
       'SAVE': self.__save_handler,
       'EDIT': self.__edit_handler,
       'GET_ID': self.__get_id_handler,
@@ -74,11 +76,14 @@ class BuildingView():
     try:
       table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
       if not isinstance(table.data[0], Building):
-        raise KeyError
+        table: Table = self.llapi.get_param(BuildConst.TABLE_PARAM)
     except (KeyError, IndexError):
       # First call to list. If table is not None, paging is being used
       buildings = self.llapi.get_all_buildings()
       table = Table(buildings, BuildConst.TABLE_HEADERS)
+
+    # Clear accessory table so next view gets a new accessory list
+    self.llapi.delete_param(AccConst.TABLE_PARAM)
 
     text = 'BUILDING LIST'
     self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
@@ -102,6 +107,7 @@ class BuildingView():
     
     # Store table so paging handlers can use paging
     self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    self.llapi.set_param(BuildConst.TABLE_PARAM, table)
 
     return options
 
@@ -152,14 +158,16 @@ class BuildingView():
     try:
       table: Table = self.llapi.get_param(GlobalConst.TABLE_PARAM)
       if not isinstance(table.data[0], Accessory):
-        raise KeyError
+        table = self.llapi.get_param(AccConst.TABLE_PARAM)
     except (KeyError, IndexError):
       # If table is not available or is not an Accessory table, create new table
       accessories = self.llapi.get_accessories_for_building(building.id)
-      table = Table(accessories, AccConst.TABLE_HEADERS, 14, 6, 8, False)
+      table = Table(accessories, AccConst.TABLE_HEADERS, 18, 6, 6, False)
+    # delete building table to clear filter on it if any
+    self.llapi.delete_param(BuildConst.TABLE_PARAM)
 
-    menu = Menu(14)
-    menu.add_menu_item('1', 'VIEW ACTIVE TASKS', TaskConst.FILTER_BUILDING)
+    menu = Menu(12)
+    menu.add_menu_item('1', 'VIEW ACTIVE TASKS', TaskConst.FILTER_ACTIVE)
     menu.add_menu_item('2', 'VIEW LOCATION INFORMATION', LocConst.VIEW)
     menu.add_menu_item('3', 'VIEW REPORTS', ReportConst.FILTER_BUILDING)
 
@@ -167,20 +175,21 @@ class BuildingView():
     admin_menu.add_menu_item('/', 'EDIT BUILDING', BuildConst.ADMIN_EDIT)
     admin_menu.add_menu_item('+', 'ADD BUILDING', BuildConst.ADMIN_NEW)
     admin_menu.add_menu_item('W', 'ADD TASK', TaskConst.ADMIN_NEW)
-    admin_menu.add_menu_item('Y', 'ADD ACCESSORY', AccConst.ADMIN_NEW)
+    admin_menu.add_menu_item('Y', 'ADD ACCESSORY', AccConst.ADD)
     
     self.__display_one_building(building)
     self.__screen.display_menu(menu)
 
     if building.accessory_count > 0:
       # Only display accessories if they exist
-      self.__screen.print('ACCESSORIES', 12, 6, Styles.DATA_KEY)
+      self.__screen.print('ACCESSORIES', 16, 6, Styles.DATA_KEY)
       paging_options = self.__screen.display_table(table)
       if 'N' in paging_options:
         menu.add_menu_item('N', 'NEXT', GlobalConst.PAGING_NEXT)
       if 'P' in paging_options:
         menu.add_menu_item('P', 'PREVIOUS', GlobalConst.PAGING_PREV)
       self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+      self.llapi.set_param(AccConst.TABLE_PARAM, table)
 
     options = menu.get_options()
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
@@ -191,6 +200,7 @@ class BuildingView():
     # Store building in params so other handlers can pick it up to display relative data
     self.llapi.set_param(BuildConst.BUILDING_PARAM, building)
     self.llapi.set_param(TaskConst.INPUT_PARAM, building)
+    self.llapi.set_param(ReportConst.INPUT_PARAM, building)
     self.llapi.set_param(AccConst.INPUT_PARAM, building)
     return options
 
@@ -244,6 +254,39 @@ class BuildingView():
     self.__screen.display_menu(menu)
     return menu.get_options()
 
+  def __add_accessory_handler(self):
+    ''' Handler to display a form to enter data for new Building. '''
+    try:
+      building = self.llapi.get_param(AccConst.INPUT_PARAM)
+    except KeyError:
+      self.__screen.print('NO BUILDING FOUND TO ADD ACCESSORY TO', 6, 6, Styles.ERROR)
+      return {}
+    self.__screen.print('ADD ACCESSORY TO BUILDING', 2, 50, Styles.PAGE_HEADER)
+    self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW ACCESSORY', 5, 6, Styles.DATA_KEY)
+    self.__screen.refresh()
+    form = Form(Accessory.get_new_fields())
+    for field in form:
+      if field.key == 'building_id':
+        field.value = building.id
+    form_window = self.__screen.display_form(form)
+    for field in form:
+      if field.options is not None:
+        # TODO Display options list
+        pass
+      if field.editable:
+        form_window.edit_form_field(field)
+    
+    # Save form in params so the save handler can pick it up and save data to disk
+    self.llapi.set_param(AccConst.FORM_PARAM, form)
+
+    # Delete outdated message and display menu options
+    self.__screen.delete_character(5, 6, 50)
+    menu = Menu(18)
+    menu.add_menu_item('A', 'APPLY CHANGES', AccConst.SAVE)
+    menu.add_menu_item('D', 'DISCARD CHANGES', BuildConst.MENU)
+    self.__screen.display_menu(menu)
+    return menu.get_options()
+
   def __edit_handler(self):
     ''' Handler to display a form to edit Building. '''
     try:
@@ -292,6 +335,27 @@ class BuildingView():
     except StopIteration:
       # No id present, adding new building
       building = self.llapi.new_building(form)
+    self.llapi.set_param(BuildConst.BUILDING_PARAM, building)
+    return BuildConst.VIEW
+
+  def __save_accessory_handler(self):
+    ''' After adding new or editing an building, this handler will save to disk
+    if user chooses to apply changes. '''
+    try:
+      form: Form = self.llapi.get_param(AccConst.FORM_PARAM)
+    except KeyError as err:
+      # This really shouldn't happen. We'll put this here anyways.
+      self.__screen.print(str(err), 6, 6, Styles.ERROR)
+      return {}
+    try:
+      # Check if form has an id field. If it does, it's an edit operation
+      _ = form['id']
+      accessory = self.llapi.update_accessory(form)
+    except StopIteration:
+      # No id present, adding new accessory
+      accessory = self.llapi.new_accessory(form)
+    building = self.llapi.get_building(accessory.building_id)
+    self.llapi.delete_param(AccConst.TABLE_PARAM)
     self.llapi.set_param(BuildConst.BUILDING_PARAM, building)
     return BuildConst.VIEW
 

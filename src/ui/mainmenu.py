@@ -40,7 +40,7 @@ class MainMenuView():
 
     # Create admin menu, displayed in top right corner
     admin_menu = Menu(2, 20) # Menu starts in line 2, options are 20 cols from right edge
-    admin_menu.add_menu_item('R', 'ACTIVE REPORTS', ReportConst.ADMIN_ACTIVE)
+    admin_menu.add_menu_item('R', 'COMPLETED TASKS', TaskConst.FILTER_COMPLETED)
     # Display admin menu if user role is MANAGER, and update options with displayed admin options
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
 

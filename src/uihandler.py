@@ -179,7 +179,7 @@ class UiHandler():
       # View calling another view directly
       if options == GlobalConst.BACK:
         return self.find_connection(self.breadcrumb.pop())
-      self.breadcrumb.append(self.current_view)
+      #self.breadcrumb.append(self.current_view)
       self.current_view = options
       return self.find_connection(options)
     return options

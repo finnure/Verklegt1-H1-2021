@@ -47,6 +47,11 @@ class LlApi():
     if key not in self.params:
       raise KeyError(f'No data available for key {key}')
     return self.params[key]
+
+  def delete_param(self, key: str):
+    if key not in self.params:
+      return
+    self.params.pop(key)
   
   ##### Building methods ########
 
@@ -76,8 +81,8 @@ class LlApi():
 
   ##### Accessory methods ########
 
-  def new_accessory(self, form: Form, building_id):
-    return self.accessory_logic.new(form, building_id)
+  def new_accessory(self, form: Form):
+    return self.accessory_logic.new(form)
 
   def update_accessory(self, form: Form):
     return self.accessory_logic.update(form)

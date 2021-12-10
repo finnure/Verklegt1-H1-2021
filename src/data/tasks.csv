@@ -1,9 +1,8 @@
 id,short_description,type,estimated_cost,start_date,due_date,modified,priority,building_id,location_id,employee_id,recurring,repeats_every,title,status
-143,Toilet is overflooding needs to be fixed asap,Repair,180000,2021-11-10,2021-11-10,2021-12-09,3,117,101,108,N,0,Fix toilet,Approved
 144,All rooms in the apartment need to be painted ,Maintainance,800000,2021-11-20,2021-11-05,21.11.2021,1,113,100,105,N,0,Paint the apartment,Completed
 100,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-11-30,2021-12-05,2021-12-09,1,101,102,123,Y,2,Spread boron into nuclear furnace,Approved
 101,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-06,2021-06-12,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
-140,A window in the kitchen is broken and needs to be fixed asap,Repair,45000,2021-12-10,2021-12-10,,1,100,102,,N,0,Fix broken window,Available
+140,A window in the kitchen is broken and needs to be fixed asap,Repair,45000,2021-12-10,2021-12-10,2021-12-09,1,100,102,130,N,0,Fix broken window,Completed
 102,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-13,2021-12-19,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
 141,The front door needs to be removed and a new one installed in place,Repair,210000,2021-12-13,2021-12-13,,1,116,101,110,N,0,Replace front door,Assigned
 103,Every week boron must be spread into the nuclear furnace. Necessary equipment is a protective suit,Maintainance,50000,2021-12-20,2021-12-26,,1,101,102,104,Y,2,Spread boron into nuclear furnace,Assigned
@@ -54,6 +53,7 @@ id,short_description,type,estimated_cost,start_date,due_date,modified,priority,b
 120,During the timeframe May 1st and Septemeber 30th grass and weed on the mud house's roofs must be cut and cleaned,Maintainance,150000,2021-09-25,2021-10-01,10.11.2021,3,118,101,109,Y,2,Mow grass and cut weed of the mud houses' roofs,Approved
 194,test,test,123,2021-10-10,2021-10-11,,3,100,102,,n,1,test,Available
 105,Each year christmas decorations have to be set up at Hotel Alkula,Maintainance,750000,2021-11-01,2021-11-15,18.11.2021,3,101,102,114,Y,4,Put up christmas decorations,Completed
+143,Toilet is overflooding needs to be fixed asap,Repair,180000,2021-11-10,2021-11-10,2021-12-09,3,117,101,108,N,0,Fix toilet,Approved
 189,Vegna leka þarf að snúa kubbum svo leki í hina áttina,Snúsnú,100,2022-01-06,2022-01-10,2021-12-09,3,102,100,,y,1,Snúa kubbum,Available
 110,Each year christmas decorations have to be taken down at Hotel Alkula,Maintainance,500000,2022-01-10,2022-01-24,,3,101,102,114,Y,4,Take down christmas decorations,Assigned
 126,Plan lawn mowing and maintainance of the mud houses' roofs that must be preformed each week during May 1st to September 30th,Maintainance,10000,2022-04-01,2022-04-25,,3,118,101,,Y,4,Plan lawn mowing and maintainance of mud houses,Available

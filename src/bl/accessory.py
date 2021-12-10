@@ -8,8 +8,8 @@ class AccessoryLogic():
   def __init__(self, dlapi: DlApi) -> None:
     self.dlapi = dlapi
 
-  def new(self, form: Form, building_id: int):
-    acc = self.__parse_form(form, building_id)
+  def new(self, form: Form):
+    acc = self.__parse_form(form)
     accessory = self.dlapi.add_accessory(acc)
     return self.add_extras(accessory)
 
@@ -42,17 +42,15 @@ class AccessoryLogic():
     accessory.set_building(building)
     return accessory
 
-  def __parse_form(self, form: Form, building_id: int = None) -> Accessory:
+  def __parse_form(self, form: Form) -> Accessory:
     ''' Returns instance of Accessory if everything is ok. '''
     try:
       id = form['id']
     except StopIteration:
       id = 0
-    if building_id is None:
-      building_id = form['building_id']
     return Accessory(
         id, 
-        building_id,
+        form['building_id'],
         form['name'],
         form['description'],
         form['state'],

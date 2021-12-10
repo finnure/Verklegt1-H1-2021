@@ -29,12 +29,15 @@ class TaskView():
       'VIEW': self.__view_handler,
       'ADD_NEW': self.__add_new_handler,
       'ASSIGN': self.__assign_handler,
+      'REJECT': self.__reject_handler,
       'COMPLETE': self.__complete_handler,
       'APPROVE': self.__approve_handler,
       'SAVE': self.__save_handler,
       'EDIT': self.__edit_handler,
       'GET_ID': self.__get_id_handler,
       'FILTER_MY_ACTIVE': self.__filter_my_active_handler,
+      'FILTER_ACTIVE': self.__filter_active_handler,
+      'FILTER_COMPLETED': self.__filter_completed_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
       'FILTER_EMPLOYEE': self.__filter_employee_handler,
       'FILTER_BUILDING': self.__filter_building_handler,
@@ -172,6 +175,7 @@ class TaskView():
     admin_menu.add_menu_item('+', 'ADD TASK', TaskConst.ADMIN_NEW)
     if task.status == 'Completed':
       admin_menu.add_menu_item('A', 'APPROVE', TaskConst.ADMIN_APPROVE)
+      admin_menu.add_menu_item('X', 'REJECT', TaskConst.ADMIN_REJECT)
 
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
     
@@ -234,6 +238,18 @@ class TaskView():
       self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
       return {}
     task.employee_id = self.llapi.user.id
+    task.status = 'Assigned'
+    updated_task = self.llapi.update_task_property(task)
+    self.llapi.set_param(TaskConst.TASK_PARAM, updated_task)
+    return GlobalConst.BACK
+
+  def __reject_handler(self):
+    ''' Assign task to logged in employee. '''
+    try:
+      task: Task = self.llapi.get_param(TaskConst.TASK_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
     task.status = 'Assigned'
     updated_task = self.llapi.update_task_property(task)
     self.llapi.set_param(TaskConst.TASK_PARAM, updated_task)
@@ -369,7 +385,34 @@ class TaskView():
     return {}
 
   def __filter_my_active_handler(self):
+    try:
+      building: Building = self.llapi.get_param(TaskConst.INPUT_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    tasks = self.llapi.get_tasks_for_building(building.id, ['active'])
+    if len(tasks) == 0:
+      return self.__no_task_found()
+    if len(tasks) == 1:
+      self.llapi.set_param(TaskConst.TASK_PARAM, tasks[0])
+      return TaskConst.VIEW
+    table = Table(tasks, TaskConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return TaskConst.LIST_ALL
+
+  def __filter_active_handler(self):
     tasks = self.llapi.get_tasks_for_employee(self.llapi.user.id, ['assigned'])
+    if len(tasks) == 0:
+      return self.__no_task_found()
+    if len(tasks) == 1:
+      self.llapi.set_param(TaskConst.TASK_PARAM, tasks[0])
+      return TaskConst.VIEW
+    table = Table(tasks, TaskConst.TABLE_HEADERS)
+    self.llapi.set_param(GlobalConst.TABLE_PARAM, table)
+    return TaskConst.LIST_ALL
+
+  def __filter_completed_handler(self):
+    tasks = self.llapi.get_tasks_for_location(self.llapi.user.location_id, ['completed'])
     if len(tasks) == 0:
       return self.__no_task_found()
     if len(tasks) == 1:

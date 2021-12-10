@@ -40,19 +40,21 @@ class Accessory():
   @staticmethod
   def get_new_fields():
     return [
+      FormField('building_id', 'BUILDING ID', None, 1, 3, editable=False),
       FormField('name', 'NAME', None, 1, 64),
       FormField('description', 'DESCRIPTION', None, 1, 64),
-      FormField('state', 'STATE', None, 1, 64),
-      FormField('bought', 'BOUGHT', None, 1, 15, Filters.DATE, validators=[Validate.date]),
-      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 15, Filters.DATE, validators=[Validate.date]),
+      FormField('state', 'STATE', None, 1, 10),
+      FormField('bought', 'BOUGHT', None, 1, 10, Filters.DATE, validators=[Validate.date]),
+      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 10, Filters.DATE, validators=[Validate.date]),
     ]
 
   def get_edit_fields(self):
     return [
-      FormField('id', 'ID', None, 1, 3, editable=False),
-      FormField('name', 'NAME', None, 1, 64),
-      FormField('description', 'DESCRIPTION', None, 1, 64),
-      FormField('state', 'STATE', None, 1, 64),
-      FormField('bought', 'BOUGHT', None, 1, 15, Filters.DATE, validators=[Validate.date]),
-      FormField('last_maintained', 'LAST MAINTAINED', None, 1, 15, Filters.DATE, validators=[Validate.date]),
+      FormField('id', 'ID', self.id, 1, 3, editable=False),
+      FormField('building_id', 'BUILDING ID', self.building_id, 1, 3, editable=False),
+      FormField('name', 'NAME', self.name, 1, 64),
+      FormField('description', 'DESCRIPTION', self.description, 1, 64),
+      FormField('state', 'STATE', self.state, 1, 10),
+      FormField('bought', 'BOUGHT', self.bought, 1, 15, Filters.DATE, validators=[Validate.date]),
+      FormField('last_maintained', 'LAST MAINTAINED', self.last_maintained, 1, 15, Filters.DATE, validators=[Validate.date]),
     ]
