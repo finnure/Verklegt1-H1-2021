@@ -423,8 +423,8 @@ Nær öll verk á dagskrá voru kláruð, sum var ákveðið að bíða með þa
 ### Framkvæmt í dag
 - Kristín: Notendaprófanir fyrir öll UC, lagfæringar á kóða, buglisti eftir prófanir, uppfæra CSV skrár fyrir kafbátinn - (10 klst)
 - Lára: Notendaprófanir fyrir öll UC, handritagerð, uppfærsla á UC, samantekt á kröfum og kröfulista, lagfæringar í skýrslu - (11 klst)
-Stefán: Retest og yfirferð á niðurstöðum notendaprófana
-Finnur: forritunarvinna 
+Stefán: Retest og yfirferð á niðurstöðum notendaprófana (6 klst)
+Finnur: forritunarvinna (12 klst)
  
 Farið verður í Retest síðar í dag/morgun á aðgerðum sem voru ekki fullkláraðar á mrogun
 
@@ -442,6 +442,14 @@ Farið verður í Retest síðar í dag/morgun á aðgerðum sem voru ekki fullk
 - [x] - Kristín: Sjá til þess að öll gögn séu í skýrslunni (kröfur/UC/rit)
 
 ### Framkvæmt í dag
+Öll verk á to do lista voru framkvæmd og lögð lokahönd á virkni kerfisins.
+
+Morgundagurinn mun fara í að setja upp leiðbeiningamyndbandið með tilbúnu kerfi og klippa saman ásamt því að færa allt á viðeigandi format til þess að skila verkefninu
+
+- Finnur: Forritun (14 klst)
+- Kristín: skjalavinna (__ klst)
+- Stefán: skjalavinna, myndir og rit ( 8 klst)
+- Lára: Handrit og leiðbeiningagerð (10 klst)
 
 [Heim](#efnisyfirlit)
 
