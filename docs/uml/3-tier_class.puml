@@ -101,7 +101,9 @@ package LogicLayer {
     + update_location()
     + get_location(id)
     + get_all_locations()
-    + add_employee_to_location()
+    + add_extras()
+
+    - parse_form()
   }
   class BuildingLogic <<LL>> {
     + new_building()
@@ -109,23 +111,31 @@ package LogicLayer {
     + get_building(id)
     + get_all_buildings()
     + get_filtered_buildings(filter)
-    + add_accessory_to_building()
-    + get_reports_for_building(filter)
+    + get_buildings_by_location()
+    + add_extras()
+
+    - parse_form()
   }
   class AccessoryLogic <<LL>> {
     + new_accessory()
     + update_accessory()
     + get_accessory(id)
     + get_all_accessories()
-    + get_accessory_by_building(building_id)
+    + get_filtered_accessories()
+    + update_maintainence()
+    + add_extras()
+
+    - parse_form()
   }
   class EmployeeLogic <<LL>> {
     + new_employee()
     + update_employee()
     + get_employee(id)
     + get_all_employees()
-    + get_filtered_employees(filter)
-    + get_reports_for_employee(filter)
+    + get_employee_by_location()
+    + add_extras()
+
+    - parse_form()
   }
   class ContractorLogic <<LL>> {
     + new_contractor()
@@ -134,7 +144,9 @@ package LogicLayer {
     + get_all_contractors()
     + get_filtered_contractors(filter)
     + get_contractor_rating(id)
-    + get_reports_for_contractor(filter)
+    + add_extras()
+
+    - parse_form()
   }
   class TaskLogic <<LL>> {
     + new_task()
@@ -142,17 +154,37 @@ package LogicLayer {
     + get_task(id)
     + get_all_tasks()
     + get_filtered_tasks(filter)
-    + add_report_to_task()
-    + update_task_state()
+    + get_task_for_employee()
+    + get_task_for_building()
+    + get_task_for_location()
+    + get_task_for_contractor()
+    + apply_filters()
+    + update_task_property()
     + calculate_task_cost()
+    + add_extras()
+
+    - parse_form()
   }
   class ReportLogic <<LL>> {
-    + new_report()
-    + update_report()
+    + new_employee_report()
+    + new_contractor_report()
+    + update_empoloyee_report()
+    + update_contractor_report()
+    + update_empoloyee_property()
+    + update_contractor_property()
     + get_report(id)
     + get_all_reports()
     + get_filtered_reports(filter)
-    + add_contractor_to_report()
+    + get_reports_for_task()
+    + get_reports_for_employee()
+    + get_reports_for_contractor()
+    + get_reports_for_building()
+    
+    - add_employee_extras()
+    - add_contractor_extras()
+    - parse_emoployee_form()
+    - parse_contractor_form()
+
   }
 }
 
