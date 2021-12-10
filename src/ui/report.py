@@ -8,7 +8,7 @@ from ui.form import Form
 from ui.table import Table
 from ui.menu import Menu
 from utils import Filters
-from ui.constants import AccConst, ContrConst, ReportConst, GlobalConst, LocConst, ReportConst, Styles, TaskConst
+from ui.constants import AccConst, ContrConst, ReportConst, GlobalConst, LocConst, ReportConst, SearchConst, Styles, TaskConst
 
 class ReportView():
 
@@ -116,8 +116,11 @@ class ReportView():
       reports = self.llapi.get_all_reports()
       table = Table(reports, ReportConst.TABLE_HEADERS)
 
+    text = 'REPORT LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     # Create and display menu option that allows user to select an item from the list
-    menu = Menu()
+    menu = Menu(5)
     menu.add_menu_item('V', 'SELECT A REPORT TO VIEW', ReportConst.SELECT_FROM_LIST)
     self.__screen.display_menu(menu)
 
@@ -151,8 +154,11 @@ class ReportView():
       reports = self.llapi.get_all_reports()
       table = Table(reports, ReportConst.TABLE_HEADERS)
     
+    text = 'REPORT LIST'
+    self.__screen.print(text, 2, 59 - (len(text) // 2), 'PAGE_HEADER')
+    self.__screen.horizontal_line(50, 3, 34)
     question_text = 'ENTER NUMBER (#) OF REPORT TO VIEW'
-    report = self.__screen.select_from_table(table, 3, question_text)
+    report = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(ReportConst.REPORT_PARAM, report)
     return ReportConst.VIEW
 
@@ -179,9 +185,7 @@ class ReportView():
       self.__screen.print('NO REPORT FOUND TO DISPLAY', 6, 6, 'ERROR')
       return {}
 
-    menu = Menu(14)
-    menu.add_menu_item('2', 'VIEW LOCATION INFORMATION', LocConst.VIEW)
-
+    options = {}
     admin_menu = Menu(2, 20)
     if report.approved.lower() == 'n':
       admin_menu.add_menu_item('V', 'APPROVE REPORT', ReportConst.ADMIN_APPROVE)
@@ -190,17 +194,19 @@ class ReportView():
       admin_menu.add_menu_item('G', 'RATE CONTRACTOR', ContrConst.RATE)
     except AttributeError:
       # Report does not have a contractor, no contractor to rate
-      pass
+      menu = Menu(11)
+      menu.add_menu_item('R', 'ADD CONTRACTOR', SearchConst.CONTRACTOR_FOR_REPORT)
+      self.__screen.display_menu(menu)
+      options = menu.get_options()
     
     self.__display_one_report(report)
-    #self.__screen.display_menu(menu)
 
-    options = menu.get_options()
     options.update(self.__screen.display_admin_menu(admin_menu, self.llapi.user.role))
 
     # Store report in params so other handlers can pick it up to display relative data
     self.llapi.set_param(ContrConst.INPUT_PARAM, report)
     self.llapi.set_param(ReportConst.REPORT_PARAM, report)
+    self.llapi.set_param(ReportConst.INPUT_PARAM, report)
     return options
 
   def __display_one_report(self, report: EmployeeReport) -> None:
@@ -213,7 +219,7 @@ class ReportView():
 
     total_cost = report.material_cost + report.labor_cost
 
-    left_column = Menu(5, spacing=14)
+    left_column = Menu(5, spacing=20)
     left_column.add_menu_item('BUILDING', report.building.registration)
     left_column.add_menu_item('ADDRESS', report.building.address)
     left_column.add_menu_item('REPORT DATE', report.report_date)
@@ -240,16 +246,16 @@ class ReportView():
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
 
-    self.__screen.horizontal_line(100, 12, 6)
+    self.__screen.horizontal_line(100, 13, 6)
 
-    self.__screen.print('TASK DESCRIPTION', 14, 6, Styles.DATA_KEY)
-    self.__screen.print(report.task.title, 15, 6)
+    self.__screen.print('TASK DESCRIPTION', 15, 6, Styles.DATA_KEY)
+    self.__screen.print(report.task.title, 16, 6)
 
-    self.__screen.print('REPORT DESCRIPTION', 17, 6, Styles.DATA_KEY)
-    self.__screen.print(report.description, 18, 6)
+    self.__screen.print('REPORT DESCRIPTION', 18, 6, Styles.DATA_KEY)
+    self.__screen.print(report.description, 19, 6)
 
-    self.__screen.print('NOTE', 20, 6, Styles.DATA_KEY)
-    self.__screen.print(report.note, 21, 6)
+    self.__screen.print('NOTE', 21, 6, Styles.DATA_KEY)
+    self.__screen.print(report.note, 22, 6)
 
   def __approve_handler(self):
     ''' Mark report as approved. '''
@@ -317,8 +323,8 @@ class ReportView():
     except KeyError as err:
       self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
       return {}
-    self.__screen.print('CREATE NEW REPORT', 2, 50, Styles.PAGE_HEADER)
-    self.__screen.print('PLEASE FILL THE FORM TO CREATE A NEW REPORT', 5, 6, Styles.DATA_KEY)
+    self.__screen.print('ADD CONTRACTOR TO REPORT', 2, 50, Styles.PAGE_HEADER)
+    self.__screen.print('PLEASE FILL THE FORM TO ADD CONTRACTOR', 5, 6, Styles.DATA_KEY)
     self.__screen.refresh()
     form = Form(ContractorReport.get_new_fields())
     for field in form:

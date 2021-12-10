@@ -1,4 +1,5 @@
 from models.location import Location
+from models.report import ContractorReport, EmployeeReport
 from ui.screen import Screen
 from llapi import LlApi
 from models.contractor import Contractor
@@ -28,6 +29,7 @@ class ContractorView():
       'ADD_NEW': self.__add_new_handler,
       'SAVE': self.__save_handler,
       'EDIT': self.__edit_handler,
+      'RATE': self.__rate_handler,
       'GET_ID': self.__get_id_handler,
       'FILTER_LOCATION': self.__filter_location_handler,
     }
@@ -203,8 +205,8 @@ class ContractorView():
       # only display Report info if they exist
       menu = Menu()
       left_column.add_menu_item('RATING', f'{contractor.get_rating():0.1f}')
-      self.__screen.print('REPORTS', 12, 6, Styles.DATA_KEY)
-      table = Table(contractor.reports, ReportConst.CON_TABLE_HEADERS, 14, 6, 8, False)
+      self.__screen.print('REPORTS', 13, 6, Styles.DATA_KEY)
+      table = Table(contractor.reports, ReportConst.CON_TABLE_HEADERS, 15, 6, 8, False)
       self.__screen.display_table(table)
       paging_options = self.__screen.display_table(table)
       if 'N' in paging_options:
@@ -217,7 +219,7 @@ class ContractorView():
     self.__screen.display_menu(left_column, Styles.DATA_KEY)
     self.__screen.display_menu(right_column, Styles.DATA_KEY)
 
-    self.__screen.horizontal_line(100, 10, 6)
+    self.__screen.horizontal_line(100, 11, 6)
     return options
 
   def __add_new_handler(self):
@@ -295,6 +297,31 @@ class ContractorView():
       contractor = self.llapi.new_contractor(form)
     self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
     return ContrConst.VIEW
+
+  def __rate_handler(self):
+    ''' Assign task to logged in employee. '''
+    try:
+      report: EmployeeReport = self.llapi.get_param(ContrConst.INPUT_PARAM)
+    except KeyError as err:
+      self.__screen.print(str(err).upper(), 6, 6, Styles.ERROR)
+      return {}
+    contractor = self.llapi.get_contractor(report.contractor_report.contractor_id)
+    self.__display_one_contractor(contractor)
+
+    self.__screen.print('ENTER NEW RATING (1-5)', 9, 6, Styles.DATA_KEY)
+    rating = self.__screen.get_string(9, 30, 1, '12345', editing=True)
+    con_rep: ContractorReport = report.contractor_report
+    try:
+      con_rep.contractor_rating = int(rating)
+    except ValueError:
+      # No value entered, returning unchanged report
+      self.llapi.set_param(ReportConst.REPORT_PARAM, report)
+      return GlobalConst.BACK
+    
+    updated_report = self.llapi.update_contractor_report(con_rep)
+    emp_rep = self.llapi.get_report(updated_report.employee_report_id)
+    self.llapi.set_param(ReportConst.REPORT_PARAM, emp_rep)
+    return GlobalConst.BACK
 
   def __filter_location_handler(self):
     try:

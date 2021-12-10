@@ -22,6 +22,7 @@ class SearchView():
       'EMPLOYEE_BY_LOCATION': self.__emp_by_location_handler,
       'BUILDING_BY_LOCATION': self.__build_by_location_handler,
       'CONTRACTOR_BY_LOCATION': self.__contractor_by_location_handler,
+      'CONTRACTOR_FOR_REPORT': self.__contractor_for_report_handler,
       'EMPLOYEE_BY_ID': self.__emp_by_id_handler,
       'BUILDING_BY_ID': self.__build_by_id_handler,
       'TASK_BY_ID': self.__task_by_id_handler,
@@ -103,6 +104,18 @@ class SearchView():
     location = self.__screen.select_from_table(table, 5, question_text)
     self.llapi.set_param(ContrConst.INPUT_PARAM, location)
     return ContrConst.FILTER_LOCATION
+
+  def __contractor_for_report_handler(self):
+    ''' Handler that allows user to select a location from a list.
+    Available input is either a row number or an available paging option.
+    If wrong row number is selected, an error is displayed and user asked
+    to try again. '''
+    contractors = self.llapi.get_contractors_by_location(self.llapi.user.location_id)
+    table = Table(contractors, ContrConst.TABLE_HEADERS)
+    question_text = 'ENTER NUMBER (#) OF CONTRACTOR'
+    contractor = self.__screen.select_from_table(table, 5, question_text)
+    self.llapi.set_param(ContrConst.CONTRACTOR_PARAM, contractor)
+    return ReportConst.NEW_CONTRACTOR
 
   def __emp_by_id_handler(self):
     self.__screen.print('EMPLOYEE SEARCH', 5, 6, Styles.PAGE_HEADER)
