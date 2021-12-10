@@ -9,7 +9,8 @@ skinparam class {
 }
 
 package ViewLayer {
-  Class Table {
+
+    Class Table {
     + data
     + headers
     + begin_line
@@ -88,6 +89,53 @@ package ViewLayer {
   }
 
   Menu o-- MenuItem
+
+  Class Screen {
+    + lines
+    + cols
+    + begin_y
+    + begin_x
+    - parent
+    - border
+
+    - init_sub_window()
+    - resize()
+    - window_size_correct()
+    - is_in_bounds()
+    - get_safe_coords()
+    - get_current_pos()
+
+    + set_color_pair()
+    + get_color_pair()
+    + get_style()
+    + get_css_class()
+    + display_admin_menu()
+    + display_menu()
+    + display_table()
+    + display_table_footer()
+    + select_from_table()
+    + display_form()
+    + display_form_menu()
+    + edit_form_field()
+    + set_string_termination()
+    + get_character()
+    + get_string()
+    + get_multiline_string()
+    + print()
+    + horizontal_line()
+    + print_selected()
+    + move_cursor_by_offset()
+    + move_cursor_to_coords()
+    + clear()
+    + refresh()
+    + paint_character()
+    + delete_character()
+    + delete_line()
+    + flash()
+    + flush_input()
+    + create_sub_window()
+    + end()
+  }
 
   Class MainProgram {
     - logged_in_user
